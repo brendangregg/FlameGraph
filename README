@@ -1,0 +1,50 @@
+FlameGraphs visualize hot-CPU code-paths.
+
+These can be created in 3 steps:
+
+   1. Capture stacks
+   2. Fold stacks
+   3. flamegraph.pl
+
+
+1. Capture stacks
+
+Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
+
+# dtrace -x stackframes=100 -n 'profile-997 /arg0/ { @[stack()] = count(); } tick-60s { exit(0); }' -o out.kern_stacks
+
+Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 997 Hertz:
+
+# dtrace -x ustackframes=100 -n 'profile-997 /PID == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
+
+You can include "arg1" in the predicate if you just want to study user-level CPU time only; otherwise it includes kernel time in the user-level flame graph (eg, syscall time).  (Make sure you understand what that means!)
+
+
+2. Fold stacks
+
+stackcollapse.pl is provided, which currently handles DTrace output.  Eg:
+
+$ ./stackcollapse.pl out.kern_stacks > out.kern_folded
+
+The output looks like this:
+
+unix`_sys_sysenter_post_swapgs 1401
+unix`_sys_sysenter_post_swapgs,genunix`close 5
+unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf 85
+unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,c2audit`audit_closef 26
+unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,c2audit`audit_setf 5
+unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,genunix`audit_getstate 6
+unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,genunix`audit_unfalloc 2
+unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,genunix`closef 48
+[...]
+
+
+3. flamegraph.pl
+
+Use flamegraph.pl to render a SVG.
+
+$ ./flamegraph.pl out.kern_folded > kernel.svg
+
+An advantage of having the folded input file (and why this is separate to flamegraph.pl) is that you can use grep for functions of interest. Eg:
+
+$ grep cpuid out.kern_folded | ./flamegraph.pl > cpuid.svg
