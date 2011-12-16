@@ -47,6 +47,7 @@
 #
 # CDDL HEADER END
 #
+# 15-Dec-2011	Dave Pacheco	Support for frames with whitespace.
 # 10-Sep-2011	Brendan Gregg	Created this.
 
 use strict;
@@ -170,7 +171,7 @@ my $last = "";
 my $time = 0;
 foreach (sort @Data) {
 	chomp;
-	my ($stack, $samples) = split ' ';
+	my ($stack, $samples) = (/^(.*)\s+(\d+)$/);
 	$stack = ",$stack";
 	next unless defined $samples;
 	flow($last, $stack, $time);
