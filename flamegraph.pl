@@ -172,6 +172,8 @@ my $time = 0;
 foreach (sort @Data) {
 	chomp;
 	my ($stack, $samples) = (/^(.*)\s+(\d+)$/);
+	$stack =~ s/</(/g;
+	$stack =~ s/>/)/g;
 	$stack = ",$stack";
 	next unless defined $samples;
 	flow($last, $stack, $time);
