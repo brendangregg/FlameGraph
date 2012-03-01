@@ -76,6 +76,8 @@ foreach (<>) {
 	my $frame = $_;
 	$frame =~ s/^\s*//;
 	$frame =~ s/\+.*$//;
+	# Remove arguments from C++ function names.
+	$frame =~ s/(..)[(<].*/$1/;
 	$frame = "-" if $frame eq "";
 	unshift @stack, $frame;
 }
