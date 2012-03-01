@@ -240,6 +240,9 @@ foreach my $id (keys %Node) {
 		$info = "all samples ($samples samples, 100%)";
 	} else {
 		my $pct = sprintf "%.2f", ((100 * $samples) / $timemax);
+		$func =~ s/&/&amp;/g;
+		$func =~ s/</&lt;/g;
+		$func =~ s/>/&gt;/g;
 		$info = "$func ($samples samples, $pct%)";
 	}
 	$im->filledRectangle($x1, $y1, $x2, $y2, color("hot"), 'rx="2" ry="2" onmouseover="s(' . "'$info'" . ')" onmouseout="c()"');
