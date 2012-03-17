@@ -1,6 +1,8 @@
-FlameGraphs visualize hot-CPU code-paths.
+Flame Graphs visualize hot-CPU code-paths.
 
-These can be created in 3 steps:
+See: http://dtrace.org/blogs/brendan/2011/12/16/flame-graphs/
+
+These can be created in three steps:
 
    1. Capture stacks
    2. Fold stacks
@@ -8,6 +10,8 @@ These can be created in 3 steps:
 
 
 1. Capture stacks
+
+Stack samples can be captured using DTrace, perf_events or SystemTap.
 
 Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
 
@@ -22,7 +26,13 @@ You can include "arg1" in the predicate if you just want to study user-level CPU
 
 2. Fold stacks
 
-stackcollapse.pl is provided, which currently handles DTrace output.  Eg:
+Use the stackcollapse programs to fold stack samples into single lines.  The programs provided are:
+
+- stackcollapse.pl: for DTrace stacks
+- stackcollapse-perf.pl: for perf_events "perf script" output
+- stackcollapse-stap.pl: for SystemTap stacks
+
+Usage example:
 
 $ ./stackcollapse.pl out.kern_stacks > out.kern_folded
 
