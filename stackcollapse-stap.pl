@@ -73,7 +73,7 @@ foreach (<>) {
 
 	my $frame = $_;
 	$frame =~ s/^\s*//;
-	$frame =~ s/\+.*$//;
+	$frame =~ s/\+[^+]*$//;
 	$frame =~ s/.* : //;
 	$frame = "-" if $frame eq "";
 	unshift @stack, $frame;
