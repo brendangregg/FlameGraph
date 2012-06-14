@@ -64,7 +64,7 @@ foreach (<>) {
 	chomp;
 
 	if (m/^\s*(\d+)+$/) {
-		remember_stack(join(",", @stack), $1);
+		remember_stack(join(";", @stack), $1);
 		@stack = ();
 		next;
 	}
