@@ -68,7 +68,7 @@ foreach (<>) {
 	chomp;
 
 	if (m/^$/) {
-		remember_stack(join(",", @stack), 1) if @stack;
+		remember_stack(join(";", @stack), 1) if @stack;
 		undef @stack;
 		next;
 	}

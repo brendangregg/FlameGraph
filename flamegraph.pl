@@ -135,8 +135,8 @@ my %Tmp;
 
 sub flow {
 	my ($a, $b, $v) = @_;
-	my @A = split ",", $a;
-	my @B = split ",", $b;
+	my @A = split ";", $a;
+	my @B = split ";", $b;
 
 	my $len_a = $#A;
 	my $len_b = $#B;
