@@ -240,10 +240,11 @@ foreach my $id (keys %Node) {
 		$info = "all samples ($samples samples, 100%)";
 	} else {
 		my $pct = sprintf "%.2f", ((100 * $samples) / $timemax);
-		$func =~ s/&/&amp;/g;
-		$func =~ s/</&lt;/g;
-		$func =~ s/>/&gt;/g;
-		$info = "$func ($samples samples, $pct%)";
+		my $escaped_func = $func;
+		$escaped_func =~ s/&/&amp;/g;
+		$escaped_func =~ s/</&lt;/g;
+		$escaped_func =~ s/>/&gt;/g;
+		$info = "$escaped_func ($samples samples, $pct%)";
 	}
 	$im->filledRectangle($x1, $y1, $x2, $y2, color("hot"), 'rx="2" ry="2" onmouseover="s(' . "'$info'" . ')" onmouseout="c()"');
 
@@ -251,6 +252,9 @@ foreach my $id (keys %Node) {
 		my $chars = int($width / (0.7 * $fontsize));
 		my $text = substr $func, 0, $chars;
 		$text .= ".." if $chars < length $func;
+		$text =~ s/&/&amp;/g;
+		$text =~ s/</&lt;/g;
+		$text =~ s/>/&gt;/g;
 		$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, "",
 		    'onmouseover="s(' . "'$info'" . ')" onmouseout="c()"');
 	}
