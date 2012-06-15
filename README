@@ -43,13 +43,13 @@ $ ./stackcollapse.pl out.kern_stacks > out.kern_folded
 The output looks like this:
 
 unix`_sys_sysenter_post_swapgs 1401
-unix`_sys_sysenter_post_swapgs,genunix`close 5
-unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf 85
-unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,c2audit`audit_closef 26
-unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,c2audit`audit_setf 5
-unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,genunix`audit_getstate 6
-unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,genunix`audit_unfalloc 2
-unix`_sys_sysenter_post_swapgs,genunix`close,genunix`closeandsetf,genunix`closef 48
+unix`_sys_sysenter_post_swapgs;genunix`close 5
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf 85
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;c2audit`audit_closef 26
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;c2audit`audit_setf 5
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_getstate 6
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_unfalloc 2
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
 [...]
 
 

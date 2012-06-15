@@ -4,7 +4,7 @@
 #				into single lines.
 #
 # Parses a multiline stack followed by a number on a separate line, and
-# outputs a comma separated stack followed by a space and the number.
+# outputs a semicolon separated stack followed by a space and the number.
 # If memory addresses (+0xd) are present, they are stripped, and resulting
 # identical stacks are colased with their counts summed.
 #
@@ -21,7 +21,7 @@
 #
 # Example output:
 #
-#  start_kernel,rest_init,cpu_idle,default_idle,native_safe_halt 2404
+#  start_kernel;rest_init;cpu_idle;default_idle;native_safe_halt 2404
 #
 # Input may contain many stacks as generated from SystemTap.
 #

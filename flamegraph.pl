@@ -10,8 +10,8 @@
 #        grep funcA input.txt | ./flamegraph.pl > graph.svg
 #
 # The input is stack frames and sample counts formatted as single lines.  Each
-# frame in the stack is comma separated, with a space and count at the end of
-# the line.  These can be generated using DTrace with stackcollapse.pl.
+# frame in the stack is semicolon separated, with a space and count at the end
+# of the line.  These can be generated using DTrace with stackcollapse.pl.
 #
 # The output graph shows relative presense of functions in stack samples.  The
 # ordering on the x-axis has no meaning; since the data is samples, time order

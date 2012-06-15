@@ -3,7 +3,7 @@
 # stackcolllapse.pl	collapse multiline stacks into single lines.
 #
 # Parses a multiline stack followed by a number on a separate line, and
-# outputs a comma separated stack followed by a space and the number.
+# outputs a semicolon separated stack followed by a space and the number.
 # If memory addresses (+0xd) are present, they are stripped, and resulting
 # identical stacks are colased with their counts summed.
 #
@@ -19,7 +19,7 @@
 #
 # Example output:
 #
-#  unix`thread_start,unix`idle,unix`cpu_idle_mwait,unix`i86_mwait 1641
+#  unix`thread_start;unix`idle;unix`cpu_idle_mwait;unix`i86_mwait 1641
 #
 # Input may contain many stacks, and can be generated using DTrace.  The
 # first few lines of input are skipped (see $headerlines).
