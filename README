@@ -2,6 +2,7 @@ Flame Graphs visualize hot-CPU code-paths.
 
 Using DTrace, see: http://dtrace.org/blogs/brendan/2011/12/16/flame-graphs/
 Using perf_events or SystemTap, see: http://dtrace.org/blogs/brendan/2012/03/17/linux-kernel-performance-flame-graphs/
+Using XCode Instruments, see: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/
 
 These can be created in three steps:
 
@@ -35,6 +36,7 @@ Use the stackcollapse programs to fold stack samples into single lines.  The pro
 - stackcollapse.pl: for DTrace stacks
 - stackcollapse-perf.pl: for perf_events "perf script" output
 - stackcollapse-stap.pl: for SystemTap stacks
+- stackcollapse-instruments.pl: for XCode Instruments
 
 Usage example:
 
