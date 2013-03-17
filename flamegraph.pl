@@ -152,53 +152,54 @@ my %Node;
 my %Tmp;
 
 sub flow {
-	my ($a, $b, $v) = @_;
-	my @A = split ";", $a;
-	my @B = split ";", $b;
+	my ($last, $this, $v) = @_;
 
-	my $len_a = $#A;
-	my $len_b = $#B;
+	my $len_a = @$last - 1;
+	my $len_b = @$this - 1;
 	$depthmax = $len_b if $len_b > $depthmax;
 
 	my $i = 0;
-	my $len_same = 0;
+	my $len_same;
 	for (; $i <= $len_a; $i++) {
 		last if $i > $len_b;
-		last if $A[$i] ne $B[$i];
+		last if $last->[$i] ne $this->[$i];
 	}
 	$len_same = $i;
 
 	for ($i = $len_a; $i >= $len_same; $i--) {
-		my $k = "$A[$i]--$i";
+		my $k = "$last->[$i]--$i";
 		# a unique ID is constructed from func--depth--etime;
 		# func-depth isn't unique, it may be repeated later.
-		$Node{"$k--$v"}->{stime} = $Tmp{$k}->{stime};
-		delete $Tmp{$k}->{stime};
+		$Node{"$k--$v"}->{stime} = delete $Tmp{$k}->{stime};
 		delete $Tmp{$k};
 	}
 
 	for ($i = $len_same; $i <= $len_b; $i++) {
-		my $k = "$B[$i]--$i";
+		my $k = "$this->[$i]--$i";
 		$Tmp{$k}->{stime} = $v;
 	}
+
+        return $this;
 }
 
 # Parse input
 my @Data = <>;
-my $last = "";
+my $last = [];
 my $time = 0;
+my $ignored = 0;
 foreach (sort @Data) {
 	chomp;
 	my ($stack, $samples) = (/^(.*)\s+(\d+)$/);
-	$stack =~ s/</(/g;
-	$stack =~ s/>/)/g;
-	$stack = ";$stack";
-	next unless defined $samples;
-	flow($last, $stack, $time);
+	unless (defined $samples) {
+            ++$ignored;
+            next;
+        }
+	$stack =~ tr/<>/()/;
+	$last = flow($last, [ '', split ";", $stack ], $time);
 	$time += $samples;
-	$last = $stack;
 }
-flow($last, "", $time);
+flow($last, [], $time);
+warn "Ignored $ignored lines with invalid format\n" if $ignored;
 $timemax = $time or die "ERROR: No stack counts found\n";
 
 # Draw canvas
