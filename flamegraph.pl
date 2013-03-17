@@ -47,10 +47,13 @@
 #
 # CDDL HEADER END
 #
+# 17-Mar-2013   Tim Bunce       Added options and more tunables.
 # 15-Dec-2011	Dave Pacheco	Support for frames with whitespace.
 # 10-Sep-2011	Brendan Gregg	Created this.
 
 use strict;
+
+use Getopt::Long;
 
 # tunables
 my $fonttype = "Verdana";
@@ -58,6 +61,21 @@ my $imagewidth = 1200;		# max width, pixels
 my $frameheight = 16;		# max height is dynamic
 my $fontsize = 12;		# base text size
 my $minwidth = 0.1;		# min function width, pixels
+my $titletext = "Flame Graph";  # centered heading
+my $nametype = "Function:";     # what are the names in the data?
+my $countname = "samples";      # what are the counts in the data?
+
+GetOptions(
+    'fonttype=s'   => \$fonttype,
+    'width=i'      => \$imagewidth,
+    'height=i'     => \$frameheight,
+    'fontsize=i'   => \$fontsize,
+    'minwidth=f'   => \$minwidth,
+    'title=s'      => \$titletext,
+    'nametype=s'   => \$nametype,
+    'countname=s'  => \$countname,
+) or exit 1;
+
 
 # internals
 my $ypad1 = $fontsize * 4;	# pad top, include title
@@ -203,7 +221,7 @@ my $inc = <<INC;
 <![CDATA[
 	var details;
 	function init(evt) { details = document.getElementById("details").firstChild; }
-	function s(info) { details.nodeValue = info; }
+	function s(info) { details.nodeValue = "$nametype " + info; }
 	function c() { details.nodeValue = ' '; }
 ]]>
 </script>
@@ -216,16 +234,14 @@ my ($white, $black, $vvdgrey, $vdgrey) = (
 	$im->colorAllocate(40, 40, 40),
 	$im->colorAllocate(160, 160, 160),
     );
-$im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, "Flame Graph", "middle");
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), 'Function:');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad + 60, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
+$im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
 
 # Draw frames
 foreach my $id (keys %Node) {
 	my ($func, $depth, $etime) = split "--", $id;
 	die "missing start for $id" if !defined $Node{$id}->{stime};
 	my $stime = $Node{$id}->{stime};
-	my $samples = $etime - $stime;
 
 	my $x1 = $xpad + $stime * $widthpertime;
 	my $x2 = $xpad + $etime * $widthpertime;
@@ -235,16 +251,20 @@ foreach my $id (keys %Node) {
 	my $y1 = $imageheight - $ypad2 - ($depth + 1) * $frameheight + 1;
 	my $y2 = $imageheight - $ypad2 - $depth * $frameheight;
 
+	my $samples = $etime - $stime;
+        (my $samples_txt = $samples) # add commas per perlfaq5
+            =~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
+
 	my $info;
 	if ($func eq "" and $depth == 0) {
-		$info = "all samples ($samples samples, 100%)";
+		$info = "all ($samples_txt $countname, 100%)";
 	} else {
 		my $pct = sprintf "%.2f", ((100 * $samples) / $timemax);
 		my $escaped_func = $func;
 		$escaped_func =~ s/&/&amp;/g;
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
-		$info = "$escaped_func ($samples samples, $pct%)";
+		$info = "$escaped_func ($samples_txt $countname, $pct%)";
 	}
 	$im->filledRectangle($x1, $y1, $x2, $y2, color("hot"), 'rx="2" ry="2" onmouseover="s(' . "'$info'" . ')" onmouseout="c()"');
 
