@@ -143,6 +143,8 @@ SVG
 		if ($attr->{href}) {
 			my @a_attr;
 			push @a_attr, sprintf qq/xlink:href="%s"/, $attr->{href} if $attr->{href};
+                        # default target=_top else links will open within SVG <object>
+			push @a_attr, sprintf qq/target="%s"/, $attr->{target} || "_top";
 			push @a_attr, $attr->{a_extra}                           if $attr->{a_extra};
 			$self->{svg} .= sprintf qq/<a %s>/, join(' ', @a_attr);
 		}
