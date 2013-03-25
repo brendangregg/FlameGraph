@@ -232,7 +232,7 @@ my $time = 0;
 my $ignored = 0;
 foreach (sort @Data) {
 	chomp;
-	my ($stack, $samples) = (/^(.*)\s+(\d+)$/);
+	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*))$/);
 	unless (defined $samples) {
             ++$ignored;
             next;
@@ -294,7 +294,7 @@ foreach my $id (keys %Node) {
 	my $y1 = $imageheight - $ypad2 - ($depth + 1) * $frameheight + 1;
 	my $y2 = $imageheight - $ypad2 - $depth * $frameheight;
 
-	my $samples = $etime - $stime;
+	my $samples = sprintf "%.0f", $etime - $stime;
         (my $samples_txt = $samples) # add commas per perlfaq5
             =~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
