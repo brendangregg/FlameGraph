@@ -65,6 +65,7 @@ my $titletext = "Flame Graph";  # centered heading
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $nameattrfile;               # file holding function attributes
+my $timemax;                    # (override the) sum of the counts
 
 GetOptions(
     'fonttype=s'   => \$fonttype,
@@ -76,6 +77,7 @@ GetOptions(
     'nametype=s'   => \$nametype,
     'countname=s'  => \$countname,
     'nameattr=s'   => \$nameattrfile,
+    'total=s'      => \$timemax,
 ) or exit 1;
 
 
@@ -83,7 +85,6 @@ GetOptions(
 my $ypad1 = $fontsize * 4;	# pad top, include title
 my $ypad2 = $fontsize * 2 + 10;	# pad bottom, include labels
 my $xpad = 10;			# pad lefm and right
-my $timemax = 0;
 my $depthmax = 0;
 my %Events;
 my %nameattr;
@@ -243,7 +244,13 @@ foreach (sort @Data) {
 }
 flow($last, [], $time);
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
-$timemax = $time or die "ERROR: No stack counts found\n";
+die "ERROR: No stack counts found\n" unless $time;
+
+if ($timemax and $timemax < $time) {
+    warn "Specified --total $timemax is less than actual total $time, so ignored\n";
+    undef $timemax;
+}
+$timemax ||= $time;
 
 # Draw canvas
 my $widthpertime = ($imagewidth - 2 * $xpad) / $timemax;
@@ -285,6 +292,8 @@ foreach my $id (keys %Node) {
 	my ($func, $depth, $etime) = split "--", $id;
 	die "missing start for $id" if !defined $Node{$id}->{stime};
 	my $stime = $Node{$id}->{stime};
+
+	$etime = $timemax if $func eq "" and $depth == 0;
 
 	my $x1 = $xpad + $stime * $widthpertime;
 	my $x2 = $xpad + $etime * $widthpertime;
