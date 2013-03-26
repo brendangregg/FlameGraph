@@ -211,15 +211,15 @@ sub flow {
 	$len_same = $i;
 
 	for ($i = $len_a; $i >= $len_same; $i--) {
-		my $k = "$last->[$i]--$i";
-		# a unique ID is constructed from func--depth--etime;
+		my $k = "$last->[$i];$i";
+		# a unique ID is constructed from "func;depth;etime";
 		# func-depth isn't unique, it may be repeated later.
-		$Node{"$k--$v"}->{stime} = delete $Tmp{$k}->{stime};
+		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
 		delete $Tmp{$k};
 	}
 
 	for ($i = $len_same; $i <= $len_b; $i++) {
-		my $k = "$this->[$i]--$i";
+		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
 	}
 
@@ -289,7 +289,7 @@ $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 
 
 # Draw frames
 foreach my $id (keys %Node) {
-	my ($func, $depth, $etime) = split "--", $id;
+	my ($func, $depth, $etime) = split ";", $id;
 	die "missing start for $id" if !defined $Node{$id}->{stime};
 	my $stime = $Node{$id}->{stime};
 
