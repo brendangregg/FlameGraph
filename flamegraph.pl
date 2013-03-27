@@ -319,7 +319,7 @@ foreach my $id (keys %Node) {
 		$info = "$escaped_func ($samples_txt $countname, $pct%)";
 	}
 
-        my $nameattr = $nameattr{$func} || {};
+        my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
         $nameattr->{class}       ||= "func_g";
         $nameattr->{onmouseover} ||= "s('".$info."')";
         $nameattr->{onmouseout}  ||= "c()";
