@@ -6,3 +6,8 @@ Hot Cold Graphs
 These show both on-CPU time (in shades of red) and off-CPU time (blocked time;
 in shades of blue) in a similar style to the Flame Graph.
 
+Thread Hot Cold Graphs
+======================
+These are per-Thread Hot Cold Graphs, which helps separate logical functions
+that are managed by their threads, and helps you estimate speed up for the
+threads of interest.
