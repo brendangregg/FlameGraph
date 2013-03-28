@@ -12,7 +12,7 @@ These can be created in three steps:
 
 
 1. Capture stacks
-
+=================
 Stack samples can be captured using DTrace, perf_events or SystemTap.
 
 Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
@@ -30,7 +30,7 @@ Using DTrace to capture 60 seconds of user-level stacks, including while time is
 Switch ustack() for jstack() if the application has a ustack helper to include translated frames (eg, node.js frames; see: http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/).  The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using jstack() as it performs additional work to translate frames.
 
 2. Fold stacks
-
+==============
 Use the stackcollapse programs to fold stack samples into single lines.  The programs provided are:
 
 - stackcollapse.pl: for DTrace stacks
@@ -54,9 +54,8 @@ unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_
 unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
 [...]
 
-
 3. flamegraph.pl
-
+================
 Use flamegraph.pl to render a SVG.
 
 $ ./flamegraph.pl out.kern_folded > kernel.svg
@@ -64,3 +63,15 @@ $ ./flamegraph.pl out.kern_folded > kernel.svg
 An advantage of having the folded input file (and why this is separate to flamegraph.pl) is that you can use grep for functions of interest. Eg:
 
 $ grep cpuid out.kern_folded | ./flamegraph.pl > cpuid.svg
+
+
+Provided Example
+================
+An example output from DTrace is included, both the captured stacks and
+the resulting Flame Graph. You can generate it yourself using:
+
+$ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl > example.svg
+
+This was from a particular performance investigation: the Flame Graph
+identified that CPU time was spent in the lofs module, and quantified
+that time.

@@ -1,0 +1,8 @@
+EXPERIMENTAL: This includes some work in progress code, which may not work
+properly.
+
+Hot Cold Graphs
+===============
+These show both on-CPU time (in shades of red) and off-CPU time (blocked time;
+in shades of blue) in a similar style to the Flame Graph.
+
