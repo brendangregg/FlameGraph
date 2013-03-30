@@ -66,6 +66,7 @@ my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
+my $factor = 1;                 # factor to scale counts by
 
 GetOptions(
     'fonttype=s'   => \$fonttype,
@@ -78,6 +79,7 @@ GetOptions(
     'countname=s'  => \$countname,
     'nameattr=s'   => \$nameattrfile,
     'total=s'      => \$timemax,
+    'factor=f'     => \$factor,
 ) or exit 1;
 
 
@@ -303,7 +305,7 @@ foreach my $id (keys %Node) {
 	my $y1 = $imageheight - $ypad2 - ($depth + 1) * $frameheight + 1;
 	my $y2 = $imageheight - $ypad2 - $depth * $frameheight;
 
-	my $samples = sprintf "%.0f", $etime - $stime;
+	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
         (my $samples_txt = $samples) # add commas per perlfaq5
             =~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
