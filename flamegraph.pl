@@ -249,7 +249,8 @@ warn "Ignored $ignored lines with invalid format\n" if $ignored;
 die "ERROR: No stack counts found\n" unless $time;
 
 if ($timemax and $timemax < $time) {
-    warn "Specified --total $timemax is less than actual total $time, so ignored\n";
+    warn "Specified --total $timemax is less than actual total $time, so ignored\n"
+        if $timemax/$time > 0.02; # only warn is significant (e.g., not rounding etc)
     undef $timemax;
 }
 $timemax ||= $time;
