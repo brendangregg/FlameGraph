@@ -325,7 +325,7 @@ while (my ($id, $node) = each %Node) {
 	if ($func eq "" and $depth == 0) {
 		$info = "all ($samples_txt $countname, 100%)";
 	} else {
-		my $pct = sprintf "%.2f", ((100 * $samples) / $timemax);
+		my $pct = sprintf "%.2f", ((100 * $samples) / ($timemax * $factor));
 		my $escaped_func = $func;
 		$escaped_func =~ s/&/&amp;/g;
 		$escaped_func =~ s/</&lt;/g;
