@@ -60,6 +60,7 @@ my $fonttype = "Verdana";
 my $imagewidth = 1200;		# max width, pixels
 my $frameheight = 16;		# max height is dynamic
 my $fontsize = 12;		# base text size
+my $fontwidth = 0.55;           # avg width relative to fontsize
 my $minwidth = 0.1;		# min function width, pixels
 my $titletext = "Flame Graph";  # centered heading
 my $nametype = "Function:";     # what are the names in the data?
@@ -72,7 +73,8 @@ GetOptions(
     'fonttype=s'   => \$fonttype,
     'width=i'      => \$imagewidth,
     'height=i'     => \$frameheight,
-    'fontsize=i'   => \$fontsize,
+    'fontsize=f'   => \$fontsize,
+    'fontwidth=f'  => \$fontwidth,
     'minwidth=f'   => \$minwidth,
     'title=s'      => \$titletext,
     'nametype=s'   => \$nametype,
@@ -337,15 +339,15 @@ while (my ($id, $node) = each %Node) {
         $nameattr->{class}       ||= "func_g";
         $nameattr->{onmouseover} ||= "s('".$info."')";
         $nameattr->{onmouseout}  ||= "c()";
+        $nameattr->{title}       ||= $info;
         $im->group_start($nameattr);
 
 	$im->filledRectangle($x1, $y1, $x2, $y2, color("hot"), 'rx="2" ry="2"');
 
-	my $width = $x2 - $x1;
-	if ($width > 50) {
-		my $chars = int($width / (0.7 * $fontsize));
+	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
+	if ($chars >= 3) { # room for one char plus two dots
 		my $text = substr $func, 0, $chars;
-		$text .= ".." if $chars < length $func;
+		substr($text, -2, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
