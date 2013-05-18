@@ -3,19 +3,27 @@
 # flamegraph.pl		flame stack grapher.
 #
 # This takes stack samples and renders a call graph, allowing hot functions
-# and codepaths to be quickly identified.
+# and codepaths to be quickly identified.  Stack samples can be generated using
+# tools such as DTrace, perf, SystemTap, and Instruments.
 #
-# USAGE: ./flamegraph.pl input.txt > graph.svg
+# USAGE: ./flamegraph.pl [options] input.txt > graph.svg
 #
-#        grep funcA input.txt | ./flamegraph.pl > graph.svg
+#        grep funcA input.txt | ./flamegraph.pl [options] > graph.svg
+#
+# Options are listed in the usage message (--help).
 #
 # The input is stack frames and sample counts formatted as single lines.  Each
 # frame in the stack is semicolon separated, with a space and count at the end
-# of the line.  These can be generated using DTrace with stackcollapse.pl.
+# of the line.  These can be generated using DTrace with stackcollapse.pl,
+# and other tools using the stackcollapse variants.
 #
 # The output graph shows relative presense of functions in stack samples.  The
 # ordering on the x-axis has no meaning; since the data is samples, time order
-# of events is not known.  The order used sorts function names alphabeticly.
+# of events is not known.  The order used sorts function names alphabetically.
+#
+# While intended to process stack samples, this can also process stack traces.
+# For example, tracing stacks for memory allocation, or resource usage.  You
+# can use --titletext to set the title to reflect the content.
 #
 # HISTORY
 #
@@ -34,13 +42,13 @@
 # Common Development and Distribution License (the "License").
 # You may not use this file except in compliance with the License.
 #
-# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
-# or http://opensource.org/licenses/CDDL-1.0.
+# You can obtain a copy of the license at docs/cddl1.txt or
+# http://opensource.org/licenses/CDDL-1.0.
 # See the License for the specific language governing permissions
 # and limitations under the License.
 #
 # When distributing Covered Code, include this CDDL HEADER in each
-# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# file and include the License file at docs/cddl1.txt.
 # If applicable, add the following below this CDDL HEADER, with the
 # fields enclosed by brackets "[]" replaced with your own identifying
 # information: Portions Copyright [yyyy] [name of copyright owner]
@@ -82,8 +90,19 @@ GetOptions(
     'nameattr=s'   => \$nameattrfile,
     'total=s'      => \$timemax,
     'factor=f'     => \$factor,
-) or exit 1;
-
+) or die <<USAGE_END;
+USAGE: $0 [options] infile > outfile.svg\n
+	--titletext		# change title text
+	--width			# width of image (default 1200)
+	--height		# height of each frame (default 16)
+	--minwidth		# omit smaller functions (default 0.1 pixels)
+	--fonttype		# font type (default "Verdana")
+	--fontsize		# font size (default 12)
+	--countname		# count type label (default "samples")
+	--nametype		# name type label (default "Function:")
+    eg,
+	$0 --titletext="Flame Graph: malloc()" trace.txt > graph.svg
+USAGE_END
 
 # internals
 my $ypad1 = $fontsize * 4;	# pad top, include title
