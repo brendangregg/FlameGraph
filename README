@@ -75,3 +75,24 @@ $ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl > example.svg
 This was from a particular performance investigation: the Flame Graph
 identified that CPU time was spent in the lofs module, and quantified
 that time.
+
+
+Options
+=======
+See the USAGE message (--help) for options:
+
+USAGE: ./flamegraph.pl [options] infile > outfile.svg
+
+        --titletext             # change title text
+        --width                 # width of image (default 1200)
+        --height                # height of each frame (default 16)
+        --minwidth              # omit smaller functions (default 0.1 pixels)
+        --fonttype              # font type (default "Verdana")
+        --fontsize              # font size (default 12)
+        --countname             # count type label (default "samples")
+        --nametype              # name type label (default "Function:")
+    eg,
+        ./flamegraph.pl --titletext="Flame Graph: malloc()" trace.txt > graph.svg
+
+As suggested in the example, flame graphs can process traces of any event,
+such as malloc()s, provided stack traces are gathered.
