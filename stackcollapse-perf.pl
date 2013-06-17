@@ -75,13 +75,17 @@ foreach (<>) {
 
 	# Note the details skipped below, and customize as desired
 
-	next if m/:.*:/;	# skip summary lines
+	if (m/:.*:\s$/) {
+		# skip summary lines
+		next;
+	}
 
-	if (/^\s*\w+ (\w+) (\S+)/) {
+	if (/^\s*\w+\s*(.+) (\S+)/) {
 		my ($func, $mod) = ($1, $2);
-		next if $func =~ /\(/;		# skip process names
-		next unless $mod =~ /kernel/;	# skip non-kernel
+		next if $func =~ /^\(/;		# skip process names
 		unshift @stack, $func;
+	} else {
+		warn "Unrecognized line: $_";
 	}
 }
 
