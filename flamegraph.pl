@@ -23,7 +23,8 @@
 #
 # While intended to process stack samples, this can also process stack traces.
 # For example, tracing stacks for memory allocation, or resource usage.  You
-# can use --titletext to set the title to reflect the content.
+# can use --title to set the title to reflect the content, and --countname
+# to change "samples" to "bytes" etc.
 #
 # HISTORY
 #
@@ -73,6 +74,9 @@ my $minwidth = 0.1;		# min function width, pixels
 my $titletext = "Flame Graph";  # centered heading
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
+my $colors = "hot";		# color theme
+my $bgcolor1 = "#eeeeee";	# background color gradient start
+my $bgcolor2 = "#eeeeb0";	# background color gradient stop
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
@@ -90,9 +94,10 @@ GetOptions(
     'nameattr=s'   => \$nameattrfile,
     'total=s'      => \$timemax,
     'factor=f'     => \$factor,
+    'colors=s'     => \$colors,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
-	--titletext		# change title text
+	--title			# change title text
 	--width			# width of image (default 1200)
 	--height		# height of each frame (default 16)
 	--minwidth		# omit smaller functions (default 0.1 pixels)
@@ -100,8 +105,9 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--fontsize		# font size (default 12)
 	--countname		# count type label (default "samples")
 	--nametype		# name type label (default "Function:")
+	--colors		# "hot" or "mem" palette (default "hot")
     eg,
-	$0 --titletext="Flame Graph: malloc()" trace.txt > graph.svg
+	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
 USAGE_END
 
 # internals
@@ -122,6 +128,11 @@ if ($nameattrfile) {
         die "Invalid format in $nameattrfile" unless defined $attrstr;
         $nameattr{$funcname} = { map { split /=/, $_, 2 } split /\t/, $attrstr };
     }
+}
+
+if ($colors eq "mem") {
+	$bgcolor1 = "#eeeeee";
+	$bgcolor2 = "#e0e0ff";
 }
 
 # SVG functions
@@ -212,6 +223,12 @@ sub color {
 		my $b = 0 + int(rand(55));
 		return "rgb($r,$g,$b)";
 	}
+	if (defined $type and $type eq "mem") {
+		my $r = 0 + int(rand(0));
+		my $g = 190 + int(rand(50));
+		my $b = 0 + int(rand(230));
+		return "rgb($r,$g,$b)";
+	}
 	return "rgb(0,0,0)";
 }
 
@@ -298,8 +315,8 @@ $im->header($imagewidth, $imageheight);
 my $inc = <<INC;
 <defs >
 	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
-		<stop stop-color="#eeeeee" offset="5%" />
-		<stop stop-color="#eeeeb0" offset="95%" />
+		<stop stop-color="$bgcolor1" offset="5%" />
+		<stop stop-color="$bgcolor2" offset="95%" />
 	</linearGradient>
 </defs>
 <style type="text/css">
@@ -361,7 +378,7 @@ while (my ($id, $node) = each %Node) {
         $nameattr->{title}       ||= $info;
         $im->group_start($nameattr);
 
-	$im->filledRectangle($x1, $y1, $x2, $y2, color("hot"), 'rx="2" ry="2"');
+	$im->filledRectangle($x1, $y1, $x2, $y2, color($colors), 'rx="2" ry="2"');
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	if ($chars >= 3) { # room for one char plus two dots
