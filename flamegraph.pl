@@ -269,20 +269,15 @@ sub flow {
 my @Data = <>;
 my $last = [];
 my $time = 0;
-my $ignored = 0;
 foreach (sort @Data) {
 	chomp;
-	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
-	unless (defined $samples) {
-            ++$ignored;
-            next;
-        }
+	my ($stack, $samples) = (/^([^\s]+)\s*(\d+(?:\.\d*)?)?$/);
+	$samples = 1 unless (defined $samples);
 	$stack =~ tr/<>/()/;
 	$last = flow($last, [ '', split ";", $stack ], $time);
 	$time += $samples;
 }
 flow($last, [], $time);
-warn "Ignored $ignored lines with invalid format\n" if $ignored;
 die "ERROR: No stack counts found\n" unless $time;
 
 if ($timemax and $timemax < $time) {
