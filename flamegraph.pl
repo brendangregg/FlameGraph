@@ -17,7 +17,7 @@
 # of the line.  These can be generated using DTrace with stackcollapse.pl,
 # and other tools using the stackcollapse variants.
 #
-# The output graph shows relative presense of functions in stack samples.  The
+# The output graph shows relative presence of functions in stack samples.  The
 # ordering on the x-axis has no meaning; since the data is samples, time order
 # of events is not known.  The order used sorts function names alphabetically.
 #
@@ -25,6 +25,10 @@
 # For example, tracing stacks for memory allocation, or resource usage.  You
 # can use --title to set the title to reflect the content, and --countname
 # to change "samples" to "bytes" etc.
+#
+# There are a few different palettes, selectable using --color.  Functions
+# called "-" will be printed gray, which can be used for stack separators (eg,
+# between user and kernel stacks).
 #
 # HISTORY
 #
@@ -224,7 +228,7 @@ sub color {
 	if (defined $type and $type eq "mem") {
 		my $r = 0 + int(rand(0));
 		my $g = 190 + int(rand(50));
-		my $b = 0 + int(rand(230));
+		my $b = 0 + int(rand(210));
 		return "rgb($r,$g,$b)";
 	}
 	if (defined $type and $type eq "io") {
@@ -233,7 +237,7 @@ sub color {
 		my $b = 190 + int(rand(55));
 		return "rgb($r,$g,$b)";
 	}
-	return "rgb(0,0,0)";
+	die "ERROR: Unknown palette \"$type\"\n";
 }
 
 my %Node;
@@ -382,7 +386,8 @@ while (my ($id, $node) = each %Node) {
         $nameattr->{title}       ||= $info;
         $im->group_start($nameattr);
 
-	$im->filledRectangle($x1, $y1, $x2, $y2, color($colors), 'rx="2" ry="2"');
+	my $color = $func eq "-" ? $vdgrey : color($colors);
+	$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	if ($chars >= 3) { # room for one char plus two dots
