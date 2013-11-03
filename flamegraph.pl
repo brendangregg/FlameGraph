@@ -105,7 +105,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--fontsize		# font size (default 12)
 	--countname		# count type label (default "samples")
 	--nametype		# name type label (default "Function:")
-	--colors		# "hot" or "mem" palette (default "hot")
+	--colors		# "hot", "mem", "io" palette (default "hot")
     eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
 USAGE_END
@@ -130,10 +130,8 @@ if ($nameattrfile) {
     }
 }
 
-if ($colors eq "mem") {
-	$bgcolor1 = "#eeeeee";
-	$bgcolor2 = "#e0e0ff";
-}
+if ($colors eq "mem") { $bgcolor1 = "#eeeeee"; $bgcolor2 = "#e0e0ff"; }
+if ($colors eq "io")  { $bgcolor1 = "#f8f8f8"; $bgcolor2 = "#e8e8e8"; }
 
 # SVG functions
 { package SVG;
@@ -227,6 +225,12 @@ sub color {
 		my $r = 0 + int(rand(0));
 		my $g = 190 + int(rand(50));
 		my $b = 0 + int(rand(230));
+		return "rgb($r,$g,$b)";
+	}
+	if (defined $type and $type eq "io") {
+		my $r = 80 + int(rand(60));
+		my $g = $r;
+		my $b = 190 + int(rand(55));
 		return "rgb($r,$g,$b)";
 	}
 	return "rgb(0,0,0)";
