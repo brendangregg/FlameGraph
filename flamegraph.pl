@@ -84,6 +84,7 @@ my $bgcolor2 = "#eeeeb0";	# background color gradient stop
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
+my $hash = 0;			# color by function name
 
 GetOptions(
     'fonttype=s'   => \$fonttype,
@@ -99,6 +100,7 @@ GetOptions(
     'total=s'      => \$timemax,
     'factor=f'     => \$factor,
     'colors=s'     => \$colors,
+    'hash'         => \$hash,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title			# change title text
@@ -110,6 +112,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--countname		# count type label (default "samples")
 	--nametype		# name type label (default "Function:")
 	--colors		# "hot", "mem", "io" palette (default "hot")
+	--hash			# colors are keyed by function name hash
     eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
 USAGE_END
@@ -217,24 +220,54 @@ SVG
 	1;
 }
 
+sub namehash {
+	# Generate a vector hash for the name string, weighting early over
+	# later characters. We want to pick the same colors for function
+	# names across different flame graphs.
+	my $name = shift;
+	my $vector = 0;
+	my $weight = 1;
+	my $max = 1;
+	my $mod = 10;
+	# if module name present, trunc to 1st char
+	$name =~ s/.(.*?)`//;
+	foreach my $c (split //, $name) {
+		my $i = (ord $c) % $mod;
+		$vector += ($i / ($mod++ - 1)) * $weight;
+		$max += 1 * $weight;
+		$weight *= 0.70;
+		last if $mod > 12;
+	}
+	return (1 - $vector / $max)
+}
+
 sub color {
-	my $type = shift;
+	my ($type, $hash, $name) = @_;
+	my ($v1, $v2, $v3);
+	if ($hash) {
+		$v1 = namehash($name);
+		$v2 = $v3 = namehash(scalar reverse $name);
+	} else {
+		$v1 = rand(1);
+		$v2 = rand(1);
+		$v3 = rand(1);
+	}
 	if (defined $type and $type eq "hot") {
-		my $r = 205 + int(rand(50));
-		my $g = 0 + int(rand(230));
-		my $b = 0 + int(rand(55));
+		my $r = 205 + int(50 * $v3);
+		my $g = 0 + int(230 * $v1);
+		my $b = 0 + int(55 * $v2);
 		return "rgb($r,$g,$b)";
 	}
 	if (defined $type and $type eq "mem") {
-		my $r = 0 + int(rand(0));
-		my $g = 190 + int(rand(50));
-		my $b = 0 + int(rand(210));
+		my $r = 0;
+		my $g = 190 + int(50 * $v2);
+		my $b = 0 + int(210 * $v1);
 		return "rgb($r,$g,$b)";
 	}
 	if (defined $type and $type eq "io") {
-		my $r = 80 + int(rand(60));
+		my $r = 80 + int(60 * $v1);
 		my $g = $r;
-		my $b = 190 + int(rand(55));
+		my $b = 190 + int(55 * $v2);
 		return "rgb($r,$g,$b)";
 	}
 	die "ERROR: Unknown palette \"$type\"\n";
@@ -386,7 +419,7 @@ while (my ($id, $node) = each %Node) {
         $nameattr->{title}       ||= $info;
         $im->group_start($nameattr);
 
-	my $color = $func eq "-" ? $vdgrey : color($colors);
+	my $color = $func eq "-" ? $vdgrey : color($colors, $hash, $func);
 	$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
