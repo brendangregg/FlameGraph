@@ -1,0 +1,129 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="600" height="306" onload="init(evt)" viewBox="0 0 600 306" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#f8f8f8" offset="5%" />
+		<stop stop-color="#e8e8e8" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="600.0" height="306.0" fill="url(#background)"  />
+<text text-anchor="middle" x="300" y="24" font-size="17" font-family="Verdana" fill="rgb(0,0,0)"  >Off-CPU Time Flame Graph</text>
+<text text-anchor="" x="10" y="289" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('bash`shell_getc (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`shell_getc (12,589 ms, 91.29%)</title><rect x="60.5" y="129" width="529.5" height="15.0" fill="rgb(102,102,193)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`shell_getc</text>
+</g>
+<g class="func_g" onmouseover="s('bash`yy_readline_get (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`yy_readline_get (12,589 ms, 91.29%)</title><rect x="60.5" y="113" width="529.5" height="15.0" fill="rgb(117,117,191)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`yy_readline_get</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>libc.so.1`__read (12,589 ms, 91.29%)</title><rect x="60.5" y="33" width="529.5" height="15.0" fill="rgb(107,107,235)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="43.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`__read</text>
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command (1,201 ms, 8.71%)')" onmouseout="c()">
+<title>bash`execute_command (1,201 ms, 8.71%)</title><rect x="10.0" y="193" width="50.5" height="15.0" fill="rgb(80,80,203)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`waitpid (1,193 ms, 8.65%)')" onmouseout="c()">
+<title>libc.so.1`waitpid (1,193 ms, 8.65%)</title><rect x="10.3" y="129" width="50.2" height="15.0" fill="rgb(109,109,213)" rx="2" ry="2" />
+<text text-anchor="" x="13.3186858808204" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc...</text>
+</g>
+<g class="func_g" onmouseover="s('bash`execute_simple_command (8 ms, 0.06%)')" onmouseout="c()">
+<title>bash`execute_simple_command (8 ms, 0.06%)</title><rect x="10.0" y="161" width="0.3" height="15.0" fill="rgb(92,92,217)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('all (13,790 ms, 100%)')" onmouseout="c()">
+<title>all (13,790 ms, 100%)</title><rect x="10.0" y="257" width="580.0" height="15.0" fill="rgb(119,119,227)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('bash`read_token (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`read_token (12,589 ms, 91.29%)</title><rect x="60.5" y="145" width="529.5" height="15.0" fill="rgb(124,124,210)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`read_token</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_read_key (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`rl_read_key (12,589 ms, 91.29%)</title><rect x="60.5" y="65" width="529.5" height="15.0" fill="rgb(92,92,226)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="75.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`rl_read_key</text>
+</g>
+<g class="func_g" onmouseover="s('bash`main (13,790 ms, 100.00%)')" onmouseout="c()">
+<title>bash`main (13,790 ms, 100.00%)</title><rect x="10.0" y="225" width="580.0" height="15.0" fill="rgb(83,83,232)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`main</text>
+</g>
+<g class="func_g" onmouseover="s('bash`file_status (8 ms, 0.06%)')" onmouseout="c()">
+<title>bash`file_status (8 ms, 0.06%)</title><rect x="10.0" y="81" width="0.3" height="15.0" fill="rgb(113,113,192)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`readline_internal_char (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`readline_internal_char (12,589 ms, 91.29%)</title><rect x="60.5" y="81" width="529.5" height="15.0" fill="rgb(99,99,202)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="91.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`readline_internal_char</text>
+</g>
+<g class="func_g" onmouseover="s('bash`reader_loop (13,790 ms, 100.00%)')" onmouseout="c()">
+<title>bash`reader_loop (13,790 ms, 100.00%)</title><rect x="10.0" y="209" width="580.0" height="15.0" fill="rgb(114,114,238)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`reader_loop</text>
+</g>
+<g class="func_g" onmouseover="s('bash`find_user_command_in_path (8 ms, 0.06%)')" onmouseout="c()">
+<title>bash`find_user_command_in_path (8 ms, 0.06%)</title><rect x="10.0" y="113" width="0.3" height="15.0" fill="rgb(137,137,229)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`read_command (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`read_command (12,589 ms, 91.29%)</title><rect x="60.5" y="193" width="529.5" height="15.0" fill="rgb(115,115,221)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`read_command</text>
+</g>
+<g class="func_g" onmouseover="s('bash`search_for_command (8 ms, 0.06%)')" onmouseout="c()">
+<title>bash`search_for_command (8 ms, 0.06%)</title><rect x="10.0" y="145" width="0.3" height="15.0" fill="rgb(82,82,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_getc (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`rl_getc (12,589 ms, 91.29%)</title><rect x="60.5" y="49" width="529.5" height="15.0" fill="rgb(107,107,214)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="59.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`rl_getc</text>
+</g>
+<g class="func_g" onmouseover="s('bash`_start (13,790 ms, 100.00%)')" onmouseout="c()">
+<title>bash`_start (13,790 ms, 100.00%)</title><rect x="10.0" y="241" width="580.0" height="15.0" fill="rgb(118,118,241)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`_start</text>
+</g>
+<g class="func_g" onmouseover="s('bash`waitchld (1,193 ms, 8.65%)')" onmouseout="c()">
+<title>bash`waitchld (1,193 ms, 8.65%)</title><rect x="10.3" y="145" width="50.2" height="15.0" fill="rgb(114,114,199)" rx="2" ry="2" />
+<text text-anchor="" x="13.3186858808204" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__waitid (1,193 ms, 8.65%)')" onmouseout="c()">
+<title>libc.so.1`__waitid (1,193 ms, 8.65%)</title><rect x="10.3" y="113" width="50.2" height="15.0" fill="rgb(134,134,195)" rx="2" ry="2" />
+<text text-anchor="" x="13.3186858808204" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc...</text>
+</g>
+<g class="func_g" onmouseover="s('bash`wait_for (1,193 ms, 8.65%)')" onmouseout="c()">
+<title>bash`wait_for (1,193 ms, 8.65%)</title><rect x="10.3" y="161" width="50.2" height="15.0" fill="rgb(86,86,239)" rx="2" ry="2" />
+<text text-anchor="" x="13.3186858808204" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`yyparse (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`yyparse (12,589 ms, 91.29%)</title><rect x="60.5" y="161" width="529.5" height="15.0" fill="rgb(122,122,210)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`yyparse</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`syscall (8 ms, 0.06%)')" onmouseout="c()">
+<title>libc.so.1`syscall (8 ms, 0.06%)</title><rect x="10.0" y="65" width="0.3" height="15.0" fill="rgb(109,109,232)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`find_user_command_internal (8 ms, 0.06%)')" onmouseout="c()">
+<title>bash`find_user_command_internal (8 ms, 0.06%)</title><rect x="10.0" y="129" width="0.3" height="15.0" fill="rgb(138,138,203)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`readline (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`readline (12,589 ms, 91.29%)</title><rect x="60.5" y="97" width="529.5" height="15.0" fill="rgb(113,113,198)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`readline</text>
+</g>
+<g class="func_g" onmouseover="s('bash`find_in_path_element (8 ms, 0.06%)')" onmouseout="c()">
+<title>bash`find_in_path_element (8 ms, 0.06%)</title><rect x="10.0" y="97" width="0.3" height="15.0" fill="rgb(102,102,196)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command_internal (1,201 ms, 8.71%)')" onmouseout="c()">
+<title>bash`execute_command_internal (1,201 ms, 8.71%)</title><rect x="10.0" y="177" width="50.5" height="15.0" fill="rgb(88,88,234)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`parse_command (12,589 ms, 91.29%)')" onmouseout="c()">
+<title>bash`parse_command (12,589 ms, 91.29%)</title><rect x="60.5" y="177" width="529.5" height="15.0" fill="rgb(127,127,204)" rx="2" ry="2" />
+<text text-anchor="" x="63.5036768585437" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >bash`parse_command</text>
+</g>
+</svg>

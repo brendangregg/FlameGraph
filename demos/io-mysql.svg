@@ -1,0 +1,616 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1000" height="578" onload="init(evt)" viewBox="0 0 1000 578" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#f8f8f8" offset="5%" />
+		<stop stop-color="#e8e8e8" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1000.0" height="578.0" fill="url(#background)"  />
+<text text-anchor="middle" x="500" y="24" font-size="17" font-family="Verdana" fill="rgb(0,0,0)"  >FS I/O Time Flame Graph</text>
+<text text-anchor="" x="10" y="561" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('nss_dns.so.1`_nss_get_dns_ipnodes_name (0 ms, 0.00%)')" onmouseout="c()">
+<title>nss_dns.so.1`_nss_get_dns_ipnodes_name (0 ms, 0.00%)</title><rect x="838.7" y="369" width="0.3" height="15.0" fill="rgb(104,104,206)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libresolv_joy.so.2`__res_vinit (0 ms, 0.00%)')" onmouseout="c()">
+<title>libresolv_joy.so.2`__res_vinit (0 ms, 0.00%)</title><rect x="838.7" y="321" width="0.2" height="15.0" fill="rgb(86,86,230)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`make_join_statistics (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`make_join_statistics (733 ms, 75.47%)</title><rect x="16.3" y="273" width="739.7" height="15.0" fill="rgb(83,83,191)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`make_join_statistics</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (147 ms, 15.13%)')" onmouseout="c()">
+<title>libc.so.1`__read (147 ms, 15.13%)</title><rect x="841.8" y="417" width="148.1" height="15.0" fill="rgb(129,129,211)" rx="2" ry="2" />
+<text text-anchor="" x="844.760649970834" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`__read</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_page_get_gen (26 ms, 2.68%)')" onmouseout="c()">
+<title>mysqld`buf_page_get_gen (26 ms, 2.68%)</title><rect x="247.3" y="145" width="26.5" height="15.0" fill="rgb(94,94,229)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >m..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld (735 ms, 75.67%)')" onmouseout="c()">
+<title>mysqld (735 ms, 75.67%)</title><rect x="15.3" y="513" width="741.2" height="15.0" fill="rgb(139,139,229)" rx="2" ry="2" />
+<text text-anchor="" x="18.3156010918368" y="523.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`check_quick_select (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`check_quick_select (255 ms, 26.25%)</title><rect x="16.3" y="225" width="257.5" height="15.0" fill="rgb(80,80,231)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`check_quick_select</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (1 ms, 0.10%)')" onmouseout="c()">
+<title>libc.so.1`__read (1 ms, 0.10%)</title><rect x="840.8" y="417" width="0.8" height="15.0" fill="rgb(121,121,205)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`getdents64 (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`getdents64 (0 ms, 0.00%)</title><rect x="841.6" y="433" width="0.2" height="15.0" fill="rgb(81,81,223)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_pread (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`os_file_pread (229 ms, 23.58%)</title><rect x="16.3" y="49" width="231.0" height="15.0" fill="rgb(134,134,208)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="59.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`os_file_pread</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page (26 ms, 2.68%)')" onmouseout="c()">
+<title>mysqld`buf_read_page (26 ms, 2.68%)</title><rect x="247.3" y="129" width="26.5" height="15.0" fill="rgb(85,85,192)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >m..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`fil_io (229 ms, 23.58%)</title><rect x="16.3" y="81" width="231.0" height="15.0" fill="rgb(102,102,209)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="91.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`fil_io</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_page_get_gen (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`buf_page_get_gen (13 ms, 1.34%)</title><rect x="743.0" y="129" width="13.0" height="15.0" fill="rgb(120,120,219)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pread (465 ms, 47.87%)')" onmouseout="c()">
+<title>libc.so.1`__pread (465 ms, 47.87%)</title><rect x="273.8" y="49" width="469.2" height="15.0" fill="rgb(129,129,211)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="59.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`__pread</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`doWriteInternal (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`doWriteInternal (0 ms, 0.00%)</title><rect x="839.6" y="113" width="0.2" height="15.0" fill="rgb(94,94,227)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page_low (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`buf_read_page_low (13 ms, 1.34%)</title><rect x="743.0" y="97" width="13.0" height="15.0" fill="rgb(109,109,192)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libresolv_joy.so.2`joy_res_ninit (0 ms, 0.00%)')" onmouseout="c()">
+<title>libresolv_joy.so.2`joy_res_ninit (0 ms, 0.00%)</title><rect x="838.7" y="337" width="0.2" height="15.0" fill="rgb(131,131,219)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tail`show (1 ms, 0.10%)')" onmouseout="c()">
+<title>tail`show (1 ms, 0.10%)</title><rect x="840.8" y="449" width="0.8" height="15.0" fill="rgb(103,103,204)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pwrite (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`__pwrite (0 ms, 0.00%)</title><rect x="15.3" y="385" width="0.4" height="15.0" fill="rgb(114,114,233)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`handler::multi_range_read_info_const (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`handler::multi_range_read_info_const (255 ms, 26.25%)</title><rect x="16.3" y="193" width="257.5" height="15.0" fill="rgb(106,106,193)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`handler::multi_range_read_i..</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`qqueueEnqObjDirectBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`qqueueEnqObjDirectBatch (0 ms, 0.00%)</title><rect x="839.6" y="257" width="0.2" height="15.0" fill="rgb(103,103,197)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`processAction (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`processAction (0 ms, 0.00%)</title><rect x="839.6" y="225" width="0.2" height="15.0" fill="rgb(98,98,212)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`finishBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`finishBatch (0 ms, 0.00%)</title><rect x="839.6" y="193" width="0.2" height="15.0" fill="rgb(80,80,217)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_filbuf (5 ms, 0.51%)')" onmouseout="c()">
+<title>libc.so.1`_filbuf (5 ms, 0.51%)</title><rect x="10.1" y="401" width="5.2" height="15.0" fill="rgb(115,115,229)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pwrite (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`__pwrite (0 ms, 0.00%)</title><rect x="15.8" y="401" width="0.4" height="15.0" fill="rgb(119,119,241)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`fil_io (0 ms, 0.00%)</title><rect x="15.3" y="417" width="0.4" height="15.0" fill="rgb(122,122,234)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (5 ms, 0.51%)')" onmouseout="c()">
+<title>libc.so.1`__read (5 ms, 0.51%)</title><rect x="10.1" y="385" width="5.2" height="15.0" fill="rgb(85,85,193)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nscd`nss_psearch (1 ms, 0.10%)')" onmouseout="c()">
+<title>nscd`nss_psearch (1 ms, 0.10%)</title><rect x="838.7" y="417" width="0.5" height="15.0" fill="rgb(138,138,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nscd`nsc_lookup (23 ms, 2.37%)')" onmouseout="c()">
+<title>nscd`nsc_lookup (23 ms, 2.37%)</title><rect x="815.7" y="449" width="23.5" height="15.0" fill="rgb(83,83,199)" rx="2" ry="2" />
+<text text-anchor="" x="818.676987726976" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >n..</text>
+</g>
+<g class="func_g" onmouseover="s('tar`putfile (147 ms, 15.13%)')" onmouseout="c()">
+<title>tar`putfile (147 ms, 15.13%)</title><rect x="841.6" y="449" width="148.4" height="15.0" fill="rgb(110,110,231)" rx="2" ry="2" />
+<text text-anchor="" x="844.647552247" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >tar`putfile</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (26 ms, 2.68%)')" onmouseout="c()">
+<title>mysqld`fil_io (26 ms, 2.68%)</title><rect x="247.3" y="97" width="26.5" height="15.0" fill="rgb(127,127,231)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >m..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pread (229 ms, 23.58%)')" onmouseout="c()">
+<title>libc.so.1`__pread (229 ms, 23.58%)</title><rect x="16.3" y="33" width="231.0" height="15.0" fill="rgb(107,107,207)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="43.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`__pread</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`fil_io (0 ms, 0.00%)</title><rect x="756.0" y="385" width="0.5" height="15.0" fill="rgb(87,87,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`ha_innobase::index_read (478 ms, 49.21%)')" onmouseout="c()">
+<title>mysqld`ha_innobase::index_read (478 ms, 49.21%)</title><rect x="273.8" y="193" width="482.2" height="15.0" fill="rgb(104,104,224)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`ha_innobase::index_read</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`msgConsumer (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`msgConsumer (0 ms, 0.00%)</title><rect x="839.6" y="417" width="0.2" height="15.0" fill="rgb(139,139,218)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_read_func (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`os_file_read_func (13 ms, 1.34%)</title><rect x="743.0" y="65" width="13.0" height="15.0" fill="rgb(139,139,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_do_flush_list_batch (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`buf_do_flush_list_batch (0 ms, 0.00%)</title><rect x="15.7" y="433" width="0.1" height="15.0" fill="rgb(85,85,216)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`get_key_scans_params (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`get_key_scans_params (255 ms, 26.25%)</title><rect x="16.3" y="241" width="257.5" height="15.0" fill="rgb(129,129,230)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`get_key_scans_params</text>
+</g>
+<g class="func_g" onmouseover="s('0x8265952 (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x8265952 (0 ms, 0.00%)</title><rect x="839.2" y="465" width="0.4" height="15.0" fill="rgb(109,109,242)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_dblwr_flush_buffered_writes (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`buf_dblwr_flush_buffered_writes (0 ms, 0.00%)</title><rect x="15.3" y="433" width="0.4" height="15.0" fill="rgb(117,117,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`doSubmitToActionQBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`doSubmitToActionQBatch (0 ms, 0.00%)</title><rect x="839.6" y="289" width="0.2" height="15.0" fill="rgb(118,118,236)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`srv_master_thread (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`srv_master_thread (0 ms, 0.00%)</title><rect x="756.0" y="465" width="0.5" height="15.0" fill="rgb(99,99,224)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`btr_estimate_n_rows_in_range (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`btr_estimate_n_rows_in_range (255 ms, 26.25%)</title><rect x="16.3" y="161" width="257.5" height="15.0" fill="rgb(133,133,213)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`btr_estimate_n_rows_in_range</text>
+</g>
+<g class="func_g" onmouseover="s('nscd`check_db_file (23 ms, 2.37%)')" onmouseout="c()">
+<title>nscd`check_db_file (23 ms, 2.37%)</title><rect x="815.7" y="417" width="23.0" height="15.0" fill="rgb(86,86,224)" rx="2" ry="2" />
+<text text-anchor="" x="818.676987726976" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >n..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`mysql_execute_command (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`mysql_execute_command (733 ms, 75.47%)</title><rect x="16.2" y="353" width="739.8" height="15.0" fill="rgb(88,88,243)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`mysql_execute_command</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`doWriteCall (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`doWriteCall (0 ms, 0.00%)</title><rect x="839.6" y="81" width="0.2" height="15.0" fill="rgb(103,103,238)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`fil_io (0 ms, 0.00%)</title><rect x="15.7" y="353" width="0.1" height="15.0" fill="rgb(116,116,202)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_write_func (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`os_file_write_func (0 ms, 0.00%)</title><rect x="15.3" y="401" width="0.4" height="15.0" fill="rgb(102,102,207)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`syscall (1 ms, 0.10%)')" onmouseout="c()">
+<title>libc.so.1`syscall (1 ms, 0.10%)</title><rect x="839.8" y="449" width="1.0" height="15.0" fill="rgb(81,81,205)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`io_handler_thread (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`io_handler_thread (0 ms, 0.00%)</title><rect x="15.8" y="465" width="0.4" height="15.0" fill="rgb(109,109,214)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`dispatch_command (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`dispatch_command (733 ms, 75.47%)</title><rect x="16.2" y="417" width="739.8" height="15.0" fill="rgb(106,106,215)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`dispatch_command</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page_low (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`buf_read_page_low (465 ms, 47.87%)</title><rect x="273.8" y="113" width="469.2" height="15.0" fill="rgb(118,118,212)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`buf_read_page_low</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`JOIN::optimize (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`JOIN::optimize (733 ms, 75.47%)</title><rect x="16.3" y="289" width="739.7" height="15.0" fill="rgb(96,96,226)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`JOIN::optimize</text>
+</g>
+<g class="func_g" onmouseover="s('nscd (82 ms, 8.44%)')" onmouseout="c()">
+<title>nscd (82 ms, 8.44%)</title><rect x="756.5" y="513" width="82.7" height="15.0" fill="rgb(105,105,229)" rx="2" ry="2" />
+<text text-anchor="" x="759.478107328564" y="523.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >nscd</text>
+</g>
+<g class="func_g" onmouseover="s('0x836cedf (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x836cedf (0 ms, 0.00%)</title><rect x="839.4" y="417" width="0.1" height="15.0" fill="rgb(131,131,198)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nscd`lookup (23 ms, 2.37%)')" onmouseout="c()">
+<title>nscd`lookup (23 ms, 2.37%)</title><rect x="815.7" y="465" width="23.5" height="15.0" fill="rgb(115,115,221)" rx="2" ry="2" />
+<text text-anchor="" x="818.676987726976" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >n..</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd (0 ms, 0.00%)</title><rect x="839.6" y="513" width="0.2" height="15.0" fill="rgb(139,139,239)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nss_files.so.1`getbyname (0 ms, 0.00%)')" onmouseout="c()">
+<title>nss_files.so.1`getbyname (0 ms, 0.00%)</title><rect x="839.0" y="385" width="0.2" height="15.0" fill="rgb(135,135,206)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`mysql_select (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`mysql_select (733 ms, 75.47%)</title><rect x="16.2" y="305" width="739.8" height="15.0" fill="rgb(105,105,243)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`mysql_select</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`submitBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`submitBatch (0 ms, 0.00%)</title><rect x="839.6" y="209" width="0.2" height="15.0" fill="rgb(122,122,192)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`Prepared_statement::execute_loop (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`Prepared_statement::execute_loop (733 ms, 75.47%)</title><rect x="16.2" y="385" width="739.8" height="15.0" fill="rgb(112,112,233)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`Prepared_statement::execute_loop</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`row_search_for_mysql (478 ms, 49.21%)')" onmouseout="c()">
+<title>mysqld`row_search_for_mysql (478 ms, 49.21%)</title><rect x="273.8" y="177" width="482.2" height="15.0" fill="rgb(97,97,234)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`row_search_for_mysql</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`buf_read_page (465 ms, 47.87%)</title><rect x="273.8" y="129" width="469.2" height="15.0" fill="rgb(108,108,231)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`buf_read_page</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`strmFlush (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`strmFlush (0 ms, 0.00%)</title><rect x="839.6" y="161" width="0.2" height="15.0" fill="rgb(86,86,198)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`strmSchedWrite (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`strmSchedWrite (0 ms, 0.00%)</title><rect x="839.6" y="129" width="0.2" height="15.0" fill="rgb(87,87,211)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('init`getcmd (5 ms, 0.51%)')" onmouseout="c()">
+<title>init`getcmd (5 ms, 0.51%)</title><rect x="10.1" y="449" width="5.2" height="15.0" fill="rgb(132,132,193)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pwrite (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`__pwrite (0 ms, 0.00%)</title><rect x="756.0" y="353" width="0.5" height="15.0" fill="rgb(91,91,224)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`handler::ha_index_read_idx_map (478 ms, 49.21%)')" onmouseout="c()">
+<title>mysqld`handler::ha_index_read_idx_map (478 ms, 49.21%)</title><rect x="273.8" y="225" width="482.2" height="15.0" fill="rgb(138,138,236)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`handler::ha_index_read_idx_map</text>
+</g>
+<g class="func_g" onmouseover="s('nss_files.so.1`__nss_files_XY_hostbyname (0 ms, 0.00%)')" onmouseout="c()">
+<title>nss_files.so.1`__nss_files_XY_hostbyname (0 ms, 0.00%)</title><rect x="839.0" y="369" width="0.2" height="15.0" fill="rgb(125,125,222)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_pread (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`os_file_pread (13 ms, 1.34%)</title><rect x="743.0" y="49" width="13.0" height="15.0" fill="rgb(131,131,199)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`processBatchDoActions (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`processBatchDoActions (0 ms, 0.00%)</title><rect x="839.6" y="321" width="0.2" height="15.0" fill="rgb(80,80,197)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`doSubmitToActionQNotAllMarkBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`doSubmitToActionQNotAllMarkBatch (0 ms, 0.00%)</title><rect x="839.6" y="305" width="0.2" height="15.0" fill="rgb(129,129,238)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`btr_cur_search_to_nth_level (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`btr_cur_search_to_nth_level (229 ms, 23.58%)</title><rect x="16.3" y="145" width="231.0" height="15.0" fill="rgb(102,102,204)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`btr_cur_search_to_nth_l..</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`strmFlushInternal (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`strmFlushInternal (0 ms, 0.00%)</title><rect x="839.6" y="145" width="0.2" height="15.0" fill="rgb(91,91,235)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('0x8355ff5 (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x8355ff5 (0 ms, 0.00%)</title><rect x="839.4" y="401" width="0.1" height="15.0" fill="rgb(102,102,206)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`llExecFunc (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`llExecFunc (0 ms, 0.00%)</title><rect x="839.6" y="385" width="0.2" height="15.0" fill="rgb(133,133,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('init`_start (5 ms, 0.51%)')" onmouseout="c()">
+<title>init`_start (5 ms, 0.51%)</title><rect x="10.1" y="497" width="5.2" height="15.0" fill="rgb(99,99,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`log_write_up_to (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`log_write_up_to (0 ms, 0.00%)</title><rect x="15.7" y="385" width="0.1" height="15.0" fill="rgb(138,138,231)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_aio_wait (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`fil_aio_wait (0 ms, 0.00%)</title><rect x="15.8" y="449" width="0.4" height="15.0" fill="rgb(97,97,204)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_flush_list (1 ms, 0.10%)')" onmouseout="c()">
+<title>mysqld`buf_flush_list (1 ms, 0.10%)</title><rect x="15.3" y="449" width="0.5" height="15.0" fill="rgb(83,83,216)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_read_func (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`os_file_read_func (465 ms, 47.87%)</title><rect x="273.8" y="81" width="469.2" height="15.0" fill="rgb(81,81,222)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="91.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`os_file_read_func</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__write (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`__write (0 ms, 0.00%)</title><rect x="839.6" y="65" width="0.2" height="15.0" fill="rgb(124,124,208)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`wtiWorker (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`wtiWorker (0 ms, 0.00%)</title><rect x="839.6" y="449" width="0.2" height="15.0" fill="rgb(91,91,242)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`processBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`processBatch (0 ms, 0.00%)</title><rect x="839.6" y="401" width="0.2" height="15.0" fill="rgb(118,118,243)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_lwp_start (735 ms, 75.67%)')" onmouseout="c()">
+<title>libc.so.1`_lwp_start (735 ms, 75.67%)</title><rect x="15.3" y="497" width="741.2" height="15.0" fill="rgb(126,126,218)" rx="2" ry="2" />
+<text text-anchor="" x="18.3156010918368" y="507.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_lwp_start</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`processBatchMain (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`processBatchMain (0 ms, 0.00%)</title><rect x="839.6" y="241" width="0.2" height="15.0" fill="rgb(137,137,241)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`ConsumerReg (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`ConsumerReg (0 ms, 0.00%)</title><rect x="839.6" y="433" width="0.2" height="15.0" fill="rgb(88,88,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`buf_read_page (229 ms, 23.58%)</title><rect x="16.3" y="113" width="231.0" height="15.0" fill="rgb(104,104,199)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`buf_read_page</text>
+</g>
+<g class="func_g" onmouseover="s('nscd`lookup_int (23 ms, 2.37%)')" onmouseout="c()">
+<title>nscd`lookup_int (23 ms, 2.37%)</title><rect x="815.7" y="433" width="23.5" height="15.0" fill="rgb(91,91,240)" rx="2" ry="2" />
+<text text-anchor="" x="818.676987726976" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >n..</text>
+</g>
+<g class="func_g" onmouseover="s('tail (2 ms, 0.21%)')" onmouseout="c()">
+<title>tail (2 ms, 0.21%)</title><rect x="839.8" y="513" width="1.8" height="15.0" fill="rgb(107,107,215)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`Prepared_statement::execute (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`Prepared_statement::execute (733 ms, 75.47%)</title><rect x="16.2" y="369" width="739.8" height="15.0" fill="rgb(117,117,209)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`Prepared_statement::execute</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`execute_sqlcom_select (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`execute_sqlcom_select (733 ms, 75.47%)</title><rect x="16.2" y="337" width="739.8" height="15.0" fill="rgb(93,93,244)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`execute_sqlcom_select</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`srv_sync_log_buffer_in_background (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`srv_sync_log_buffer_in_background (0 ms, 0.00%)</title><rect x="756.0" y="449" width="0.5" height="15.0" fill="rgb(134,134,244)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`strmPhysWrite (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`strmPhysWrite (0 ms, 0.00%)</title><rect x="839.6" y="97" width="0.2" height="15.0" fill="rgb(136,136,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pread (13 ms, 1.34%)')" onmouseout="c()">
+<title>libc.so.1`__pread (13 ms, 1.34%)</title><rect x="743.0" y="33" width="13.0" height="15.0" fill="rgb(93,93,209)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`endTransaction (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`endTransaction (0 ms, 0.00%)</title><rect x="839.6" y="177" width="0.2" height="15.0" fill="rgb(99,99,228)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('0x82a0e64 (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x82a0e64 (0 ms, 0.00%)</title><rect x="839.2" y="433" width="0.4" height="15.0" fill="rgb(130,130,196)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_pread (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`os_file_pread (465 ms, 47.87%)</title><rect x="273.8" y="65" width="469.2" height="15.0" fill="rgb(102,102,225)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="75.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`os_file_pread</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`btr_pcur_move_to_next_page (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`btr_pcur_move_to_next_page (13 ms, 1.34%)</title><rect x="743.0" y="145" width="13.0" height="15.0" fill="rgb(106,106,222)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`buf_read_page (13 ms, 1.34%)</title><rect x="743.0" y="113" width="13.0" height="15.0" fill="rgb(110,110,231)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`fgetc (5 ms, 0.51%)')" onmouseout="c()">
+<title>libc.so.1`fgetc (5 ms, 0.51%)</title><rect x="10.1" y="433" width="5.2" height="15.0" fill="rgb(137,137,218)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_filbuf (1 ms, 0.10%)')" onmouseout="c()">
+<title>libc.so.1`_filbuf (1 ms, 0.10%)</title><rect x="840.8" y="433" width="0.8" height="15.0" fill="rgb(133,133,192)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`fil_io (13 ms, 1.34%)</title><rect x="743.0" y="81" width="13.0" height="15.0" fill="rgb(107,107,201)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`ha_innobase::records_in_range (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`ha_innobase::records_in_range (255 ms, 26.25%)</title><rect x="16.3" y="177" width="257.5" height="15.0" fill="rgb(133,133,228)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`ha_innobase::records_in_range</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_aio_simulated_handle (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`os_aio_simulated_handle (0 ms, 0.00%)</title><rect x="15.8" y="433" width="0.4" height="15.0" fill="rgb(123,123,227)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`btr_cur_search_to_nth_level (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`btr_cur_search_to_nth_level (465 ms, 47.87%)</title><rect x="273.8" y="161" width="469.2" height="15.0" fill="rgb(133,133,213)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`btr_cur_search_to_nth_level</text>
+</g>
+<g class="func_g" onmouseover="s('postgres (0 ms, 0.00%)')" onmouseout="c()">
+<title>postgres (0 ms, 0.00%)</title><rect x="839.2" y="513" width="0.4" height="15.0" fill="rgb(112,112,218)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_page_get_gen (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`buf_page_get_gen (465 ms, 47.87%)</title><rect x="273.8" y="145" width="469.2" height="15.0" fill="rgb(88,88,210)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`buf_page_get_gen</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__door_return (82 ms, 8.44%)')" onmouseout="c()">
+<title>libc.so.1`__door_return (82 ms, 8.44%)</title><rect x="756.5" y="497" width="82.7" height="15.0" fill="rgb(114,114,207)" rx="2" ry="2" />
+<text text-anchor="" x="759.478107328564" y="507.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1..</text>
+</g>
+<g class="func_g" onmouseover="s('tail`main (2 ms, 0.21%)')" onmouseout="c()">
+<title>tail`main (2 ms, 0.21%)</title><rect x="839.8" y="481" width="1.8" height="15.0" fill="rgb(137,137,209)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tar`_start (147 ms, 15.13%)')" onmouseout="c()">
+<title>tar`_start (147 ms, 15.13%)</title><rect x="841.6" y="497" width="148.4" height="15.0" fill="rgb(90,90,208)" rx="2" ry="2" />
+<text text-anchor="" x="844.647552247" y="507.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >tar`_start</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_write_func (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`os_file_write_func (0 ms, 0.00%)</title><rect x="15.7" y="337" width="0.1" height="15.0" fill="rgb(88,88,244)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`__read (0 ms, 0.00%)</title><rect x="839.0" y="321" width="0.2" height="15.0" fill="rgb(113,113,239)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`mysqld_stmt_execute (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`mysqld_stmt_execute (733 ms, 75.47%)</title><rect x="16.2" y="401" width="739.8" height="15.0" fill="rgb(97,97,199)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`mysqld_stmt_execute</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`fgets (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`fgets (0 ms, 0.00%)</title><rect x="838.7" y="305" width="0.2" height="15.0" fill="rgb(118,118,227)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_filbuf (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`_filbuf (0 ms, 0.00%)</title><rect x="839.0" y="337" width="0.2" height="15.0" fill="rgb(83,83,242)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nss_files.so.1`_nss_files_read_line (0 ms, 0.00%)')" onmouseout="c()">
+<title>nss_files.so.1`_nss_files_read_line (0 ms, 0.00%)</title><rect x="839.0" y="353" width="0.2" height="15.0" fill="rgb(106,106,197)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_lwp_start (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`_lwp_start (0 ms, 0.00%)</title><rect x="839.6" y="497" width="0.2" height="15.0" fill="rgb(102,102,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`getc (5 ms, 0.51%)')" onmouseout="c()">
+<title>libc.so.1`getc (5 ms, 0.51%)</title><rect x="10.1" y="417" width="5.2" height="15.0" fill="rgb(82,82,191)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_read_func (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`os_file_read_func (229 ms, 23.58%)</title><rect x="16.3" y="65" width="231.0" height="15.0" fill="rgb(85,85,223)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="75.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`os_file_read_func</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`fil_io (465 ms, 47.87%)')" onmouseout="c()">
+<title>mysqld`fil_io (465 ms, 47.87%)</title><rect x="273.8" y="97" width="469.2" height="15.0" fill="rgb(86,86,220)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`fil_io</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`processBatchDoRules (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`processBatchDoRules (0 ms, 0.00%)</title><rect x="839.6" y="369" width="0.2" height="15.0" fill="rgb(138,138,238)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`handler::index_read_idx_map (478 ms, 49.21%)')" onmouseout="c()">
+<title>mysqld`handler::index_read_idx_map (478 ms, 49.21%)</title><rect x="273.8" y="209" width="482.2" height="15.0" fill="rgb(109,109,227)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`handler::index_read_idx_map</text>
+</g>
+<g class="func_g" onmouseover="s('0x80b5713 (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x80b5713 (0 ms, 0.00%)</title><rect x="839.2" y="497" width="0.4" height="15.0" fill="rgb(127,127,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_flush_page_cleaner_thread (1 ms, 0.10%)')" onmouseout="c()">
+<title>mysqld`buf_flush_page_cleaner_thread (1 ms, 0.10%)</title><rect x="15.3" y="465" width="0.5" height="15.0" fill="rgb(117,117,201)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pread (26 ms, 2.68%)')" onmouseout="c()">
+<title>libc.so.1`__pread (26 ms, 2.68%)</title><rect x="247.3" y="49" width="26.5" height="15.0" fill="rgb(97,97,238)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="59.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >l..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`btr_pcur_move_to_next (13 ms, 1.34%)')" onmouseout="c()">
+<title>mysqld`btr_pcur_move_to_next (13 ms, 1.34%)</title><rect x="743.0" y="161" width="13.0" height="15.0" fill="rgb(109,109,235)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`log_group_write_buf (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`log_group_write_buf (0 ms, 0.00%)</title><rect x="756.0" y="401" width="0.5" height="15.0" fill="rgb(90,90,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`syscall (23 ms, 2.37%)')" onmouseout="c()">
+<title>libc.so.1`syscall (23 ms, 2.37%)</title><rect x="815.7" y="401" width="23.0" height="15.0" fill="rgb(94,94,239)" rx="2" ry="2" />
+<text text-anchor="" x="818.676987726976" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >l..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`log_write_up_to (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`log_write_up_to (0 ms, 0.00%)</title><rect x="756.0" y="417" width="0.5" height="15.0" fill="rgb(89,89,235)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pwrite (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`__pwrite (0 ms, 0.00%)</title><rect x="15.7" y="321" width="0.1" height="15.0" fill="rgb(106,106,202)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`log_group_write_buf (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`log_group_write_buf (0 ms, 0.00%)</title><rect x="15.7" y="369" width="0.1" height="15.0" fill="rgb(87,87,244)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tail`follow (2 ms, 0.21%)')" onmouseout="c()">
+<title>tail`follow (2 ms, 0.21%)</title><rect x="839.8" y="465" width="1.8" height="15.0" fill="rgb(105,105,217)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_flush_page_and_try_neighbors (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`buf_flush_page_and_try_neighbors (0 ms, 0.00%)</title><rect x="15.7" y="417" width="0.1" height="15.0" fill="rgb(136,136,242)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nss_dns.so.1`_nss_dns_gethost_withttl (0 ms, 0.00%)')" onmouseout="c()">
+<title>nss_dns.so.1`_nss_dns_gethost_withttl (0 ms, 0.00%)</title><rect x="838.7" y="353" width="0.3" height="15.0" fill="rgb(86,86,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`doQueueEnqObjDirectBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`doQueueEnqObjDirectBatch (0 ms, 0.00%)</title><rect x="839.6" y="273" width="0.2" height="15.0" fill="rgb(111,111,207)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_write_func (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`os_file_write_func (0 ms, 0.00%)</title><rect x="756.0" y="369" width="0.5" height="15.0" fill="rgb(107,107,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tar`putfile (147 ms, 15.13%)')" onmouseout="c()">
+<title>tar`putfile (147 ms, 15.13%)</title><rect x="841.8" y="433" width="148.2" height="15.0" fill="rgb(83,83,235)" rx="2" ry="2" />
+<text text-anchor="" x="844.760649970834" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >tar`putfile</text>
+</g>
+<g class="func_g" onmouseover="s('nscd`switcher (82 ms, 8.44%)')" onmouseout="c()">
+<title>nscd`switcher (82 ms, 8.44%)</title><rect x="756.5" y="481" width="82.7" height="15.0" fill="rgb(97,97,202)" rx="2" ry="2" />
+<text text-anchor="" x="759.478107328564" y="491.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >nscd`swit..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`pfs_spawn_thread (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`pfs_spawn_thread (733 ms, 75.47%)</title><rect x="16.2" y="465" width="739.8" height="15.0" fill="rgb(97,97,241)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`pfs_spawn_thread</text>
+</g>
+<g class="func_g" onmouseover="s('nscd`nss_search (1 ms, 0.10%)')" onmouseout="c()">
+<title>nscd`nss_search (1 ms, 0.10%)</title><rect x="838.7" y="401" width="0.5" height="15.0" fill="rgb(118,118,203)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('init`remv (5 ms, 0.51%)')" onmouseout="c()">
+<title>init`remv (5 ms, 0.51%)</title><rect x="10.1" y="465" width="5.2" height="15.0" fill="rgb(121,121,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('init (5 ms, 0.51%)')" onmouseout="c()">
+<title>init (5 ms, 0.51%)</title><rect x="10.1" y="513" width="5.2" height="15.0" fill="rgb(110,110,223)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page_low (26 ms, 2.68%)')" onmouseout="c()">
+<title>mysqld`buf_read_page_low (26 ms, 2.68%)</title><rect x="247.3" y="113" width="26.5" height="15.0" fill="rgb(102,102,235)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >m..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_read_func (26 ms, 2.68%)')" onmouseout="c()">
+<title>mysqld`os_file_read_func (26 ms, 2.68%)</title><rect x="247.3" y="81" width="26.5" height="15.0" fill="rgb(83,83,210)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="91.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >m..</text>
+</g>
+<g class="func_g" onmouseover="s('0x8264ec6 (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x8264ec6 (0 ms, 0.00%)</title><rect x="839.2" y="449" width="0.4" height="15.0" fill="rgb(139,139,211)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('all (971 ms, 100%)')" onmouseout="c()">
+<title>all (971 ms, 100%)</title><rect x="10.0" y="529" width="980.0" height="15.0" fill="rgb(83,83,199)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="539.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('tar (147 ms, 15.13%)')" onmouseout="c()">
+<title>tar (147 ms, 15.13%)</title><rect x="841.6" y="513" width="148.4" height="15.0" fill="rgb(101,101,204)" rx="2" ry="2" />
+<text text-anchor="" x="844.647552247" y="523.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >tar</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`syscall (59 ms, 6.07%)')" onmouseout="c()">
+<title>libc.so.1`syscall (59 ms, 6.07%)</title><rect x="756.5" y="449" width="59.2" height="15.0" fill="rgb(117,117,220)" rx="2" ry="2" />
+<text text-anchor="" x="759.478107328564" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('tail`_start (2 ms, 0.21%)')" onmouseout="c()">
+<title>tail`_start (2 ms, 0.21%)</title><rect x="839.8" y="497" width="1.8" height="15.0" fill="rgb(107,107,196)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('init`main (5 ms, 0.51%)')" onmouseout="c()">
+<title>init`main (5 ms, 0.51%)</title><rect x="10.1" y="481" width="5.2" height="15.0" fill="rgb(90,90,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('nscd`search_dns_withttl (0 ms, 0.00%)')" onmouseout="c()">
+<title>nscd`search_dns_withttl (0 ms, 0.00%)</title><rect x="838.7" y="385" width="0.3" height="15.0" fill="rgb(112,112,229)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_page_get_gen (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`buf_page_get_gen (229 ms, 23.58%)</title><rect x="16.3" y="129" width="231.0" height="15.0" fill="rgb(85,85,240)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`buf_page_get_gen</text>
+</g>
+<g class="func_g" onmouseover="s('0x8391f3a (0 ms, 0.00%)')" onmouseout="c()">
+<title>0x8391f3a (0 ms, 0.00%)</title><rect x="839.2" y="481" width="0.4" height="15.0" fill="rgb(122,122,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`wtpWorker (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`wtpWorker (0 ms, 0.00%)</title><rect x="839.6" y="465" width="0.2" height="15.0" fill="rgb(91,91,238)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`join_read_const (478 ms, 49.21%)')" onmouseout="c()">
+<title>mysqld`join_read_const (478 ms, 49.21%)</title><rect x="273.8" y="241" width="482.2" height="15.0" fill="rgb(89,89,199)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`join_read_const</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_thrp_setup (0 ms, 0.00%)')" onmouseout="c()">
+<title>libc.so.1`_thrp_setup (0 ms, 0.00%)</title><rect x="839.6" y="481" width="0.2" height="15.0" fill="rgb(97,97,203)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_read_page_low (229 ms, 23.58%)')" onmouseout="c()">
+<title>mysqld`buf_read_page_low (229 ms, 23.58%)</title><rect x="16.3" y="97" width="231.0" height="15.0" fill="rgb(131,131,202)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`buf_read_page_low</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`SQL_SELECT::test_quick_select (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`SQL_SELECT::test_quick_select (255 ms, 26.25%)</title><rect x="16.3" y="257" width="257.5" height="15.0" fill="rgb(102,102,229)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`SQL_SELECT::test_quick_select</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`llExecFunc (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`llExecFunc (0 ms, 0.00%)</title><rect x="839.6" y="337" width="0.2" height="15.0" fill="rgb(113,113,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`handle_one_connection (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`handle_one_connection (733 ms, 75.47%)</title><rect x="16.2" y="449" width="739.8" height="15.0" fill="rgb(128,128,242)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`handle_one_connection</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`join_read_const_table (478 ms, 49.21%)')" onmouseout="c()">
+<title>mysqld`join_read_const_table (478 ms, 49.21%)</title><rect x="273.8" y="257" width="482.2" height="15.0" fill="rgb(126,126,238)" rx="2" ry="2" />
+<text text-anchor="" x="276.832061470932" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`join_read_const_table</text>
+</g>
+<g class="func_g" onmouseover="s('tar`main (147 ms, 15.13%)')" onmouseout="c()">
+<title>tar`main (147 ms, 15.13%)</title><rect x="841.6" y="481" width="148.4" height="15.0" fill="rgb(88,88,220)" rx="2" ry="2" />
+<text text-anchor="" x="844.647552247" y="491.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >tar`main</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`handle_select (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`handle_select (733 ms, 75.47%)</title><rect x="16.2" y="321" width="739.8" height="15.0" fill="rgb(91,91,217)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`handle_select</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`DsMrr_impl::dsmrr_info_const (255 ms, 26.25%)')" onmouseout="c()">
+<title>mysqld`DsMrr_impl::dsmrr_info_const (255 ms, 26.25%)</title><rect x="16.3" y="209" width="257.5" height="15.0" fill="rgb(121,121,206)" rx="2" ry="2" />
+<text text-anchor="" x="19.2755898352013" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`DsMrr_impl::dsmrr_info_const</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`log_buffer_sync_in_background (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`log_buffer_sync_in_background (0 ms, 0.00%)</title><rect x="756.0" y="433" width="0.5" height="15.0" fill="rgb(104,104,234)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_thrp_setup (735 ms, 75.67%)')" onmouseout="c()">
+<title>libc.so.1`_thrp_setup (735 ms, 75.67%)</title><rect x="15.3" y="481" width="741.2" height="15.0" fill="rgb(127,127,210)" rx="2" ry="2" />
+<text text-anchor="" x="18.3156010918368" y="491.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_thrp_setup</text>
+</g>
+<g class="func_g" onmouseover="s('nscd`_nscd_restart_if_cfgfile_changed (59 ms, 6.07%)')" onmouseout="c()">
+<title>nscd`_nscd_restart_if_cfgfile_changed (59 ms, 6.07%)</title><rect x="756.5" y="465" width="59.2" height="15.0" fill="rgb(91,91,217)" rx="2" ry="2" />
+<text text-anchor="" x="759.478107328564" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >nscd`_..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_flush_page (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`buf_flush_page (0 ms, 0.00%)</title><rect x="15.7" y="401" width="0.1" height="15.0" fill="rgb(123,123,210)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tar`dorep (147 ms, 15.13%)')" onmouseout="c()">
+<title>tar`dorep (147 ms, 15.13%)</title><rect x="841.6" y="465" width="148.4" height="15.0" fill="rgb(134,134,239)" rx="2" ry="2" />
+<text text-anchor="" x="844.647552247" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >tar`dorep</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_write_func (0 ms, 0.00%)')" onmouseout="c()">
+<title>mysqld`os_file_write_func (0 ms, 0.00%)</title><rect x="15.8" y="417" width="0.4" height="15.0" fill="rgb(121,121,230)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`os_file_pread (26 ms, 2.68%)')" onmouseout="c()">
+<title>mysqld`os_file_pread (26 ms, 2.68%)</title><rect x="247.3" y="65" width="26.5" height="15.0" fill="rgb(102,102,199)" rx="2" ry="2" />
+<text text-anchor="" x="250.272651039584" y="75.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >m..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`do_handle_one_connection (733 ms, 75.47%)')" onmouseout="c()">
+<title>mysqld`do_handle_one_connection (733 ms, 75.47%)</title><rect x="16.2" y="433" width="739.8" height="15.0" fill="rgb(135,135,202)" rx="2" ry="2" />
+<text text-anchor="" x="19.2213010309269" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`do_handle_one_connection</text>
+</g>
+<g class="func_g" onmouseover="s('rsyslogd`processBatch (0 ms, 0.00%)')" onmouseout="c()">
+<title>rsyslogd`processBatch (0 ms, 0.00%)</title><rect x="839.6" y="353" width="0.2" height="15.0" fill="rgb(117,117,235)" rx="2" ry="2" />
+</g>
+</svg>

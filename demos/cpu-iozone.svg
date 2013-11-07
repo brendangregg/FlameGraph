@@ -1,0 +1,2631 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="618" onload="init(evt)" viewBox="0 0 1200 618" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="618.0" fill="url(#background)"  />
+<text text-anchor="middle" x="600" y="36" font-size="23" font-family="Verdana" fill="rgb(0,0,0)"  >Flame Graph</text>
+<text text-anchor="" x="10" y="595" font-size="18" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('zfs`rrw_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.8" y="398" width="0.2" height="24.0" fill="rgb(206,106,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1041.7" y="273" width="0.3" height="24.0" fill="rgb(211,222,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="274.1" y="323" width="0.5" height="24.0" fill="rgb(206,107,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`splr (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1135.3" y="123" width="1.0" height="24.0" fill="rgb(250,122,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1106.9" y="248" width="0.3" height="24.0" fill="rgb(208,144,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1061.5" y="323" width="0.7" height="24.0" fill="rgb(207,181,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.5" y="373" width="0.3" height="24.0" fill="rgb(225,126,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_block_freeable (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="280.4" y="348" width="0.3" height="24.0" fill="rgb(241,213,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`buf_hash (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="272.9" y="248" width="0.2" height="24.0" fill="rgb(211,144,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="255.8" y="348" width="0.9" height="24.0" fill="rgb(231,71,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1093.5" y="223" width="0.2" height="24.0" fill="rgb(224,216,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_32 (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="183.0" y="273" width="0.9" height="24.0" fill="rgb(215,119,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1095.0" y="323" width="0.2" height="24.0" fill="rgb(220,221,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1088.6" y="273" width="0.7" height="24.0" fill="rgb(230,143,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_lock (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="203.5" y="398" width="2.4" height="24.0" fill="rgb(229,141,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele_and_unlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="274.3" y="298" width="0.3" height="24.0" fill="rgb(227,170,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_destroy (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1182.7" y="323" width="1.7" height="24.0" fill="rgb(230,226,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_get_asize (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="253.1" y="373" width="0.2" height="24.0" fill="rgb(227,215,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1077.6" y="348" width="1.0" height="24.0" fill="rgb(241,136,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="34.4" y="473" width="0.5" height="24.0" fill="rgb(247,177,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="265.5" y="248" width="0.3" height="24.0" fill="rgb(218,103,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_walk_parents (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="163.9" y="248" width="0.5" height="24.0" fill="rgb(206,84,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="153.2" y="273" width="0.5" height="24.0" fill="rgb(235,108,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mul32 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="47.1" y="398" width="0.5" height="24.0" fill="rgb(241,165,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_assign (42 samples, 0.87%)')" onmouseout="c()">
+<rect x="243.1" y="398" width="10.2" height="24.0" fill="rgb(220,149,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`bp_get_dsize (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="275.1" y="323" width="1.4" height="24.0" fill="rgb(239,111,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="245.8" y="323" width="0.4" height="24.0" fill="rgb(240,118,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait_for_children (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="166.8" y="248" width="0.5" height="24.0" fill="rgb(212,113,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="170.8" y="323" width="0.4" height="24.0" fill="rgb(211,118,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_twig (8 samples, 0.17%)')" onmouseout="c()">
+<rect x="278.0" y="298" width="2.0" height="24.0" fill="rgb(223,72,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="243.1" y="373" width="0.2" height="24.0" fill="rgb(246,102,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_add (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="204.0" y="373" width="0.5" height="24.0" fill="rgb(214,226,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_create (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="144.6" y="273" width="0.3" height="24.0" fill="rgb(250,177,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_seg_compare (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1117.7" y="148" width="0.5" height="24.0" fill="rgb(240,78,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1090.3" y="248" width="1.0" height="24.0" fill="rgb(242,112,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="131.4" y="248" width="0.5" height="24.0" fill="rgb(247,184,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_dec_32_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="173.9" y="298" width="0.5" height="24.0" fill="rgb(217,188,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1024.1" y="298" width="0.5" height="24.0" fill="rgb(227,197,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_lwb_write_init (26 samples, 0.54%)')" onmouseout="c()">
+<rect x="1087.6" y="323" width="6.4" height="24.0" fill="rgb(252,88,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`rrw_enter_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="203.2" y="398" width="0.3" height="24.0" fill="rgb(244,205,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_done (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1048.5" y="273" width="0.5" height="24.0" fill="rgb(224,214,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_destroy (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1017.0" y="323" width="0.3" height="24.0" fill="rgb(209,161,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_lock (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="1071.8" y="398" width="2.4" height="24.0" fill="rgb(251,161,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="126.3" y="273" width="2.7" height="24.0" fill="rgb(205,106,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zrl_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1051.0" y="323" width="0.2" height="24.0" fill="rgb(228,148,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_remove (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="229.9" y="248" width="0.2" height="24.0" fill="rgb(221,216,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_unique_parent (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1155.8" y="323" width="0.5" height="24.0" fill="rgb(221,143,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1181.2" y="198" width="0.2" height="24.0" fill="rgb(241,212,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1162.9" y="148" width="0.2" height="24.0" fill="rgb(218,98,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_create (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1096.2" y="323" width="0.5" height="24.0" fill="rgb(217,181,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_get_commit_list (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1086.9" y="348" width="0.2" height="24.0" fill="rgb(213,142,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="246.2" y="323" width="0.5" height="24.0" fill="rgb(213,97,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_dec_32_nv (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="140.7" y="298" width="1.2" height="24.0" fill="rgb(222,115,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="175.2" y="298" width="0.2" height="24.0" fill="rgb(226,148,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="138.5" y="323" width="3.4" height="24.0" fill="rgb(241,205,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_alloc (69 samples, 1.43%)')" onmouseout="c()">
+<rect x="1112.8" y="223" width="16.9" height="24.0" fill="rgb(232,97,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_init (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="151.2" y="248" width="0.5" height="24.0" fill="rgb(253,142,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`buf_hash (8 samples, 0.17%)')" onmouseout="c()">
+<rect x="132.6" y="248" width="2.0" height="24.0" fill="rgb(249,203,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1063.4" y="273" width="0.3" height="24.0" fill="rgb(245,102,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mul32 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1047.3" y="223" width="0.3" height="24.0" fill="rgb(241,134,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="264.1" y="273" width="0.2" height="24.0" fill="rgb(235,202,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="34.7" y="448" width="0.2" height="24.0" fill="rgb(216,114,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_insert (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1074.0" y="348" width="0.2" height="24.0" fill="rgb(217,187,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`kstat_waitq_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1186.3" y="448" width="0.3" height="24.0" fill="rgb(229,220,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_pp_maxsize (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1118.2" y="173" width="1.7" height="24.0" fill="rgb(238,88,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_config_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="277.8" y="273" width="0.2" height="24.0" fill="rgb(246,200,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`rrw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.5" y="398" width="0.3" height="24.0" fill="rgb(223,131,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_unoverride (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1043.2" y="298" width="0.2" height="24.0" fill="rgb(244,208,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_alloc (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1072.0" y="373" width="0.5" height="24.0" fill="rgb(243,203,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_numnodes (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="221.6" y="398" width="0.2" height="24.0" fill="rgb(212,229,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="187.1" y="348" width="0.3" height="24.0" fill="rgb(225,198,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="40.0" y="498" width="0.3" height="24.0" fill="rgb(254,136,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="229.4" y="348" width="0.2" height="24.0" fill="rgb(241,190,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="278.7" y="248" width="0.5" height="24.0" fill="rgb(217,133,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`txg_hold_open (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1095.7" y="298" width="0.5" height="24.0" fill="rgb(250,149,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`_sys_sysenter_post_swapgs (4,721 samples, 97.74%)')" onmouseout="c()">
+<rect x="36.6" y="523" width="1153.4" height="24.0" fill="rgb(238,108,52)" rx="2" ry="2" />
+<text text-anchor="" x="39.6293995859213" y="541" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >unix`_sys_sysenter_post_swapgs</text>
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="47.6" y="398" width="0.5" height="24.0" fill="rgb(210,71,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_alloc_lwb (21 samples, 0.43%)')" onmouseout="c()">
+<rect x="1096.7" y="323" width="5.1" height="24.0" fill="rgb(252,195,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_add (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1111.1" y="223" width="1.7" height="24.0" fill="rgb(237,126,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="190.5" y="298" width="1.5" height="24.0" fill="rgb(209,139,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_zone_io_throttle (3,003 samples, 62.17%)')" onmouseout="c()">
+<rect x="280.7" y="348" width="733.6" height="24.0" fill="rgb(238,223,46)" rx="2" ry="2" />
+<text text-anchor="" x="283.691511387164" y="366" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`zfs_zone_io_throttle</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`read32 (722 samples, 14.95%)')" onmouseout="c()">
+<rect x="40.8" y="498" width="176.4" height="24.0" fill="rgb(238,188,50)" rx="2" ry="2" />
+<text text-anchor="" x="43.7826086956522" y="516" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`read3..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="142.9" y="323" width="0.2" height="24.0" fill="rgb(232,142,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`_resume_from_idle (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="1168.3" y="298" width="2.2" height="24.0" fill="rgb(254,172,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`rrw_enter_read (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="202.0" y="373" width="1.2" height="24.0" fill="rgb(253,154,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_commit_writer (442 samples, 9.15%)')" onmouseout="c()">
+<rect x="1077.1" y="373" width="108.0" height="24.0" fill="rgb(243,163,48)" rx="2" ry="2" />
+<text text-anchor="" x="1080.13043478261" y="391" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`zil_..</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`tsd_agent_get (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1053.9" y="348" width="0.5" height="24.0" fill="rgb(226,104,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele_and_unlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="199.6" y="348" width="0.2" height="24.0" fill="rgb(234,161,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_done (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1018.0" y="298" width="1.5" height="24.0" fill="rgb(230,159,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_clear_range (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1043.4" y="298" width="0.3" height="24.0" fill="rgb(237,185,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait (116 samples, 2.40%)')" onmouseout="c()">
+<rect x="1156.8" y="348" width="28.3" height="24.0" fill="rgb(215,87,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1066.4" y="298" width="0.5" height="24.0" fill="rgb(252,180,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1184.4" y="323" width="0.7" height="24.0" fill="rgb(250,90,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold (74 samples, 1.53%)')" onmouseout="c()">
+<rect x="168.3" y="348" width="18.1" height="24.0" fill="rgb(212,185,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_last_synced_txg (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1096.4" y="298" width="0.3" height="24.0" fill="rgb(230,196,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_head (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1065.4" y="223" width="0.2" height="24.0" fill="rgb(241,156,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="51.8" y="373" width="0.7" height="24.0" fill="rgb(242,161,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1067.8" y="298" width="0.8" height="24.0" fill="rgb(236,120,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="113.1" y="373" width="0.2" height="24.0" fill="rgb(208,117,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_read_uio (586 samples, 12.13%)')" onmouseout="c()">
+<rect x="56.9" y="398" width="143.2" height="24.0" fill="rgb(234,151,18)" rx="2" ry="2" />
+<text text-anchor="" x="59.9068322981366" y="416" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`dmu_rea..</text>
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1186.6" y="448" width="1.4" height="24.0" fill="rgb(243,85,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="265.8" y="248" width="1.7" height="24.0" fill="rgb(246,93,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (28 samples, 0.58%)')" onmouseout="c()">
+<rect x="1120.4" y="148" width="6.8" height="24.0" fill="rgb(247,125,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_freeze_txg (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1076.2" y="373" width="0.2" height="24.0" fill="rgb(212,73,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1068.6" y="298" width="0.5" height="24.0" fill="rgb(223,184,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="51.3" y="398" width="1.2" height="24.0" fill="rgb(244,93,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1162.9" y="173" width="0.2" height="24.0" fill="rgb(220,92,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1022.9" y="248" width="0.5" height="24.0" fill="rgb(248,102,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1100.8" y="273" width="1.0" height="24.0" fill="rgb(236,206,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_done (32 samples, 0.66%)')" onmouseout="c()">
+<rect x="156.6" y="273" width="7.8" height="24.0" fill="rgb(241,208,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="271.7" y="348" width="0.2" height="24.0" fill="rgb(213,198,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1072.0" y="348" width="0.2" height="24.0" fill="rgb(228,137,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_walk (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1112.6" y="173" width="0.2" height="24.0" fill="rgb(241,198,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="246.7" y="323" width="0.3" height="24.0" fill="rgb(221,76,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_assign (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="235.0" y="423" width="0.5" height="24.0" fill="rgb(216,155,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="178.1" y="248" width="1.0" height="24.0" fill="rgb(221,206,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="171.2" y="323" width="1.0" height="24.0" fill="rgb(221,150,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="55.7" y="398" width="1.2" height="24.0" fill="rgb(230,165,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="204.0" y="348" width="0.2" height="24.0" fill="rgb(221,73,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_walk_parents (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1065.4" y="248" width="0.2" height="24.0" fill="rgb(227,106,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_will_dirty (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1025.6" y="373" width="0.2" height="24.0" fill="rgb(241,162,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1189.0" y="498" width="1.0" height="24.0" fill="rgb(220,211,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_write (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="231.6" y="473" width="0.2" height="24.0" fill="rgb(253,114,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_walk (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1117.0" y="148" width="0.7" height="24.0" fill="rgb(237,198,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_pp_maxsize (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1119.9" y="198" width="0.2" height="24.0" fill="rgb(246,210,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="234.5" y="423" width="0.3" height="24.0" fill="rgb(213,120,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`disp_lock_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1171.7" y="248" width="1.0" height="24.0" fill="rgb(211,229,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold_impl (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1021.9" y="323" width="2.7" height="24.0" fill="rgb(235,228,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_config_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="275.8" y="298" width="0.2" height="24.0" fill="rgb(244,207,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_alloc (120 samples, 2.48%)')" onmouseout="c()">
+<rect x="1102.5" y="298" width="29.4" height="24.0" fill="rgb(210,82,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="165.9" y="248" width="0.9" height="24.0" fill="rgb(225,189,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`lbolt_cyclic_driven (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1162.1" y="223" width="0.3" height="24.0" fill="rgb(230,147,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1107.2" y="248" width="0.2" height="24.0" fill="rgb(247,83,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1070.5" y="323" width="0.3" height="24.0" fill="rgb(245,102,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="249.4" y="298" width="0.8" height="24.0" fill="rgb(217,95,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1072.2" y="348" width="0.3" height="24.0" fill="rgb(242,70,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_bonus (46 samples, 0.95%)')" onmouseout="c()">
+<rect x="259.2" y="373" width="11.2" height="24.0" fill="rgb(220,162,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="47.1" y="423" width="3.5" height="24.0" fill="rgb(216,209,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`taskq_dispatch_ent (85 samples, 1.76%)')" onmouseout="c()">
+<rect x="1133.1" y="223" width="20.7" height="24.0" fill="rgb(232,183,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`add_reference (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="131.9" y="248" width="0.5" height="24.0" fill="rgb(247,184,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cmt_should_migrate (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1150.2" y="73" width="0.2" height="24.0" fill="rgb(218,95,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="257.7" y="348" width="0.3" height="24.0" fill="rgb(227,160,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1111.1" y="198" width="1.2" height="24.0" fill="rgb(227,172,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtimeunscaled (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="51.3" y="373" width="0.5" height="24.0" fill="rgb(228,83,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_write (3,069 samples, 63.54%)')" onmouseout="c()">
+<rect x="271.4" y="373" width="749.8" height="24.0" fill="rgb(240,140,48)" rx="2" ry="2" />
+<text text-anchor="" x="274.407867494824" y="391" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`dmu_tx_count_write</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`sleepq_unlink (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1153.4" y="148" width="0.4" height="24.0" fill="rgb(210,123,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="272.6" y="298" width="1.5" height="24.0" fill="rgb(238,135,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_segsize_compare (25 samples, 0.52%)')" onmouseout="c()">
+<rect x="1121.1" y="123" width="6.1" height="24.0" fill="rgb(233,191,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_rele (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="199.8" y="373" width="0.3" height="24.0" fill="rgb(251,201,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`restorectx (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="28.1" y="523" width="0.2" height="24.0" fill="rgb(208,191,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="277.0" y="273" width="0.5" height="24.0" fill="rgb(253,131,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cpupm_utilization_event (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1177.8" y="223" width="0.2" height="24.0" fill="rgb(251,208,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`x86pte_inval (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="218.6" y="298" width="0.3" height="24.0" fill="rgb(228,113,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (16 samples, 0.33%)')" onmouseout="c()">
+<rect x="148.3" y="273" width="3.9" height="24.0" fill="rgb(217,86,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_update_data (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="267.5" y="248" width="0.2" height="24.0" fill="rgb(205,70,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="243.3" y="373" width="0.3" height="24.0" fill="rgb(235,111,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1099.9" y="248" width="0.4" height="24.0" fill="rgb(240,166,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`copyin (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="222.8" y="448" width="0.2" height="24.0" fill="rgb(231,126,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1183.6" y="298" width="0.8" height="24.0" fill="rgb(241,199,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="175.4" y="298" width="0.2" height="24.0" fill="rgb(210,100,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="144.9" y="273" width="3.4" height="24.0" fill="rgb(220,227,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`nbl_need_check (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="212.0" y="448" width="0.3" height="24.0" fill="rgb(208,210,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1045.1" y="323" width="0.3" height="24.0" fill="rgb(240,102,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold (30 samples, 0.62%)')" onmouseout="c()">
+<rect x="262.1" y="323" width="7.4" height="24.0" fill="rgb(206,83,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1,175 samples, 24.33%)')" onmouseout="c()">
+<rect x="693.3" y="273" width="287.1" height="24.0" fill="rgb(254,143,11)" rx="2" ry="2" />
+<text text-anchor="" x="696.325051759834" y="291" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >unix`tsc_read</text>
+</g>
+<g class="func_g" onmouseover="s('unix`resume (15 samples, 0.31%)')" onmouseout="c()">
+<rect x="1178.3" y="273" width="3.6" height="24.0" fill="rgb(220,209,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_nearest (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1112.3" y="198" width="0.5" height="24.0" fill="rgb(233,206,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1063.0" y="298" width="1.4" height="24.0" fill="rgb(226,106,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1166.8" y="273" width="1.5" height="24.0" fill="rgb(224,88,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_freeze (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="274.1" y="298" width="0.2" height="24.0" fill="rgb(211,163,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`schedctl_restore (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="35.9" y="498" width="0.2" height="24.0" fill="rgb(238,84,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_pool_tempreserve_space (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="251.9" y="323" width="0.2" height="24.0" fill="rgb(250,103,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_broadcast (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="55.0" y="398" width="0.4" height="24.0" fill="rgb(229,105,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="174.4" y="298" width="0.8" height="24.0" fill="rgb(230,94,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`vdev_stat_update (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="162.0" y="248" width="0.4" height="24.0" fill="rgb(216,122,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1047.3" y="248" width="0.3" height="24.0" fill="rgb(249,77,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele_and_unlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1024.4" y="273" width="0.2" height="24.0" fill="rgb(207,136,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="264.3" y="273" width="0.3" height="24.0" fill="rgb(220,130,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="214.0" y="448" width="2.4" height="24.0" fill="rgb(215,212,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1064.9" y="248" width="0.3" height="24.0" fill="rgb(232,161,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`post_syscall (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="29.5" y="498" width="0.3" height="24.0" fill="rgb(208,175,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="122.9" y="323" width="0.9" height="24.0" fill="rgb(214,173,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_lock_writer (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1074.2" y="398" width="0.2" height="24.0" fill="rgb(229,212,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1044.9" y="323" width="0.2" height="24.0" fill="rgb(226,117,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="33.9" y="473" width="0.3" height="24.0" fill="rgb(243,178,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_walk_parents (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="167.3" y="248" width="0.5" height="24.0" fill="rgb(210,223,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="130.9" y="248" width="0.5" height="24.0" fill="rgb(220,70,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="229.4" y="298" width="0.2" height="24.0" fill="rgb(230,179,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_insert_head (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="199.1" y="248" width="0.2" height="24.0" fill="rgb(230,198,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1066.1" y="323" width="0.8" height="24.0" fill="rgb(247,119,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1132.1" y="323" width="0.7" height="24.0" fill="rgb(225,70,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_remove (39 samples, 0.81%)')" onmouseout="c()">
+<rect x="1120.1" y="198" width="9.6" height="24.0" fill="rgb(245,181,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_last (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1118.2" y="148" width="1.7" height="24.0" fill="rgb(238,113,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_first (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1108.2" y="223" width="1.2" height="24.0" fill="rgb(209,136,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`tsd_get (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1053.9" y="373" width="0.5" height="24.0" fill="rgb(220,156,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1067.8" y="273" width="0.8" height="24.0" fill="rgb(239,178,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_is_initializing (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1062.7" y="298" width="0.3" height="24.0" fill="rgb(246,134,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_get_bonustype (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1050.0" y="373" width="0.3" height="24.0" fill="rgb(237,159,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="241.6" y="398" width="0.2" height="24.0" fill="rgb(250,78,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`as_free (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="217.2" y="398" width="1.7" height="24.0" fill="rgb(215,229,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1060.8" y="348" width="0.5" height="24.0" fill="rgb(226,93,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_create (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1016.5" y="273" width="0.3" height="24.0" fill="rgb(231,155,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="264.6" y="273" width="0.5" height="24.0" fill="rgb(230,87,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="151.7" y="248" width="0.2" height="24.0" fill="rgb(208,115,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele_and_unlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="185.4" y="273" width="0.3" height="24.0" fill="rgb(230,190,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1170.5" y="298" width="0.2" height="24.0" fill="rgb(232,93,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_config_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1130.4" y="273" width="0.5" height="24.0" fill="rgb(232,227,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cmt_should_migrate (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1149.4" y="48" width="0.8" height="24.0" fill="rgb(215,209,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1082.3" y="348" width="0.2" height="24.0" fill="rgb(252,91,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="114.3" y="348" width="0.5" height="24.0" fill="rgb(234,198,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold_impl (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1067.6" y="323" width="1.7" height="24.0" fill="rgb(242,80,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="155.6" y="273" width="1.0" height="24.0" fill="rgb(217,221,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`anon_decref (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="273" width="0.5" height="24.0" fill="rgb(244,126,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="176.6" y="273" width="0.5" height="24.0" fill="rgb(225,148,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`disp (22 samples, 0.46%)')" onmouseout="c()">
+<rect x="1171.4" y="273" width="5.4" height="24.0" fill="rgb(254,170,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_rwunlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="41.8" y="473" width="0.2" height="24.0" fill="rgb(218,121,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="143.1" y="298" width="0.3" height="24.0" fill="rgb(238,114,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_head (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="164.2" y="223" width="0.2" height="24.0" fill="rgb(251,109,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="55.4" y="398" width="0.3" height="24.0" fill="rgb(254,213,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fs_rwunlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1185.1" y="448" width="0.3" height="24.0" fill="rgb(245,86,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (138 samples, 2.86%)')" onmouseout="c()">
+<rect x="980.4" y="298" width="33.7" height="24.0" fill="rgb(244,168,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="54.7" y="398" width="0.3" height="24.0" fill="rgb(238,169,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="262.6" y="298" width="0.3" height="24.0" fill="rgb(231,154,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="129.7" y="248" width="1.2" height="24.0" fill="rgb(253,185,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait (17 samples, 0.35%)')" onmouseout="c()">
+<rect x="1017.0" y="348" width="4.2" height="24.0" fill="rgb(219,180,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`gdt_update_usegd (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="35.7" y="423" width="0.2" height="24.0" fill="rgb(240,109,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fs_rwunlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="208.9" y="423" width="0.2" height="24.0" fill="rgb(233,84,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_write (3,893 samples, 80.60%)')" onmouseout="c()">
+<rect x="234.0" y="448" width="951.1" height="24.0" fill="rgb(211,124,18)" rx="2" ry="2" />
+<text text-anchor="" x="237.028985507246" y="466" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`fop_write</text>
+</g>
+<g class="func_g" onmouseover="s('unix`xcopyout_nta (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="112.9" y="373" width="0.2" height="24.0" fill="rgb(251,206,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1066.9" y="323" width="0.5" height="24.0" fill="rgb(210,221,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="1021.4" y="348" width="3.2" height="24.0" fill="rgb(205,214,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_remove (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="229.4" y="398" width="1.7" height="24.0" fill="rgb(238,200,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_insert (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="204.2" y="348" width="0.3" height="24.0" fill="rgb(230,93,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_32 (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1176.8" y="248" width="0.7" height="24.0" fill="rgb(214,176,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_read (37 samples, 0.77%)')" onmouseout="c()">
+<rect x="1060.3" y="373" width="9.0" height="24.0" fill="rgb(217,166,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_insert (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1128.2" y="173" width="0.2" height="24.0" fill="rgb(230,194,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_32 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1052.7" y="273" width="0.2" height="24.0" fill="rgb(237,125,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1064.4" y="298" width="1.7" height="24.0" fill="rgb(209,117,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1146.8" y="48" width="0.2" height="24.0" fill="rgb(221,119,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1063.7" y="248" width="0.5" height="24.0" fill="rgb(235,123,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="275.1" y="298" width="0.7" height="24.0" fill="rgb(220,208,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_seg_compare (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1129.4" y="173" width="0.3" height="24.0" fill="rgb(252,74,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`ddt_prefetch (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="259.2" y="323" width="0.2" height="24.0" fill="rgb(247,183,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_zfetch (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="184.7" y="273" width="0.5" height="24.0" fill="rgb(236,197,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1074.9" y="348" width="0.3" height="24.0" fill="rgb(221,187,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb800ecb (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="29.1" y="523" width="0.4" height="24.0" fill="rgb(238,76,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cpu_decay (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1164.3" y="198" width="0.3" height="24.0" fill="rgb(218,149,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1061.5" y="298" width="0.7" height="24.0" fill="rgb(205,105,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_tempreserve_space (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="245.3" y="348" width="0.2" height="24.0" fill="rgb(253,139,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_mstate (26 samples, 0.54%)')" onmouseout="c()">
+<rect x="223.0" y="498" width="6.4" height="24.0" fill="rgb(246,119,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1021.4" y="323" width="0.3" height="24.0" fill="rgb(221,106,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1022.4" y="298" width="1.5" height="24.0" fill="rgb(205,186,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`vdev_psize_to_asize (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1131.1" y="273" width="0.8" height="24.0" fill="rgb(221,150,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`bp_get_dsize (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="229.4" y="323" width="0.2" height="24.0" fill="rgb(222,191,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="340.3" y="298" width="0.5" height="24.0" fill="rgb(246,76,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (20 samples, 0.41%)')" onmouseout="c()">
+<rect x="177.1" y="273" width="4.9" height="24.0" fill="rgb(239,154,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_last_synced_txg (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="258.5" y="348" width="0.2" height="24.0" fill="rgb(207,213,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="169.0" y="323" width="1.3" height="24.0" fill="rgb(235,154,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`write32 (3,920 samples, 81.16%)')" onmouseout="c()">
+<rect x="231.3" y="498" width="957.7" height="24.0" fill="rgb(243,185,26)" rx="2" ry="2" />
+<text text-anchor="" x="234.341614906832" y="516" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`write32</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_sa_upgrade_txholds (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="237.4" y="423" width="0.8" height="24.0" fill="rgb(206,198,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="194.0" y="273" width="0.5" height="24.0" fill="rgb(223,108,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dva_get_dsize_sync (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="279.5" y="273" width="0.2" height="24.0" fill="rgb(249,212,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dva_get_dsize_sync (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="277.5" y="273" width="0.3" height="24.0" fill="rgb(206,175,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`gdt_ucode_model (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="35.4" y="448" width="0.5" height="24.0" fill="rgb(235,139,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="193.2" y="273" width="0.8" height="24.0" fill="rgb(212,223,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="154.6" y="273" width="1.0" height="24.0" fill="rgb(206,179,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_done (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1064.9" y="273" width="0.7" height="24.0" fill="rgb(208,192,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (22 samples, 0.46%)')" onmouseout="c()">
+<rect x="176.6" y="298" width="5.4" height="24.0" fill="rgb(212,97,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="207.4" y="323" width="1.0" height="24.0" fill="rgb(207,191,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="129.0" y="273" width="0.2" height="24.0" fill="rgb(229,179,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_dnode (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="257.5" y="398" width="0.2" height="24.0" fill="rgb(243,92,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`page_list_add (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="123" width="0.5" height="24.0" fill="rgb(237,206,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait_for_children (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1019.2" y="273" width="0.3" height="24.0" fill="rgb(219,103,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_exit (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="117.0" y="348" width="1.2" height="24.0" fill="rgb(225,185,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_nowait (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1156.5" y="348" width="0.3" height="24.0" fill="rgb(233,119,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (58 samples, 1.20%)')" onmouseout="c()">
+<rect x="124.3" y="298" width="14.2" height="24.0" fill="rgb(211,121,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_alloc_dva (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1131.9" y="298" width="0.2" height="24.0" fill="rgb(244,163,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`kstat_runq_enter (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="51.0" y="423" width="1.5" height="24.0" fill="rgb(246,119,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`copyin_args32 (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="219.6" y="473" width="3.4" height="24.0" fill="rgb(217,139,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`new_mstate (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1163.4" y="273" width="1.4" height="24.0" fill="rgb(253,116,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1093.7" y="223" width="0.3" height="24.0" fill="rgb(241,194,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (36 samples, 0.75%)')" onmouseout="c()">
+<rect x="143.4" y="298" width="8.8" height="24.0" fill="rgb(234,203,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait (66 samples, 1.37%)')" onmouseout="c()">
+<rect x="152.2" y="323" width="16.1" height="24.0" fill="rgb(241,162,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`seg_free (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="217.2" y="348" width="0.9" height="24.0" fill="rgb(205,192,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_block_freeable (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="280.0" y="323" width="0.2" height="24.0" fill="rgb(242,151,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="182.0" y="298" width="0.2" height="24.0" fill="rgb(235,106,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_depot_alloc (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1098.1" y="248" width="1.8" height="24.0" fill="rgb(211,182,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_dnode (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="271.2" y="373" width="0.2" height="24.0" fill="rgb(241,200,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cpu_grow (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1164.1" y="223" width="0.5" height="24.0" fill="rgb(206,155,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="150.7" y="248" width="0.5" height="24.0" fill="rgb(211,81,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1044.9" y="298" width="0.2" height="24.0" fill="rgb(244,114,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_write_held (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1022.2" y="298" width="0.2" height="24.0" fill="rgb(223,120,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="188.1" y="323" width="0.2" height="24.0" fill="rgb(224,79,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="267.7" y="273" width="0.5" height="24.0" fill="rgb(223,75,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="262.1" y="298" width="0.3" height="24.0" fill="rgb(234,215,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`kcopy (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="112.6" y="373" width="0.3" height="24.0" fill="rgb(244,200,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1044.1" y="298" width="0.8" height="24.0" fill="rgb(207,90,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait_for_children (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1020.5" y="298" width="0.2" height="24.0" fill="rgb(221,136,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`vdev_default_asize (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1129.9" y="248" width="0.5" height="24.0" fill="rgb(212,131,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="254.6" y="373" width="0.2" height="24.0" fill="rgb(206,181,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (42 samples, 0.87%)')" onmouseout="c()">
+<rect x="189.3" y="348" width="10.3" height="24.0" fill="rgb(212,145,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_add (30 samples, 0.62%)')" onmouseout="c()">
+<rect x="1120.4" y="173" width="7.3" height="24.0" fill="rgb(247,142,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mul32 (299 samples, 6.19%)')" onmouseout="c()">
+<rect x="435.1" y="273" width="73.0" height="24.0" fill="rgb(214,217,21)" rx="2" ry="2" />
+<text text-anchor="" x="438.093167701863" y="291" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >unix`..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_itx_assign (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1069.3" y="373" width="1.0" height="24.0" fill="rgb(238,179,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1014.6" y="298" width="0.2" height="24.0" fill="rgb(217,162,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="1017.5" y="323" width="3.2" height="24.0" fill="rgb(243,120,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1182.7" y="298" width="0.7" height="24.0" fill="rgb(234,124,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`drv_usecwait (2,756 samples, 57.06%)')" onmouseout="c()">
+<rect x="340.8" y="323" width="673.3" height="24.0" fill="rgb(209,166,28)" rx="2" ry="2" />
+<text text-anchor="" x="343.790890269151" y="341" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >unix`drv_usecwait</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="259.9" y="323" width="1.5" height="24.0" fill="rgb(228,183,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_commit (17 samples, 0.35%)')" onmouseout="c()">
+<rect x="253.3" y="398" width="4.2" height="24.0" fill="rgb(229,214,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1048.3" y="273" width="0.2" height="24.0" fill="rgb(244,80,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_head (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="256.7" y="348" width="0.3" height="24.0" fill="rgb(234,73,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('SDC`sysdc_wakeup (57 samples, 1.18%)')" onmouseout="c()">
+<rect x="1139.4" y="148" width="14.0" height="24.0" fill="rgb(253,208,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cpu_resched (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1150.4" y="73" width="0.3" height="24.0" fill="rgb(252,152,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`setbackdq (53 samples, 1.10%)')" onmouseout="c()">
+<rect x="1140.4" y="98" width="13.0" height="24.0" fill="rgb(240,105,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`getf (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="42.0" y="473" width="0.5" height="24.0" fill="rgb(250,193,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`txg_hold_open (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="252.6" y="348" width="0.2" height="24.0" fill="rgb(241,149,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`disp_lock_enter (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1134.5" y="173" width="1.8" height="24.0" fill="rgb(221,214,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_add_child (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1091.5" y="248" width="0.8" height="24.0" fill="rgb(212,193,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="33.0" y="448" width="0.2" height="24.0" fill="rgb(233,157,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_ready (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1019.7" y="298" width="0.8" height="24.0" fill="rgb(222,106,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="50.6" y="423" width="0.4" height="24.0" fill="rgb(237,99,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="41.5" y="473" width="0.3" height="24.0" fill="rgb(243,74,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_write_held (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="262.9" y="298" width="0.2" height="24.0" fill="rgb(234,218,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`segvn_free (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="217.2" y="323" width="0.9" height="24.0" fill="rgb(218,211,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1023.4" y="248" width="0.5" height="24.0" fill="rgb(247,173,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_create_dd (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="257.7" y="373" width="0.8" height="24.0" fill="rgb(254,221,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="270.9" y="373" width="0.3" height="24.0" fill="rgb(217,123,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_rewrite (16 samples, 0.33%)')" onmouseout="c()">
+<rect x="1088.4" y="298" width="3.9" height="24.0" fill="rgb(225,121,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1091.8" y="223" width="0.5" height="24.0" fill="rgb(220,184,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="150.2" y="223" width="0.5" height="24.0" fill="rgb(237,122,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="189.6" y="323" width="0.5" height="24.0" fill="rgb(250,191,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_root (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1025.1" y="373" width="0.2" height="24.0" fill="rgb(227,77,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_alloc_zil (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1156.3" y="348" width="0.2" height="24.0" fill="rgb(233,169,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1063.7" y="223" width="0.5" height="24.0" fill="rgb(244,180,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="254.1" y="348" width="0.2" height="24.0" fill="rgb(244,115,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1091.5" y="223" width="0.3" height="24.0" fill="rgb(217,85,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_tail (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1078.6" y="348" width="0.2" height="24.0" fill="rgb(205,75,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1023.6" y="223" width="0.3" height="24.0" fill="rgb(222,107,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_insert_tail (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="261.4" y="323" width="0.2" height="24.0" fill="rgb(249,131,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dir_tempreserve_space (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="252.8" y="373" width="0.3" height="24.0" fill="rgb(229,115,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`pg_ev_thread_swtch (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1176.8" y="273" width="1.5" height="24.0" fill="rgb(230,116,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_zone_zio_init (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1064.2" y="248" width="0.2" height="24.0" fill="rgb(206,92,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1017.8" y="298" width="0.2" height="24.0" fill="rgb(251,113,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_mstate (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="29.1" y="498" width="0.4" height="24.0" fill="rgb(241,181,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_level (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="272.6" y="323" width="1.5" height="24.0" fill="rgb(238,98,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1066.1" y="298" width="0.3" height="24.0" fill="rgb(242,209,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1065.9" y="248" width="0.2" height="24.0" fill="rgb(238,229,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`sa_bulk_update (12 samples, 0.25%)')" onmouseout="c()">
+<rect x="1050.0" y="398" width="2.9" height="24.0" fill="rgb(218,228,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1064.4" y="323" width="1.7" height="24.0" fill="rgb(245,101,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_entry (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="28.3" y="523" width="0.3" height="24.0" fill="rgb(254,131,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_unlock (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1074.4" y="398" width="0.8" height="24.0" fill="rgb(254,191,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_hold_array_by_dnode (205 samples, 4.24%)')" onmouseout="c()">
+<rect x="118.2" y="348" width="50.1" height="24.0" fill="rgb(225,201,35)" rx="2" ry="2" />
+<text text-anchor="" x="121.227743271222" y="366" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs..</text>
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1091.3" y="248" width="0.2" height="24.0" fill="rgb(225,201,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1044.1" y="323" width="0.8" height="24.0" fill="rgb(220,150,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_thaw (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1042.7" y="298" width="0.2" height="24.0" fill="rgb(209,171,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtimeunscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1163.1" y="173" width="0.3" height="24.0" fill="rgb(225,119,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="185.2" y="298" width="0.5" height="24.0" fill="rgb(230,106,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_broadcast (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="241.4" y="398" width="0.2" height="24.0" fill="rgb(250,190,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`write (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="231.1" y="498" width="0.2" height="24.0" fill="rgb(238,210,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_root (37 samples, 0.77%)')" onmouseout="c()">
+<rect x="143.1" y="323" width="9.1" height="24.0" fill="rgb(245,123,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`page_free (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="148" width="0.5" height="24.0" fill="rgb(218,175,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb853906 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="58.1" y="348" width="0.3" height="24.0" fill="rgb(212,211,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cpu_update_pct (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1164.1" y="248" width="0.5" height="24.0" fill="rgb(231,89,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_check_quota (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="247.5" y="323" width="0.9" height="24.0" fill="rgb(208,191,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="268.2" y="248" width="0.3" height="24.0" fill="rgb(231,157,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_zfetch (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1068.8" y="273" width="0.3" height="24.0" fill="rgb(241,89,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_dec_32_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1068.6" y="273" width="0.2" height="24.0" fill="rgb(232,131,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_commit (449 samples, 9.30%)')" onmouseout="c()">
+<rect x="1075.4" y="398" width="109.7" height="24.0" fill="rgb(251,154,39)" rx="2" ry="2" />
+<text text-anchor="" x="1078.42028985507" y="416" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`zil_..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_hold_array_by_dnode (21 samples, 0.43%)')" onmouseout="c()">
+<rect x="1043.9" y="348" width="5.1" height="24.0" fill="rgb(245,76,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_numnodes (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="220.6" y="423" width="0.2" height="24.0" fill="rgb(218,149,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1078.1" y="323" width="0.5" height="24.0" fill="rgb(214,149,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="260.7" y="298" width="0.7" height="24.0" fill="rgb(246,190,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1068.3" y="223" width="0.3" height="24.0" fill="rgb(209,162,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`exit (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="217.2" y="473" width="1.7" height="24.0" fill="rgb(218,139,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1168.7" y="273" width="1.8" height="24.0" fill="rgb(218,89,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb800ed9 (17 samples, 0.35%)')" onmouseout="c()">
+<rect x="29.5" y="523" width="4.2" height="24.0" fill="rgb(226,166,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_read (671 samples, 13.89%)')" onmouseout="c()">
+<rect x="44.7" y="448" width="163.9" height="24.0" fill="rgb(217,204,14)" rx="2" ry="2" />
+<text text-anchor="" x="47.6915113871636" y="466" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`fop_r..</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_rwunlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="231.3" y="473" width="0.3" height="24.0" fill="rgb(214,223,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`uio_prefaultpages (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="241.8" y="398" width="0.3" height="24.0" fill="rgb(225,113,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele_and_unlock (38 samples, 0.79%)')" onmouseout="c()">
+<rect x="190.3" y="323" width="9.3" height="24.0" fill="rgb(223,225,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_ready (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="164.4" y="273" width="3.4" height="24.0" fill="rgb(236,176,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_write_held (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="172.2" y="323" width="0.5" height="24.0" fill="rgb(247,92,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`uiomove (59 samples, 1.22%)')" onmouseout="c()">
+<rect x="1026.6" y="348" width="14.4" height="24.0" fill="rgb(205,196,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_prev_snap_txg (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="258.5" y="373" width="0.2" height="24.0" fill="rgb(212,118,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_group_alloc (91 samples, 1.88%)')" onmouseout="c()">
+<rect x="1107.4" y="248" width="22.3" height="24.0" fill="rgb(212,152,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1021.2" y="348" width="0.2" height="24.0" fill="rgb(246,119,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_data_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.4" y="198" width="0.2" height="24.0" fill="rgb(229,218,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`copyin_args32 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="39.8" y="498" width="0.2" height="24.0" fill="rgb(235,108,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb85390a (218 samples, 4.51%)')" onmouseout="c()">
+<rect x="58.4" y="348" width="53.2" height="24.0" fill="rgb(235,120,18)" rx="2" ry="2" />
+<text text-anchor="" x="61.3726708074534" y="366" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >unix..</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_init (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1063.0" y="273" width="0.2" height="24.0" fill="rgb(211,87,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('SDC`sysdc_wakeup (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1134.1" y="173" width="0.4" height="24.0" fill="rgb(208,109,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_write (3,876 samples, 80.25%)')" onmouseout="c()">
+<rect x="238.2" y="423" width="946.9" height="24.0" fill="rgb(251,101,11)" rx="2" ry="2" />
+<text text-anchor="" x="241.182194616977" y="441" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`zfs_write</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_add_ref (22 samples, 0.46%)')" onmouseout="c()">
+<rect x="129.2" y="273" width="5.4" height="24.0" fill="rgb(208,122,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_hold_array (300 samples, 6.21%)')" onmouseout="c()">
+<rect x="113.3" y="373" width="73.3" height="24.0" fill="rgb(209,134,12)" rx="2" ry="2" />
+<text text-anchor="" x="116.341614906832" y="391" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`d..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_ready (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1020.7" y="323" width="0.5" height="24.0" fill="rgb(214,121,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_object_free (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="229.6" y="348" width="1.5" height="24.0" fill="rgb(240,71,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_64 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1165.3" y="273" width="0.5" height="24.0" fill="rgb(252,144,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`mstate_thread_onproc_time (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1162.9" y="198" width="0.5" height="24.0" fill="rgb(212,229,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold_impl (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="269.5" y="323" width="0.4" height="24.0" fill="rgb(224,120,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="185.2" y="273" width="0.2" height="24.0" fill="rgb(212,167,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_remove_ref (29 samples, 0.60%)')" onmouseout="c()">
+<rect x="192.3" y="298" width="7.0" height="24.0" fill="rgb(243,82,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1014.8" y="298" width="0.5" height="24.0" fill="rgb(207,157,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="116.3" y="348" width="0.7" height="24.0" fill="rgb(243,134,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.0" y="298" width="0.3" height="24.0" fill="rgb(249,215,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb800ec1 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="28.8" y="523" width="0.3" height="24.0" fill="rgb(224,111,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1164.6" y="248" width="0.2" height="24.0" fill="rgb(230,144,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1047.6" y="248" width="0.2" height="24.0" fill="rgb(231,187,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="52.5" y="398" width="0.7" height="24.0" fill="rgb(246,228,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cmt_balance (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="1147.0" y="73" width="3.2" height="24.0" fill="rgb(234,96,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="1113.8" y="148" width="3.2" height="24.0" fill="rgb(208,75,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_change_state (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1042.9" y="273" width="0.3" height="24.0" fill="rgb(235,208,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="265.5" y="273" width="2.2" height="24.0" fill="rgb(206,113,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`watch_disable_addr (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="220.8" y="423" width="1.0" height="24.0" fill="rgb(243,136,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`vdev_lookup_top (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="276.0" y="298" width="0.5" height="24.0" fill="rgb(211,221,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="116.0" y="348" width="0.3" height="24.0" fill="rgb(219,151,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_root (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1063.0" y="323" width="1.4" height="24.0" fill="rgb(244,227,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`vn_removeat (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="229.4" y="448" width="1.7" height="24.0" fill="rgb(211,173,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="255.5" y="348" width="0.3" height="24.0" fill="rgb(229,127,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_mstate (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="28.6" y="523" width="0.2" height="24.0" fill="rgb(222,109,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_memory_throttle (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="247.2" y="298" width="0.3" height="24.0" fill="rgb(219,99,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="200.3" y="373" width="1.7" height="24.0" fill="rgb(213,75,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bitset_in_set (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1151.6" y="48" width="1.3" height="24.0" fill="rgb(241,126,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_get_spa (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="280.0" y="298" width="0.2" height="24.0" fill="rgb(246,135,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`nbl_need_check (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="231.8" y="473" width="0.3" height="24.0" fill="rgb(229,216,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="253.6" y="373" width="0.2" height="24.0" fill="rgb(230,201,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`membar_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1139.4" y="98" width="1.0" height="24.0" fill="rgb(231,192,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`page_destroy (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="173" width="0.5" height="24.0" fill="rgb(251,221,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="249.2" y="273" width="0.2" height="24.0" fill="rgb(216,72,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`disp_lock_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1172.7" y="248" width="0.9" height="24.0" fill="rgb(209,177,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`audit_getstate (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="29.8" y="473" width="0.2" height="24.0" fill="rgb(235,190,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dir_tempreserve_clear (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="254.8" y="373" width="2.7" height="24.0" fill="rgb(227,223,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="270.4" y="373" width="0.5" height="24.0" fill="rgb(235,139,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`sep_save (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1181.4" y="248" width="0.5" height="24.0" fill="rgb(233,99,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_async_to_sync (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1076.4" y="373" width="0.7" height="24.0" fill="rgb(213,192,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_tryenter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1100.3" y="248" width="0.3" height="24.0" fill="rgb(222,137,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`restorectx (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="34.2" y="498" width="1.7" height="24.0" fill="rgb(224,184,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="57.4" y="373" width="0.2" height="24.0" fill="rgb(239,142,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lwp_segregs_restore32 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="35.4" y="473" width="0.5" height="24.0" fill="rgb(216,173,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1022.4" y="273" width="0.3" height="24.0" fill="rgb(253,202,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_init (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="143.6" y="273" width="1.0" height="24.0" fill="rgb(207,130,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="161.0" y="248" width="1.0" height="24.0" fill="rgb(213,209,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`kstat_waitq_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="234.8" y="423" width="0.2" height="24.0" fill="rgb(246,175,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1062.2" y="323" width="0.5" height="24.0" fill="rgb(241,222,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb85390a (24 samples, 0.50%)')" onmouseout="c()">
+<rect x="1054.4" y="373" width="5.9" height="24.0" fill="rgb(232,228,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_ready (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1184.6" y="298" width="0.3" height="24.0" fill="rgb(217,209,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_remove (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="229.4" y="423" width="1.7" height="24.0" fill="rgb(207,157,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="165.6" y="248" width="0.3" height="24.0" fill="rgb(245,222,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1172.7" y="223" width="0.9" height="24.0" fill="rgb(238,135,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_depot_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1097.4" y="273" width="0.3" height="24.0" fill="rgb(207,148,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1064.4" y="273" width="0.5" height="24.0" fill="rgb(214,81,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_lwb_commit (28 samples, 0.58%)')" onmouseout="c()">
+<rect x="1087.1" y="348" width="6.9" height="24.0" fill="rgb(240,201,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_change_state (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.6" y="223" width="0.3" height="24.0" fill="rgb(222,207,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`releasef (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1185.8" y="448" width="0.5" height="24.0" fill="rgb(245,222,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`xcopyout_nta (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="111.9" y="348" width="0.7" height="24.0" fill="rgb(225,110,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="271.9" y="348" width="0.2" height="24.0" fill="rgb(208,77,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1075.4" y="373" width="0.8" height="24.0" fill="rgb(219,108,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1182.2" y="323" width="0.5" height="24.0" fill="rgb(235,219,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_copy_fault_nta (58 samples, 1.20%)')" onmouseout="c()">
+<rect x="1026.8" y="323" width="14.2" height="24.0" fill="rgb(209,91,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`_resume_from_idle (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="34.2" y="523" width="2.4" height="24.0" fill="rgb(205,77,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_buf_alloc (16 samples, 0.33%)')" onmouseout="c()">
+<rect x="1097.9" y="298" width="3.9" height="24.0" fill="rgb(241,124,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1090.1" y="223" width="0.2" height="24.0" fill="rgb(227,196,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1184.4" y="273" width="0.2" height="24.0" fill="rgb(224,145,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`kstat_runq_exit (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="52.5" y="423" width="0.7" height="24.0" fill="rgb(227,225,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_dnode (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="259.2" y="348" width="0.5" height="24.0" fill="rgb(236,110,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1110.8" y="198" width="0.3" height="24.0" fill="rgb(208,222,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_destroy (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="152.2" y="298" width="1.5" height="24.0" fill="rgb(213,97,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1060.5" y="348" width="0.3" height="24.0" fill="rgb(213,81,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="273.1" y="273" width="1.0" height="24.0" fill="rgb(240,96,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="1014.6" y="323" width="2.4" height="24.0" fill="rgb(214,95,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1073.5" y="323" width="0.2" height="24.0" fill="rgb(250,113,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_remove (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="206.7" y="373" width="0.2" height="24.0" fill="rgb(245,110,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_seg_compare (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1111.6" y="173" width="0.7" height="24.0" fill="rgb(216,123,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_destroy (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1183.4" y="298" width="0.2" height="24.0" fill="rgb(218,155,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="269.9" y="348" width="0.5" height="24.0" fill="rgb(210,139,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`disp_getwork (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="1173.6" y="248" width="3.2" height="24.0" fill="rgb(249,70,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_inherit_child_errors (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1065.6" y="273" width="0.3" height="24.0" fill="rgb(254,138,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cmt_ev_thread_swtch_pwr (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1177.8" y="248" width="0.2" height="24.0" fill="rgb(215,146,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`txg_hold_open (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1095.2" y="273" width="0.3" height="24.0" fill="rgb(233,134,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1086.2" y="348" width="0.2" height="24.0" fill="rgb(211,222,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`remove_reference (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="198.6" y="273" width="0.7" height="24.0" fill="rgb(221,143,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_write_uio_dnode (96 samples, 1.99%)')" onmouseout="c()">
+<rect x="1026.1" y="373" width="23.4" height="24.0" fill="rgb(224,158,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_check_quota (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="250.2" y="298" width="0.2" height="24.0" fill="rgb(212,227,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`rrw_enter (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="200.1" y="398" width="3.1" height="24.0" fill="rgb(249,133,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="256.0" y="323" width="0.5" height="24.0" fill="rgb(235,196,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_next (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1155.1" y="273" width="0.2" height="24.0" fill="rgb(209,161,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1061.7" y="273" width="0.5" height="24.0" fill="rgb(212,152,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_rele_array (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1025.8" y="373" width="0.3" height="24.0" fill="rgb(210,71,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1052.7" y="298" width="0.2" height="24.0" fill="rgb(224,85,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="274.3" y="248" width="0.3" height="24.0" fill="rgb(208,226,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_insert_tail (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1053.7" y="373" width="0.2" height="24.0" fill="rgb(212,166,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1074.9" y="373" width="0.3" height="24.0" fill="rgb(210,141,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1077.6" y="323" width="0.5" height="24.0" fill="rgb(217,168,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_set_spl (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1134.5" y="148" width="1.8" height="24.0" fill="rgb(245,181,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1181.2" y="223" width="0.2" height="24.0" fill="rgb(212,217,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_rele_array (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1066.1" y="348" width="1.3" height="24.0" fill="rgb(245,184,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb800ee8 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="33.7" y="523" width="0.5" height="24.0" fill="rgb(242,109,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_exit (16 samples, 0.33%)')" onmouseout="c()">
+<rect x="29.8" y="498" width="3.9" height="24.0" fill="rgb(214,206,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1171.2" y="248" width="0.2" height="24.0" fill="rgb(226,130,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lwp_segregs_restore32 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="36.1" y="498" width="0.3" height="24.0" fill="rgb(234,78,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1097.7" y="298" width="0.2" height="24.0" fill="rgb(241,211,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`post_syscall (15 samples, 0.31%)')" onmouseout="c()">
+<rect x="30.0" y="473" width="3.7" height="24.0" fill="rgb(220,224,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.4" y="148" width="0.2" height="24.0" fill="rgb(254,213,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1153.8" y="223" width="1.3" height="24.0" fill="rgb(242,82,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_remove (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1128.4" y="173" width="1.0" height="24.0" fill="rgb(217,190,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`parent_delta (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="250.9" y="273" width="0.2" height="24.0" fill="rgb(236,127,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`sleepq_insert (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1164.8" y="273" width="0.5" height="24.0" fill="rgb(225,159,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cpu_decay (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1146.5" y="48" width="0.3" height="24.0" fill="rgb(251,192,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_znode_delete (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="229.6" y="373" width="1.5" height="24.0" fill="rgb(213,79,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_issue_async (90 samples, 1.86%)')" onmouseout="c()">
+<rect x="1133.1" y="273" width="22.0" height="24.0" fill="rgb(224,176,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1048.5" y="248" width="0.5" height="24.0" fill="rgb(238,111,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_unlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="237.2" y="423" width="0.2" height="24.0" fill="rgb(251,104,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_segsize_compare (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1127.5" y="148" width="0.2" height="24.0" fill="rgb(248,98,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_walk_parents (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1155.3" y="273" width="0.5" height="24.0" fill="rgb(231,187,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_dec_32_nv (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="183.9" y="273" width="0.8" height="24.0" fill="rgb(232,121,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`sa_attr_op (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1050.3" y="373" width="0.4" height="24.0" fill="rgb(219,129,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="125.3" y="273" width="1.0" height="24.0" fill="rgb(205,110,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_log_write (70 samples, 1.45%)')" onmouseout="c()">
+<rect x="1053.7" y="398" width="17.1" height="24.0" fill="rgb(251,87,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_remove (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="129.5" y="248" width="0.2" height="24.0" fill="rgb(211,134,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_df_alloc (29 samples, 0.60%)')" onmouseout="c()">
+<rect x="1112.8" y="198" width="7.1" height="24.0" fill="rgb(224,228,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="257.2" y="348" width="0.3" height="24.0" fill="rgb(217,86,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="52.5" y="373" width="0.7" height="24.0" fill="rgb(237,124,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1127.7" y="173" width="0.5" height="24.0" fill="rgb(208,77,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait_for_children (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="162.4" y="248" width="1.5" height="24.0" fill="rgb(246,110,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="226.2" y="473" width="3.2" height="24.0" fill="rgb(251,92,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zilog_dirty (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1069.8" y="348" width="0.5" height="24.0" fill="rgb(247,149,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`disp_lock_exit_nopreempt (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1166.8" y="298" width="1.5" height="24.0" fill="rgb(234,79,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (8 samples, 0.17%)')" onmouseout="c()">
+<rect x="1136.3" y="148" width="1.9" height="24.0" fill="rgb(247,123,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="192.0" y="298" width="0.3" height="24.0" fill="rgb(222,202,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="266.0" y="223" width="0.3" height="24.0" fill="rgb(238,84,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('FSS`fss_sleep (21 samples, 0.43%)')" onmouseout="c()">
+<rect x="1158.2" y="273" width="5.2" height="24.0" fill="rgb(233,92,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1070.5" y="348" width="0.3" height="24.0" fill="rgb(217,136,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_walk_parents (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1020.2" y="273" width="0.3" height="24.0" fill="rgb(251,211,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64 (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="217.4" y="48" width="0.3" height="24.0" fill="rgb(236,190,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash_remove (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.9" y="173" width="0.2" height="24.0" fill="rgb(224,166,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1048.1" y="323" width="0.9" height="24.0" fill="rgb(251,206,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`hat_unload_callback (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="218.1" y="348" width="0.8" height="24.0" fill="rgb(215,221,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_rele_array (53 samples, 1.10%)')" onmouseout="c()">
+<rect x="186.9" y="373" width="12.9" height="24.0" fill="rgb(209,124,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_32 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1062.2" y="298" width="0.5" height="24.0" fill="rgb(239,143,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_sa (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="235.7" y="423" width="0.3" height="24.0" fill="rgb(235,105,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="48.1" y="398" width="2.5" height="24.0" fill="rgb(242,79,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fs_rwlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="209.1" y="448" width="0.3" height="24.0" fill="rgb(213,191,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold (8 samples, 0.17%)')" onmouseout="c()">
+<rect x="1067.4" y="348" width="1.9" height="24.0" fill="rgb(214,225,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_pool_tempreserve_space (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="252.1" y="348" width="0.5" height="24.0" fill="rgb(209,129,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cpu_reload (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1100.6" y="273" width="0.2" height="24.0" fill="rgb(233,206,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zrl_remove (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="185.9" y="298" width="0.5" height="24.0" fill="rgb(220,194,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_write_uio_dbuf (99 samples, 2.05%)')" onmouseout="c()">
+<rect x="1025.3" y="398" width="24.2" height="24.0" fill="rgb(245,71,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_gang_tree_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1019.5" y="298" width="0.2" height="24.0" fill="rgb(223,201,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fs_dispose (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="198" width="0.5" height="24.0" fill="rgb(233,97,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`thread_lock (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="32.5" y="448" width="0.5" height="24.0" fill="rgb(233,78,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_dirty (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="1041.5" y="323" width="2.2" height="24.0" fill="rgb(253,71,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_done (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1184.4" y="298" width="0.2" height="24.0" fill="rgb(237,93,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_create (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="257.7" y="398" width="1.2" height="24.0" fill="rgb(220,168,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_insert_head (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="193.0" y="273" width="0.2" height="24.0" fill="rgb(226,95,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_create (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="235.5" y="423" width="0.2" height="24.0" fill="rgb(252,213,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`bp_get_dsize (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="278.7" y="273" width="0.8" height="24.0" fill="rgb(235,93,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (60 samples, 1.24%)')" onmouseout="c()">
+<rect x="123.8" y="323" width="14.7" height="24.0" fill="rgb(246,182,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_root (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1092.3" y="298" width="1.7" height="24.0" fill="rgb(234,96,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="261.6" y="323" width="0.5" height="24.0" fill="rgb(224,162,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`caps_charge_adjust (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1162.6" y="223" width="0.8" height="24.0" fill="rgb(214,167,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_pool_sync_context (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1062.7" y="323" width="0.3" height="24.0" fill="rgb(226,204,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="207.2" y="348" width="1.4" height="24.0" fill="rgb(248,152,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="187.4" y="323" width="0.7" height="24.0" fill="rgb(226,100,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_twig (24 samples, 0.50%)')" onmouseout="c()">
+<rect x="274.6" y="348" width="5.8" height="24.0" fill="rgb(225,119,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_evict (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="230.4" y="248" width="0.7" height="24.0" fill="rgb(214,218,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1104.2" y="273" width="0.8" height="24.0" fill="rgb(216,215,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dva_get_dsize_sync (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="279.2" y="248" width="0.3" height="24.0" fill="rgb(228,171,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1041.0" y="348" width="0.2" height="24.0" fill="rgb(222,132,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1067.6" y="298" width="0.2" height="24.0" fill="rgb(246,91,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`remove_reference (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="199.3" y="298" width="0.3" height="24.0" fill="rgb(251,126,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="205.0" y="348" width="0.4" height="24.0" fill="rgb(211,225,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_free_range (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="229.6" y="298" width="1.5" height="24.0" fill="rgb(205,83,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="246.0" y="298" width="0.2" height="24.0" fill="rgb(244,205,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_depot_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1091.5" y="198" width="0.3" height="24.0" fill="rgb(248,104,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`txg_rele_to_sync (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1053.4" y="398" width="0.3" height="24.0" fill="rgb(244,88,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="262.4" y="298" width="0.2" height="24.0" fill="rgb(254,140,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`getf (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1185.4" y="448" width="0.4" height="24.0" fill="rgb(232,197,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_zfetch (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="268.7" y="273" width="0.5" height="24.0" fill="rgb(230,153,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`unlinkat (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="229.4" y="473" width="1.7" height="24.0" fill="rgb(249,167,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`unlink (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="229.4" y="498" width="1.7" height="24.0" fill="rgb(236,216,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1047.8" y="248" width="0.3" height="24.0" fill="rgb(241,136,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (60 samples, 1.24%)')" onmouseout="c()">
+<rect x="153.7" y="298" width="14.6" height="24.0" fill="rgb(238,209,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1046.3" y="273" width="1.8" height="24.0" fill="rgb(209,173,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`hat_pte_unmap (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="218.1" y="323" width="0.8" height="24.0" fill="rgb(220,227,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1041.2" y="323" width="0.3" height="24.0" fill="rgb(218,70,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`parent_delta (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="251.6" y="298" width="0.3" height="24.0" fill="rgb(223,182,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_check_ioerr (8 samples, 0.17%)')" onmouseout="c()">
+<rect x="272.6" y="348" width="2.0" height="24.0" fill="rgb(212,94,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (241 samples, 4.99%)')" onmouseout="c()">
+<rect x="281.9" y="323" width="58.9" height="24.0" fill="rgb(222,220,12)" rx="2" ry="2" />
+<text text-anchor="" x="284.913043478261" y="341" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genu..</text>
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtime (758 samples, 15.69%)')" onmouseout="c()">
+<rect x="508.1" y="273" width="185.2" height="24.0" fill="rgb(212,106,15)" rx="2" ry="2" />
+<text text-anchor="" x="511.140786749482" y="291" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >unix`tsc_gethr..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_lwb_write_start (255 samples, 5.28%)')" onmouseout="c()">
+<rect x="1094.0" y="348" width="62.3" height="24.0" fill="rgb(221,117,40)" rx="2" ry="2" />
+<text text-anchor="" x="1096.98757763975" y="366" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait_for_children (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="167.8" y="273" width="0.5" height="24.0" fill="rgb(208,220,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="150.2" y="248" width="0.5" height="24.0" fill="rgb(218,227,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_owner_overquota (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1070.8" y="398" width="1.0" height="24.0" fill="rgb(254,114,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_get_bonustype (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1051.0" y="348" width="0.2" height="24.0" fill="rgb(216,85,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="120.2" y="323" width="0.2" height="24.0" fill="rgb(236,182,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="170.3" y="323" width="0.5" height="24.0" fill="rgb(246,221,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_access (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="132.4" y="248" width="0.2" height="24.0" fill="rgb(236,90,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_write (3,090 samples, 63.98%)')" onmouseout="c()">
+<rect x="270.4" y="398" width="754.9" height="24.0" fill="rgb(249,151,44)" rx="2" ry="2" />
+<text text-anchor="" x="273.430641821946" y="416" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`dmu_tx_hold_write</text>
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_remove (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1074.4" y="373" width="0.5" height="24.0" fill="rgb(234,218,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="122.4" y="298" width="0.2" height="24.0" fill="rgb(250,170,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_object_impl (42 samples, 0.87%)')" onmouseout="c()">
+<rect x="259.7" y="348" width="10.2" height="24.0" fill="rgb(235,185,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_find (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1076.6" y="348" width="0.5" height="24.0" fill="rgb(251,182,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (16 samples, 0.33%)')" onmouseout="c()">
+<rect x="134.6" y="273" width="3.9" height="24.0" fill="rgb(227,174,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cpucaps_charge (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1162.4" y="248" width="1.0" height="24.0" fill="rgb(215,118,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`page_ctr_add_internal (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="217.4" y="73" width="0.3" height="24.0" fill="rgb(223,96,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_rwlock (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="233.5" y="448" width="0.5" height="24.0" fill="rgb(235,184,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_last_synced_txg (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="258.7" y="373" width="0.2" height="24.0" fill="rgb(238,203,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_dispose (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="248" width="0.5" height="24.0" fill="rgb(228,114,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`set_active_fd (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1185.6" y="423" width="0.2" height="24.0" fill="rgb(209,125,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`set_active_fd (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="213.8" y="448" width="0.2" height="24.0" fill="rgb(234,142,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_clear (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="229.9" y="273" width="1.2" height="24.0" fill="rgb(215,187,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_count_twig (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="276.5" y="323" width="3.5" height="24.0" fill="rgb(247,107,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_block (36 samples, 0.75%)')" onmouseout="c()">
+<rect x="1158.0" y="298" width="8.8" height="24.0" fill="rgb(241,228,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`releasef (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="216.7" y="473" width="0.5" height="24.0" fill="rgb(247,154,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_taskq_dispatch (90 samples, 1.86%)')" onmouseout="c()">
+<rect x="1133.1" y="248" width="22.0" height="24.0" fill="rgb(231,211,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zrl_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="269.2" y="273" width="0.3" height="24.0" fill="rgb(216,82,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1020.0" y="273" width="0.2" height="24.0" fill="rgb(247,130,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`bp_get_dsize (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="276.8" y="298" width="1.2" height="24.0" fill="rgb(232,216,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_alloc (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="204.5" y="373" width="1.4" height="24.0" fill="rgb(230,112,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1018.0" y="273" width="0.7" height="24.0" fill="rgb(219,218,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1015.3" y="298" width="1.7" height="24.0" fill="rgb(216,175,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_alloc_zil (124 samples, 2.57%)')" onmouseout="c()">
+<rect x="1101.8" y="323" width="30.3" height="24.0" fill="rgb(229,138,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zrl_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1023.9" y="273" width="0.2" height="24.0" fill="rgb(224,136,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb85390a (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="1078.8" y="348" width="3.5" height="24.0" fill="rgb(214,117,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`sa_handle_object (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1052.9" y="398" width="0.5" height="24.0" fill="rgb(252,227,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_rwunlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="208.9" y="448" width="0.2" height="24.0" fill="rgb(240,140,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_wait (99 samples, 2.05%)')" onmouseout="c()">
+<rect x="1157.8" y="323" width="24.1" height="24.0" fill="rgb(239,224,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_insert_tail (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="250.6" y="273" width="0.3" height="24.0" fill="rgb(245,94,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_do_evict (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.9" y="223" width="0.2" height="24.0" fill="rgb(220,93,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_32_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1177.5" y="248" width="0.3" height="24.0" fill="rgb(230,226,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bitset_in_set (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1149.2" y="48" width="0.2" height="24.0" fill="rgb(211,227,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`disp_lock_exit (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="30.3" y="448" width="2.2" height="24.0" fill="rgb(205,90,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_try_assign (38 samples, 0.79%)')" onmouseout="c()">
+<rect x="243.6" y="373" width="9.2" height="24.0" fill="rgb(206,229,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1018.7" y="273" width="0.3" height="24.0" fill="rgb(210,157,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('all (4,830 samples, 100%)')" onmouseout="c()">
+<rect x="10.0" y="548" width="1180.0" height="24.0" fill="rgb(237,158,46)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="566" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1090.1" y="248" width="0.2" height="24.0" fill="rgb(216,87,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1067.8" y="248" width="0.5" height="24.0" fill="rgb(249,102,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="114.8" y="348" width="1.2" height="24.0" fill="rgb(240,173,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`do_splx (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="30.8" y="423" width="1.7" height="24.0" fill="rgb(220,138,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zrl_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.3" y="348" width="0.2" height="24.0" fill="rgb(247,152,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_32 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1042.0" y="298" width="0.4" height="24.0" fill="rgb(239,165,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.7" y="273" width="0.4" height="24.0" fill="rgb(227,79,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="256.5" y="323" width="0.2" height="24.0" fill="rgb(234,127,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_will_dirty (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1041.2" y="348" width="2.7" height="24.0" fill="rgb(212,145,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`sleepq_wakeone_chan (64 samples, 1.33%)')" onmouseout="c()">
+<rect x="1138.2" y="173" width="15.6" height="24.0" fill="rgb(224,172,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_config_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="279.7" y="273" width="0.3" height="24.0" fill="rgb(230,106,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`htable_e2va (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="218.6" y="273" width="0.3" height="24.0" fill="rgb(247,174,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="194.9" y="273" width="0.3" height="24.0" fill="rgb(239,95,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1096.2" y="273" width="0.2" height="24.0" fill="rgb(224,155,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`getf (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="209.4" y="448" width="2.6" height="24.0" fill="rgb(241,175,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_init (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="150.0" y="248" width="0.2" height="24.0" fill="rgb(222,116,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1096.2" y="248" width="0.2" height="24.0" fill="rgb(224,147,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`savectx (12 samples, 0.25%)')" onmouseout="c()">
+<rect x="1178.5" y="248" width="2.9" height="24.0" fill="rgb(245,182,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_flush_vdevs (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1086.7" y="348" width="0.2" height="24.0" fill="rgb(207,152,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`clear_active_fd (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1185.8" y="423" width="0.5" height="24.0" fill="rgb(222,163,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_nowait (94 samples, 1.95%)')" onmouseout="c()">
+<rect x="1132.8" y="323" width="23.0" height="24.0" fill="rgb(223,187,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`vdev_lookup_top (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1130.9" y="273" width="0.2" height="24.0" fill="rgb(227,192,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`page_numtopp_nolock (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="218.1" y="298" width="0.5" height="24.0" fill="rgb(213,205,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`disp_lock_exit (8 samples, 0.17%)')" onmouseout="c()">
+<rect x="1136.3" y="173" width="1.9" height="24.0" fill="rgb(244,189,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="204.7" y="348" width="0.3" height="24.0" fill="rgb(240,83,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="263.1" y="298" width="0.5" height="24.0" fill="rgb(253,159,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_get_spa (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="280.2" y="323" width="0.2" height="24.0" fill="rgb(224,193,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1014.3" y="323" width="0.3" height="24.0" fill="rgb(211,176,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_destroy (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1181.9" y="323" width="0.3" height="24.0" fill="rgb(230,164,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_tstamp_update_setup (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1075.2" y="398" width="0.2" height="24.0" fill="rgb(224,166,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`swtch (45 samples, 0.93%)')" onmouseout="c()">
+<rect x="1170.9" y="298" width="11.0" height="24.0" fill="rgb(230,198,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1069.1" y="273" width="0.2" height="24.0" fill="rgb(221,94,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.4" y="98" width="0.2" height="24.0" fill="rgb(252,77,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_ready (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1065.9" y="273" width="0.2" height="24.0" fill="rgb(217,112,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`rrw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="236.2" y="423" width="0.3" height="24.0" fill="rgb(212,141,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="120.4" y="323" width="2.2" height="24.0" fill="rgb(250,104,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`uiomove (225 samples, 4.66%)')" onmouseout="c()">
+<rect x="57.6" y="373" width="55.0" height="24.0" fill="rgb(247,130,24)" rx="2" ry="2" />
+<text text-anchor="" x="60.639751552795" y="391" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genu..</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1063.7" y="273" width="0.7" height="24.0" fill="rgb(241,125,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="180.5" y="223" width="1.2" height="24.0" fill="rgb(227,149,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('SDC`sysdc_setrun (57 samples, 1.18%)')" onmouseout="c()">
+<rect x="1139.4" y="123" width="14.0" height="24.0" fill="rgb(250,165,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1097.9" y="273" width="2.7" height="24.0" fill="rgb(232,76,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1129.7" y="248" width="0.2" height="24.0" fill="rgb(243,135,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cpu_wakeup_mwait (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="1150.7" y="73" width="2.2" height="24.0" fill="rgb(253,206,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="188.3" y="348" width="1.0" height="24.0" fill="rgb(229,82,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`gdt_ucode_model (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="34.9" y="473" width="0.3" height="24.0" fill="rgb(240,71,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zrl_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="185.7" y="298" width="0.2" height="24.0" fill="rgb(243,135,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_try (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="33.2" y="448" width="0.5" height="24.0" fill="rgb(230,86,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_32 (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="139.5" y="298" width="1.2" height="24.0" fill="rgb(254,216,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (10 samples, 0.21%)')" onmouseout="c()">
+<rect x="179.3" y="248" width="2.4" height="24.0" fill="rgb(222,137,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="190.1" y="323" width="0.2" height="24.0" fill="rgb(211,194,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (90 samples, 1.86%)')" onmouseout="c()">
+<rect x="1133.1" y="298" width="22.0" height="24.0" fill="rgb(234,71,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1096.9" y="298" width="0.8" height="24.0" fill="rgb(249,222,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_rele_array (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.0" y="348" width="0.3" height="24.0" fill="rgb(246,145,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`sa_get_db (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="236.7" y="423" width="0.3" height="24.0" fill="rgb(238,159,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_exit (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="175.6" y="298" width="1.0" height="24.0" fill="rgb(231,137,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`releasef (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="212.3" y="448" width="1.5" height="24.0" fill="rgb(252,205,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_release (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1042.9" y="298" width="0.3" height="24.0" fill="rgb(237,166,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`proc_exit (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="217.2" y="448" width="1.7" height="24.0" fill="rgb(230,219,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="272.4" y="323" width="0.2" height="24.0" fill="rgb(246,154,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1042.4" y="298" width="0.3" height="24.0" fill="rgb(218,127,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`splr (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1172.2" y="198" width="0.5" height="24.0" fill="rgb(232,227,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`splr (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="32.7" y="423" width="0.3" height="24.0" fill="rgb(242,135,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_create (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1088.4" y="273" width="0.2" height="24.0" fill="rgb(221,217,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1041.7" y="298" width="0.3" height="24.0" fill="rgb(215,201,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`fop_rwlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="208.6" y="448" width="0.3" height="24.0" fill="rgb(240,161,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (15 samples, 0.31%)')" onmouseout="c()">
+<rect x="1082.5" y="348" width="3.7" height="24.0" fill="rgb(235,140,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1092.5" y="248" width="0.3" height="24.0" fill="rgb(208,113,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cpucache_magazine_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.4" y="123" width="0.2" height="24.0" fill="rgb(251,95,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_try_assign (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1095.2" y="298" width="0.3" height="24.0" fill="rgb(224,74,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_alloc_dva (102 samples, 2.11%)')" onmouseout="c()">
+<rect x="1105.5" y="273" width="24.9" height="24.0" fill="rgb(214,194,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="187.4" y="348" width="0.9" height="24.0" fill="rgb(224,72,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1092.5" y="273" width="1.5" height="24.0" fill="rgb(240,137,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`copyin_nowatch (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="220.1" y="448" width="2.2" height="24.0" fill="rgb(212,82,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_owner_overquota (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="237.0" y="423" width="0.2" height="24.0" fill="rgb(216,155,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`read (713 samples, 14.76%)')" onmouseout="c()">
+<rect x="42.5" y="473" width="174.2" height="24.0" fill="rgb(244,181,34)" rx="2" ry="2" />
+<text text-anchor="" x="45.4927536231884" y="491" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`read</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1089.6" y="273" width="2.7" height="24.0" fill="rgb(216,123,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_gethrtimeunscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="34.4" y="448" width="0.3" height="24.0" fill="rgb(236,177,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cpu_update_pct (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="1144.6" y="73" width="2.2" height="24.0" fill="rgb(216,182,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_signal (82 samples, 1.70%)')" onmouseout="c()">
+<rect x="1133.8" y="198" width="20.0" height="24.0" fill="rgb(205,197,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1068.3" y="248" width="0.3" height="24.0" fill="rgb(216,187,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="272.1" y="348" width="0.5" height="24.0" fill="rgb(251,175,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hold_impl (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1022.7" y="273" width="1.2" height="24.0" fill="rgb(220,196,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`cpupm_utilization_event (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1178.0" y="248" width="0.3" height="24.0" fill="rgb(214,78,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_add (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1073.2" y="348" width="0.8" height="24.0" fill="rgb(221,217,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`watch_disable_addr (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="222.3" y="448" width="0.5" height="24.0" fill="rgb(213,158,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_set (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="1160.7" y="223" width="1.4" height="24.0" fill="rgb(219,71,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zil_itx_create (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1070.3" y="373" width="0.5" height="24.0" fill="rgb(245,195,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="120.7" y="298" width="0.2" height="24.0" fill="rgb(208,128,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1023.9" y="298" width="0.2" height="24.0" fill="rgb(250,193,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_data_buf_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.4" y="173" width="0.2" height="24.0" fill="rgb(235,70,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_lock_writer (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1072.5" y="373" width="1.7" height="24.0" fill="rgb(236,100,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`set_active_fd (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="210.8" y="423" width="1.2" height="24.0" fill="rgb(234,225,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`swap_dispose (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="217.2" y="223" width="0.5" height="24.0" fill="rgb(229,194,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="179.1" y="248" width="0.2" height="24.0" fill="rgb(230,103,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="242.1" y="398" width="1.0" height="24.0" fill="rgb(211,91,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1021.7" y="323" width="0.2" height="24.0" fill="rgb(226,122,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`gdt_update_usegd (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="35.2" y="473" width="0.2" height="24.0" fill="rgb(233,168,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1105.0" y="273" width="0.5" height="24.0" fill="rgb(222,202,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_read (635 samples, 13.15%)')" onmouseout="c()">
+<rect x="53.5" y="423" width="155.1" height="24.0" fill="rgb(206,160,39)" rx="2" ry="2" />
+<text text-anchor="" x="56.4865424430642" y="441" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >zfs`zfs_read</text>
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="33.9" y="448" width="0.3" height="24.0" fill="rgb(225,180,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_will_dirty (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1052.2" y="323" width="0.7" height="24.0" fill="rgb(216,205,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`cv_init (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1093.3" y="223" width="0.2" height="24.0" fill="rgb(241,128,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_dec_32_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="229.6" y="273" width="0.3" height="24.0" fill="rgb(244,190,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_zalloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="249.2" y="298" width="0.2" height="24.0" fill="rgb(227,200,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="254.3" y="373" width="0.3" height="24.0" fill="rgb(248,119,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold_impl (23 samples, 0.48%)')" onmouseout="c()">
+<rect x="263.8" y="298" width="5.7" height="24.0" fill="rgb(235,118,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1063.2" y="273" width="0.2" height="24.0" fill="rgb(243,214,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`rexit (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="217.2" y="498" width="1.7" height="24.0" fill="rgb(209,105,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_free_range (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="229.6" y="323" width="1.5" height="24.0" fill="rgb(248,155,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_read (12 samples, 0.25%)')" onmouseout="c()">
+<rect x="182.2" y="298" width="3.0" height="24.0" fill="rgb(237,76,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_insert (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1127.2" y="148" width="0.3" height="24.0" fill="rgb(205,220,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`rrw_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="236.5" y="423" width="0.2" height="24.0" fill="rgb(216,133,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1171.2" y="273" width="0.2" height="24.0" fill="rgb(241,169,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_null (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1045.4" y="298" width="2.7" height="24.0" fill="rgb(232,104,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`add_iop (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1014.1" y="323" width="0.2" height="24.0" fill="rgb(254,112,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_head (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="165.4" y="248" width="0.2" height="24.0" fill="rgb(213,216,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_alloc (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="245.8" y="298" width="0.2" height="24.0" fill="rgb(210,139,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="137.0" y="248" width="1.5" height="24.0" fill="rgb(210,74,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="168.6" y="323" width="0.4" height="24.0" fill="rgb(212,186,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime_unscaled (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1146.8" y="73" width="0.2" height="24.0" fill="rgb(219,89,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_pool_sync_context (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="186.4" y="348" width="0.2" height="24.0" fill="rgb(212,74,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_destroy (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.9" y="198" width="0.2" height="24.0" fill="rgb(206,155,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_remove (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="257.0" y="348" width="0.2" height="24.0" fill="rgb(237,173,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_get_user (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1067.4" y="323" width="0.2" height="24.0" fill="rgb(229,132,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1048.1" y="298" width="0.9" height="24.0" fill="rgb(243,181,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`clear_active_fd (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="213.3" y="423" width="0.5" height="24.0" fill="rgb(207,190,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`read (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="40.3" y="498" width="0.5" height="24.0" fill="rgb(237,165,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_class_get_deferred (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="251.1" y="298" width="0.5" height="24.0" fill="rgb(207,225,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`buf_hash_remove (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1042.9" y="248" width="0.3" height="24.0" fill="rgb(221,180,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`sa_bulk_update_impl (9 samples, 0.19%)')" onmouseout="c()">
+<rect x="1050.7" y="373" width="2.2" height="24.0" fill="rgb(224,200,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="266.5" y="198" width="1.0" height="24.0" fill="rgb(222,227,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1045.4" y="273" width="0.9" height="24.0" fill="rgb(216,128,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`metaslab_block_picker (19 samples, 0.39%)')" onmouseout="c()">
+<rect x="1113.5" y="173" width="4.7" height="24.0" fill="rgb(239,92,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="244.8" y="348" width="0.5" height="24.0" fill="rgb(245,144,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="205.4" y="348" width="0.5" height="24.0" fill="rgb(212,113,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_delay_default (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1109.6" y="198" width="1.2" height="24.0" fill="rgb(242,212,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1069.1" y="298" width="0.2" height="24.0" fill="rgb(250,129,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_get_user (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="263.6" y="298" width="0.2" height="24.0" fill="rgb(230,121,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_insert (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1073.7" y="323" width="0.3" height="24.0" fill="rgb(242,93,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_cas_32 (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="173.4" y="298" width="0.5" height="24.0" fill="rgb(217,199,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`segvn_unmap (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="217.2" y="373" width="1.7" height="24.0" fill="rgb(218,184,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_set (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1165.8" y="273" width="1.0" height="24.0" fill="rgb(225,112,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`sep_restore (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="36.4" y="498" width="0.2" height="24.0" fill="rgb(235,119,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="253.8" y="373" width="0.5" height="24.0" fill="rgb(230,74,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`ddi_get_lbolt (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1162.1" y="248" width="0.3" height="24.0" fill="rgb(236,214,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_object_impl (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="1021.2" y="373" width="3.4" height="24.0" fill="rgb(236,214,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_exit (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="265.1" y="273" width="0.4" height="24.0" fill="rgb(213,176,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('FSS`fss_inactive (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="1158.7" y="248" width="3.4" height="24.0" fill="rgb(247,209,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_hash (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="181.7" y="248" width="0.3" height="24.0" fill="rgb(244,194,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_find (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="266.3" y="223" width="1.2" height="24.0" fill="rgb(232,209,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="268.2" y="273" width="0.5" height="24.0" fill="rgb(233,157,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_set (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1152.9" y="73" width="0.5" height="24.0" fill="rgb(210,197,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_set_spl (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1171.7" y="223" width="1.0" height="24.0" fill="rgb(231,139,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_execute (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="142.7" y="323" width="0.2" height="24.0" fill="rgb(211,124,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_entry (17 samples, 0.35%)')" onmouseout="c()">
+<rect x="218.9" y="498" width="4.1" height="24.0" fill="rgb(232,125,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_vector_enter (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1109.4" y="223" width="1.7" height="24.0" fill="rgb(231,187,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dnode_hold_impl (56 samples, 1.16%)')" onmouseout="c()">
+<rect x="172.7" y="323" width="13.7" height="24.0" fill="rgb(254,169,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1065.2" y="248" width="0.2" height="24.0" fill="rgb(209,178,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_unlock_reader (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="206.9" y="373" width="1.7" height="24.0" fill="rgb(224,225,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_remove_ref (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="274.3" y="273" width="0.3" height="24.0" fill="rgb(211,183,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_create (5 samples, 0.10%)')" onmouseout="c()">
+<rect x="1092.8" y="248" width="1.2" height="24.0" fill="rgb(219,78,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_unique_parent (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="1155.1" y="298" width="0.7" height="24.0" fill="rgb(239,207,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_pool_sync_context (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="141.9" y="323" width="0.3" height="24.0" fill="rgb(223,101,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dir_tempreserve_impl (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="248.4" y="323" width="3.5" height="24.0" fill="rgb(213,182,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`0xfffffffffb85390d (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="111.6" y="348" width="0.3" height="24.0" fill="rgb(210,208,16)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`avl_walk (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1113.3" y="173" width="0.2" height="24.0" fill="rgb(222,101,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_assign (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1095.2" y="323" width="1.0" height="24.0" fill="rgb(230,135,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_dirty (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1052.2" y="298" width="0.5" height="24.0" fill="rgb(225,131,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_zone_zio_init (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="151.9" y="248" width="0.3" height="24.0" fill="rgb(235,225,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_hold_array_by_dnode (20 samples, 0.41%)')" onmouseout="c()">
+<rect x="1061.3" y="348" width="4.8" height="24.0" fill="rgb(246,173,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`syscall_mstate (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="33.7" y="498" width="0.5" height="24.0" fill="rgb(215,79,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="122.6" y="323" width="0.3" height="24.0" fill="rgb(234,187,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`write (3,917 samples, 81.10%)')" onmouseout="c()">
+<rect x="232.1" y="473" width="956.9" height="24.0" fill="rgb(221,115,31)" rx="2" ry="2" />
+<text text-anchor="" x="235.074534161491" y="491" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`write</text>
+</g>
+<g class="func_g" onmouseover="s('unix`copyin (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="221.8" y="423" width="0.5" height="24.0" fill="rgb(253,122,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1049.0" y="323" width="0.3" height="24.0" fill="rgb(225,125,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1017.3" y="323" width="0.2" height="24.0" fill="rgb(212,152,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`kmem_cache_free (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="152.4" y="273" width="0.8" height="24.0" fill="rgb(230,192,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_is_initializing (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="142.2" y="323" width="0.5" height="24.0" fill="rgb(214,104,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_unlock (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="205.9" y="398" width="2.7" height="24.0" fill="rgb(213,106,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_rele_and_unlock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="268.5" y="248" width="0.2" height="24.0" fill="rgb(205,205,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_add_ref (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="272.9" y="273" width="0.2" height="24.0" fill="rgb(238,217,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`gethrtime (2,263 samples, 46.85%)')" onmouseout="c()">
+<rect x="427.5" y="298" width="552.9" height="24.0" fill="rgb(218,91,38)" rx="2" ry="2" />
+<text text-anchor="" x="430.51966873706" y="316" font-size="18" font-family="Verdana" fill="rgb(0,0,0)"  >genunix`gethrtime</text>
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_write (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="1188.0" y="448" width="1.0" height="24.0" fill="rgb(244,120,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (13 samples, 0.27%)')" onmouseout="c()">
+<rect x="226.2" y="448" width="3.2" height="24.0" fill="rgb(250,107,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_add_child (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1089.3" y="273" width="0.3" height="24.0" fill="rgb(240,177,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dir_tempreserve_space (27 samples, 0.56%)')" onmouseout="c()">
+<rect x="245.5" y="348" width="6.6" height="24.0" fill="rgb(207,228,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_buf_hold_array_by_dnode (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="186.6" y="373" width="0.3" height="24.0" fill="rgb(229,136,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_sa (47 samples, 0.97%)')" onmouseout="c()">
+<rect x="258.9" y="398" width="11.5" height="24.0" fill="rgb(227,77,49)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1016.8" y="273" width="0.2" height="24.0" fill="rgb(248,74,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`vdev_stat_update (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1019.0" y="273" width="0.2" height="24.0" fill="rgb(254,186,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_wait_for_children (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1184.9" y="298" width="0.2" height="24.0" fill="rgb(254,219,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`sa_attr_op (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="1051.2" y="348" width="1.7" height="24.0" fill="rgb(215,214,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_root (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1045.4" y="323" width="2.7" height="24.0" fill="rgb(239,121,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_hold_free (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="229.4" y="373" width="0.2" height="24.0" fill="rgb(215,120,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zio_root (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1014.3" y="348" width="2.7" height="24.0" fill="rgb(232,229,22)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`spa_get_asize (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1095.5" y="298" width="0.2" height="24.0" fill="rgb(209,204,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`list_insert_tail (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="244.5" y="348" width="0.3" height="24.0" fill="rgb(223,187,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_tempreserve_space (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="247.0" y="323" width="0.5" height="24.0" fill="rgb(217,226,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`space_map_seg_compare (11 samples, 0.23%)')" onmouseout="c()">
+<rect x="1114.3" y="123" width="2.7" height="24.0" fill="rgb(249,224,24)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_get_spa (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="259.4" y="323" width="0.3" height="24.0" fill="rgb(221,98,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dbuf_unoverride (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1043.7" y="323" width="0.2" height="24.0" fill="rgb(209,144,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_zone_io_throttle (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1024.6" y="373" width="0.5" height="24.0" fill="rgb(230,133,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`page_ctr_add (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="217.4" y="98" width="0.3" height="24.0" fill="rgb(250,213,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`rw_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1021.9" y="298" width="0.3" height="24.0" fill="rgb(211,169,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`relvm (7 samples, 0.14%)')" onmouseout="c()">
+<rect x="217.2" y="423" width="1.7" height="24.0" fill="rgb(206,203,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`buf_hash (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="195.2" y="273" width="3.4" height="24.0" fill="rgb(205,111,26)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`bzero (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="258.0" y="348" width="0.5" height="24.0" fill="rgb(210,221,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`lock_try (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1170.7" y="298" width="0.2" height="24.0" fill="rgb(215,81,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1061.5" y="273" width="0.2" height="24.0" fill="rgb(228,196,35)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`arc_buf_destroy (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.4" y="223" width="0.2" height="24.0" fill="rgb(219,222,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_tx_create_dd (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1096.2" y="298" width="0.2" height="24.0" fill="rgb(254,145,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dataset_dirty (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1086.4" y="348" width="0.3" height="24.0" fill="rgb(221,78,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dsl_dir_tempreserve_impl (3 samples, 0.06%)')" onmouseout="c()">
+<rect x="250.4" y="298" width="0.7" height="24.0" fill="rgb(216,160,11)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`atomic_add_64_nv (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="1066.9" y="298" width="0.5" height="24.0" fill="rgb(237,106,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="216.4" y="448" width="0.3" height="24.0" fill="rgb(238,195,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('genunix`anon_free (4 samples, 0.08%)')" onmouseout="c()">
+<rect x="217.2" y="298" width="0.9" height="24.0" fill="rgb(220,149,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (14 samples, 0.29%)')" onmouseout="c()">
+<rect x="157.6" y="248" width="3.4" height="24.0" fill="rgb(233,84,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`dmu_write_uio_dbuf (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="236.0" y="423" width="0.2" height="24.0" fill="rgb(253,166,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`tsc_read (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="1164.6" y="223" width="0.2" height="24.0" fill="rgb(251,184,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (2 samples, 0.04%)')" onmouseout="c()">
+<rect x="194.5" y="273" width="0.4" height="24.0" fill="rgb(253,205,53)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (6 samples, 0.12%)')" onmouseout="c()">
+<rect x="120.9" y="298" width="1.5" height="24.0" fill="rgb(220,156,31)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="257.7" y="323" width="0.3" height="24.0" fill="rgb(245,203,25)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_exit (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="208.4" y="323" width="0.2" height="24.0" fill="rgb(223,88,45)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('unix`mutex_enter (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="230.1" y="248" width="0.3" height="24.0" fill="rgb(222,88,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zfs`zfs_range_lock (1 samples, 0.02%)')" onmouseout="c()">
+<rect x="53.2" y="423" width="0.3" height="24.0" fill="rgb(252,93,49)" rx="2" ry="2" />
+</g>
+</svg>

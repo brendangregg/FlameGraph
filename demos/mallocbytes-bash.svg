@@ -1,0 +1,646 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="754" onload="init(evt)" viewBox="0 0 1200 754" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#e0e0ff" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="754.0" fill="url(#background)"  />
+<text text-anchor="middle" x="600" y="40" font-size="25" font-family="Verdana" fill="rgb(0,0,0)"  >malloc() bytes</text>
+<text text-anchor="" x="10" y="729" font-size="20" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('bash`rl_begin_undo_group (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_begin_undo_group (40 bytes, 0.08%)</title><rect x="1079.9" y="237" width="1.0" height="25.0" fill="rgb(0,204,93)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`test_for_directory (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`test_for_directory (5 bytes, 0.01%)</title><rect x="1079.8" y="211" width="0.1" height="25.0" fill="rgb(0,206,46)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (132 bytes, 0.26%)')" onmouseout="c()">
+<title>bash`xmalloc (132 bytes, 0.26%)</title><rect x="1076.7" y="185" width="3.1" height="25.0" fill="rgb(0,230,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_simple_command (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`execute_simple_command (4,517 bytes, 8.96%)</title><rect x="425.0" y="367" width="105.7" height="25.0" fill="rgb(0,222,125)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="386.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`parameter_brace_remove_pattern (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`parameter_brace_remove_pattern (4,444 bytes, 8.82%)</title><rect x="426.7" y="211" width="104.0" height="25.0" fill="rgb(0,226,225)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="230.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`p..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (92 bytes, 0.18%)')" onmouseout="c()">
+<title>bash`malloc (92 bytes, 0.18%)</title><rect x="16.0" y="393" width="2.1" height="25.0" fill="rgb(0,225,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`main (50,408 bytes, 100.00%)')" onmouseout="c()">
+<title>bash`main (50,408 bytes, 100.00%)</title><rect x="10.0" y="627" width="1180.0" height="25.0" fill="rgb(0,225,124)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="646.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`main</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_completion_matches (394 bytes, 0.78%)')" onmouseout="c()">
+<title>bash`rl_completion_matches (394 bytes, 0.78%)</title><rect x="1154.9" y="289" width="9.2" height="25.0" fill="rgb(0,192,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (100 bytes, 0.20%)')" onmouseout="c()">
+<title>bash`malloc (100 bytes, 0.20%)</title><rect x="586.7" y="185" width="2.3" height="25.0" fill="rgb(0,207,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_display_match_list (621 bytes, 1.23%)')" onmouseout="c()">
+<title>bash`rl_display_match_list (621 bytes, 1.23%)</title><rect x="590.1" y="263" width="14.5" height="25.0" fill="rgb(0,221,116)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_end_undo_group (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_end_undo_group (40 bytes, 0.08%)</title><rect x="1081.9" y="237" width="1.0" height="25.0" fill="rgb(0,206,143)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (10,496 bytes, 20.82%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (10,496 bytes, 20.82%)</title><rect x="18.1" y="393" width="245.7" height="25.0" fill="rgb(0,214,90)" rx="2" ry="2" />
+<text text-anchor="" x="21.1463259800032" y="412.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`xdupmbstowcs</text>
+</g>
+<g class="func_g" onmouseover="s('bash`postprocess_matches (3,036 bytes, 6.02%)')" onmouseout="c()">
+<title>bash`postprocess_matches (3,036 bytes, 6.02%)</title><rect x="1083.8" y="289" width="71.1" height="25.0" fill="rgb(0,230,117)" rx="2" ry="2" />
+<text text-anchor="" x="1086.79344548484" y="308.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_filename_completion_function (3,510 bytes, 6.96%)')" onmouseout="c()">
+<title>bash`rl_filename_completion_function (3,510 bytes, 6.96%)</title><rect x="994.2" y="159" width="82.1" height="25.0" fill="rgb(0,238,71)" rx="2" ry="2" />
+<text text-anchor="" x="997.160450722108" y="178.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (562 bytes, 1.11%)')" onmouseout="c()">
+<title>bash`malloc (562 bytes, 1.11%)</title><rect x="591.5" y="159" width="13.1" height="25.0" fill="rgb(0,197,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (528 bytes, 1.05%)')" onmouseout="c()">
+<title>bash`malloc (528 bytes, 1.05%)</title><rect x="1165.3" y="289" width="12.3" height="25.0" fill="rgb(0,238,98)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`remove_pattern (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`remove_pattern (4,444 bytes, 8.82%)</title><rect x="426.7" y="185" width="104.0" height="25.0" fill="rgb(0,205,141)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="204.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`r..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (32 bytes, 0.06%)')" onmouseout="c()">
+<title>bash`malloc (32 bytes, 0.06%)</title><rect x="1164.5" y="341" width="0.8" height="25.0" fill="rgb(0,216,199)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`parse_and_execute (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`parse_and_execute (4,517 bytes, 8.96%)</title><rect x="425.0" y="497" width="105.7" height="25.0" fill="rgb(0,204,15)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="516.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`p..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`history_filename (60 bytes, 0.12%)')" onmouseout="c()">
+<title>bash`history_filename (60 bytes, 0.12%)</title><rect x="425.0" y="211" width="1.4" height="25.0" fill="rgb(0,196,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (10 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`malloc (10 bytes, 0.02%)</title><rect x="1076.4" y="55" width="0.2" height="25.0" fill="rgb(0,221,196)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (6,400 bytes, 12.70%)')" onmouseout="c()">
+<title>bash`malloc (6,400 bytes, 12.70%)</title><rect x="263.8" y="341" width="149.9" height="25.0" fill="rgb(0,213,95)" rx="2" ry="2" />
+<text text-anchor="" x="266.847008411363" y="360.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`malloc</text>
+</g>
+<g class="func_g" onmouseover="s('bash`readline_internal_teardown (32 bytes, 0.06%)')" onmouseout="c()">
+<title>bash`readline_internal_teardown (32 bytes, 0.06%)</title><rect x="1164.5" y="393" width="0.8" height="25.0" fill="rgb(0,231,89)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (20 bytes, 0.04%)</title><rect x="589.0" y="237" width="0.5" height="25.0" fill="rgb(0,212,67)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xstrmatch (6,400 bytes, 12.70%)')" onmouseout="c()">
+<title>bash`xstrmatch (6,400 bytes, 12.70%)</title><rect x="263.8" y="393" width="149.9" height="25.0" fill="rgb(0,194,17)" rx="2" ry="2" />
+<text text-anchor="" x="266.847008411363" y="412.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`xstrm..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (349 bytes, 0.69%)')" onmouseout="c()">
+<title>bash`malloc (349 bytes, 0.69%)</title><rect x="1154.9" y="211" width="8.2" height="25.0" fill="rgb(0,219,98)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_completion_matches (20,171 bytes, 40.02%)')" onmouseout="c()">
+<title>bash`rl_completion_matches (20,171 bytes, 40.02%)</title><rect x="607.6" y="211" width="472.2" height="25.0" fill="rgb(0,192,157)" rx="2" ry="2" />
+<text text-anchor="" x="610.631328360578" y="230.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`rl_completion_matches</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`xmalloc (5 bytes, 0.01%)</title><rect x="1081.8" y="185" width="0.1" height="25.0" fill="rgb(0,199,130)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_add_undo (40 bytes, 0.08%)</title><rect x="1080.9" y="211" width="0.9" height="25.0" fill="rgb(0,231,179)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`yy_readline_get (25,774 bytes, 51.13%)')" onmouseout="c()">
+<title>bash`yy_readline_get (25,774 bytes, 51.13%)</title><rect x="586.7" y="445" width="603.3" height="25.0" fill="rgb(0,238,21)" rx="2" ry="2" />
+<text text-anchor="" x="589.65687986034" y="464.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`yy_readline_get</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (49 bytes, 0.10%)')" onmouseout="c()">
+<title>bash`xmalloc (49 bytes, 0.10%)</title><rect x="530.7" y="263" width="1.2" height="25.0" fill="rgb(0,217,69)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`expand_word_internal (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`expand_word_internal (4,444 bytes, 8.82%)</title><rect x="426.7" y="315" width="104.0" height="25.0" fill="rgb(0,238,57)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="334.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`execute_builtin (73 bytes, 0.14%)')" onmouseout="c()">
+<title>bash`execute_builtin (73 bytes, 0.14%)</title><rect x="425.0" y="341" width="1.7" height="25.0" fill="rgb(0,192,179)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`strcoll (480 bytes, 0.95%)')" onmouseout="c()">
+<title>libc.so.1`strcoll (480 bytes, 0.95%)</title><rect x="413.8" y="367" width="11.2" height="25.0" fill="rgb(0,230,226)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_simple_command (17,728 bytes, 35.17%)')" onmouseout="c()">
+<title>bash`execute_simple_command (17,728 bytes, 35.17%)</title><rect x="10.0" y="523" width="415.0" height="25.0" fill="rgb(0,236,88)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="542.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`execute_simple_command</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_add_undo (40 bytes, 0.08%)</title><rect x="1082.9" y="211" width="0.9" height="25.0" fill="rgb(0,219,201)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`bash_tilde_expand (13 bytes, 0.03%)')" onmouseout="c()">
+<title>bash`bash_tilde_expand (13 bytes, 0.03%)</title><rect x="1076.3" y="133" width="0.3" height="25.0" fill="rgb(0,223,101)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (8 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`xmalloc (8 bytes, 0.02%)</title><rect x="1164.1" y="263" width="0.2" height="25.0" fill="rgb(0,201,29)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`glob_pattern_p (16,512 bytes, 32.76%)')" onmouseout="c()">
+<title>bash`glob_pattern_p (16,512 bytes, 32.76%)</title><rect x="607.6" y="159" width="386.6" height="25.0" fill="rgb(0,215,78)" rx="2" ry="2" />
+<text text-anchor="" x="610.631328360578" y="178.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`glob_pattern_p</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (44 bytes, 0.09%)')" onmouseout="c()">
+<title>bash`xmalloc (44 bytes, 0.09%)</title><rect x="1163.1" y="263" width="1.0" height="25.0" fill="rgb(0,204,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`bash_default_completion (20,304 bytes, 40.28%)')" onmouseout="c()">
+<title>bash`bash_default_completion (20,304 bytes, 40.28%)</title><rect x="604.6" y="237" width="475.3" height="25.0" fill="rgb(0,197,41)" rx="2" ry="2" />
+<text text-anchor="" x="607.634978574829" y="256.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`bash_default_completion</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (3,510 bytes, 6.96%)')" onmouseout="c()">
+<title>bash`xmalloc (3,510 bytes, 6.96%)</title><rect x="994.2" y="133" width="82.1" height="25.0" fill="rgb(0,221,186)" rx="2" ry="2" />
+<text text-anchor="" x="997.160450722108" y="152.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`xmalloc (20 bytes, 0.04%)</title><rect x="589.0" y="211" width="0.5" height="25.0" fill="rgb(0,214,103)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`_rl_qsort_string_compare (2,352 bytes, 4.67%)')" onmouseout="c()">
+<title>bash`_rl_qsort_string_compare (2,352 bytes, 4.67%)</title><rect x="1099.8" y="237" width="55.1" height="25.0" fill="rgb(0,228,79)" rx="2" ry="2" />
+<text text-anchor="" x="1102.80518965244" y="256.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (528 bytes, 1.05%)')" onmouseout="c()">
+<title>bash`xmalloc (528 bytes, 1.05%)</title><rect x="1165.3" y="315" width="12.3" height="25.0" fill="rgb(0,208,80)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_add_undo (40 bytes, 0.08%)</title><rect x="1081.9" y="211" width="1.0" height="25.0" fill="rgb(0,191,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (40 bytes, 0.08%)</title><rect x="1080.9" y="185" width="0.9" height="25.0" fill="rgb(0,233,212)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`tilde_expand (13 bytes, 0.03%)')" onmouseout="c()">
+<title>bash`tilde_expand (13 bytes, 0.03%)</title><rect x="1076.3" y="107" width="0.3" height="25.0" fill="rgb(0,226,218)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (11 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`malloc (11 bytes, 0.02%)</title><rect x="1164.3" y="263" width="0.2" height="25.0" fill="rgb(0,207,159)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`read_token (28,163 bytes, 55.87%)')" onmouseout="c()">
+<title>bash`read_token (28,163 bytes, 55.87%)</title><rect x="530.7" y="497" width="659.3" height="25.0" fill="rgb(0,234,146)" rx="2" ry="2" />
+<text text-anchor="" x="533.732820187272" y="516.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`read_token</text>
+</g>
+<g class="func_g" onmouseover="s('bash`bash_add_history (85 bytes, 0.17%)')" onmouseout="c()">
+<title>bash`bash_add_history (85 bytes, 0.17%)</title><rect x="530.7" y="367" width="2.0" height="25.0" fill="rgb(0,198,215)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`malloc (128 bytes, 0.25%)</title><rect x="13.0" y="341" width="3.0" height="25.0" fill="rgb(0,230,201)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`qsort (2,352 bytes, 4.67%)')" onmouseout="c()">
+<title>libc.so.1`qsort (2,352 bytes, 4.67%)</title><rect x="1099.8" y="263" width="55.1" height="25.0" fill="rgb(0,207,11)" rx="2" ry="2" />
+<text text-anchor="" x="1102.80518965244" y="282.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (10,496 bytes, 20.82%)')" onmouseout="c()">
+<title>bash`malloc (10,496 bytes, 20.82%)</title><rect x="18.1" y="367" width="245.7" height="25.0" fill="rgb(0,232,109)" rx="2" ry="2" />
+<text text-anchor="" x="21.1463259800032" y="386.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`malloc</text>
+</g>
+<g class="func_g" onmouseover="s('bash`readline (25,774 bytes, 51.13%)')" onmouseout="c()">
+<title>bash`readline (25,774 bytes, 51.13%)</title><rect x="586.7" y="419" width="603.3" height="25.0" fill="rgb(0,225,110)" rx="2" ry="2" />
+<text text-anchor="" x="589.65687986034" y="438.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`readline</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (132 bytes, 0.26%)')" onmouseout="c()">
+<title>bash`malloc (132 bytes, 0.26%)</title><rect x="1076.7" y="159" width="3.1" height="25.0" fill="rgb(0,228,120)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`tilde_expand (621 bytes, 1.23%)')" onmouseout="c()">
+<title>bash`tilde_expand (621 bytes, 1.23%)</title><rect x="590.1" y="211" width="14.5" height="25.0" fill="rgb(0,197,148)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command_internal (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`execute_command_internal (4,517 bytes, 8.96%)</title><rect x="425.0" y="471" width="105.7" height="25.0" fill="rgb(0,229,18)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="490.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`parse_command (32,680 bytes, 64.83%)')" onmouseout="c()">
+<title>bash`parse_command (32,680 bytes, 64.83%)</title><rect x="425.0" y="549" width="765.0" height="25.0" fill="rgb(0,201,93)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="568.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`parse_command</text>
+</g>
+<g class="func_g" onmouseover="s('bash`history_builtin (73 bytes, 0.14%)')" onmouseout="c()">
+<title>bash`history_builtin (73 bytes, 0.14%)</title><rect x="425.0" y="315" width="1.7" height="25.0" fill="rgb(0,198,110)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('all (50,408 bytes, 100%)')" onmouseout="c()">
+<title>all (50,408 bytes, 100%)</title><rect x="10.0" y="679" width="1180.0" height="25.0" fill="rgb(0,236,189)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="698.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`malloc (40 bytes, 0.08%)</title><rect x="1081.9" y="133" width="1.0" height="25.0" fill="rgb(0,196,175)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`malloc (128 bytes, 0.25%)</title><rect x="604.6" y="159" width="3.0" height="25.0" fill="rgb(0,227,217)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (16,512 bytes, 32.76%)')" onmouseout="c()">
+<title>bash`malloc (16,512 bytes, 32.76%)</title><rect x="607.6" y="107" width="386.6" height="25.0" fill="rgb(0,215,127)" rx="2" ry="2" />
+<text text-anchor="" x="610.631328360578" y="126.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`malloc</text>
+</g>
+<g class="func_g" onmouseover="s('bash`expand_word_list_internal (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`expand_word_list_internal (4,444 bytes, 8.82%)</title><rect x="426.7" y="341" width="104.0" height="25.0" fill="rgb(0,230,206)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="360.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (32 bytes, 0.06%)')" onmouseout="c()">
+<title>bash`xmalloc (32 bytes, 0.06%)</title><rect x="1164.5" y="367" width="0.8" height="25.0" fill="rgb(0,215,188)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (100 bytes, 0.20%)')" onmouseout="c()">
+<title>bash`rl_add_undo (100 bytes, 0.20%)</title><rect x="586.7" y="263" width="2.3" height="25.0" fill="rgb(0,199,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`shell_getc (28,163 bytes, 55.87%)')" onmouseout="c()">
+<title>bash`shell_getc (28,163 bytes, 55.87%)</title><rect x="530.7" y="471" width="659.3" height="25.0" fill="rgb(0,231,115)" rx="2" ry="2" />
+<text text-anchor="" x="533.732820187272" y="490.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`shell_getc</text>
+</g>
+<g class="func_g" onmouseover="s('bash`tilde_expand_word (59 bytes, 0.12%)')" onmouseout="c()">
+<title>bash`tilde_expand_word (59 bytes, 0.12%)</title><rect x="590.1" y="185" width="1.4" height="25.0" fill="rgb(0,202,77)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`maybe_append_history (73 bytes, 0.14%)')" onmouseout="c()">
+<title>bash`maybe_append_history (73 bytes, 0.14%)</title><rect x="425.0" y="289" width="1.7" height="25.0" fill="rgb(0,218,215)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`append_history (73 bytes, 0.14%)')" onmouseout="c()">
+<title>bash`append_history (73 bytes, 0.14%)</title><rect x="425.0" y="263" width="1.7" height="25.0" fill="rgb(0,203,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`_start (50,408 bytes, 100.00%)')" onmouseout="c()">
+<title>bash`_start (50,408 bytes, 100.00%)</title><rect x="10.0" y="653" width="1180.0" height="25.0" fill="rgb(0,207,31)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="672.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`_start</text>
+</g>
+<g class="func_g" onmouseover="s('bash`_rl_insert_char (100 bytes, 0.20%)')" onmouseout="c()">
+<title>bash`_rl_insert_char (100 bytes, 0.20%)</title><rect x="586.7" y="315" width="2.3" height="25.0" fill="rgb(0,201,55)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (3,510 bytes, 6.96%)')" onmouseout="c()">
+<title>bash`malloc (3,510 bytes, 6.96%)</title><rect x="994.2" y="107" width="82.1" height="25.0" fill="rgb(0,226,218)" rx="2" ry="2" />
+<text text-anchor="" x="997.160450722108" y="126.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`_rl_dispatch (24,686 bytes, 48.97%)')" onmouseout="c()">
+<title>bash`_rl_dispatch (24,686 bytes, 48.97%)</title><rect x="586.7" y="367" width="577.8" height="25.0" fill="rgb(0,206,146)" rx="2" ry="2" />
+<text text-anchor="" x="589.65687986034" y="386.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`_rl_dispatch</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (562 bytes, 1.11%)')" onmouseout="c()">
+<title>bash`xmalloc (562 bytes, 1.11%)</title><rect x="591.5" y="185" width="13.1" height="25.0" fill="rgb(0,208,160)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`append_to_match (25 bytes, 0.05%)')" onmouseout="c()">
+<title>bash`append_to_match (25 bytes, 0.05%)</title><rect x="589.5" y="289" width="0.6" height="25.0" fill="rgb(0,220,225)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`glob_pattern_p (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`glob_pattern_p (128 bytes, 0.25%)</title><rect x="604.6" y="211" width="3.0" height="25.0" fill="rgb(0,232,8)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (59 bytes, 0.12%)')" onmouseout="c()">
+<title>bash`xmalloc (59 bytes, 0.12%)</title><rect x="590.1" y="159" width="1.4" height="25.0" fill="rgb(0,222,158)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`malloc (20 bytes, 0.04%)</title><rect x="589.0" y="185" width="0.5" height="25.0" fill="rgb(0,194,4)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`strcoll (2,352 bytes, 4.67%)')" onmouseout="c()">
+<title>libc.so.1`strcoll (2,352 bytes, 4.67%)</title><rect x="1099.8" y="211" width="55.1" height="25.0" fill="rgb(0,211,79)" rx="2" ry="2" />
+<text text-anchor="" x="1102.80518965244" y="230.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`malloc (40 bytes, 0.08%)</title><rect x="1079.9" y="133" width="1.0" height="25.0" fill="rgb(0,227,155)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (20 bytes, 0.04%)</title><rect x="589.5" y="211" width="0.5" height="25.0" fill="rgb(0,216,27)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`param_expand (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`param_expand (4,444 bytes, 8.82%)</title><rect x="426.7" y="263" width="104.0" height="25.0" fill="rgb(0,202,146)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="282.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`p..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`test_for_directory (13 bytes, 0.03%)')" onmouseout="c()">
+<title>bash`test_for_directory (13 bytes, 0.03%)</title><rect x="1076.3" y="159" width="0.3" height="25.0" fill="rgb(0,190,85)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (128 bytes, 0.25%)</title><rect x="10.0" y="393" width="3.0" height="25.0" fill="rgb(0,236,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (480 bytes, 0.95%)')" onmouseout="c()">
+<title>bash`malloc (480 bytes, 0.95%)</title><rect x="413.8" y="341" width="11.2" height="25.0" fill="rgb(0,224,164)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_set_prompt (1,056 bytes, 2.09%)')" onmouseout="c()">
+<title>bash`rl_set_prompt (1,056 bytes, 2.09%)</title><rect x="1165.3" y="393" width="24.7" height="25.0" fill="rgb(0,196,140)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`xmalloc (40 bytes, 0.08%)</title><rect x="1081.9" y="159" width="1.0" height="25.0" fill="rgb(0,239,120)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`rl_add_undo (20 bytes, 0.04%)</title><rect x="589.0" y="263" width="0.5" height="25.0" fill="rgb(0,235,74)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (128 bytes, 0.25%)</title><rect x="13.0" y="367" width="3.0" height="25.0" fill="rgb(0,211,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`history_do_write (73 bytes, 0.14%)')" onmouseout="c()">
+<title>bash`history_do_write (73 bytes, 0.14%)</title><rect x="425.0" y="237" width="1.7" height="25.0" fill="rgb(0,201,228)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (128 bytes, 0.25%)</title><rect x="604.6" y="185" width="3.0" height="25.0" fill="rgb(0,215,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`pre_process_line (2,389 bytes, 4.74%)')" onmouseout="c()">
+<title>bash`pre_process_line (2,389 bytes, 4.74%)</title><rect x="530.7" y="445" width="56.0" height="25.0" fill="rgb(0,235,40)" rx="2" ry="2" />
+<text text-anchor="" x="533.732820187272" y="464.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (36 bytes, 0.07%)')" onmouseout="c()">
+<title>bash`xmalloc (36 bytes, 0.07%)</title><rect x="531.9" y="289" width="0.8" height="25.0" fill="rgb(0,230,223)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (6,400 bytes, 12.70%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (6,400 bytes, 12.70%)</title><rect x="263.8" y="367" width="149.9" height="25.0" fill="rgb(0,203,102)" rx="2" ry="2" />
+<text text-anchor="" x="266.847008411363" y="386.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`xdupm..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_history_entry (49 bytes, 0.10%)')" onmouseout="c()">
+<title>bash`alloc_history_entry (49 bytes, 0.10%)</title><rect x="530.7" y="289" width="1.2" height="25.0" fill="rgb(0,220,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (36 bytes, 0.07%)')" onmouseout="c()">
+<title>bash`malloc (36 bytes, 0.07%)</title><rect x="531.9" y="263" width="0.8" height="25.0" fill="rgb(0,217,225)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (528 bytes, 1.05%)')" onmouseout="c()">
+<title>bash`xmalloc (528 bytes, 1.05%)</title><rect x="1177.6" y="367" width="12.4" height="25.0" fill="rgb(0,238,61)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (684 bytes, 1.36%)')" onmouseout="c()">
+<title>bash`xmalloc (684 bytes, 1.36%)</title><rect x="1083.8" y="263" width="16.0" height="25.0" fill="rgb(0,239,144)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (10 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`xmalloc (10 bytes, 0.02%)</title><rect x="1076.4" y="81" width="0.2" height="25.0" fill="rgb(0,202,47)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_insert_text (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_insert_text (40 bytes, 0.08%)</title><rect x="1082.9" y="237" width="0.9" height="25.0" fill="rgb(0,205,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`rl_add_undo (20 bytes, 0.04%)</title><rect x="589.5" y="237" width="0.5" height="25.0" fill="rgb(0,231,6)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`expand_word_list_internal (17,728 bytes, 35.17%)')" onmouseout="c()">
+<title>bash`expand_word_list_internal (17,728 bytes, 35.17%)</title><rect x="10.0" y="497" width="415.0" height="25.0" fill="rgb(0,219,10)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="516.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`expand_word_list_internal</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`xmalloc (20 bytes, 0.04%)</title><rect x="589.5" y="185" width="0.5" height="25.0" fill="rgb(0,232,156)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (60 bytes, 0.12%)')" onmouseout="c()">
+<title>bash`xmalloc (60 bytes, 0.12%)</title><rect x="425.0" y="185" width="1.4" height="25.0" fill="rgb(0,228,174)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`command_word_completion_function (20,035 bytes, 39.75%)')" onmouseout="c()">
+<title>bash`command_word_completion_function (20,035 bytes, 39.75%)</title><rect x="607.6" y="185" width="469.0" height="25.0" fill="rgb(0,204,218)" rx="2" ry="2" />
+<text text-anchor="" x="610.631328360578" y="204.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`command_word_completion_function</text>
+</g>
+<g class="func_g" onmouseover="s('bash`glob_vector (17,116 bytes, 33.95%)')" onmouseout="c()">
+<title>bash`glob_vector (17,116 bytes, 33.95%)</title><rect x="13.0" y="419" width="400.7" height="25.0" fill="rgb(0,236,163)" rx="2" ry="2" />
+<text text-anchor="" x="15.9963497857483" y="438.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`glob_vector</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (8 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`malloc (8 bytes, 0.02%)</title><rect x="1164.1" y="237" width="0.2" height="25.0" fill="rgb(0,209,219)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`bash_tilde_expand (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`bash_tilde_expand (5 bytes, 0.01%)</title><rect x="1079.8" y="185" width="0.1" height="25.0" fill="rgb(0,219,148)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`_rl_replace_text (165 bytes, 0.33%)')" onmouseout="c()">
+<title>bash`_rl_replace_text (165 bytes, 0.33%)</title><rect x="1079.9" y="263" width="3.9" height="25.0" fill="rgb(0,231,14)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`tilde_expand (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`tilde_expand (5 bytes, 0.01%)</title><rect x="1079.8" y="159" width="0.1" height="25.0" fill="rgb(0,220,87)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`reader_loop (50,408 bytes, 100.00%)')" onmouseout="c()">
+<title>bash`reader_loop (50,408 bytes, 100.00%)</title><rect x="10.0" y="601" width="1180.0" height="25.0" fill="rgb(0,200,144)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="620.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`reader_loop</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (349 bytes, 0.69%)')" onmouseout="c()">
+<title>bash`xmalloc (349 bytes, 0.69%)</title><rect x="1154.9" y="237" width="8.2" height="25.0" fill="rgb(0,212,117)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (40 bytes, 0.08%)</title><rect x="1081.9" y="185" width="1.0" height="25.0" fill="rgb(0,224,180)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command (17,728 bytes, 35.17%)')" onmouseout="c()">
+<title>bash`execute_command (17,728 bytes, 35.17%)</title><rect x="10.0" y="575" width="415.0" height="25.0" fill="rgb(0,234,131)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="594.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`execute_command</text>
+</g>
+<g class="func_g" onmouseover="s('bash`_rl_dispatch_subseq (24,686 bytes, 48.97%)')" onmouseout="c()">
+<title>bash`_rl_dispatch_subseq (24,686 bytes, 48.97%)</title><rect x="586.7" y="341" width="577.8" height="25.0" fill="rgb(0,223,27)" rx="2" ry="2" />
+<text text-anchor="" x="589.65687986034" y="360.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`_rl_dispatch_subseq</text>
+</g>
+<g class="func_g" onmouseover="s('bash`glob_filename (17,248 bytes, 34.22%)')" onmouseout="c()">
+<title>bash`glob_filename (17,248 bytes, 34.22%)</title><rect x="10.0" y="445" width="403.8" height="25.0" fill="rgb(0,237,120)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="464.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`glob_filename</text>
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (40 bytes, 0.08%)</title><rect x="1079.9" y="185" width="1.0" height="25.0" fill="rgb(0,237,32)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (2,352 bytes, 4.67%)')" onmouseout="c()">
+<title>bash`malloc (2,352 bytes, 4.67%)</title><rect x="1099.8" y="185" width="55.1" height="25.0" fill="rgb(0,227,115)" rx="2" ry="2" />
+<text text-anchor="" x="1102.80518965244" y="204.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command_internal (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`execute_command_internal (4,517 bytes, 8.96%)</title><rect x="425.0" y="393" width="105.7" height="25.0" fill="rgb(0,191,93)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="412.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`execute_command (4,517 bytes, 8.96%)</title><rect x="425.0" y="419" width="105.7" height="25.0" fill="rgb(0,207,66)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="438.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_copy_text (8 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`rl_copy_text (8 bytes, 0.02%)</title><rect x="1164.1" y="289" width="0.2" height="25.0" fill="rgb(0,211,187)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`maybe_add_history (2,389 bytes, 4.74%)')" onmouseout="c()">
+<title>bash`maybe_add_history (2,389 bytes, 4.74%)</title><rect x="530.7" y="419" width="56.0" height="25.0" fill="rgb(0,222,137)" rx="2" ry="2" />
+<text text-anchor="" x="533.732820187272" y="438.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_delete_text (45 bytes, 0.09%)')" onmouseout="c()">
+<title>bash`rl_delete_text (45 bytes, 0.09%)</title><rect x="1080.9" y="237" width="1.0" height="25.0" fill="rgb(0,227,86)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`yyparse (28,163 bytes, 55.87%)')" onmouseout="c()">
+<title>bash`yyparse (28,163 bytes, 55.87%)</title><rect x="530.7" y="523" width="659.3" height="25.0" fill="rgb(0,190,66)" rx="2" ry="2" />
+<text text-anchor="" x="533.732820187272" y="542.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`yyparse</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (59 bytes, 0.12%)')" onmouseout="c()">
+<title>bash`malloc (59 bytes, 0.12%)</title><rect x="590.1" y="133" width="1.4" height="25.0" fill="rgb(0,223,125)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`really_add_history (85 bytes, 0.17%)')" onmouseout="c()">
+<title>bash`really_add_history (85 bytes, 0.17%)</title><rect x="530.7" y="341" width="2.0" height="25.0" fill="rgb(0,222,120)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`expand_prompt (528 bytes, 1.05%)')" onmouseout="c()">
+<title>bash`expand_prompt (528 bytes, 1.05%)</title><rect x="1165.3" y="341" width="12.3" height="25.0" fill="rgb(0,212,72)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_variable_command (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`execute_variable_command (4,517 bytes, 8.96%)</title><rect x="425.0" y="523" width="105.7" height="25.0" fill="rgb(0,193,81)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="542.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`gen_completion_matches (20,304 bytes, 40.28%)')" onmouseout="c()">
+<title>bash`gen_completion_matches (20,304 bytes, 40.28%)</title><rect x="604.6" y="289" width="475.3" height="25.0" fill="rgb(0,228,208)" rx="2" ry="2" />
+<text text-anchor="" x="607.634978574829" y="308.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`gen_completion_matches</text>
+</g>
+<g class="func_g" onmouseover="s('bash`attempt_shell_completion (20,304 bytes, 40.28%)')" onmouseout="c()">
+<title>bash`attempt_shell_completion (20,304 bytes, 40.28%)</title><rect x="604.6" y="263" width="475.3" height="25.0" fill="rgb(0,210,4)" rx="2" ry="2" />
+<text text-anchor="" x="607.634978574829" y="282.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`attempt_shell_completion</text>
+</g>
+<g class="func_g" onmouseover="s('bash`rl_expand_prompt (528 bytes, 1.05%)')" onmouseout="c()">
+<title>bash`rl_expand_prompt (528 bytes, 1.05%)</title><rect x="1165.3" y="367" width="12.3" height="25.0" fill="rgb(0,228,177)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`malloc (40 bytes, 0.08%)</title><rect x="1080.9" y="133" width="0.9" height="25.0" fill="rgb(0,226,48)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_complete_internal (24,564 bytes, 48.73%)')" onmouseout="c()">
+<title>bash`rl_complete_internal (24,564 bytes, 48.73%)</title><rect x="589.5" y="315" width="575.0" height="25.0" fill="rgb(0,223,170)" rx="2" ry="2" />
+<text text-anchor="" x="592.512775749881" y="334.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`rl_complete_internal</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`xmalloc (40 bytes, 0.08%)</title><rect x="1079.9" y="159" width="1.0" height="25.0" fill="rgb(0,238,104)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`strvec_sort (480 bytes, 0.95%)')" onmouseout="c()">
+<title>bash`strvec_sort (480 bytes, 0.95%)</title><rect x="413.8" y="445" width="11.2" height="25.0" fill="rgb(0,216,104)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (528 bytes, 1.05%)')" onmouseout="c()">
+<title>bash`malloc (528 bytes, 1.05%)</title><rect x="1177.6" y="341" width="12.4" height="25.0" fill="rgb(0,218,163)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`tilde_expand (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`tilde_expand (5 bytes, 0.01%)</title><rect x="590.0" y="263" width="0.1" height="25.0" fill="rgb(0,219,155)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (11 bytes, 0.02%)')" onmouseout="c()">
+<title>bash`xmalloc (11 bytes, 0.02%)</title><rect x="1164.3" y="289" width="0.2" height="25.0" fill="rgb(0,215,75)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (1,628 bytes, 3.23%)')" onmouseout="c()">
+<title>bash`malloc (1,628 bytes, 3.23%)</title><rect x="492.6" y="133" width="38.1" height="25.0" fill="rgb(0,210,109)" rx="2" ry="2" />
+<text text-anchor="" x="495.622996349786" y="152.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >b..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (60 bytes, 0.12%)')" onmouseout="c()">
+<title>bash`malloc (60 bytes, 0.12%)</title><rect x="425.0" y="159" width="1.4" height="25.0" fill="rgb(0,224,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_delete_text (22 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`rl_delete_text (22 bytes, 0.04%)</title><rect x="589.0" y="289" width="0.5" height="25.0" fill="rgb(0,193,67)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`add_history (85 bytes, 0.17%)')" onmouseout="c()">
+<title>bash`add_history (85 bytes, 0.17%)</title><rect x="530.7" y="315" width="2.0" height="25.0" fill="rgb(0,217,82)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_copy_text (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`rl_copy_text (5 bytes, 0.01%)</title><rect x="1081.8" y="211" width="0.1" height="25.0" fill="rgb(0,219,126)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_insert_text (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`rl_insert_text (20 bytes, 0.04%)</title><rect x="589.5" y="263" width="0.5" height="25.0" fill="rgb(0,223,61)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (5 bytes, 0.01%)')" onmouseout="c()">
+<title>bash`malloc (5 bytes, 0.01%)</title><rect x="1081.8" y="159" width="0.1" height="25.0" fill="rgb(0,224,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (2,304 bytes, 4.57%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (2,304 bytes, 4.57%)</title><rect x="532.7" y="341" width="54.0" height="25.0" fill="rgb(0,193,168)" rx="2" ry="2" />
+<text text-anchor="" x="535.72258371687" y="360.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xstrmatch (2,304 bytes, 4.57%)')" onmouseout="c()">
+<title>bash`xstrmatch (2,304 bytes, 4.57%)</title><rect x="532.7" y="367" width="54.0" height="25.0" fill="rgb(0,218,226)" rx="2" ry="2" />
+<text text-anchor="" x="535.72258371687" y="386.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`print_filename (621 bytes, 1.23%)')" onmouseout="c()">
+<title>bash`print_filename (621 bytes, 1.23%)</title><rect x="590.1" y="237" width="14.5" height="25.0" fill="rgb(0,231,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (2,816 bytes, 5.59%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (2,816 bytes, 5.59%)</title><rect x="426.7" y="159" width="65.9" height="25.0" fill="rgb(0,199,100)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="178.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bas..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`xdupmbstowcs (16,512 bytes, 32.76%)')" onmouseout="c()">
+<title>bash`xdupmbstowcs (16,512 bytes, 32.76%)</title><rect x="607.6" y="133" width="386.6" height="25.0" fill="rgb(0,228,183)" rx="2" ry="2" />
+<text text-anchor="" x="610.631328360578" y="152.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`xdupmbstowcs</text>
+</g>
+<g class="func_g" onmouseover="s('bash`readline_internal_char (24,686 bytes, 48.97%)')" onmouseout="c()">
+<title>bash`readline_internal_char (24,686 bytes, 48.97%)</title><rect x="586.7" y="393" width="577.8" height="25.0" fill="rgb(0,228,180)" rx="2" ry="2" />
+<text text-anchor="" x="589.65687986034" y="412.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`readline_internal_char</text>
+</g>
+<g class="func_g" onmouseover="s('bash`execute_connection (4,517 bytes, 8.96%)')" onmouseout="c()">
+<title>bash`execute_connection (4,517 bytes, 8.96%)</title><rect x="425.0" y="445" width="105.7" height="25.0" fill="rgb(0,191,150)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="464.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (44 bytes, 0.09%)')" onmouseout="c()">
+<title>bash`malloc (44 bytes, 0.09%)</title><rect x="1163.1" y="237" width="1.0" height="25.0" fill="rgb(0,195,182)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`xmalloc (40 bytes, 0.08%)</title><rect x="1080.9" y="159" width="0.9" height="25.0" fill="rgb(0,198,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`wcsdup (1,628 bytes, 3.23%)')" onmouseout="c()">
+<title>libc.so.1`wcsdup (1,628 bytes, 3.23%)</title><rect x="492.6" y="159" width="38.1" height="25.0" fill="rgb(0,232,130)" rx="2" ry="2" />
+<text text-anchor="" x="495.622996349786" y="178.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >l..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`malloc (128 bytes, 0.25%)</title><rect x="10.0" y="367" width="3.0" height="25.0" fill="rgb(0,239,71)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (40 bytes, 0.08%)</title><rect x="1082.9" y="185" width="0.9" height="25.0" fill="rgb(0,196,13)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`glob_pattern_p (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`glob_pattern_p (128 bytes, 0.25%)</title><rect x="10.0" y="419" width="3.0" height="25.0" fill="rgb(0,208,120)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_add_undo (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`rl_add_undo (40 bytes, 0.08%)</title><rect x="1079.9" y="211" width="1.0" height="25.0" fill="rgb(0,221,186)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`qsort (480 bytes, 0.95%)')" onmouseout="c()">
+<title>libc.so.1`qsort (480 bytes, 0.95%)</title><rect x="413.8" y="419" width="11.2" height="25.0" fill="rgb(0,195,130)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`shell_glob_filename (17,728 bytes, 35.17%)')" onmouseout="c()">
+<title>bash`shell_glob_filename (17,728 bytes, 35.17%)</title><rect x="10.0" y="471" width="415.0" height="25.0" fill="rgb(0,190,108)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="490.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`shell_glob_filename</text>
+</g>
+<g class="func_g" onmouseover="s('bash`_rl_rubout_char (22 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`_rl_rubout_char (22 bytes, 0.04%)</title><rect x="589.0" y="315" width="0.5" height="25.0" fill="rgb(0,217,77)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`insert_match (165 bytes, 0.33%)')" onmouseout="c()">
+<title>bash`insert_match (165 bytes, 0.33%)</title><rect x="1079.9" y="289" width="3.9" height="25.0" fill="rgb(0,200,196)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`xmalloc (40 bytes, 0.08%)</title><rect x="1082.9" y="159" width="0.9" height="25.0" fill="rgb(0,216,153)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`parameter_brace_expand (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`parameter_brace_expand (4,444 bytes, 8.82%)</title><rect x="426.7" y="237" width="104.0" height="25.0" fill="rgb(0,216,148)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="256.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`p..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (2,816 bytes, 5.59%)')" onmouseout="c()">
+<title>bash`malloc (2,816 bytes, 5.59%)</title><rect x="426.7" y="133" width="65.9" height="25.0" fill="rgb(0,219,76)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="152.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bas..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`read_command (32,680 bytes, 64.83%)')" onmouseout="c()">
+<title>bash`read_command (32,680 bytes, 64.83%)</title><rect x="425.0" y="575" width="765.0" height="25.0" fill="rgb(0,232,107)" rx="2" ry="2" />
+<text text-anchor="" x="427.994445326139" y="594.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`read_command</text>
+</g>
+<g class="func_g" onmouseover="s('bash`display_matches (621 bytes, 1.23%)')" onmouseout="c()">
+<title>bash`display_matches (621 bytes, 1.23%)</title><rect x="590.1" y="289" width="14.5" height="25.0" fill="rgb(0,218,225)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`xmalloc (100 bytes, 0.20%)')" onmouseout="c()">
+<title>bash`xmalloc (100 bytes, 0.20%)</title><rect x="586.7" y="211" width="2.3" height="25.0" fill="rgb(0,206,219)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`expand_word_internal (4,444 bytes, 8.82%)')" onmouseout="c()">
+<title>bash`expand_word_internal (4,444 bytes, 8.82%)</title><rect x="426.7" y="289" width="104.0" height="25.0" fill="rgb(0,218,229)" rx="2" ry="2" />
+<text text-anchor="" x="429.703301063323" y="308.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`e..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (49 bytes, 0.10%)')" onmouseout="c()">
+<title>bash`malloc (49 bytes, 0.10%)</title><rect x="530.7" y="237" width="1.2" height="25.0" fill="rgb(0,225,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`glob_pattern_p (128 bytes, 0.25%)')" onmouseout="c()">
+<title>bash`glob_pattern_p (128 bytes, 0.25%)</title><rect x="13.0" y="393" width="3.0" height="25.0" fill="rgb(0,190,191)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_filename_completion_function (349 bytes, 0.69%)')" onmouseout="c()">
+<title>bash`rl_filename_completion_function (349 bytes, 0.69%)</title><rect x="1154.9" y="263" width="8.2" height="25.0" fill="rgb(0,229,105)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`alloc_undo_entry (100 bytes, 0.20%)')" onmouseout="c()">
+<title>bash`alloc_undo_entry (100 bytes, 0.20%)</title><rect x="586.7" y="237" width="2.3" height="25.0" fill="rgb(0,197,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`rl_insert_text (100 bytes, 0.20%)')" onmouseout="c()">
+<title>bash`rl_insert_text (100 bytes, 0.20%)</title><rect x="586.7" y="289" width="2.3" height="25.0" fill="rgb(0,216,227)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (2,304 bytes, 4.57%)')" onmouseout="c()">
+<title>bash`malloc (2,304 bytes, 4.57%)</title><rect x="532.7" y="315" width="54.0" height="25.0" fill="rgb(0,227,64)" rx="2" ry="2" />
+<text text-anchor="" x="535.72258371687" y="334.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (40 bytes, 0.08%)')" onmouseout="c()">
+<title>bash`malloc (40 bytes, 0.08%)</title><rect x="1082.9" y="133" width="0.9" height="25.0" fill="rgb(0,231,176)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`strvec_strcmp (480 bytes, 0.95%)')" onmouseout="c()">
+<title>bash`strvec_strcmp (480 bytes, 0.95%)</title><rect x="413.8" y="393" width="11.2" height="25.0" fill="rgb(0,235,228)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (20 bytes, 0.04%)')" onmouseout="c()">
+<title>bash`malloc (20 bytes, 0.04%)</title><rect x="589.5" y="159" width="0.5" height="25.0" fill="rgb(0,221,92)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (684 bytes, 1.36%)')" onmouseout="c()">
+<title>bash`malloc (684 bytes, 1.36%)</title><rect x="1083.8" y="237" width="16.0" height="25.0" fill="rgb(0,209,171)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`execute_command_internal (17,728 bytes, 35.17%)')" onmouseout="c()">
+<title>bash`execute_command_internal (17,728 bytes, 35.17%)</title><rect x="10.0" y="549" width="415.0" height="25.0" fill="rgb(0,226,33)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="568.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >bash`execute_command_internal</text>
+</g>
+<g class="func_g" onmouseover="s('bash`malloc (13 bytes, 0.03%)')" onmouseout="c()">
+<title>bash`malloc (13 bytes, 0.03%)</title><rect x="426.4" y="211" width="0.3" height="25.0" fill="rgb(0,193,202)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('bash`check_add_history (2,389 bytes, 4.74%)')" onmouseout="c()">
+<title>bash`check_add_history (2,389 bytes, 4.74%)</title><rect x="530.7" y="393" width="56.0" height="25.0" fill="rgb(0,199,155)" rx="2" ry="2" />
+<text text-anchor="" x="533.732820187272" y="412.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >ba..</text>
+</g>
+</svg>

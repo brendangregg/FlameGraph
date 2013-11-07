@@ -1,0 +1,449 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="690" onload="init(evt)" viewBox="0 0 1200 690" xmlns="http://www.w3.org/2000/svg" >
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	rect[rx]:hover { stroke:black; stroke-width:1; }
+	text:hover { stroke:black; stroke-width:1; stroke-opacity:0.35; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="690.0" fill="url(#background)"  />
+<text text-anchor="middle" x="600" y="24" font-size="17" font-family="Verdana" fill="rgb(0,0,0)"  >Flame Graph</text>
+<text text-anchor="left" x="10" y="673" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >Function:</text>
+<text text-anchor="" x="70" y="673" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<rect x="235.6" y="241" width="0.5" height="15.0" fill="rgb(227,127,52)" rx="2" ry="2" onmouseover="s('__phys_addr (14 samples, 0.05%)')" onmouseout="c()" />
+<rect x="231.4" y="257" width="3.2" height="15.0" fill="rgb(245,180,6)" rx="2" ry="2" onmouseover="s('kmem_cache_alloc_node (82 samples, 0.27%)')" onmouseout="c()" />
+<rect x="40.8" y="257" width="9.1" height="15.0" fill="rgb(212,173,12)" rx="2" ry="2" onmouseover="s('iowrite16 (233 samples, 0.78%)')" onmouseout="c()" />
+<rect x="187.3" y="337" width="1.2" height="15.0" fill="rgb(244,212,7)" rx="2" ry="2" onmouseover="s('__nf_ct_refresh_acct (30 samples, 0.10%)')" onmouseout="c()" />
+<rect x="38.3" y="465" width="11.9" height="15.0" fill="rgb(217,64,18)" rx="2" ry="2" onmouseover="s('__tcp_push_pending_frames (303 samples, 1.01%)')" onmouseout="c()" />
+<rect x="246.5" y="193" width="1.1" height="15.0" fill="rgb(216,169,47)" rx="2" ry="2" onmouseover="s('raw_local_deliver (29 samples, 0.10%)')" onmouseout="c()" />
+<rect x="147.8" y="385" width="2.5" height="15.0" fill="rgb(224,26,48)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_defrag (62 samples, 0.21%)')" onmouseout="c()" />
+<rect x="55.5" y="401" width="1.6" height="15.0" fill="rgb(237,186,27)" rx="2" ry="2" onmouseover="s('__slab_free (42 samples, 0.14%)')" onmouseout="c()" />
+<rect x="262.6" y="145" width="0.2" height="15.0" fill="rgb(205,154,42)" rx="2" ry="2" onmouseover="s('local_bh_disable (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="35.7" y="481" width="0.1" height="15.0" fill="rgb(237,173,47)" rx="2" ry="2" onmouseover="s('tcp_parse_md5sig_option (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="20.1" y="401" width="0.4" height="15.0" fill="rgb(219,39,53)" rx="2" ry="2" onmouseover="s('dev_queue_xmit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="227.8" y="241" width="3.0" height="15.0" fill="rgb(242,221,22)" rx="2" ry="2" onmouseover="s('__slab_alloc (77 samples, 0.26%)')" onmouseout="c()" />
+<rect x="34.2" y="321" width="0.3" height="15.0" fill="rgb(225,25,23)" rx="2" ry="2" onmouseover="s('nf_iterate (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="236.1" y="289" width="0.8" height="15.0" fill="rgb(232,119,14)" rx="2" ry="2" onmouseover="s('eth_type_trans (19 samples, 0.06%)')" onmouseout="c()" />
+<rect x="329.9" y="353" width="17.6" height="15.0" fill="rgb(243,204,17)" rx="2" ry="2" onmouseover="s('packet_rcv (449 samples, 1.50%)')" onmouseout="c()" />
+<rect x="257.3" y="209" width="8.5" height="15.0" fill="rgb(228,183,39)" rx="2" ry="2" onmouseover="s('nf_hook_slow (215 samples, 0.72%)')" onmouseout="c()" />
+<rect x="12.6" y="545" width="1177.1" height="15.0" fill="rgb(253,98,13)" rx="2" ry="2" onmouseover="s('inet_sendmsg (29907 samples, 99.75%)')" onmouseout="c()" />
+<text text-anchor="" x="15.6369154826229" y="555.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('inet_sendmsg (29907 samples, 99.75%)')" onmouseout="c()" >inet_sendmsg</text>
+<rect x="168.5" y="353" width="1.3" height="15.0" fill="rgb(210,161,15)" rx="2" ry="2" onmouseover="s('hash_conntrack_raw (35 samples, 0.12%)')" onmouseout="c()" />
+<rect x="236.9" y="289" width="0.8" height="15.0" fill="rgb(206,197,50)" rx="2" ry="2" onmouseover="s('napi_complete (21 samples, 0.07%)')" onmouseout="c()" />
+<rect x="243.9" y="241" width="26.8" height="15.0" fill="rgb(212,190,26)" rx="2" ry="2" onmouseover="s('ip_rcv_finish (679 samples, 2.26%)')" onmouseout="c()" />
+<rect x="92.9" y="241" width="1.3" height="15.0" fill="rgb(251,78,52)" rx="2" ry="2" onmouseover="s('iowrite16 (33 samples, 0.11%)')" onmouseout="c()" />
+<rect x="286.4" y="177" width="6.3" height="15.0" fill="rgb(228,140,42)" rx="2" ry="2" onmouseover="s('tcp_packet (158 samples, 0.53%)')" onmouseout="c()" />
+<rect x="272.4" y="209" width="0.7" height="15.0" fill="rgb(236,169,54)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_defrag (16 samples, 0.05%)')" onmouseout="c()" />
+<rect x="33.3" y="481" width="1.3" height="15.0" fill="rgb(247,179,30)" rx="2" ry="2" onmouseover="s('local_bh_enable_ip (32 samples, 0.11%)')" onmouseout="c()" />
+<rect x="377.7" y="337" width="8.7" height="15.0" fill="rgb(230,107,34)" rx="2" ry="2" onmouseover="s('virtqueue_add_buf_gfp (220 samples, 0.73%)')" onmouseout="c()" />
+<rect x="1177.4" y="465" width="6.1" height="15.0" fill="rgb(248,43,4)" rx="2" ry="2" onmouseover="s('tcp_established_options (154 samples, 0.51%)')" onmouseout="c()" />
+<rect x="1160.4" y="401" width="6.7" height="15.0" fill="rgb(246,108,5)" rx="2" ry="2" onmouseover="s('nf_iterate (169 samples, 0.56%)')" onmouseout="c()" />
+<rect x="303.9" y="385" width="853.4" height="15.0" fill="rgb(232,124,32)" rx="2" ry="2" onmouseover="s('sch_direct_xmit (21683 samples, 72.32%)')" onmouseout="c()" />
+<text text-anchor="" x="306.9176839437" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('sch_direct_xmit (21683 samples, 72.32%)')" onmouseout="c()" >sch_direct_xmit</text>
+<rect x="39.2" y="305" width="0.4" height="15.0" fill="rgb(229,176,6)" rx="2" ry="2" onmouseover="s('tcp_packet (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="172.0" y="337" width="0.6" height="15.0" fill="rgb(218,226,53)" rx="2" ry="2" onmouseover="s('ipv4_pkt_to_tuple (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="12.4" y="593" width="1177.6" height="15.0" fill="rgb(231,66,21)" rx="2" ry="2" onmouseover="s('vfs_write (29921 samples, 99.80%)')" onmouseout="c()" />
+<text text-anchor="" x="15.4007737976119" y="603.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('vfs_write (29921 samples, 99.80%)')" onmouseout="c()" >vfs_write</text>
+<rect x="83.1" y="449" width="0.2" height="15.0" fill="rgb(225,208,54)" rx="2" ry="2" onmouseover="s('arch_local_irq_save (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="40.5" y="257" width="0.1" height="15.0" fill="rgb(209,173,33)" rx="2" ry="2" onmouseover="s('detach_buf (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="269.4" y="209" width="0.6" height="15.0" fill="rgb(232,66,30)" rx="2" ry="2" onmouseover="s('ipv4_validate_peer (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="355.5" y="353" width="801.8" height="15.0" fill="rgb(215,176,30)" rx="2" ry="2" onmouseover="s('start_xmit (20373 samples, 67.95%)')" onmouseout="c()" />
+<text text-anchor="" x="358.475285171103" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('start_xmit (20373 samples, 67.95%)')" onmouseout="c()" >start_xmit</text>
+<rect x="1189.5" y="513" width="0.2" height="15.0" fill="rgb(241,5,4)" rx="2" ry="2" onmouseover="s('tcp_send_mss (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="33.7" y="289" width="0.4" height="15.0" fill="rgb(234,186,21)" rx="2" ry="2" onmouseover="s('tcp_v4_rcv (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="114.3" y="465" width="1054.2" height="15.0" fill="rgb(208,226,45)" rx="2" ry="2" onmouseover="s('ip_queue_xmit (26787 samples, 89.34%)')" onmouseout="c()" />
+<text text-anchor="" x="117.256553932359" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('ip_queue_xmit (26787 samples, 89.34%)')" onmouseout="c()" >ip_queue_xmit</text>
+<rect x="280.3" y="177" width="0.1" height="15.0" fill="rgb(205,96,39)" rx="2" ry="2" onmouseover="s('ipv4_get_l4proto (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="262.8" y="145" width="0.1" height="15.0" fill="rgb(235,154,1)" rx="2" ry="2" onmouseover="s('local_bh_enable (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="1159.6" y="401" width="0.4" height="15.0" fill="rgb(239,90,2)" rx="2" ry="2" onmouseover="s('skb_push (11 samples, 0.04%)')" onmouseout="c()" />
+<rect x="11.6" y="593" width="0.1" height="15.0" fill="rgb(239,41,13)" rx="2" ry="2" onmouseover="s('audit_free_names (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="367.0" y="305" width="1.2" height="15.0" fill="rgb(248,112,43)" rx="2" ry="2" onmouseover="s('consume_skb (31 samples, 0.10%)')" onmouseout="c()" />
+<rect x="320.4" y="321" width="6.9" height="15.0" fill="rgb(227,19,6)" rx="2" ry="2" onmouseover="s('kvm_clock_get_cycles (176 samples, 0.59%)')" onmouseout="c()" />
+<rect x="56.4" y="385" width="0.7" height="15.0" fill="rgb(237,92,33)" rx="2" ry="2" onmouseover="s('put_cpu_partial (19 samples, 0.06%)')" onmouseout="c()" />
+<rect x="33.6" y="305" width="0.5" height="15.0" fill="rgb(230,180,43)" rx="2" ry="2" onmouseover="s('ip_local_deliver_finish (13 samples, 0.04%)')" onmouseout="c()" />
+<rect x="256.7" y="177" width="0.5" height="15.0" fill="rgb(228,20,53)" rx="2" ry="2" onmouseover="s('sock_put (13 samples, 0.04%)')" onmouseout="c()" />
+<rect x="198.2" y="417" width="961.8" height="15.0" fill="rgb(232,192,29)" rx="2" ry="2" onmouseover="s('ip_finish_output (24439 samples, 81.51%)')" onmouseout="c()" />
+<text text-anchor="" x="201.204922953772" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('ip_finish_output (24439 samples, 81.51%)')" onmouseout="c()" >ip_finish_output</text>
+<rect x="36.5" y="433" width="0.1" height="15.0" fill="rgb(215,86,42)" rx="2" ry="2" onmouseover="s('__slab_free (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="20.1" y="305" width="0.4" height="15.0" fill="rgb(248,34,33)" rx="2" ry="2" onmouseover="s('iowrite16 (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="189.7" y="321" width="0.4" height="15.0" fill="rgb(206,50,33)" rx="2" ry="2" onmouseover="s('local_bh_disable (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="1176.9" y="465" width="0.5" height="15.0" fill="rgb(233,42,25)" rx="2" ry="2" onmouseover="s('skb_push (14 samples, 0.05%)')" onmouseout="c()" />
+<rect x="1168.4" y="449" width="0.1" height="15.0" fill="rgb(246,68,17)" rx="2" ry="2" onmouseover="s('skb_push (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="297.3" y="241" width="0.2" height="15.0" fill="rgb(211,178,20)" rx="2" ry="2" onmouseover="s('skb_push (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="92.6" y="353" width="0.2" height="15.0" fill="rgb(222,49,6)" rx="2" ry="2" onmouseover="s('nf_hook_slow (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="386.4" y="337" width="770.9" height="15.0" fill="rgb(252,82,15)" rx="2" ry="2" onmouseover="s('virtqueue_kick (19588 samples, 65.33%)')" onmouseout="c()" />
+<text text-anchor="" x="389.370488960043" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('virtqueue_kick (19588 samples, 65.33%)')" onmouseout="c()" >virtqueue_kick</text>
+<rect x="20.1" y="497" width="0.4" height="15.0" fill="rgb(234,209,44)" rx="2" ry="2" onmouseover="s('tcp_write_xmit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="294.5" y="241" width="0.7" height="15.0" fill="rgb(233,41,23)" rx="2" ry="2" onmouseover="s('consume_skb (19 samples, 0.06%)')" onmouseout="c()" />
+<rect x="176.2" y="353" width="15.8" height="15.0" fill="rgb(217,201,30)" rx="2" ry="2" onmouseover="s('tcp_packet (403 samples, 1.34%)')" onmouseout="c()" />
+<rect x="92.3" y="513" width="2.0" height="15.0" fill="rgb(219,214,12)" rx="2" ry="2" onmouseover="s('sk_stream_wait_memory (49 samples, 0.16%)')" onmouseout="c()" />
+<rect x="215.6" y="337" width="88.3" height="15.0" fill="rgb(212,41,43)" rx="2" ry="2" onmouseover="s('__do_softirq (2244 samples, 7.48%)')" onmouseout="c()" />
+<text text-anchor="" x="218.600693749583" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('__do_softirq (2244 samples, 7.48%)')" onmouseout="c()" >__do_softi..</text>
+<rect x="375.2" y="337" width="2.5" height="15.0" fill="rgb(238,66,35)" rx="2" ry="2" onmouseover="s('skb_to_sgvec (64 samples, 0.21%)')" onmouseout="c()" />
+<rect x="147.3" y="353" width="0.3" height="15.0" fill="rgb(207,187,8)" rx="2" ry="2" onmouseover="s('local_bh_disable (7 samples, 0.02%)')" onmouseout="c()" />
+<rect x="136.6" y="385" width="11.2" height="15.0" fill="rgb(236,92,17)" rx="2" ry="2" onmouseover="s('iptable_filter_hook (286 samples, 0.95%)')" onmouseout="c()" />
+<rect x="40.4" y="289" width="0.2" height="15.0" fill="rgb(223,188,8)" rx="2" ry="2" onmouseover="s('free_old_xmit_skbs (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="53.8" y="417" width="0.9" height="15.0" fill="rgb(229,130,20)" rx="2" ry="2" onmouseover="s('__slab_free (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="34.2" y="289" width="0.3" height="15.0" fill="rgb(225,86,26)" rx="2" ry="2" onmouseover="s('nf_conntrack_in (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="11.2" y="641" width="1178.8" height="15.0" fill="rgb(214,206,16)" rx="2" ry="2" onmouseover="s('all samples (29952 samples, 100%)')" onmouseout="c()" />
+<text text-anchor="" x="14.180708425055" y="651.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('all samples (29952 samples, 100%)')" onmouseout="c()" ></text>
+<rect x="11.9" y="609" width="0.2" height="15.0" fill="rgb(205,144,15)" rx="2" ry="2" onmouseover="s('sys_gettimeofday (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="92.8" y="305" width="1.4" height="15.0" fill="rgb(224,132,20)" rx="2" ry="2" onmouseover="s('dev_hard_start_xmit (35 samples, 0.12%)')" onmouseout="c()" />
+<rect x="11.3" y="625" width="0.1" height="15.0" fill="rgb(225,192,20)" rx="2" ry="2" onmouseover="s('page_fault (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="34.2" y="305" width="0.3" height="15.0" fill="rgb(238,71,18)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_in (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="33.9" y="241" width="0.2" height="15.0" fill="rgb(246,52,26)" rx="2" ry="2" onmouseover="s('tcp_ack (7 samples, 0.02%)')" onmouseout="c()" />
+<rect x="53.5" y="433" width="1.2" height="15.0" fill="rgb(212,25,29)" rx="2" ry="2" onmouseover="s('kmem_cache_free (30 samples, 0.10%)')" onmouseout="c()" />
+<rect x="333.7" y="337" width="8.0" height="15.0" fill="rgb(206,171,11)" rx="2" ry="2" onmouseover="s('consume_skb (203 samples, 0.68%)')" onmouseout="c()" />
+<rect x="1165.1" y="353" width="2.0" height="15.0" fill="rgb(220,97,26)" rx="2" ry="2" onmouseover="s('selinux_ip_postroute.part.18 (50 samples, 0.17%)')" onmouseout="c()" />
+<rect x="1183.5" y="465" width="0.7" height="15.0" fill="rgb(233,13,31)" rx="2" ry="2" onmouseover="s('tcp_options_write (18 samples, 0.06%)')" onmouseout="c()" />
+<rect x="1182.2" y="433" width="1.3" height="15.0" fill="rgb(245,221,8)" rx="2" ry="2" onmouseover="s('tcp_v4_md5_do_lookup (34 samples, 0.11%)')" onmouseout="c()" />
+<rect x="92.4" y="385" width="0.2" height="15.0" fill="rgb(216,223,46)" rx="2" ry="2" onmouseover="s('virtnet_poll (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="291.8" y="161" width="0.8" height="15.0" fill="rgb(206,98,34)" rx="2" ry="2" onmouseover="s('_raw_spin_unlock_bh (21 samples, 0.07%)')" onmouseout="c()" />
+<rect x="22.6" y="497" width="10.2" height="15.0" fill="rgb(233,80,3)" rx="2" ry="2" onmouseover="s('csum_partial_copy_generic (260 samples, 0.87%)')" onmouseout="c()" />
+<rect x="298.6" y="273" width="2.2" height="15.0" fill="rgb(224,56,32)" rx="2" ry="2" onmouseover="s('ktime_get_real (57 samples, 0.19%)')" onmouseout="c()" />
+<rect x="339.6" y="305" width="0.6" height="15.0" fill="rgb(221,5,31)" rx="2" ry="2" onmouseover="s('skb_release_data (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="36.4" y="449" width="0.2" height="15.0" fill="rgb(227,119,8)" rx="2" ry="2" onmouseover="s('kmem_cache_free (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="57.3" y="449" width="0.5" height="15.0" fill="rgb(250,32,13)" rx="2" ry="2" onmouseover="s('sk_reset_timer (13 samples, 0.04%)')" onmouseout="c()" />
+<rect x="265.8" y="225" width="4.9" height="15.0" fill="rgb(218,217,45)" rx="2" ry="2" onmouseover="s('ip_route_input_common (124 samples, 0.41%)')" onmouseout="c()" />
+<rect x="131.0" y="401" width="64.4" height="15.0" fill="rgb(239,4,9)" rx="2" ry="2" onmouseover="s('nf_iterate (1638 samples, 5.46%)')" onmouseout="c()" />
+<text text-anchor="" x="133.983256620639" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('nf_iterate (1638 samples, 5.46%)')" onmouseout="c()" >nf_iter..</text>
+<rect x="33.4" y="417" width="1.2" height="15.0" fill="rgb(227,98,10)" rx="2" ry="2" onmouseover="s('net_rx_action (30 samples, 0.10%)')" onmouseout="c()" />
+<rect x="247.6" y="193" width="9.7" height="15.0" fill="rgb(239,136,3)" rx="2" ry="2" onmouseover="s('tcp_v4_rcv (246 samples, 0.82%)')" onmouseout="c()" />
+<rect x="341.7" y="337" width="5.7" height="15.0" fill="rgb(229,16,40)" rx="2" ry="2" onmouseover="s('sk_run_filter (144 samples, 0.48%)')" onmouseout="c()" />
+<rect x="258.6" y="177" width="6.1" height="15.0" fill="rgb(248,52,39)" rx="2" ry="2" onmouseover="s('iptable_filter_hook (155 samples, 0.52%)')" onmouseout="c()" />
+<rect x="191.6" y="337" width="0.4" height="15.0" fill="rgb(220,36,29)" rx="2" ry="2" onmouseover="s('get_conntrack_index (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="57.8" y="449" width="0.2" height="15.0" fill="rgb(247,185,37)" rx="2" ry="2" onmouseover="s('tcp_reno_cong_avoid (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="328.8" y="337" width="1.1" height="15.0" fill="rgb(224,93,22)" rx="2" ry="2" onmouseover="s('harmonize_features (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="300.4" y="193" width="0.4" height="15.0" fill="rgb(240,81,15)" rx="2" ry="2" onmouseover="s('native_read_tsc (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="172.6" y="337" width="0.8" height="15.0" fill="rgb(210,203,49)" rx="2" ry="2" onmouseover="s('tcp_pkt_to_tuple (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="70.2" y="433" width="1.4" height="15.0" fill="rgb(220,123,49)" rx="2" ry="2" onmouseover="s('alloc_pages_current (34 samples, 0.11%)')" onmouseout="c()" />
+<rect x="38.7" y="369" width="0.9" height="15.0" fill="rgb(224,93,53)" rx="2" ry="2" onmouseover="s('nf_hook_slow (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="22.4" y="497" width="0.2" height="15.0" fill="rgb(220,194,31)" rx="2" ry="2" onmouseover="s('_cond_resched (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="92.4" y="497" width="1.9" height="15.0" fill="rgb(236,87,8)" rx="2" ry="2" onmouseover="s('release_sock (48 samples, 0.16%)')" onmouseout="c()" />
+<rect x="126.4" y="433" width="69.0" height="15.0" fill="rgb(238,44,43)" rx="2" ry="2" onmouseover="s('__ip_local_out (1754 samples, 5.85%)')" onmouseout="c()" />
+<text text-anchor="" x="129.417850710426" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('__ip_local_out (1754 samples, 5.85%)')" onmouseout="c()" >__ip_loc..</text>
+<rect x="265.0" y="161" width="0.8" height="15.0" fill="rgb(217,140,43)" rx="2" ry="2" onmouseover="s('nf_ct_deliver_cached_events (20 samples, 0.07%)')" onmouseout="c()" />
+<rect x="219.1" y="305" width="0.4" height="15.0" fill="rgb(209,156,30)" rx="2" ry="2" onmouseover="s('net_rps_action_and_irq_enable (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="104.3" y="481" width="2.0" height="15.0" fill="rgb(237,69,25)" rx="2" ry="2" onmouseover="s('tcp_init_tso_segs (52 samples, 0.17%)')" onmouseout="c()" />
+<rect x="33.5" y="385" width="1.1" height="15.0" fill="rgb(218,64,22)" rx="2" ry="2" onmouseover="s('netif_receive_skb (27 samples, 0.09%)')" onmouseout="c()" />
+<rect x="386.2" y="321" width="0.2" height="15.0" fill="rgb(207,8,16)" rx="2" ry="2" onmouseover="s('__phys_addr (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="105.4" y="465" width="0.9" height="15.0" fill="rgb(221,130,44)" rx="2" ry="2" onmouseover="s('tcp_set_skb_tso_segs (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="299.9" y="209" width="0.9" height="15.0" fill="rgb(218,10,42)" rx="2" ry="2" onmouseover="s('pvclock_clocksource_read (24 samples, 0.08%)')" onmouseout="c()" />
+<rect x="70.5" y="417" width="1.1" height="15.0" fill="rgb(241,36,47)" rx="2" ry="2" onmouseover="s('__alloc_pages_nodemask (28 samples, 0.09%)')" onmouseout="c()" />
+<rect x="92.4" y="289" width="0.1" height="15.0" fill="rgb(247,56,2)" rx="2" ry="2" onmouseover="s('ip_local_deliver_finish (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="92.4" y="433" width="0.2" height="15.0" fill="rgb(220,48,28)" rx="2" ry="2" onmouseover="s('call_softirq (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="284.3" y="113" width="2.1" height="15.0" fill="rgb(229,6,27)" rx="2" ry="2" onmouseover="s('skb_checksum (54 samples, 0.18%)')" onmouseout="c()" />
+<rect x="50.3" y="465" width="7.9" height="15.0" fill="rgb(247,195,24)" rx="2" ry="2" onmouseover="s('tcp_ack (200 samples, 0.67%)')" onmouseout="c()" />
+<rect x="301.4" y="257" width="0.2" height="15.0" fill="rgb(214,220,0)" rx="2" ry="2" onmouseover="s('sg_init_table (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="1185.2" y="449" width="4.3" height="15.0" fill="rgb(254,44,15)" rx="2" ry="2" onmouseover="s('__tcp_v4_send_check (111 samples, 0.37%)')" onmouseout="c()" />
+<rect x="92.4" y="481" width="0.2" height="15.0" fill="rgb(244,218,41)" rx="2" ry="2" onmouseover="s('_raw_spin_unlock_bh (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="58.0" y="449" width="0.2" height="15.0" fill="rgb(243,176,39)" rx="2" ry="2" onmouseover="s('tcp_valid_rtt_meas (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="12.3" y="609" width="1177.7" height="15.0" fill="rgb(209,195,25)" rx="2" ry="2" onmouseover="s('sys_write (29923 samples, 99.80%)')" onmouseout="c()" />
+<text text-anchor="" x="15.3220599026082" y="619.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('sys_write (29923 samples, 99.80%)')" onmouseout="c()" >sys_write</text>
+<rect x="209.4" y="385" width="94.5" height="15.0" fill="rgb(253,104,8)" rx="2" ry="2" onmouseover="s('local_bh_enable (2402 samples, 8.01%)')" onmouseout="c()" />
+<text text-anchor="" x="212.382296044293" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('local_bh_enable (2402 samples, 8.01%)')" onmouseout="c()" >local_bh_en..</text>
+<rect x="273.1" y="209" width="19.6" height="15.0" fill="rgb(208,196,22)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_in (498 samples, 1.66%)')" onmouseout="c()" />
+<rect x="257.4" y="193" width="8.4" height="15.0" fill="rgb(229,215,28)" rx="2" ry="2" onmouseover="s('nf_iterate (212 samples, 0.71%)')" onmouseout="c()" />
+<rect x="11.6" y="577" width="0.1" height="15.0" fill="rgb(226,208,3)" rx="2" ry="2" onmouseover="s('path_put (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="278.3" y="145" width="0.3" height="15.0" fill="rgb(230,51,13)" rx="2" ry="2" onmouseover="s('local_bh_enable (8 samples, 0.03%)')" onmouseout="c()" />
+<rect x="37.2" y="417" width="0.7" height="15.0" fill="rgb(252,80,41)" rx="2" ry="2" onmouseover="s('__slab_free (19 samples, 0.06%)')" onmouseout="c()" />
+<rect x="67.5" y="465" width="4.1" height="15.0" fill="rgb(247,66,39)" rx="2" ry="2" onmouseover="s('__slab_alloc (103 samples, 0.34%)')" onmouseout="c()" />
+<rect x="39.7" y="353" width="10.2" height="15.0" fill="rgb(243,219,15)" rx="2" ry="2" onmouseover="s('dev_queue_xmit (260 samples, 0.87%)')" onmouseout="c()" />
+<rect x="234.6" y="257" width="1.5" height="15.0" fill="rgb(246,181,45)" rx="2" ry="2" onmouseover="s('ksize (39 samples, 0.13%)')" onmouseout="c()" />
+<rect x="33.4" y="449" width="1.2" height="15.0" fill="rgb(225,28,47)" rx="2" ry="2" onmouseover="s('call_softirq (30 samples, 0.10%)')" onmouseout="c()" />
+<rect x="277.6" y="145" width="0.7" height="15.0" fill="rgb(230,0,3)" rx="2" ry="2" onmouseover="s('local_bh_disable (18 samples, 0.06%)')" onmouseout="c()" />
+<rect x="20.1" y="353" width="0.4" height="15.0" fill="rgb(222,118,41)" rx="2" ry="2" onmouseover="s('start_xmit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="92.6" y="481" width="1.7" height="15.0" fill="rgb(226,226,53)" rx="2" ry="2" onmouseover="s('tcp_v4_do_rcv (43 samples, 0.14%)')" onmouseout="c()" />
+<rect x="12.6" y="561" width="1177.2" height="15.0" fill="rgb(228,212,52)" rx="2" ry="2" onmouseover="s('sock_aio_write (29910 samples, 99.76%)')" onmouseout="c()" />
+<text text-anchor="" x="15.6369154826229" y="571.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('sock_aio_write (29910 samples, 99.76%)')" onmouseout="c()" >sock_aio_write</text>
+<rect x="338.9" y="289" width="0.7" height="15.0" fill="rgb(243,147,45)" rx="2" ry="2" onmouseover="s('__phys_addr (17 samples, 0.06%)')" onmouseout="c()" />
+<rect x="33.6" y="337" width="0.6" height="15.0" fill="rgb(252,186,45)" rx="2" ry="2" onmouseover="s('ip_rcv_finish (17 samples, 0.06%)')" onmouseout="c()" />
+<rect x="85.0" y="465" width="1.5" height="15.0" fill="rgb(208,52,13)" rx="2" ry="2" onmouseover="s('_cond_resched (39 samples, 0.13%)')" onmouseout="c()" />
+<rect x="70.6" y="401" width="0.9" height="15.0" fill="rgb(226,150,50)" rx="2" ry="2" onmouseover="s('get_page_from_freelist (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="20.5" y="513" width="12.3" height="15.0" fill="rgb(213,52,37)" rx="2" ry="2" onmouseover="s('csum_partial_copy_from_user (314 samples, 1.05%)')" onmouseout="c()" />
+<rect x="38.7" y="385" width="0.9" height="15.0" fill="rgb(238,74,5)" rx="2" ry="2" onmouseover="s('__ip_local_out (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="300.8" y="289" width="0.2" height="15.0" fill="rgb(216,194,35)" rx="2" ry="2" onmouseover="s('skb_put (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="188.5" y="337" width="1.6" height="15.0" fill="rgb(222,68,18)" rx="2" ry="2" onmouseover="s('_raw_spin_lock_bh (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="36.3" y="465" width="2.0" height="15.0" fill="rgb(209,8,32)" rx="2" ry="2" onmouseover="s('__kfree_skb (52 samples, 0.17%)')" onmouseout="c()" />
+<rect x="322.6" y="305" width="4.7" height="15.0" fill="rgb(254,213,6)" rx="2" ry="2" onmouseover="s('kvm_clock_read (120 samples, 0.40%)')" onmouseout="c()" />
+<rect x="118.9" y="449" width="7.0" height="15.0" fill="rgb(225,30,4)" rx="2" ry="2" onmouseover="s('__sk_dst_check (176 samples, 0.59%)')" onmouseout="c()" />
+<rect x="33.4" y="433" width="1.2" height="15.0" fill="rgb(233,152,38)" rx="2" ry="2" onmouseover="s('__do_softirq (30 samples, 0.10%)')" onmouseout="c()" />
+<rect x="273.5" y="193" width="19.2" height="15.0" fill="rgb(234,31,1)" rx="2" ry="2" onmouseover="s('nf_conntrack_in (487 samples, 1.62%)')" onmouseout="c()" />
+<rect x="1189.5" y="497" width="0.2" height="15.0" fill="rgb(229,106,37)" rx="2" ry="2" onmouseover="s('tcp_current_mss (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="92.4" y="369" width="0.2" height="15.0" fill="rgb(236,171,9)" rx="2" ry="2" onmouseover="s('netif_receive_skb (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="73.8" y="481" width="12.7" height="15.0" fill="rgb(221,67,30)" rx="2" ry="2" onmouseover="s('kmem_cache_alloc_node (323 samples, 1.08%)')" onmouseout="c()" />
+<rect x="92.4" y="257" width="0.1" height="15.0" fill="rgb(238,145,3)" rx="2" ry="2" onmouseover="s('tcp_v4_do_rcv (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="40.5" y="273" width="0.1" height="15.0" fill="rgb(210,167,33)" rx="2" ry="2" onmouseover="s('virtqueue_get_buf (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="276.0" y="177" width="2.6" height="15.0" fill="rgb(253,172,30)" rx="2" ry="2" onmouseover="s('__nf_conntrack_find_get (67 samples, 0.22%)')" onmouseout="c()" />
+<rect x="363.1" y="337" width="0.3" height="15.0" fill="rgb(225,61,1)" rx="2" ry="2" onmouseover="s('__phys_addr (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="92.4" y="417" width="0.2" height="15.0" fill="rgb(216,193,1)" rx="2" ry="2" onmouseover="s('__do_softirq (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="250.4" y="177" width="3.2" height="15.0" fill="rgb(243,9,20)" rx="2" ry="2" onmouseover="s('__inet_lookup_established (82 samples, 0.27%)')" onmouseout="c()" />
+<rect x="1168.5" y="465" width="8.4" height="15.0" fill="rgb(222,21,11)" rx="2" ry="2" onmouseover="s('skb_clone (213 samples, 0.71%)')" onmouseout="c()" />
+<rect x="367.3" y="289" width="0.9" height="15.0" fill="rgb(205,3,45)" rx="2" ry="2" onmouseover="s('__kfree_skb (24 samples, 0.08%)')" onmouseout="c()" />
+<rect x="309.9" y="369" width="847.4" height="15.0" fill="rgb(225,140,22)" rx="2" ry="2" onmouseover="s('dev_hard_start_xmit (21532 samples, 71.82%)')" onmouseout="c()" />
+<text text-anchor="" x="312.860583016477" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('dev_hard_start_xmit (21532 samples, 71.82%)')" onmouseout="c()" >dev_hard_start_xmit</text>
+<rect x="124.9" y="417" width="1.0" height="15.0" fill="rgb(247,81,51)" rx="2" ry="2" onmouseover="s('ipv4_validate_peer (24 samples, 0.08%)')" onmouseout="c()" />
+<rect x="38.9" y="305" width="0.2" height="15.0" fill="rgb(228,67,52)" rx="2" ry="2" onmouseover="s('__nf_conntrack_find_get (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="12.6" y="529" width="1177.1" height="15.0" fill="rgb(245,12,44)" rx="2" ry="2" onmouseover="s('tcp_sendmsg (29907 samples, 99.75%)')" onmouseout="c()" />
+<text text-anchor="" x="15.6369154826229" y="539.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('tcp_sendmsg (29907 samples, 99.75%)')" onmouseout="c()" >tcp_sendmsg</text>
+<rect x="92.9" y="273" width="1.3" height="15.0" fill="rgb(206,1,44)" rx="2" ry="2" onmouseover="s('virtqueue_kick (33 samples, 0.11%)')" onmouseout="c()" />
+<rect x="308.3" y="369" width="1.6" height="15.0" fill="rgb(246,86,9)" rx="2" ry="2" onmouseover="s('_raw_spin_lock (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="50.2" y="465" width="0.1" height="15.0" fill="rgb(229,189,18)" rx="2" ry="2" onmouseover="s('get_seconds (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="125.9" y="449" width="1041.2" height="15.0" fill="rgb(248,208,15)" rx="2" ry="2" onmouseover="s('ip_local_out (26455 samples, 88.24%)')" onmouseout="c()" />
+<text text-anchor="" x="128.866853445401" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('ip_local_out (26455 samples, 88.24%)')" onmouseout="c()" >ip_local_out</text>
+<rect x="253.7" y="177" width="3.0" height="15.0" fill="rgb(222,168,12)" rx="2" ry="2" onmouseover="s('sk_filter (78 samples, 0.26%)')" onmouseout="c()" />
+<rect x="39.9" y="321" width="10.0" height="15.0" fill="rgb(211,35,24)" rx="2" ry="2" onmouseover="s('dev_hard_start_xmit (256 samples, 0.85%)')" onmouseout="c()" />
+<rect x="264.7" y="177" width="1.1" height="15.0" fill="rgb(242,106,42)" rx="2" ry="2" onmouseover="s('ipv4_confirm (28 samples, 0.09%)')" onmouseout="c()" />
+<rect x="173.4" y="353" width="2.8" height="15.0" fill="rgb(237,94,49)" rx="2" ry="2" onmouseover="s('tcp_error (69 samples, 0.23%)')" onmouseout="c()" />
+<rect x="302.1" y="289" width="0.2" height="15.0" fill="rgb(205,61,53)" rx="2" ry="2" onmouseover="s('virtqueue_enable_cb (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="242.3" y="257" width="50.4" height="15.0" fill="rgb(246,187,31)" rx="2" ry="2" onmouseover="s('ip_rcv (1280 samples, 4.27%)')" onmouseout="c()" />
+<text text-anchor="" x="245.284704155827" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('ip_rcv (1280 samples, 4.27%)')" onmouseout="c()" >ip_rc..</text>
+<rect x="84.2" y="417" width="0.7" height="15.0" fill="rgb(220,150,23)" rx="2" ry="2" onmouseover="s('__alloc_pages_nodemask (18 samples, 0.06%)')" onmouseout="c()" />
+<rect x="57.1" y="433" width="0.2" height="15.0" fill="rgb(211,192,21)" rx="2" ry="2" onmouseover="s('skb_release_head_state (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="292.0" y="145" width="0.6" height="15.0" fill="rgb(221,164,7)" rx="2" ry="2" onmouseover="s('local_bh_enable_ip (16 samples, 0.05%)')" onmouseout="c()" />
+<rect x="245.2" y="209" width="12.1" height="15.0" fill="rgb(237,153,24)" rx="2" ry="2" onmouseover="s('ip_local_deliver_finish (307 samples, 1.02%)')" onmouseout="c()" />
+<rect x="156.9" y="353" width="8.2" height="15.0" fill="rgb(248,46,18)" rx="2" ry="2" onmouseover="s('__nf_conntrack_find_get (209 samples, 0.70%)')" onmouseout="c()" />
+<rect x="301.1" y="273" width="0.5" height="15.0" fill="rgb(239,56,40)" rx="2" ry="2" onmouseover="s('sg_init_one (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="83.3" y="449" width="1.7" height="15.0" fill="rgb(251,180,37)" rx="2" ry="2" onmouseover="s('new_slab (42 samples, 0.14%)')" onmouseout="c()" />
+<rect x="224.6" y="289" width="11.5" height="15.0" fill="rgb(228,106,1)" rx="2" ry="2" onmouseover="s('__netdev_alloc_skb (293 samples, 0.98%)')" onmouseout="c()" />
+<rect x="368.0" y="273" width="0.2" height="15.0" fill="rgb(215,71,47)" rx="2" ry="2" onmouseover="s('skb_release_head_state (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="94.3" y="513" width="0.3" height="15.0" fill="rgb(245,24,2)" rx="2" ry="2" onmouseover="s('skb_put (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="35.8" y="481" width="22.5" height="15.0" fill="rgb(219,56,8)" rx="2" ry="2" onmouseover="s('tcp_rcv_established (572 samples, 1.91%)')" onmouseout="c()" />
+<rect x="284.1" y="129" width="2.3" height="15.0" fill="rgb(246,154,39)" rx="2" ry="2" onmouseover="s('__skb_checksum_complete_head (59 samples, 0.20%)')" onmouseout="c()" />
+<rect x="20.1" y="449" width="0.4" height="15.0" fill="rgb(233,29,31)" rx="2" ry="2" onmouseover="s('ip_local_out (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="302.3" y="289" width="1.2" height="15.0" fill="rgb(206,206,21)" rx="2" ry="2" onmouseover="s('virtqueue_get_buf (32 samples, 0.11%)')" onmouseout="c()" />
+<rect x="92.6" y="465" width="1.7" height="15.0" fill="rgb(246,2,42)" rx="2" ry="2" onmouseover="s('tcp_rcv_established (43 samples, 0.14%)')" onmouseout="c()" />
+<rect x="33.7" y="273" width="0.4" height="15.0" fill="rgb(238,28,14)" rx="2" ry="2" onmouseover="s('tcp_v4_do_rcv (11 samples, 0.04%)')" onmouseout="c()" />
+<rect x="139.1" y="369" width="8.7" height="15.0" fill="rgb(216,225,47)" rx="2" ry="2" onmouseover="s('ipt_do_table (222 samples, 0.74%)')" onmouseout="c()" />
+<rect x="92.6" y="417" width="1.7" height="15.0" fill="rgb(240,58,44)" rx="2" ry="2" onmouseover="s('tcp_transmit_skb (42 samples, 0.14%)')" onmouseout="c()" />
+<rect x="92.4" y="305" width="0.1" height="15.0" fill="rgb(253,56,24)" rx="2" ry="2" onmouseover="s('ip_local_deliver (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="363.4" y="337" width="11.8" height="15.0" fill="rgb(234,165,26)" rx="2" ry="2" onmouseover="s('free_old_xmit_skbs (299 samples, 1.00%)')" onmouseout="c()" />
+<rect x="299.5" y="241" width="1.3" height="15.0" fill="rgb(231,210,8)" rx="2" ry="2" onmouseover="s('kvm_clock_get_cycles (33 samples, 0.11%)')" onmouseout="c()" />
+<rect x="71.6" y="465" width="2.2" height="15.0" fill="rgb(244,179,27)" rx="2" ry="2" onmouseover="s('get_slab (55 samples, 0.18%)')" onmouseout="c()" />
+<rect x="11.9" y="625" width="1178.1" height="15.0" fill="rgb(215,33,1)" rx="2" ry="2" onmouseover="s('system_call_fastpath (29933 samples, 99.84%)')" onmouseout="c()" />
+<text text-anchor="" x="14.9284904275899" y="635.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('system_call_fastpath (29933 samples, 99.84%)')" onmouseout="c()" >system_call_fastpath</text>
+<rect x="1162.1" y="369" width="1.6" height="15.0" fill="rgb(230,202,18)" rx="2" ry="2" onmouseover="s('nf_ct_deliver_cached_events (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="219.5" y="305" width="84.0" height="15.0" fill="rgb(242,65,16)" rx="2" ry="2" onmouseover="s('virtnet_poll (2135 samples, 7.12%)')" onmouseout="c()" />
+<text text-anchor="" x="222.497031552265" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('virtnet_poll (2135 samples, 7.12%)')" onmouseout="c()" >virtnet_po..</text>
+<rect x="1189.8" y="545" width="0.2" height="15.0" fill="rgb(230,75,17)" rx="2" ry="2" onmouseover="s('selinux_file_permission (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="121.5" y="433" width="4.4" height="15.0" fill="rgb(238,51,27)" rx="2" ry="2" onmouseover="s('ipv4_dst_check (110 samples, 0.37%)')" onmouseout="c()" />
+<rect x="69.5" y="449" width="2.1" height="15.0" fill="rgb(206,182,25)" rx="2" ry="2" onmouseover="s('new_slab (51 samples, 0.17%)')" onmouseout="c()" />
+<rect x="254.2" y="161" width="2.5" height="15.0" fill="rgb(215,203,0)" rx="2" ry="2" onmouseover="s('security_sock_rcv_skb (65 samples, 0.22%)')" onmouseout="c()" />
+<rect x="317.3" y="353" width="10.0" height="15.0" fill="rgb(245,123,41)" rx="2" ry="2" onmouseover="s('ktime_get_real (253 samples, 0.84%)')" onmouseout="c()" />
+<rect x="340.2" y="305" width="1.5" height="15.0" fill="rgb(241,24,43)" rx="2" ry="2" onmouseover="s('skb_release_head_state (39 samples, 0.13%)')" onmouseout="c()" />
+<rect x="1186.0" y="433" width="3.5" height="15.0" fill="rgb(219,20,10)" rx="2" ry="2" onmouseover="s('csum_partial (90 samples, 0.30%)')" onmouseout="c()" />
+<rect x="147.6" y="353" width="0.2" height="15.0" fill="rgb(225,116,28)" rx="2" ry="2" onmouseover="s('local_bh_enable (7 samples, 0.02%)')" onmouseout="c()" />
+<rect x="271.4" y="225" width="21.3" height="15.0" fill="rgb(226,229,10)" rx="2" ry="2" onmouseover="s('nf_iterate (540 samples, 1.80%)')" onmouseout="c()" />
+<rect x="37.0" y="433" width="0.9" height="15.0" fill="rgb(221,25,32)" rx="2" ry="2" onmouseover="s('kfree (24 samples, 0.08%)')" onmouseout="c()" />
+<rect x="387.5" y="321" width="769.8" height="15.0" fill="rgb(209,199,7)" rx="2" ry="2" onmouseover="s('vp_notify (19560 samples, 65.24%)')" onmouseout="c()" />
+<text text-anchor="" x="390.472483490094" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('vp_notify (19560 samples, 65.24%)')" onmouseout="c()" >vp_notify</text>
+<rect x="1167.1" y="449" width="1.3" height="15.0" fill="rgb(247,4,48)" rx="2" ry="2" onmouseover="s('skb_dst_set_noref (34 samples, 0.11%)')" onmouseout="c()" />
+<rect x="367.6" y="273" width="0.4" height="15.0" fill="rgb(226,33,43)" rx="2" ry="2" onmouseover="s('skb_release_data (11 samples, 0.04%)')" onmouseout="c()" />
+<rect x="84.3" y="401" width="0.6" height="15.0" fill="rgb(224,167,25)" rx="2" ry="2" onmouseover="s('get_page_from_freelist (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="1161.6" y="385" width="2.1" height="15.0" fill="rgb(212,9,36)" rx="2" ry="2" onmouseover="s('ipv4_confirm (54 samples, 0.18%)')" onmouseout="c()" />
+<rect x="92.4" y="273" width="0.1" height="15.0" fill="rgb(248,66,42)" rx="2" ry="2" onmouseover="s('tcp_v4_rcv (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="33.3" y="497" width="1.3" height="15.0" fill="rgb(235,206,42)" rx="2" ry="2" onmouseover="s('_raw_spin_unlock_bh (32 samples, 0.11%)')" onmouseout="c()" />
+<rect x="33.5" y="369" width="1.1" height="15.0" fill="rgb(229,181,18)" rx="2" ry="2" onmouseover="s('__netif_receive_skb (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="39.6" y="385" width="10.4" height="15.0" fill="rgb(252,214,3)" rx="2" ry="2" onmouseover="s('ip_output (265 samples, 0.88%)')" onmouseout="c()" />
+<rect x="263.8" y="145" width="0.9" height="15.0" fill="rgb(210,180,9)" rx="2" ry="2" onmouseover="s('tcp_mt (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="393.1" y="305" width="764.2" height="15.0" fill="rgb(253,109,2)" rx="2" ry="2" onmouseover="s('iowrite16 (19418 samples, 64.77%)')" onmouseout="c()" />
+<text text-anchor="" x="396.061170035355" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('iowrite16 (19418 samples, 64.77%)')" onmouseout="c()" >iowrite16</text>
+<rect x="1189.8" y="561" width="0.2" height="15.0" fill="rgb(240,13,28)" rx="2" ry="2" onmouseover="s('security_file_permission (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="95.4" y="497" width="1094.1" height="15.0" fill="rgb(211,120,9)" rx="2" ry="2" onmouseover="s('tcp_write_xmit (27799 samples, 92.72%)')" onmouseout="c()" />
+<text text-anchor="" x="98.4439330264826" y="507.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('tcp_write_xmit (27799 samples, 92.72%)')" onmouseout="c()" >tcp_write_xmit</text>
+<rect x="209.0" y="385" width="0.1" height="15.0" fill="rgb(231,102,24)" rx="2" ry="2" onmouseover="s('_raw_spin_lock (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="1157.3" y="401" width="2.3" height="15.0" fill="rgb(231,18,12)" rx="2" ry="2" onmouseover="s('ipv4_mtu (59 samples, 0.20%)')" onmouseout="c()" />
+<rect x="20.1" y="481" width="0.4" height="15.0" fill="rgb(205,180,40)" rx="2" ry="2" onmouseover="s('tcp_transmit_skb (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="92.8" y="337" width="1.4" height="15.0" fill="rgb(219,143,21)" rx="2" ry="2" onmouseover="s('dev_queue_xmit (35 samples, 0.12%)')" onmouseout="c()" />
+<rect x="58.4" y="513" width="33.9" height="15.0" fill="rgb(241,78,1)" rx="2" ry="2" onmouseover="s('sk_stream_alloc_skb (861 samples, 2.87%)')" onmouseout="c()" />
+<rect x="106.3" y="481" width="1083.2" height="15.0" fill="rgb(250,126,44)" rx="2" ry="2" onmouseover="s('tcp_transmit_skb (27523 samples, 91.80%)')" onmouseout="c()" />
+<text text-anchor="" x="109.306450536989" y="491.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('tcp_transmit_skb (27523 samples, 91.80%)')" onmouseout="c()" >tcp_transmit_skb</text>
+<rect x="38.8" y="337" width="0.8" height="15.0" fill="rgb(206,38,15)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_local (18 samples, 0.06%)')" onmouseout="c()" />
+<rect x="40.7" y="273" width="9.2" height="15.0" fill="rgb(231,66,5)" rx="2" ry="2" onmouseover="s('vp_notify (235 samples, 0.78%)')" onmouseout="c()" />
+<rect x="92.6" y="449" width="1.7" height="15.0" fill="rgb(254,60,4)" rx="2" ry="2" onmouseover="s('__tcp_push_pending_frames (43 samples, 0.14%)')" onmouseout="c()" />
+<rect x="57.9" y="433" width="0.1" height="15.0" fill="rgb(239,80,31)" rx="2" ry="2" onmouseover="s('tcp_is_cwnd_limited (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="40.3" y="305" width="9.6" height="15.0" fill="rgb(220,36,33)" rx="2" ry="2" onmouseover="s('start_xmit (245 samples, 0.82%)')" onmouseout="c()" />
+<rect x="92.6" y="321" width="0.1" height="15.0" fill="rgb(224,155,44)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_local (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="12.6" y="577" width="1177.2" height="15.0" fill="rgb(239,1,4)" rx="2" ry="2" onmouseover="s('do_sync_write (29911 samples, 99.76%)')" onmouseout="c()" />
+<text text-anchor="" x="15.5975585351211" y="587.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('do_sync_write (29911 samples, 99.76%)')" onmouseout="c()" >do_sync_write</text>
+<rect x="254.7" y="145" width="2.0" height="15.0" fill="rgb(226,161,6)" rx="2" ry="2" onmouseover="s('selinux_socket_sock_rcv_skb (51 samples, 0.17%)')" onmouseout="c()" />
+<rect x="40.5" y="241" width="0.1" height="15.0" fill="rgb(206,143,27)" rx="2" ry="2" onmouseover="s('kfree (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="276.6" y="161" width="2.0" height="15.0" fill="rgb(208,206,10)" rx="2" ry="2" onmouseover="s('____nf_conntrack_find (52 samples, 0.17%)')" onmouseout="c()" />
+<rect x="281.0" y="161" width="0.2" height="15.0" fill="rgb(220,94,31)" rx="2" ry="2" onmouseover="s('ipv4_pkt_to_tuple (7 samples, 0.02%)')" onmouseout="c()" />
+<rect x="127.8" y="417" width="67.6" height="15.0" fill="rgb(238,194,5)" rx="2" ry="2" onmouseover="s('nf_hook_slow (1718 samples, 5.73%)')" onmouseout="c()" />
+<text text-anchor="" x="130.834700820492" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('nf_hook_slow (1718 samples, 5.73%)')" onmouseout="c()" >nf_hook_..</text>
+<rect x="1166.9" y="337" width="0.2" height="15.0" fill="rgb(236,124,9)" rx="2" ry="2" onmouseover="s('netlbl_enabled (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="92.8" y="289" width="1.4" height="15.0" fill="rgb(247,150,51)" rx="2" ry="2" onmouseover="s('start_xmit (34 samples, 0.11%)')" onmouseout="c()" />
+<rect x="20.1" y="433" width="0.4" height="15.0" fill="rgb(248,68,35)" rx="2" ry="2" onmouseover="s('ip_output (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="40.0" y="305" width="0.1" height="15.0" fill="rgb(231,95,16)" rx="2" ry="2" onmouseover="s('ktime_get_real (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="33.6" y="321" width="0.6" height="15.0" fill="rgb(234,59,4)" rx="2" ry="2" onmouseover="s('ip_local_deliver (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="57.5" y="417" width="0.2" height="15.0" fill="rgb(227,131,38)" rx="2" ry="2" onmouseover="s('_raw_spin_unlock_irqrestore (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="54.2" y="401" width="0.5" height="15.0" fill="rgb(245,58,37)" rx="2" ry="2" onmouseover="s('put_cpu_partial (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="92.4" y="353" width="0.1" height="15.0" fill="rgb(235,218,30)" rx="2" ry="2" onmouseover="s('__netif_receive_skb (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="90.8" y="465" width="1.5" height="15.0" fill="rgb(244,100,9)" rx="2" ry="2" onmouseover="s('__phys_addr (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="92.8" y="321" width="1.4" height="15.0" fill="rgb(209,173,39)" rx="2" ry="2" onmouseover="s('sch_direct_xmit (35 samples, 0.12%)')" onmouseout="c()" />
+<rect x="1179.7" y="449" width="3.8" height="15.0" fill="rgb(210,55,19)" rx="2" ry="2" onmouseover="s('tcp_v4_md5_lookup (96 samples, 0.32%)')" onmouseout="c()" />
+<rect x="11.5" y="625" width="0.3" height="15.0" fill="rgb(206,157,24)" rx="2" ry="2" onmouseover="s('sysret_audit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="303.5" y="321" width="0.4" height="15.0" fill="rgb(231,5,25)" rx="2" ry="2" onmouseover="s('rcu_bh_qs (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="375.0" y="273" width="0.2" height="15.0" fill="rgb(244,153,21)" rx="2" ry="2" onmouseover="s('__phys_addr (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="190.1" y="337" width="1.5" height="15.0" fill="rgb(221,105,43)" rx="2" ry="2" onmouseover="s('_raw_spin_unlock_bh (38 samples, 0.13%)')" onmouseout="c()" />
+<rect x="285.4" y="97" width="1.0" height="15.0" fill="rgb(229,41,10)" rx="2" ry="2" onmouseover="s('csum_partial (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="323.3" y="289" width="4.0" height="15.0" fill="rgb(243,152,8)" rx="2" ry="2" onmouseover="s('pvclock_clocksource_read (102 samples, 0.34%)')" onmouseout="c()" />
+<rect x="11.3" y="593" width="0.1" height="15.0" fill="rgb(237,39,4)" rx="2" ry="2" onmouseover="s('handle_mm_fault (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="203.1" y="401" width="1.6" height="15.0" fill="rgb(239,109,25)" rx="2" ry="2" onmouseover="s('__memcpy (41 samples, 0.14%)')" onmouseout="c()" />
+<rect x="237.7" y="289" width="63.1" height="15.0" fill="rgb(209,39,26)" rx="2" ry="2" onmouseover="s('netif_receive_skb (1603 samples, 5.35%)')" onmouseout="c()" />
+<text text-anchor="" x="240.719298245614" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('netif_receive_skb (1603 samples, 5.35%)')" onmouseout="c()" >netif_r..</text>
+<rect x="92.8" y="353" width="1.4" height="15.0" fill="rgb(222,0,31)" rx="2" ry="2" onmouseover="s('ip_finish_output (36 samples, 0.12%)')" onmouseout="c()" />
+<rect x="36.6" y="449" width="1.3" height="15.0" fill="rgb(241,221,35)" rx="2" ry="2" onmouseover="s('skb_release_data (33 samples, 0.11%)')" onmouseout="c()" />
+<rect x="39.8" y="337" width="10.1" height="15.0" fill="rgb(225,157,44)" rx="2" ry="2" onmouseover="s('sch_direct_xmit (258 samples, 0.86%)')" onmouseout="c()" />
+<rect x="37.8" y="401" width="0.1" height="15.0" fill="rgb(214,72,46)" rx="2" ry="2" onmouseover="s('put_cpu_partial (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="38.3" y="449" width="11.9" height="15.0" fill="rgb(252,126,29)" rx="2" ry="2" onmouseover="s('tcp_write_xmit (302 samples, 1.01%)')" onmouseout="c()" />
+<rect x="20.1" y="337" width="0.4" height="15.0" fill="rgb(220,97,36)" rx="2" ry="2" onmouseover="s('virtqueue_kick (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="348.7" y="321" width="1.2" height="15.0" fill="rgb(221,220,7)" rx="2" ry="2" onmouseover="s('__copy_skb_header (31 samples, 0.10%)')" onmouseout="c()" />
+<rect x="230.8" y="241" width="0.6" height="15.0" fill="rgb(243,76,13)" rx="2" ry="2" onmouseover="s('get_slab (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="244.7" y="225" width="21.1" height="15.0" fill="rgb(235,129,13)" rx="2" ry="2" onmouseover="s('ip_local_deliver (535 samples, 1.78%)')" onmouseout="c()" />
+<rect x="335.6" y="305" width="4.0" height="15.0" fill="rgb(245,66,8)" rx="2" ry="2" onmouseover="s('kmem_cache_free (102 samples, 0.34%)')" onmouseout="c()" />
+<rect x="270.7" y="241" width="22.0" height="15.0" fill="rgb(214,60,53)" rx="2" ry="2" onmouseover="s('nf_hook_slow (559 samples, 1.86%)')" onmouseout="c()" />
+<rect x="301.6" y="273" width="0.5" height="15.0" fill="rgb(232,135,4)" rx="2" ry="2" onmouseover="s('virtqueue_add_buf_gfp (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="92.9" y="257" width="1.3" height="15.0" fill="rgb(208,222,15)" rx="2" ry="2" onmouseover="s('vp_notify (33 samples, 0.11%)')" onmouseout="c()" />
+<rect x="347.5" y="353" width="6.6" height="15.0" fill="rgb(245,2,1)" rx="2" ry="2" onmouseover="s('skb_clone (168 samples, 0.56%)')" onmouseout="c()" />
+<rect x="382.2" y="321" width="4.0" height="15.0" fill="rgb(215,82,20)" rx="2" ry="2" onmouseover="s('__kmalloc (100 samples, 0.33%)')" onmouseout="c()" />
+<rect x="364.9" y="321" width="3.3" height="15.0" fill="rgb(238,62,13)" rx="2" ry="2" onmouseover="s('dev_kfree_skb_any (84 samples, 0.28%)')" onmouseout="c()" />
+<rect x="92.6" y="433" width="1.7" height="15.0" fill="rgb(254,116,45)" rx="2" ry="2" onmouseover="s('tcp_write_xmit (43 samples, 0.14%)')" onmouseout="c()" />
+<rect x="291.6" y="145" width="0.2" height="15.0" fill="rgb(240,39,45)" rx="2" ry="2" onmouseover="s('local_bh_disable (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="347.4" y="337" width="0.1" height="15.0" fill="rgb(216,0,26)" rx="2" ry="2" onmouseover="s('skb_push (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="92.4" y="241" width="0.1" height="15.0" fill="rgb(237,71,14)" rx="2" ry="2" onmouseover="s('tcp_rcv_established (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="38.8" y="321" width="0.8" height="15.0" fill="rgb(211,183,35)" rx="2" ry="2" onmouseover="s('nf_conntrack_in (18 samples, 0.06%)')" onmouseout="c()" />
+<rect x="217.1" y="321" width="86.4" height="15.0" fill="rgb(219,39,17)" rx="2" ry="2" onmouseover="s('net_rx_action (2196 samples, 7.32%)')" onmouseout="c()" />
+<text text-anchor="" x="220.096257754653" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('net_rx_action (2196 samples, 7.32%)')" onmouseout="c()" >net_rx_act..</text>
+<rect x="282.5" y="161" width="3.9" height="15.0" fill="rgb(241,131,14)" rx="2" ry="2" onmouseover="s('nf_ip_checksum (99 samples, 0.33%)')" onmouseout="c()" />
+<rect x="230.5" y="225" width="0.3" height="15.0" fill="rgb(216,174,19)" rx="2" ry="2" onmouseover="s('arch_local_irq_save (8 samples, 0.03%)')" onmouseout="c()" />
+<rect x="92.6" y="401" width="1.6" height="15.0" fill="rgb(245,155,42)" rx="2" ry="2" onmouseover="s('ip_queue_xmit (41 samples, 0.14%)')" onmouseout="c()" />
+<rect x="20.1" y="417" width="0.4" height="15.0" fill="rgb(226,186,29)" rx="2" ry="2" onmouseover="s('ip_finish_output (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="53.1" y="449" width="4.2" height="15.0" fill="rgb(220,124,16)" rx="2" ry="2" onmouseover="s('__kfree_skb (105 samples, 0.35%)')" onmouseout="c()" />
+<rect x="283.4" y="145" width="3.0" height="15.0" fill="rgb(233,171,31)" rx="2" ry="2" onmouseover="s('__skb_checksum_complete (77 samples, 0.26%)')" onmouseout="c()" />
+<rect x="353.7" y="321" width="0.4" height="15.0" fill="rgb(247,89,38)" rx="2" ry="2" onmouseover="s('__slab_alloc (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="349.9" y="337" width="4.2" height="15.0" fill="rgb(214,2,26)" rx="2" ry="2" onmouseover="s('kmem_cache_alloc (107 samples, 0.36%)')" onmouseout="c()" />
+<rect x="222.9" y="289" width="1.7" height="15.0" fill="rgb(232,51,16)" rx="2" ry="2" onmouseover="s('__memcpy (43 samples, 0.14%)')" onmouseout="c()" />
+<rect x="33.7" y="257" width="0.4" height="15.0" fill="rgb(229,89,15)" rx="2" ry="2" onmouseover="s('tcp_rcv_established (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="325.9" y="273" width="1.4" height="15.0" fill="rgb(244,17,25)" rx="2" ry="2" onmouseover="s('native_read_tsc (35 samples, 0.12%)')" onmouseout="c()" />
+<rect x="1189.8" y="577" width="0.2" height="15.0" fill="rgb(206,93,42)" rx="2" ry="2" onmouseover="s('rw_verify_area (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="348.1" y="337" width="1.8" height="15.0" fill="rgb(220,219,42)" rx="2" ry="2" onmouseover="s('__skb_clone (47 samples, 0.16%)')" onmouseout="c()" />
+<rect x="38.1" y="433" width="0.2" height="15.0" fill="rgb(240,133,25)" rx="2" ry="2" onmouseover="s('dst_release (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="158.7" y="337" width="6.4" height="15.0" fill="rgb(248,225,4)" rx="2" ry="2" onmouseover="s('____nf_conntrack_find (165 samples, 0.55%)')" onmouseout="c()" />
+<rect x="226.3" y="257" width="5.1" height="15.0" fill="rgb(237,217,3)" rx="2" ry="2" onmouseover="s('__kmalloc_node_track_caller (129 samples, 0.43%)')" onmouseout="c()" />
+<rect x="295.2" y="241" width="2.1" height="15.0" fill="rgb(214,160,37)" rx="2" ry="2" onmouseover="s('sk_run_filter (53 samples, 0.18%)')" onmouseout="c()" />
+<rect x="20.1" y="465" width="0.4" height="15.0" fill="rgb(233,127,3)" rx="2" ry="2" onmouseover="s('ip_queue_xmit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="375.9" y="321" width="1.8" height="15.0" fill="rgb(244,202,40)" rx="2" ry="2" onmouseover="s('__skb_to_sgvec (46 samples, 0.15%)')" onmouseout="c()" />
+<rect x="290.7" y="161" width="0.8" height="15.0" fill="rgb(209,207,37)" rx="2" ry="2" onmouseover="s('__nf_ct_refresh_acct (19 samples, 0.06%)')" onmouseout="c()" />
+<rect x="1170.2" y="449" width="6.7" height="15.0" fill="rgb(245,3,7)" rx="2" ry="2" onmouseover="s('__skb_clone (170 samples, 0.57%)')" onmouseout="c()" />
+<rect x="20.1" y="385" width="0.4" height="15.0" fill="rgb(226,158,47)" rx="2" ry="2" onmouseover="s('sch_direct_xmit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="1160.0" y="417" width="7.1" height="15.0" fill="rgb(219,137,30)" rx="2" ry="2" onmouseover="s('nf_hook_slow (178 samples, 0.59%)')" onmouseout="c()" />
+<rect x="1164.8" y="369" width="2.3" height="15.0" fill="rgb(216,105,45)" rx="2" ry="2" onmouseover="s('selinux_ip_postroute (58 samples, 0.19%)')" onmouseout="c()" />
+<rect x="354.1" y="353" width="1.4" height="15.0" fill="rgb(246,146,28)" rx="2" ry="2" onmouseover="s('sock_wfree (34 samples, 0.11%)')" onmouseout="c()" />
+<rect x="327.3" y="353" width="2.6" height="15.0" fill="rgb(241,60,28)" rx="2" ry="2" onmouseover="s('netif_skb_features (65 samples, 0.22%)')" onmouseout="c()" />
+<rect x="37.9" y="449" width="0.4" height="15.0" fill="rgb(238,210,35)" rx="2" ry="2" onmouseover="s('skb_release_head_state (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="225.3" y="273" width="10.8" height="15.0" fill="rgb(236,48,11)" rx="2" ry="2" onmouseover="s('__alloc_skb (276 samples, 0.92%)')" onmouseout="c()" />
+<rect x="368.2" y="321" width="7.0" height="15.0" fill="rgb(231,190,52)" rx="2" ry="2" onmouseover="s('virtqueue_get_buf (177 samples, 0.59%)')" onmouseout="c()" />
+<rect x="11.3" y="609" width="0.1" height="15.0" fill="rgb(252,95,1)" rx="2" ry="2" onmouseover="s('do_page_fault (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="234.1" y="241" width="0.5" height="15.0" fill="rgb(213,8,16)" rx="2" ry="2" onmouseover="s('__slab_alloc (13 samples, 0.04%)')" onmouseout="c()" />
+<rect x="38.7" y="353" width="0.9" height="15.0" fill="rgb(246,70,51)" rx="2" ry="2" onmouseover="s('nf_iterate (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="92.8" y="369" width="1.4" height="15.0" fill="rgb(230,0,33)" rx="2" ry="2" onmouseover="s('ip_output (36 samples, 0.12%)')" onmouseout="c()" />
+<rect x="209.1" y="385" width="0.3" height="15.0" fill="rgb(215,133,44)" rx="2" ry="2" onmouseover="s('local_bh_disable (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="301.0" y="289" width="1.1" height="15.0" fill="rgb(223,51,44)" rx="2" ry="2" onmouseover="s('try_fill_recv (28 samples, 0.09%)')" onmouseout="c()" />
+<rect x="256.2" y="129" width="0.5" height="15.0" fill="rgb(218,164,50)" rx="2" ry="2" onmouseover="s('netlbl_enabled (13 samples, 0.04%)')" onmouseout="c()" />
+<rect x="113.4" y="465" width="0.9" height="15.0" fill="rgb(244,91,22)" rx="2" ry="2" onmouseover="s('__tcp_select_window (22 samples, 0.07%)')" onmouseout="c()" />
+<rect x="278.6" y="177" width="1.1" height="15.0" fill="rgb(220,187,42)" rx="2" ry="2" onmouseover="s('__nf_ct_l4proto_find (28 samples, 0.09%)')" onmouseout="c()" />
+<rect x="38.7" y="401" width="11.3" height="15.0" fill="rgb(222,183,24)" rx="2" ry="2" onmouseover="s('ip_local_out (288 samples, 0.96%)')" onmouseout="c()" />
+<rect x="150.3" y="385" width="41.7" height="15.0" fill="rgb(208,148,12)" rx="2" ry="2" onmouseover="s('ipv4_conntrack_local (1061 samples, 3.54%)')" onmouseout="c()" />
+<rect x="334.9" y="321" width="6.8" height="15.0" fill="rgb(250,20,13)" rx="2" ry="2" onmouseover="s('__kfree_skb (173 samples, 0.58%)')" onmouseout="c()" />
+<rect x="33.6" y="353" width="0.9" height="15.0" fill="rgb(222,163,43)" rx="2" ry="2" onmouseover="s('ip_rcv (23 samples, 0.08%)')" onmouseout="c()" />
+<rect x="214.1" y="369" width="89.8" height="15.0" fill="rgb(227,67,46)" rx="2" ry="2" onmouseover="s('do_softirq (2281 samples, 7.61%)')" onmouseout="c()" />
+<text text-anchor="" x="217.144486692015" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('do_softirq (2281 samples, 7.61%)')" onmouseout="c()" >do_softirq</text>
+<rect x="190.5" y="321" width="1.1" height="15.0" fill="rgb(252,30,29)" rx="2" ry="2" onmouseover="s('local_bh_enable_ip (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="54.7" y="433" width="2.4" height="15.0" fill="rgb(241,91,20)" rx="2" ry="2" onmouseover="s('skb_release_data (63 samples, 0.21%)')" onmouseout="c()" />
+<rect x="58.3" y="481" width="0.1" height="15.0" fill="rgb(245,184,35)" rx="2" ry="2" onmouseover="s('tcp_v4_md5_do_lookup (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="1163.7" y="385" width="3.4" height="15.0" fill="rgb(254,143,20)" rx="2" ry="2" onmouseover="s('selinux_ipv4_postroute (85 samples, 0.28%)')" onmouseout="c()" />
+<rect x="57.3" y="433" width="0.5" height="15.0" fill="rgb(234,61,27)" rx="2" ry="2" onmouseover="s('mod_timer (12 samples, 0.04%)')" onmouseout="c()" />
+<rect x="377.5" y="305" width="0.2" height="15.0" fill="rgb(235,88,52)" rx="2" ry="2" onmouseover="s('__phys_addr (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="38.4" y="433" width="11.8" height="15.0" fill="rgb(222,93,20)" rx="2" ry="2" onmouseover="s('tcp_transmit_skb (300 samples, 1.00%)')" onmouseout="c()" />
+<rect x="92.4" y="337" width="0.1" height="15.0" fill="rgb(249,31,45)" rx="2" ry="2" onmouseover="s('ip_rcv (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="279.7" y="177" width="0.6" height="15.0" fill="rgb(246,212,46)" rx="2" ry="2" onmouseover="s('hash_conntrack_raw (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="299.2" y="257" width="1.6" height="15.0" fill="rgb(222,53,8)" rx="2" ry="2" onmouseover="s('getnstimeofday (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="259.0" y="161" width="5.7" height="15.0" fill="rgb(245,66,44)" rx="2" ry="2" onmouseover="s('ipt_do_table (144 samples, 0.48%)')" onmouseout="c()" />
+<rect x="195.4" y="433" width="971.7" height="15.0" fill="rgb(228,47,37)" rx="2" ry="2" onmouseover="s('ip_output (24687 samples, 82.34%)')" onmouseout="c()" />
+<text text-anchor="" x="198.449936628644" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('ip_output (24687 samples, 82.34%)')" onmouseout="c()" >ip_output</text>
+<rect x="152.0" y="369" width="40.0" height="15.0" fill="rgb(253,208,3)" rx="2" ry="2" onmouseover="s('nf_conntrack_in (1016 samples, 3.39%)')" onmouseout="c()" />
+<rect x="215.6" y="353" width="88.3" height="15.0" fill="rgb(205,157,52)" rx="2" ry="2" onmouseover="s('call_softirq (2244 samples, 7.48%)')" onmouseout="c()" />
+<text text-anchor="" x="218.600693749583" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('call_softirq (2244 samples, 7.48%)')" onmouseout="c()" >call_softi..</text>
+<rect x="20.1" y="369" width="0.4" height="15.0" fill="rgb(253,146,36)" rx="2" ry="2" onmouseover="s('dev_hard_start_xmit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="79.6" y="465" width="5.4" height="15.0" fill="rgb(254,30,33)" rx="2" ry="2" onmouseover="s('__slab_alloc (137 samples, 0.46%)')" onmouseout="c()" />
+<rect x="292.7" y="257" width="4.8" height="15.0" fill="rgb(232,85,10)" rx="2" ry="2" onmouseover="s('packet_rcv (124 samples, 0.41%)')" onmouseout="c()" />
+<rect x="1173.2" y="433" width="3.7" height="15.0" fill="rgb(217,105,47)" rx="2" ry="2" onmouseover="s('__copy_skb_header (94 samples, 0.31%)')" onmouseout="c()" />
+<rect x="38.5" y="417" width="11.5" height="15.0" fill="rgb(221,199,9)" rx="2" ry="2" onmouseover="s('ip_queue_xmit (292 samples, 0.97%)')" onmouseout="c()" />
+<rect x="34.2" y="337" width="0.3" height="15.0" fill="rgb(245,35,54)" rx="2" ry="2" onmouseover="s('nf_hook_slow (6 samples, 0.02%)')" onmouseout="c()" />
+<rect x="33.3" y="465" width="1.3" height="15.0" fill="rgb(243,145,42)" rx="2" ry="2" onmouseover="s('do_softirq (32 samples, 0.11%)')" onmouseout="c()" />
+<rect x="20.1" y="513" width="0.4" height="15.0" fill="rgb(248,96,50)" rx="2" ry="2" onmouseover="s('__tcp_push_pending_frames (10 samples, 0.03%)')" onmouseout="c()" />
+<rect x="384.6" y="305" width="1.6" height="15.0" fill="rgb(244,217,2)" rx="2" ry="2" onmouseover="s('get_slab (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="318.7" y="337" width="8.6" height="15.0" fill="rgb(239,188,46)" rx="2" ry="2" onmouseover="s('getnstimeofday (219 samples, 0.73%)')" onmouseout="c()" />
+<rect x="92.4" y="449" width="0.2" height="15.0" fill="rgb(209,182,19)" rx="2" ry="2" onmouseover="s('do_softirq (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="39.6" y="369" width="10.4" height="15.0" fill="rgb(231,154,29)" rx="2" ry="2" onmouseover="s('ip_finish_output (264 samples, 0.88%)')" onmouseout="c()" />
+<rect x="40.7" y="289" width="9.2" height="15.0" fill="rgb(243,141,39)" rx="2" ry="2" onmouseover="s('virtqueue_kick (235 samples, 0.78%)')" onmouseout="c()" />
+<rect x="92.6" y="337" width="0.2" height="15.0" fill="rgb(214,198,47)" rx="2" ry="2" onmouseover="s('nf_iterate (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="92.6" y="385" width="1.6" height="15.0" fill="rgb(227,145,3)" rx="2" ry="2" onmouseover="s('ip_local_out (40 samples, 0.13%)')" onmouseout="c()" />
+<rect x="100.3" y="481" width="4.0" height="15.0" fill="rgb(217,219,28)" rx="2" ry="2" onmouseover="s('tcp_event_new_data_sent (100 samples, 0.33%)')" onmouseout="c()" />
+<rect x="238.2" y="273" width="59.3" height="15.0" fill="rgb(249,48,41)" rx="2" ry="2" onmouseover="s('__netif_receive_skb (1508 samples, 5.03%)')" onmouseout="c()" />
+<text text-anchor="" x="241.191581615636" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('__netif_receive_skb (1508 samples, 5.03%)')" onmouseout="c()" >__netif..</text>
+<rect x="262.9" y="145" width="0.9" height="15.0" fill="rgb(217,61,1)" rx="2" ry="2" onmouseover="s('state_mt (23 samples, 0.08%)')" onmouseout="c()" />
+<rect x="281.4" y="177" width="5.0" height="15.0" fill="rgb(224,179,27)" rx="2" ry="2" onmouseover="s('tcp_error (127 samples, 0.42%)')" onmouseout="c()" />
+<rect x="299.8" y="225" width="1.0" height="15.0" fill="rgb(240,23,16)" rx="2" ry="2" onmouseover="s('kvm_clock_read (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="280.4" y="177" width="1.0" height="15.0" fill="rgb(232,17,18)" rx="2" ry="2" onmouseover="s('nf_ct_get_tuple (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="192.0" y="385" width="3.4" height="15.0" fill="rgb(241,33,22)" rx="2" ry="2" onmouseover="s('selinux_ipv4_output (87 samples, 0.29%)')" onmouseout="c()" />
+<rect x="169.8" y="353" width="0.6" height="15.0" fill="rgb(244,33,3)" rx="2" ry="2" onmouseover="s('ipv4_get_l4proto (14 samples, 0.05%)')" onmouseout="c()" />
+<rect x="297.5" y="273" width="1.1" height="15.0" fill="rgb(240,85,47)" rx="2" ry="2" onmouseover="s('get_rps_cpu (26 samples, 0.09%)')" onmouseout="c()" />
+<rect x="33.4" y="401" width="1.2" height="15.0" fill="rgb(240,218,44)" rx="2" ry="2" onmouseover="s('virtnet_poll (30 samples, 0.10%)')" onmouseout="c()" />
+<rect x="94.6" y="513" width="1094.9" height="15.0" fill="rgb(212,122,16)" rx="2" ry="2" onmouseover="s('tcp_push_one (27820 samples, 92.79%)')" onmouseout="c()" />
+<text text-anchor="" x="97.617437128944" y="523.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('tcp_push_one (27820 samples, 92.79%)')" onmouseout="c()" >tcp_push_one</text>
+<rect x="92.4" y="465" width="0.2" height="15.0" fill="rgb(233,56,38)" rx="2" ry="2" onmouseover="s('local_bh_enable_ip (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="34.6" y="497" width="23.8" height="15.0" fill="rgb(252,87,41)" rx="2" ry="2" onmouseover="s('tcp_v4_do_rcv (607 samples, 2.02%)')" onmouseout="c()" />
+<rect x="1184.2" y="465" width="5.3" height="15.0" fill="rgb(241,86,20)" rx="2" ry="2" onmouseover="s('tcp_v4_send_check (135 samples, 0.45%)')" onmouseout="c()" />
+<rect x="92.6" y="369" width="0.2" height="15.0" fill="rgb(253,178,1)" rx="2" ry="2" onmouseover="s('__ip_local_out (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="301.4" y="241" width="0.2" height="15.0" fill="rgb(205,22,37)" rx="2" ry="2" onmouseover="s('memset (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="372.4" y="289" width="2.8" height="15.0" fill="rgb(231,36,20)" rx="2" ry="2" onmouseover="s('kfree (71 samples, 0.24%)')" onmouseout="c()" />
+<rect x="11.5" y="609" width="0.3" height="15.0" fill="rgb(230,99,0)" rx="2" ry="2" onmouseover="s('audit_syscall_exit (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="63.7" y="481" width="10.1" height="15.0" fill="rgb(222,216,24)" rx="2" ry="2" onmouseover="s('__kmalloc_node_track_caller (256 samples, 0.85%)')" onmouseout="c()" />
+<rect x="32.8" y="513" width="25.6" height="15.0" fill="rgb(205,176,33)" rx="2" ry="2" onmouseover="s('release_sock (651 samples, 2.17%)')" onmouseout="c()" />
+<rect x="162.8" y="321" width="1.4" height="15.0" fill="rgb(231,48,44)" rx="2" ry="2" onmouseover="s('local_bh_disable (37 samples, 0.12%)')" onmouseout="c()" />
+<rect x="84.1" y="433" width="0.9" height="15.0" fill="rgb(221,194,14)" rx="2" ry="2" onmouseover="s('alloc_pages_current (21 samples, 0.07%)')" onmouseout="c()" />
+<rect x="55.0" y="417" width="2.1" height="15.0" fill="rgb(224,213,20)" rx="2" ry="2" onmouseover="s('kfree (55 samples, 0.18%)')" onmouseout="c()" />
+<rect x="60.2" y="497" width="32.1" height="15.0" fill="rgb(253,177,0)" rx="2" ry="2" onmouseover="s('__alloc_skb (816 samples, 2.72%)')" onmouseout="c()" />
+<rect x="170.4" y="353" width="3.0" height="15.0" fill="rgb(247,47,53)" rx="2" ry="2" onmouseover="s('nf_ct_get_tuple (78 samples, 0.26%)')" onmouseout="c()" />
+<rect x="204.7" y="401" width="952.6" height="15.0" fill="rgb(225,80,39)" rx="2" ry="2" onmouseover="s('dev_queue_xmit (24204 samples, 80.73%)')" onmouseout="c()" />
+<text text-anchor="" x="207.698819291575" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" onmouseover="s('dev_queue_xmit (24204 samples, 80.73%)')" onmouseout="c()" >dev_queue_xmit</text>
+<rect x="371.4" y="305" width="3.8" height="15.0" fill="rgb(208,105,36)" rx="2" ry="2" onmouseover="s('detach_buf (96 samples, 0.32%)')" onmouseout="c()" />
+<rect x="33.1" y="497" width="0.2" height="15.0" fill="rgb(247,30,45)" rx="2" ry="2" onmouseover="s('__cond_resched_softirq (4 samples, 0.01%)')" onmouseout="c()" />
+<rect x="291.5" y="161" width="0.3" height="15.0" fill="rgb(240,54,33)" rx="2" ry="2" onmouseover="s('_raw_spin_lock_bh (7 samples, 0.02%)')" onmouseout="c()" />
+<rect x="270.0" y="209" width="0.7" height="15.0" fill="rgb(234,103,24)" rx="2" ry="2" onmouseover="s('skb_dst_set_noref (17 samples, 0.06%)')" onmouseout="c()" />
+<rect x="281.2" y="161" width="0.2" height="15.0" fill="rgb(248,123,53)" rx="2" ry="2" onmouseover="s('tcp_pkt_to_tuple (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="218.5" y="305" width="0.6" height="15.0" fill="rgb(215,37,37)" rx="2" ry="2" onmouseover="s('dma_issue_pending_all (15 samples, 0.05%)')" onmouseout="c()" />
+<rect x="92.4" y="401" width="0.2" height="15.0" fill="rgb(232,154,26)" rx="2" ry="2" onmouseover="s('net_rx_action (5 samples, 0.02%)')" onmouseout="c()" />
+<rect x="20.1" y="321" width="0.4" height="15.0" fill="rgb(249,179,1)" rx="2" ry="2" onmouseover="s('vp_notify (9 samples, 0.03%)')" onmouseout="c()" />
+<rect x="86.5" y="481" width="5.8" height="15.0" fill="rgb(211,60,34)" rx="2" ry="2" onmouseover="s('ksize (148 samples, 0.49%)')" onmouseout="c()" />
+<rect x="165.1" y="353" width="3.4" height="15.0" fill="rgb(212,22,27)" rx="2" ry="2" onmouseover="s('__nf_ct_l4proto_find (84 samples, 0.28%)')" onmouseout="c()" />
+<rect x="164.2" y="321" width="0.9" height="15.0" fill="rgb(233,169,6)" rx="2" ry="2" onmouseover="s('local_bh_enable (23 samples, 0.08%)')" onmouseout="c()" />
+<rect x="92.4" y="321" width="0.1" height="15.0" fill="rgb(239,115,1)" rx="2" ry="2" onmouseover="s('ip_rcv_finish (3 samples, 0.01%)')" onmouseout="c()" />
+<rect x="193.3" y="369" width="2.1" height="15.0" fill="rgb(228,13,31)" rx="2" ry="2" onmouseover="s('netlbl_enabled (55 samples, 0.18%)')" onmouseout="c()" />
+</svg>
