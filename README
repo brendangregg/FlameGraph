@@ -21,11 +21,11 @@ Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
 
 Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 97 Hertz:
 
-# dtrace -x ustackframes=100 -n 'profile-97 /PID == 12345 && arg1/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
+# dtrace -x ustackframes=100 -n 'profile-97 /pid == 12345 && arg1/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
 
 Using DTrace to capture 60 seconds of user-level stacks, including while time is spent in the kernel, for PID 12345 at 97 Hertz:
 
-# dtrace -x ustackframes=100 -n 'profile-97 /PID == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
+# dtrace -x ustackframes=100 -n 'profile-97 /pid == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
 
 Switch ustack() for jstack() if the application has a ustack helper to include translated frames (eg, node.js frames; see: http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/).  The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using jstack() as it performs additional work to translate frames.
 
