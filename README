@@ -91,9 +91,9 @@ USAGE: ./flamegraph.pl [options] infile > outfile.svg
         --fontsize              # font size (default 12)
         --countname             # count type label (default "samples")
         --nametype              # name type label (default "Function:")
-        --colors		        # "hot", "mem", "io" palette (default "hot")
-        --hash			        # colors are keyed by function name hash
-        --cp			        # use consistent palette (palette.map)
+        --colors                # "hot", "mem", "io" palette (default "hot")
+        --hash                  # colors are keyed by function name hash
+        --cp                    # use consistent palette (palette.map)
     eg,
         ./flamegraph.pl --titletext="Flame Graph: malloc()" trace.txt > graph.svg
 

@@ -91,21 +91,21 @@ my %palette_map;		# palette map hash
 my $pal_file = "palette.map";	# palette map file name
 
 GetOptions(
-	'fonttype=s'	=> \$fonttype,
-	'width=i'	=> \$imagewidth,
-	'height=i'	=> \$frameheight,
-	'fontsize=f'	=> \$fontsize,
-	'fontwidth=f'	=> \$fontwidth,
-	'minwidth=f'	=> \$minwidth,
-	'title=s'	=> \$titletext,
-	'nametype=s'	=> \$nametype,
-	'countname=s'	=> \$countname,
-	'nameattr=s'	=> \$nameattrfile,
-	'total=s'	=> \$timemax,
-	'factor=f'	=> \$factor,
-	'colors=s'	=> \$colors,
-	'hash'		=> \$hash,
-	'cp'		=> \$palette,
+	'fonttype=s'		=> \$fonttype,
+	'width=i'		=> \$imagewidth,
+	'height=i'		=> \$frameheight,
+	'fontsize=f'		=> \$fontsize,
+	'fontwidth=f'		=> \$fontwidth,
+	'minwidth=f'		=> \$minwidth,
+	'title=s'		=> \$titletext,
+	'nametype=s'		=> \$nametype,
+	'countname=s'		=> \$countname,
+	'nameattr=s'		=> \$nameattrfile,
+	'total=s'		=> \$timemax,
+	'factor=f'		=> \$factor,
+	'colors=s'		=> \$colors,
+	'hash'			=> \$hash,
+	'cp'			=> \$palette,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title			# change title text
@@ -476,7 +476,7 @@ while (my ($id, $node) = each %Node) {
 		$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, "");
 	}
 
-        $im->group_end($nameattr);
+	$im->group_end($nameattr);
 }
 
 print $im->svg;
@@ -485,4 +485,4 @@ if ($palette) {
 	write_palette();
 }
 
-# vim: tw=8 ts=8 sw=8 noexpandtab
+# vim: ts=8 sts=0 sw=8 noexpandtab
