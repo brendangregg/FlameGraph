@@ -71,63 +71,63 @@ use Getopt::Long;
 
 # tunables
 my $fonttype = "Verdana";
-my $imagewidth = 1200;		# max width, pixels
-my $frameheight = 16;		# max height is dynamic
-my $fontsize = 12;		# base text size
+my $imagewidth = 1200;          # max width, pixels
+my $frameheight = 16;           # max height is dynamic
+my $fontsize = 12;              # base text size
 my $fontwidth = 0.59;           # avg width relative to fontsize
-my $minwidth = 0.1;		# min function width, pixels
+my $minwidth = 0.1;             # min function width, pixels
 my $titletext = "Flame Graph";  # centered heading
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
-my $colors = "hot";		# color theme
-my $bgcolor1 = "#eeeeee";	# background color gradient start
-my $bgcolor2 = "#eeeeb0";	# background color gradient stop
-my $nameattrfile;		# file holding function attributes
-my $timemax;			# (override the) sum of the counts
-my $factor = 1;			# factor to scale counts by
-my $hash = 0;			# color by function name
-my $palette = 0;		# if we use consistent palettes (default off)
-my %palette_map;		# palette map hash
-my $pal_file = "palette.map";	# palette map file name
+my $colors = "hot";             # color theme
+my $bgcolor1 = "#eeeeee";       # background color gradient start
+my $bgcolor2 = "#eeeeb0";       # background color gradient stop
+my $nameattrfile;               # file holding function attributes
+my $timemax;                    # (override the) sum of the counts
+my $factor = 1;                 # factor to scale counts by
+my $hash = 0;                   # color by function name
+my $palette = 0;                # if we use consistent palettes (default off)
+my %palette_map;                # palette map hash
+my $pal_file = "palette.map";   # palette map file name
 
 GetOptions(
-	'fonttype=s'		=> \$fonttype,
-	'width=i'		=> \$imagewidth,
-	'height=i'		=> \$frameheight,
-	'fontsize=f'		=> \$fontsize,
-	'fontwidth=f'		=> \$fontwidth,
-	'minwidth=f'		=> \$minwidth,
-	'title=s'		=> \$titletext,
-	'nametype=s'		=> \$nametype,
-	'countname=s'		=> \$countname,
-	'nameattr=s'		=> \$nameattrfile,
-	'total=s'		=> \$timemax,
-	'factor=f'		=> \$factor,
-	'colors=s'		=> \$colors,
-	'hash'			=> \$hash,
-	'cp'			=> \$palette,
+	'fonttype=s'  => \$fonttype,
+	'width=i'     => \$imagewidth,
+	'height=i'    => \$frameheight,
+	'fontsize=f'  => \$fontsize,
+	'fontwidth=f' => \$fontwidth,
+	'minwidth=f'  => \$minwidth,
+	'title=s'     => \$titletext,
+	'nametype=s'  => \$nametype,
+	'countname=s' => \$countname,
+	'nameattr=s'  => \$nameattrfile,
+	'total=s'     => \$timemax,
+	'factor=f'    => \$factor,
+	'colors=s'    => \$colors,
+	'hash'        => \$hash,
+	'cp'          => \$palette,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
-	--title			# change title text
-	--width			# width of image (default 1200)
-	--height		# height of each frame (default 16)
-	--minwidth		# omit smaller functions (default 0.1 pixels)
-	--fonttype		# font type (default "Verdana")
-	--fontsize		# font size (default 12)
-	--countname		# count type label (default "samples")
-	--nametype		# name type label (default "Function:")
-	--colors		# "hot", "mem", "io" palette (default "hot")
-	--hash			# colors are keyed by function name hash
-	--cp			# use consistent palette (palette.map)
+	--title       # change title text
+	--width       # width of image (default 1200)
+	--height      # height of each frame (default 16)
+	--minwidth    # omit smaller functions (default 0.1 pixels)
+	--fonttype    # font type (default "Verdana")
+	--fontsize    # font size (default 12)
+	--countname   # count type label (default "samples")
+	--nametype    # name type label (default "Function:")
+	--colors      # "hot", "mem", "io" palette (default "hot")
+	--hash        # colors are keyed by function name hash
+	--cp          # use consistent palette (palette.map)
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
 USAGE_END
 
 # internals
-my $ypad1 = $fontsize * 4;	# pad top, include title
-my $ypad2 = $fontsize * 2 + 10;	# pad bottom, include labels
-my $xpad = 10;			# pad lefm and right
+my $ypad1 = $fontsize * 4;      # pad top, include title
+my $ypad2 = $fontsize * 2 + 10; # pad bottom, include labels
+my $xpad = 10;                  # pad lefm and right
 my $depthmax = 0;
 my %Events;
 my %nameattr;
@@ -190,7 +190,7 @@ SVG
 		if ($attr->{href}) {
 			my @a_attr;
 			push @a_attr, sprintf qq/xlink:href="%s"/, $attr->{href} if $attr->{href};
-                        # default target=_top else links will open within SVG <object>
+			# default target=_top else links will open within SVG <object>
 			push @a_attr, sprintf qq/target="%s"/, $attr->{target} || "_top";
 			push @a_attr, $attr->{a_extra}                           if $attr->{a_extra};
 			$self->{svg} .= sprintf qq/<a %s>/, join(' ', @a_attr);
@@ -485,4 +485,4 @@ if ($palette) {
 	write_palette();
 }
 
-# vim: ts=8 sts=0 sw=8 noexpandtab
+# vim: ts=8 sts=8 sw=8 noexpandtab
