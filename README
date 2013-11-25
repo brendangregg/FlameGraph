@@ -91,8 +91,41 @@ USAGE: ./flamegraph.pl [options] infile > outfile.svg
         --fontsize              # font size (default 12)
         --countname             # count type label (default "samples")
         --nametype              # name type label (default "Function:")
+        --colors                # "hot", "mem", "io" palette (default "hot")
+        --hash                  # colors are keyed by function name hash
+        --cp                    # use consistent palette (palette.map)
     eg,
         ./flamegraph.pl --titletext="Flame Graph: malloc()" trace.txt > graph.svg
 
 As suggested in the example, flame graphs can process traces of any event,
 such as malloc()s, provided stack traces are gathered.
+
+
+Consistent Palette
+==================
+If you use the --cp option, it will use the $colors selection and randomly
+generate the palette like normal. Any future flamegraphs created using the --cp
+option will use the same palette map. Any new symbols from future flamegraphs
+will have their colors randomly generated using the $colors selection.
+
+If you don't like the palette, just delete the palette.map file.
+
+This allows your to change your colorscheme between flamegraphs to make the
+differences REALLY stand out.
+
+Example:
+
+Say we have 2 captures, one with a problem, and one when it was working
+(whatever "it" is):
+
+cat working.folded | ./flamegraph.pl --cp > working.svg
+# this generates a palette.map, as per the normal random generated look.
+
+cat broken.folded | ./flamegraph.pl --cp --colors mem > broken.svg
+# this svg will use the same palette.map for the same events, but a very
+# different colorscheme for any new events.
+
+Take a look at the demo directory for an example:
+
+palette-example-working.svg
+palette-example-broken.svg

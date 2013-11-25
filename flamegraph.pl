@@ -60,6 +60,7 @@
 #
 # CDDL HEADER END
 #
+# 21-Nov-2013   Shawn Sterling  Added consistent palette file option
 # 17-Mar-2013   Tim Bunce       Added options and more tunables.
 # 15-Dec-2011	Dave Pacheco	Support for frames with whitespace.
 # 10-Sep-2011	Brendan Gregg	Created this.
@@ -70,71 +71,77 @@ use Getopt::Long;
 
 # tunables
 my $fonttype = "Verdana";
-my $imagewidth = 1200;		# max width, pixels
-my $frameheight = 16;		# max height is dynamic
-my $fontsize = 12;		# base text size
+my $imagewidth = 1200;          # max width, pixels
+my $frameheight = 16;           # max height is dynamic
+my $fontsize = 12;              # base text size
 my $fontwidth = 0.59;           # avg width relative to fontsize
-my $minwidth = 0.1;		# min function width, pixels
+my $minwidth = 0.1;             # min function width, pixels
 my $titletext = "Flame Graph";  # centered heading
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
-my $colors = "hot";		# color theme
-my $bgcolor1 = "#eeeeee";	# background color gradient start
-my $bgcolor2 = "#eeeeb0";	# background color gradient stop
+my $colors = "hot";             # color theme
+my $bgcolor1 = "#eeeeee";       # background color gradient start
+my $bgcolor2 = "#eeeeb0";       # background color gradient stop
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
-my $hash = 0;			# color by function name
+my $hash = 0;                   # color by function name
+my $palette = 0;                # if we use consistent palettes (default off)
+my %palette_map;                # palette map hash
+my $pal_file = "palette.map";   # palette map file name
 
 GetOptions(
-    'fonttype=s'   => \$fonttype,
-    'width=i'      => \$imagewidth,
-    'height=i'     => \$frameheight,
-    'fontsize=f'   => \$fontsize,
-    'fontwidth=f'  => \$fontwidth,
-    'minwidth=f'   => \$minwidth,
-    'title=s'      => \$titletext,
-    'nametype=s'   => \$nametype,
-    'countname=s'  => \$countname,
-    'nameattr=s'   => \$nameattrfile,
-    'total=s'      => \$timemax,
-    'factor=f'     => \$factor,
-    'colors=s'     => \$colors,
-    'hash'         => \$hash,
+	'fonttype=s'  => \$fonttype,
+	'width=i'     => \$imagewidth,
+	'height=i'    => \$frameheight,
+	'fontsize=f'  => \$fontsize,
+	'fontwidth=f' => \$fontwidth,
+	'minwidth=f'  => \$minwidth,
+	'title=s'     => \$titletext,
+	'nametype=s'  => \$nametype,
+	'countname=s' => \$countname,
+	'nameattr=s'  => \$nameattrfile,
+	'total=s'     => \$timemax,
+	'factor=f'    => \$factor,
+	'colors=s'    => \$colors,
+	'hash'        => \$hash,
+	'cp'          => \$palette,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
-	--title			# change title text
-	--width			# width of image (default 1200)
-	--height		# height of each frame (default 16)
-	--minwidth		# omit smaller functions (default 0.1 pixels)
-	--fonttype		# font type (default "Verdana")
-	--fontsize		# font size (default 12)
-	--countname		# count type label (default "samples")
-	--nametype		# name type label (default "Function:")
-	--colors		# "hot", "mem", "io" palette (default "hot")
-	--hash			# colors are keyed by function name hash
-    eg,
+	--title       # change title text
+	--width       # width of image (default 1200)
+	--height      # height of each frame (default 16)
+	--minwidth    # omit smaller functions (default 0.1 pixels)
+	--fonttype    # font type (default "Verdana")
+	--fontsize    # font size (default 12)
+	--countname   # count type label (default "samples")
+	--nametype    # name type label (default "Function:")
+	--colors      # "hot", "mem", "io" palette (default "hot")
+	--hash        # colors are keyed by function name hash
+	--cp          # use consistent palette (palette.map)
+
+	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
 USAGE_END
 
 # internals
-my $ypad1 = $fontsize * 4;	# pad top, include title
-my $ypad2 = $fontsize * 2 + 10;	# pad bottom, include labels
-my $xpad = 10;			# pad lefm and right
+my $ypad1 = $fontsize * 4;      # pad top, include title
+my $ypad2 = $fontsize * 2 + 10; # pad bottom, include labels
+my $xpad = 10;                  # pad lefm and right
 my $depthmax = 0;
 my %Events;
 my %nameattr;
 
 if ($nameattrfile) {
-    # The name-attribute file format is a function name followed by a tab then
-    # a sequence of tab separated name=value pairs.
-    open my $attrfh, $nameattrfile or die "Can't read $nameattrfile: $!\n";
-    while (<$attrfh>) {
-        chomp;
-        my ($funcname, $attrstr) = split /\t/, $_, 2;
-        die "Invalid format in $nameattrfile" unless defined $attrstr;
-        $nameattr{$funcname} = { map { split /=/, $_, 2 } split /\t/, $attrstr };
-    }
+	# The name-attribute file format is a function name followed by a tab then
+	# a sequence of tab separated name=value pairs.
+	open my $attrfh, $nameattrfile or die "Can't read $nameattrfile: $!\n";
+	while (<$attrfh>) {
+		chomp;
+		my ($funcname, $attrstr) = split /\t/, $_, 2;
+		die "Invalid format in $nameattrfile" unless defined $attrstr;
+		$nameattr{$funcname} = { map { split /=/, $_, 2 } split /\t/, $attrstr };
+	}
 }
 
 if ($colors eq "mem") { $bgcolor1 = "#eeeeee"; $bgcolor2 = "#e0e0ff"; }
@@ -183,7 +190,7 @@ SVG
 		if ($attr->{href}) {
 			my @a_attr;
 			push @a_attr, sprintf qq/xlink:href="%s"/, $attr->{href} if $attr->{href};
-                        # default target=_top else links will open within SVG <object>
+			# default target=_top else links will open within SVG <object>
 			push @a_attr, sprintf qq/target="%s"/, $attr->{target} || "_top";
 			push @a_attr, $attr->{a_extra}                           if $attr->{a_extra};
 			$self->{svg} .= sprintf qq/<a %s>/, join(' ', @a_attr);
@@ -270,7 +277,37 @@ sub color {
 		my $b = 190 + int(55 * $v2);
 		return "rgb($r,$g,$b)";
 	}
-	die "ERROR: Unknown palette \"$type\"\n";
+	return "rgb(0,0,0)";
+}
+
+sub color_map {
+	my ($colors, $func) = @_;
+	if (exists $palette_map{$func}) {
+		return $palette_map{$func};
+	} else {
+		$palette_map{$func} = color($colors);
+		return $palette_map{$func};
+	}
+}
+
+sub write_palette {
+	open(FILE, ">$pal_file");
+	foreach my $key (sort keys %palette_map) {
+		print FILE $key."->".$palette_map{$key}."\n";
+	}
+	close(FILE);
+}
+
+sub read_palette {
+	if (-e $pal_file) {
+	open(FILE, $pal_file) or die "can't open file $pal_file: $!";
+	while ( my $line = <FILE>) {
+		chomp($line);
+		(my $key, my $value) = split("->",$line);
+		$palette_map{$key}=$value;
+	}
+	close(FILE)
+	}
 }
 
 my %Node;
@@ -315,9 +352,9 @@ foreach (sort @Data) {
 	chomp;
 	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
 	unless (defined $samples) {
-            ++$ignored;
-            next;
-        }
+		++$ignored;
+		next;
+	}
 	$stack =~ tr/<>/()/;
 	$last = flow($last, [ '', split ";", $stack ], $time);
 	$time += $samples;
@@ -327,9 +364,9 @@ warn "Ignored $ignored lines with invalid format\n" if $ignored;
 die "ERROR: No stack counts found\n" unless $time;
 
 if ($timemax and $timemax < $time) {
-    warn "Specified --total $timemax is less than actual total $time, so ignored\n"
-        if $timemax/$time > 0.02; # only warn is significant (e.g., not rounding etc)
-    undef $timemax;
+	warn "Specified --total $timemax is less than actual total $time, so ignored\n"
+	if $timemax/$time > 0.02; # only warn is significant (e.g., not rounding etc)
+	undef $timemax;
 }
 $timemax ||= $time;
 
@@ -343,8 +380,8 @@ while (my ($id, $node) = each %Node) {
 	die "missing start for $id" if not defined $stime;
 
 	if (($etime-$stime) < $minwidth_time) {
-	    delete $Node{$id};
-	    next;
+		delete $Node{$id};
+		next;
 	}
 	$depthmax = $depth if $depth > $depthmax;
 }
@@ -383,6 +420,9 @@ my ($white, $black, $vvdgrey, $vdgrey) = (
 $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
 
+if ($palette) {
+	read_palette();
+}
 # Draw frames
 
 while (my ($id, $node) = each %Node) {
@@ -397,8 +437,8 @@ while (my ($id, $node) = each %Node) {
 	my $y2 = $imageheight - $ypad2 - $depth * $frameheight;
 
 	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
-        (my $samples_txt = $samples) # add commas per perlfaq5
-            =~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
+	(my $samples_txt = $samples) # add commas per perlfaq5
+		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
 	my $info;
 	if ($func eq "" and $depth == 0) {
@@ -412,15 +452,19 @@ while (my ($id, $node) = each %Node) {
 		$info = "$escaped_func ($samples_txt $countname, $pct%)";
 	}
 
-        my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
-        $nameattr->{class}       ||= "func_g";
-        $nameattr->{onmouseover} ||= "s('".$info."')";
-        $nameattr->{onmouseout}  ||= "c()";
-        $nameattr->{title}       ||= $info;
-        $im->group_start($nameattr);
+	my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
+	$nameattr->{class}       ||= "func_g";
+	$nameattr->{onmouseover} ||= "s('".$info."')";
+	$nameattr->{onmouseout}  ||= "c()";
+	$nameattr->{title}       ||= $info;
+	$im->group_start($nameattr);
 
-	my $color = $func eq "-" ? $vdgrey : color($colors, $hash, $func);
-	$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
+	if ($palette) {
+		$im->filledRectangle($x1, $y1, $x2, $y2, color_map($colors, $func), 'rx="2" ry="2"');
+	} else {
+		my $color = $func eq "-" ? $vdgrey : color($colors, $hash, $func);
+		$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
+	}
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	if ($chars >= 3) { # room for one char plus two dots
@@ -432,7 +476,13 @@ while (my ($id, $node) = each %Node) {
 		$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, "");
 	}
 
-        $im->group_end($nameattr);
+	$im->group_end($nameattr);
 }
 
 print $im->svg;
+
+if ($palette) {
+	write_palette();
+}
+
+# vim: ts=8 sts=8 sw=8 noexpandtab
