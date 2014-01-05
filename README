@@ -1,8 +1,11 @@
-Flame Graphs visualize hot-CPU code-paths.
+Flame Graphs visualize profiled code-paths.
 
-Using DTrace, see: http://dtrace.org/blogs/brendan/2011/12/16/flame-graphs/
-Using perf_events or SystemTap, see: http://dtrace.org/blogs/brendan/2012/03/17/linux-kernel-performance-flame-graphs/
-Using XCode Instruments, see: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/
+Website: http://www.brendangregg.com/flamegraphs.html
+
+CPU profiling using DTrace, perf_events, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
+CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/
+CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/
+Memory profiling: http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html
 
 These can be created in three steps:
 
