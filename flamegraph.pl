@@ -70,6 +70,7 @@ use strict;
 use Getopt::Long;
 
 # tunables
+my $encoding;
 my $fonttype = "Verdana";
 my $imagewidth = 1200;          # max width, pixels
 my $frameheight = 16;           # max height is dynamic
@@ -94,6 +95,7 @@ GetOptions(
 	'fonttype=s'  => \$fonttype,
 	'width=i'     => \$imagewidth,
 	'height=i'    => \$frameheight,
+	'encoding=s'  => \$encoding,
 	'fontsize=f'  => \$fontsize,
 	'fontwidth=f' => \$fontwidth,
 	'minwidth=f'  => \$minwidth,
@@ -158,8 +160,12 @@ if ($colors eq "io")  { $bgcolor1 = "#f8f8f8"; $bgcolor2 = "#e8e8e8"; }
 
 	sub header {
 		my ($self, $w, $h) = @_;
+		my $enc_attr = '';
+		if (defined $encoding) {
+			$enc_attr = qq{ encoding="$encoding"};
+		}
 		$self->{svg} .= <<SVG;
-<?xml version="1.0" standalone="no"?>
+<?xml version="1.0"$enc_attr standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" width="$w" height="$h" onload="init(evt)" viewBox="0 0 $w $h" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 SVG
