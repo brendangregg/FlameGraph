@@ -90,6 +90,7 @@ my $hash = 0;                   # color by function name
 my $palette = 0;                # if we use consistent palettes (default off)
 my %palette_map;                # palette map hash
 my $pal_file = "palette.map";   # palette map file name
+my $stackreverse = 0;
 
 GetOptions(
 	'fonttype=s'  => \$fonttype,
@@ -108,6 +109,7 @@ GetOptions(
 	'colors=s'    => \$colors,
 	'hash'        => \$hash,
 	'cp'          => \$palette,
+	'reverse'     => \$stackreverse,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title       # change title text
@@ -121,6 +123,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--colors      # "hot", "mem", "io" palette (default "hot")
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
+	--reverse     # generate stack-reversed flame graph
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -350,10 +353,23 @@ sub flow {
 }
 
 # Parse input
-my @Data = <>;
+my @Data;
 my $last = [];
 my $time = 0;
 my $ignored = 0;
+my $line;
+
+foreach (<>) {
+	chomp;
+	$line = $_;
+	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
+	if ($stackreverse) {
+		unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
+	} else {
+		unshift @Data, $line;
+	}
+}
+
 foreach (sort @Data) {
 	chomp;
 	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
