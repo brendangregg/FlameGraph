@@ -16,7 +16,7 @@ These can be created in three steps:
 
 1. Capture stacks
 =================
-Stack samples can be captured using DTrace, perf_events or SystemTap.
+Stack samples can be captured using DTrace, hwpmc, perf_events or SystemTap.
 
 Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
 
@@ -38,6 +38,7 @@ Use the stackcollapse programs to fold stack samples into single lines.  The pro
 
 - stackcollapse.pl: for DTrace stacks
 - stackcollapse-perf.pl: for perf_events "perf script" output
+- stackcollapse-pmc.pl: for FreeBSD pmcstat -G stacks
 - stackcollapse-stap.pl: for SystemTap stacks
 - stackcollapse-instruments.pl: for XCode Instruments
 
