@@ -55,7 +55,7 @@ $1 == "Total" {
 
 {
 	# Strip file location. Comment this out to keep.
-	#gsub(/\(.*\)/, "")
+	gsub(/\(.*\)/, "")
 }
 
 NF == 3 {
