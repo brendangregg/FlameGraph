@@ -75,7 +75,7 @@ foreach (<>) {
 
 	# Note the details skipped below, and customize as desired
 
-	if (m/:.*:\s$/) {
+	if (m/.*:\s$/) {
 		# skip summary lines
 		next;
 	}
