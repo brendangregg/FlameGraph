@@ -68,6 +68,7 @@ my @stack;
 my $pname;
 my $include_pname = 1;		# include process names in stacks
 my $include_tid = 0;		# include thread IDs in stacks
+my $shorten_pkgs = 0;		# shorten package names
 my $state = "?";
 
 foreach (<>) {
@@ -114,6 +115,11 @@ clear:
 		$state = $1 if $state eq "?";
 	} elsif (/^\s*at ([^\(]*)/) {
 		my $func = $1;
+		if ($shorten_pkgs) {
+			my ($pkgs, $clsFunc) = ( $func =~ m/(.*\.)([^.]+\.[^.]+)$/ );
+			$pkgs =~ s/(\w)\w*/$1/g;
+			$func = $pkgs . $clsFunc;
+		}
 		unshift @stack, $func;
 
 		# fix state for epollWait
