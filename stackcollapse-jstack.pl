@@ -117,7 +117,7 @@ clear:
 		unshift @stack, $func;
 
 		# fix state for epollWait
-		$state = "WATIING" if $func =~ /epollWait/;
+		$state = "WAITING" if $func =~ /epollWait/;
 
 		# fix state for various networking functions
 		$state = "NETWORK" if $func =~ /socketAccept$/;
