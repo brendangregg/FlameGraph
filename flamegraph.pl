@@ -186,7 +186,7 @@ SVG
 
 		my @g_attr = map {
 			exists $attr->{$_} ? sprintf(qq/$_="%s"/, $attr->{$_}) : ()
-		} qw(class style onmouseover onmouseout);
+		} qw(class style onmouseover onmouseout onclick);
 		push @g_attr, $attr->{g_extra} if $attr->{g_extra};
 		$self->{svg} .= sprintf qq/<g %s>\n/, join(' ', @g_attr);
 
@@ -408,10 +408,76 @@ my $inc = <<INC;
 </style>
 <script type="text/ecmascript">
 <![CDATA[
-	var details;
-	function init(evt) { details = document.getElementById("details").firstChild; }
+	var details, bbox;
+	function init(evt) { 
+		details = document.getElementById("details").firstChild; 
+		bbox = document.getElementsByTagName("svg")[0].getBBox();
+	}
 	function s(info) { details.nodeValue = "$nametype " + info; }
 	function c() { details.nodeValue = ' '; }
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			if (e.attributes["_orig_x"] != undefined) {
+				e.attributes["x"].value = parseFloat(e.attributes["_orig_x"].value);
+				e.removeAttribute("_orig_x");
+			}
+			if (e.attributes["_orig_width"] != undefined) {
+				e.attributes["width"].value = parseFloat(e.attributes["_orig_width"].value);
+				e.removeAttribute("_orig_width");
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for(var i=0, c=e.childNodes; i<c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x1, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes["x"] != undefined) {
+				if (e.attributes["_orig_x"] == undefined)
+					e.setAttribute("_orig_x", e.attributes["x"].value);
+				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x1) * ratio;
+			}
+			if (e.attributes["width"] != undefined) {
+				if (e.attributes["_orig_width"] == undefined)
+					e.setAttribute("_orig_width", e.attributes["width"].value)
+				e.attributes["width"].value = parseFloat(e.attributes["width"].value * ratio);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for(var i=0, c=e.childNodes; i<c.length; i++) {
+			zoom_child(c[i], x1, ratio);
+		}
+	}
+	function zoom(node) { 
+		var a = node.childNodes[2].attributes; // childNodes[2] = rect
+		var xmin = parseFloat(a["x"].value);
+		var xmax = xmin + parseFloat(a["width"].value);
+		var ymin = parseFloat(a["y"].value);
+		var width = parseInt(a["width"].value);
+		var x1 = xmin;
+		var x2 = xmin+width;
+		var ratio = bbox.width / width;
+		
+		var el = document.getElementsByTagName("g");
+		for(i=0;i<el.length;i++){ // For each elements
+			var e=el[i];
+			var a = e.childNodes[2].attributes;
+			if (parseFloat(a["y"].value)>ymin || parseFloat(a["x"].value) < xmin || parseFloat(a["x"].value) > xmax) {
+				e.style["display"] = "none";
+			}
+			else {
+				zoom_child(e, x1, ratio);
+			}
+		}
+	}
+	function unzoom() {
+		var e=document.getElementsByTagName("g");
+		for(i=0;i<e.length;i++) {
+			e[i].style["display"] = "block";
+			zoom_reset(e[i]);
+		}
+	}	
 ]]>
 </script>
 INC
@@ -425,6 +491,7 @@ my ($white, $black, $vvdgrey, $vdgrey) = (
     );
 $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight, "Reset Zoom", "", 'id="unzoom" onclick="unzoom()"');
 
 if ($palette) {
 	read_palette();
@@ -462,6 +529,7 @@ while (my ($id, $node) = each %Node) {
 	$nameattr->{class}       ||= "func_g";
 	$nameattr->{onmouseover} ||= "s('".$info."')";
 	$nameattr->{onmouseout}  ||= "c()";
+	$nameattr->{onclick}     ||= "zoom(this)";
 	$nameattr->{title}       ||= $info;
 	$im->group_start($nameattr);
 
