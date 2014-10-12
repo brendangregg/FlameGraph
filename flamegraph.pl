@@ -408,23 +408,44 @@ my $inc = <<INC;
 </style>
 <script type="text/ecmascript">
 <![CDATA[
-	var details, bbox;
+	var details, svg;
 	function init(evt) { 
 		details = document.getElementById("details").firstChild; 
-		bbox = document.getElementsByTagName("svg")[0].getBBox();
+		svg = document.getElementsByTagName("svg")[0];
 	}
 	function s(info) { details.nodeValue = "$nametype " + info; }
 	function c() { details.nodeValue = ' '; }
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_"+attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_"+attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_"+attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function update_text(e) {
+		var w = parseFloat(e.childNodes[2].attributes["width"].value);
+		var t = e.childNodes[4];
+		var txt = e.childNodes[1].textContent.split(" ")[0];
+		
+		t.textContent = txt;
+		if (t.getSubStringLength(0, txt.length) > w) {
+			for (var x=txt.length-3; x>=0; x--) {
+				if (t.getSubStringLength(0, x+2) <= w) { 
+					t.textContent = txt.substring(0,x) + "..";
+					return;
+				}
+			}
+			t.textContent = "";
+		}
+	}
 	function zoom_reset(e) {
 		if (e.attributes != undefined) {
-			if (e.attributes["_orig_x"] != undefined) {
-				e.attributes["x"].value = parseFloat(e.attributes["_orig_x"].value);
-				e.removeAttribute("_orig_x");
-			}
-			if (e.attributes["_orig_width"] != undefined) {
-				e.attributes["width"].value = parseFloat(e.attributes["_orig_width"].value);
-				e.removeAttribute("_orig_width");
-			}
+			orig_load(e, "x");
+			orig_load(e, "width");
 		}
 		if (e.childNodes == undefined) return;
 		for(var i=0, c=e.childNodes; i<c.length; i++) {
@@ -434,16 +455,16 @@ my $inc = <<INC;
 	function zoom_child(e, x1, ratio) {
 		if (e.attributes != undefined) {
 			if (e.attributes["x"] != undefined) {
-				if (e.attributes["_orig_x"] == undefined)
-					e.setAttribute("_orig_x", e.attributes["x"].value);
+				orig_save(e, "x");
 				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x1) * ratio;
+				if(e.tagName == "text") e.attributes["x"].value -= 2*ratio;
 			}
 			if (e.attributes["width"] != undefined) {
-				if (e.attributes["_orig_width"] == undefined)
-					e.setAttribute("_orig_width", e.attributes["width"].value)
+				orig_save(e, "width");
 				e.attributes["width"].value = parseFloat(e.attributes["width"].value * ratio);
 			}
 		}
+		
 		if (e.childNodes == undefined) return;
 		for(var i=0, c=e.childNodes; i<c.length; i++) {
 			zoom_child(c[i], x1, ratio);
@@ -457,7 +478,7 @@ my $inc = <<INC;
 		var width = parseInt(a["width"].value);
 		var x1 = xmin;
 		var x2 = xmin+width;
-		var ratio = bbox.width / width;
+		var ratio = svg.getBBox().width / width;
 		
 		var el = document.getElementsByTagName("g");
 		for(i=0;i<el.length;i++){ // For each elements
@@ -469,13 +490,15 @@ my $inc = <<INC;
 			else {
 				zoom_child(e, x1, ratio);
 			}
+			update_text(e);
 		}
 	}
 	function unzoom() {
-		var e=document.getElementsByTagName("g");
-		for(i=0;i<e.length;i++) {
-			e[i].style["display"] = "block";
-			zoom_reset(e[i]);
+		var el = document.getElementsByTagName("g");
+		for(i=0;i<el.length;i++) {
+			el[i].style["display"] = "block";
+			zoom_reset(el[i]);
+			update_text(el[i]);
 		}
 	}	
 ]]>
@@ -541,14 +564,15 @@ while (my ($id, $node) = each %Node) {
 	}
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
+	my $text = "";
 	if ($chars >= 3) { # room for one char plus two dots
-		my $text = substr $func, 0, $chars;
+		$text = substr $func, 0, $chars;
 		substr($text, -2, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
-		$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, "");
 	}
+	$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, "");
 
 	$im->group_end($nameattr);
 }
