@@ -429,11 +429,11 @@ my $inc = <<INC;
 	function update_text(e) {
 		var w = parseFloat(e.childNodes[2].attributes["width"].value);
 		var t = e.childNodes[4];
-		var txt = e.childNodes[1].textContent.split(" ")[0];
+		var txt = e.childNodes[1].textContent.replace(/\\([^(]*\\)/,"");
 		
 		t.textContent = txt;
 		if (t.getSubStringLength(0, txt.length) > w) {
-			for (var x=txt.length-3; x>=0; x--) {
+			for (var x=txt.length-2; x>0; x--) {
 				if (t.getSubStringLength(0, x+2) <= w) { 
 					t.textContent = txt.substring(0,x) + "..";
 					return;
@@ -457,7 +457,7 @@ my $inc = <<INC;
 			if (e.attributes["x"] != undefined) {
 				orig_save(e, "x");
 				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x1) * ratio;
-				if(e.tagName == "text") e.attributes["x"].value -= 2*ratio;
+				if(e.tagName == "text") e.attributes["x"].value = e.parentNode.childNodes["2"].attributes["x"].value + 3;
 			}
 			if (e.attributes["width"] != undefined) {
 				orig_save(e, "width");
