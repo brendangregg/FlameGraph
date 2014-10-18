@@ -452,34 +452,10 @@ my $inc = <<INC;
 		if (t.getSubStringLength(0, txt.length) < w)
 			return;
 		
-		// Guess the size
-		if ( false ) {
-			var approxChars = parseInt(txt.length * $fontsize*$fontwidth / 2) +2;
-			if (approxChars > txt.length) approxChars = txt.length;
-			if (t.getSubStringLength(0, approxChars) < w) {
-				for (var x=approxChars; x>txt.length; x++) {
-					if (t.getSubStringLength(0, x) <= w) { 
-						t.textContent = txt.substring(0,x-2) + "..";
-						return;
-					}
-				}
-			}
-			else {
-				for (var x=approxChars; x>0; x--) {
-					if (t.getSubStringLength(0, x) <= w) { 
-						t.textContent = txt.substring(0,x-2) + "..";
-						return;
-					}
-				}
-			}
-		}
-		else {
-			
-			for (var x=txt.length-2; x>0; x--) {
-				if (t.getSubStringLength(0, x+2) <= w) { 
-					t.textContent = txt.substring(0,x) + "..";
-					return;
-				}
+		for (var x=txt.length-2; x>0; x--) {
+			if (t.getSubStringLength(0, x+2) <= w) { 
+				t.textContent = txt.substring(0,x) + "..";
+				return;
 			}
 		}
 		t.textContent = "";
@@ -530,20 +506,22 @@ my $inc = <<INC;
 	}
 	function zoom(node) { 
 		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr["width"].value);
 		var xmin = parseFloat(attr["x"].value);
-		var xmax = xmin + parseFloat(attr["width"].value);
+		var xmax = parseFloat(xmin + width);
 		var ymin = parseFloat(attr["y"].value);
-		var width = parseInt(attr["width"].value);
 		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
 		
 		var el = document.getElementsByTagName("g");
 		for(var i=0;i<el.length;i++){
-			var e=el[i];
+			var e = el[i];
 			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a["x"].value);
+			var ew = parseFloat(a["width"].value);
 			// Is it an ancestor
 			if (parseFloat(a["y"].value)>=ymin) {
 				// Direct ancestor
-				if (parseFloat(a["x"].value) <= xmin && (parseFloat(a["x"].value) + parseFloat(a["width"].value)) >= xmax) {
+				if (ex <= xmin && (ex+ew) >= xmax) {
 					e.style["fill-opacity"] = "0.5";
 					zoom_parent(e);
 					e.onclick = function(e){unzoom(); zoom(this);};
@@ -552,12 +530,11 @@ my $inc = <<INC;
 				// not in current path
 				else
 					e.style["display"] = "none";
-				
 			}
 			// Children maybe
 			else {
 				// no common path
-				if (parseFloat(a["x"].value) < xmin || (parseFloat(a["x"].value) + parseFloat(a["width"].value)) > xmax) {
+				if (ex < xmin || ex >= xmax) {
 					e.style["display"] = "none";
 				}
 				else {
@@ -566,7 +543,6 @@ my $inc = <<INC;
 					update_text(e);
 				}
 			}
-			
 		}
 	}
 	function unzoom() {
