@@ -435,13 +435,10 @@ my $inc = <<INC;
 		e.removeAttribute("_orig_"+attr);
 	}
 	function update_text(e) {
-		//var r = find_child(e, "rect");
-		var r = e.childNodes[2];
-		//var t = find_child(e, "text");
-		var t = e.childNodes[4];
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
 		var w = parseFloat(r.attributes["width"].value) -3;
-		//var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)/,"");
-		var txt = e.childNodes[1].textContent.replace(/\\([^(]*\\)/,"");
+		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)/,"");
 		t.attributes["x"].value = parseFloat(r.attributes["x"].value) +3;
 		
 		// Smaller than this size won't fit anything
@@ -449,17 +446,43 @@ my $inc = <<INC;
 			t.textContent = "";
 			return;
 		}
-
+		
 		t.textContent = txt;
-		if (t.getSubStringLength(0, txt.length) > w) {
+		// Fit in full text width
+		if (t.getSubStringLength(0, txt.length) < w)
+			return;
+		
+		// Guess the size
+		if ( false ) {
+			var approxChars = parseInt(txt.length * $fontsize*$fontwidth / 2) +2;
+			if (approxChars > txt.length) approxChars = txt.length;
+			if (t.getSubStringLength(0, approxChars) < w) {
+				for (var x=approxChars; x>txt.length; x++) {
+					if (t.getSubStringLength(0, x) <= w) { 
+						t.textContent = txt.substring(0,x-2) + "..";
+						return;
+					}
+				}
+			}
+			else {
+				for (var x=approxChars; x>0; x--) {
+					if (t.getSubStringLength(0, x) <= w) { 
+						t.textContent = txt.substring(0,x-2) + "..";
+						return;
+					}
+				}
+			}
+		}
+		else {
+			
 			for (var x=txt.length-2; x>0; x--) {
 				if (t.getSubStringLength(0, x+2) <= w) { 
 					t.textContent = txt.substring(0,x) + "..";
 					return;
 				}
 			}
-			t.textContent = "";
 		}
+		t.textContent = "";
 	}
 	function zoom_reset(e) {
 		if (e.attributes != undefined) {
@@ -476,8 +499,7 @@ my $inc = <<INC;
 			if (e.attributes["x"] != undefined) {
 				orig_save(e, "x");
 				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x - $xpad) * ratio + $xpad;
-				//if(e.tagName == "text") e.attributes["x"].value = find_child(e.parentNode, "rect", "x") + 3;
-				if(e.tagName == "text") e.attributes["x"].value = e.parentNode.childNodes[2].attributes["x"].value + 3;
+				if(e.tagName == "text") e.attributes["x"].value = find_child(e.parentNode, "rect", "x") + 3;
 			}
 			if (e.attributes["width"] != undefined) {
 				orig_save(e, "width");
@@ -507,8 +529,7 @@ my $inc = <<INC;
 		}
 	}
 	function zoom(node) { 
-		//var a = find_child(node, "rect").attributes;
-		var attr = node.childNodes[2].attributes;
+		var attr = find_child(node, "rect").attributes;
 		var xmin = parseFloat(attr["x"].value);
 		var xmax = xmin + parseFloat(attr["width"].value);
 		var ymin = parseFloat(attr["y"].value);
@@ -518,8 +539,7 @@ my $inc = <<INC;
 		var el = document.getElementsByTagName("g");
 		for(var i=0;i<el.length;i++){
 			var e=el[i];
-			//var a = find_child(e, "rect").attributes;
-			var a = el[i].childNodes[2].attributes;
+			var a = find_child(e, "rect").attributes;
 			// Is it an ancestor
 			if (parseFloat(a["y"].value)>=ymin) {
 				// Direct ancestor
