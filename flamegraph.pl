@@ -415,6 +415,14 @@ my $inc = <<INC;
 	}
 	function s(info) { details.nodeValue = "$nametype " + info; }
 	function c() { details.nodeValue = ' '; }
+	function find_child(parent, name, attr) {
+		var children = parent.childNodes;
+		for (var i=0; i<children.length;i++) {
+			if (children[i].tagName == name)
+				return (attr != undefined) ? children[i].attributes[attr].value : children[i];
+		}
+		return;
+	}
 	function orig_save(e, attr, val) {
 		if (e.attributes["_orig_"+attr] != undefined) return;
 		if (e.attributes[attr] == undefined) return;
@@ -427,20 +435,30 @@ my $inc = <<INC;
 		e.removeAttribute("_orig_"+attr);
 	}
 	function update_text(e) {
-		var w = parseFloat(e.childNodes[2].attributes["width"].value);
-		var t = e.childNodes[4];
-		var txt = e.childNodes[1].textContent.replace(/\\([^(]*\\)/,"");
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes["width"].value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)/,"");
+		t.attributes["x"].value = parseFloat(r.attributes["x"].value) +3;
+		
+		// Smaller than this size won't fit anything
+		if (w < 2*$fontsize*$fontwidth) {
+			t.textContent = "";
+			return;
+		}
 		
 		t.textContent = txt;
-		if (t.getSubStringLength(0, txt.length) > w) {
-			for (var x=txt.length-2; x>0; x--) {
-				if (t.getSubStringLength(0, x+2) <= w) { 
-					t.textContent = txt.substring(0,x) + "..";
-					return;
-				}
+		// Fit in full text width
+		if (t.getSubStringLength(0, txt.length) < w)
+			return;
+		
+		for (var x=txt.length-2; x>0; x--) {
+			if (t.getSubStringLength(0, x+2) <= w) { 
+				t.textContent = txt.substring(0,x) + "..";
+				return;
 			}
-			t.textContent = "";
 		}
+		t.textContent = "";
 	}
 	function zoom_reset(e) {
 		if (e.attributes != undefined) {
@@ -452,51 +470,86 @@ my $inc = <<INC;
 			zoom_reset(c[i]);
 		}
 	}
-	function zoom_child(e, x1, ratio) {
+	function zoom_child(e, x, ratio) {
 		if (e.attributes != undefined) {
 			if (e.attributes["x"] != undefined) {
 				orig_save(e, "x");
-				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x1) * ratio;
-				if(e.tagName == "text") e.attributes["x"].value = e.parentNode.childNodes["2"].attributes["x"].value + 3;
+				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x - $xpad) * ratio + $xpad;
+				if(e.tagName == "text") e.attributes["x"].value = find_child(e.parentNode, "rect", "x") + 3;
 			}
 			if (e.attributes["width"] != undefined) {
 				orig_save(e, "width");
-				e.attributes["width"].value = parseFloat(e.attributes["width"].value * ratio);
+				e.attributes["width"].value = parseFloat(e.attributes["width"].value) * ratio;
 			}
 		}
 		
 		if (e.childNodes == undefined) return;
 		for(var i=0, c=e.childNodes; i<c.length; i++) {
-			zoom_child(c[i], x1, ratio);
+			zoom_child(c[i], x-$xpad, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes["x"] != undefined) {
+				orig_save(e, "x");
+				e.attributes["x"].value = $xpad;
+			}
+			if (e.attributes["width"] != undefined) {
+				orig_save(e, "width");
+				e.attributes["width"].value = parseInt(svg.width.baseVal.value) - ($xpad*2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for(var i=0, c=e.childNodes; i<c.length; i++) {
+			zoom_parent(c[i]);
 		}
 	}
 	function zoom(node) { 
-		var a = node.childNodes[2].attributes; // childNodes[2] = rect
-		var xmin = parseFloat(a["x"].value);
-		var xmax = xmin + parseFloat(a["width"].value);
-		var ymin = parseFloat(a["y"].value);
-		var width = parseInt(a["width"].value);
-		var x1 = xmin;
-		var x2 = xmin+width;
-		var ratio = svg.getBBox().width / width;
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr["width"].value);
+		var xmin = parseFloat(attr["x"].value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr["y"].value);
+		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
 		
 		var el = document.getElementsByTagName("g");
-		for(i=0;i<el.length;i++){ // For each elements
-			var e=el[i];
-			var a = e.childNodes[2].attributes;
-			if (parseFloat(a["y"].value)>ymin || parseFloat(a["x"].value) < xmin || parseFloat(a["x"].value) > xmax) {
-				e.style["display"] = "none";
+		for(var i=0;i<el.length;i++){
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a["x"].value);
+			var ew = parseFloat(a["width"].value);
+			// Is it an ancestor
+			if (parseFloat(a["y"].value)>=ymin) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew) >= xmax) {
+					e.style["fill-opacity"] = "0.5";
+					zoom_parent(e);
+					e.onclick = function(e){unzoom(); zoom(this);};
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.style["display"] = "none";
 			}
+			// Children maybe
 			else {
-				zoom_child(e, x1, ratio);
+				// no common path
+				if (ex < xmin || ex >= xmax) {
+					e.style["display"] = "none";
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					e.onclick = function(e){zoom(this);};
+					update_text(e);
+				}
 			}
-			update_text(e);
 		}
 	}
 	function unzoom() {
 		var el = document.getElementsByTagName("g");
 		for(i=0;i<el.length;i++) {
 			el[i].style["display"] = "block";
+			el[i].style["fill-opacity"] = "1";
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
