@@ -512,6 +512,9 @@ my $inc = <<INC;
 		var ymin = parseFloat(attr["y"].value);
 		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
 		
+		var unzoombtn = document.getElementById("unzoom");
+		unzoombtn.style["fill-opacity"] = "1.0";
+		
 		var el = document.getElementsByTagName("g");
 		for(var i=0;i<el.length;i++){
 			var e = el[i];
@@ -546,6 +549,9 @@ my $inc = <<INC;
 		}
 	}
 	function unzoom() {
+		var unzoombtn = document.getElementById("unzoom");
+		unzoombtn.style["fill-opacity"] = "0.0";
+		
 		var el = document.getElementsByTagName("g");
 		for(i=0;i<el.length;i++) {
 			el[i].style["display"] = "block";
@@ -567,7 +573,7 @@ my ($white, $black, $vvdgrey, $vdgrey) = (
     );
 $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight, "Reset Zoom", "", 'id="unzoom" onclick="unzoom()"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2, "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="fill-opacity:0.0"');
 
 if ($palette) {
 	read_palette();
