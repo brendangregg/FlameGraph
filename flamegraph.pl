@@ -519,7 +519,7 @@ my $inc = <<INC;
 			var ex = parseFloat(a["x"].value);
 			var ew = parseFloat(a["width"].value);
 			// Is it an ancestor
-			if (parseFloat(a["y"].value)>=ymin) {
+			if (parseFloat(a["y"].value) > ymin) {
 				// Direct ancestor
 				if (ex <= xmin && (ex+ew) >= xmax) {
 					e.style["fill-opacity"] = "0.5";
