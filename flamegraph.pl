@@ -449,7 +449,7 @@ my $inc = <<INC;
 		
 		t.textContent = txt;
 		// Fit in full text width
-		if (t.getSubStringLength(0, txt.length) < w)
+		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
 			return;
 		
 		for (var x=txt.length-2; x>0; x--) {
