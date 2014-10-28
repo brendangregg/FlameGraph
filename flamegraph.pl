@@ -77,7 +77,6 @@ my $frameheight = 16;           # max height is dynamic
 my $fontsize = 12;              # base text size
 my $fontwidth = 0.59;           # avg width relative to fontsize
 my $minwidth = 0.1;             # min function width, pixels
-my $titletext = "Flame Graph";  # centered heading
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
@@ -90,7 +89,11 @@ my $hash = 0;                   # color by function name
 my $palette = 0;                # if we use consistent palettes (default off)
 my %palette_map;                # palette map hash
 my $pal_file = "palette.map";   # palette map file name
-my $stackreverse = 0;
+my $stackreverse = 0;           # reverse stack order, switching merge end
+my $inverted = 0;               # icicle graph
+my $titletext = "";             # centered heading
+my $titledefault = "Flame Graph";	# overwritten by --title
+my $titleinverted = "Icicle Graph";	#   "    "
 
 GetOptions(
 	'fonttype=s'  => \$fonttype,
@@ -110,6 +113,7 @@ GetOptions(
 	'hash'        => \$hash,
 	'cp'          => \$palette,
 	'reverse'     => \$stackreverse,
+	'inverted'    => \$inverted,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title       # change title text
@@ -124,6 +128,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
+	--inverted    # icicle graph
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -133,9 +138,18 @@ USAGE_END
 my $ypad1 = $fontsize * 4;      # pad top, include title
 my $ypad2 = $fontsize * 2 + 10; # pad bottom, include labels
 my $xpad = 10;                  # pad lefm and right
+my $framepad = 1;		# vertical padding for frames
 my $depthmax = 0;
 my %Events;
 my %nameattr;
+
+if ($titletext eq "") {
+	unless ($inverted) {
+		$titletext = $titledefault;
+	} else {
+		$titletext = $titleinverted;
+	}
+}
 
 if ($nameattrfile) {
 	# The name-attribute file format is a function name followed by a tab then
@@ -544,7 +558,12 @@ my $inc = <<INC;
 			var ex = parseFloat(a["x"].value);
 			var ew = parseFloat(a["width"].value);
 			// Is it an ancestor
-			if (parseFloat(a["y"].value) > ymin) {
+			if ($inverted == 0) {
+				var upstack = parseFloat(a["y"].value) > ymin;
+			} else {
+				var upstack = parseFloat(a["y"].value) < ymin;
+			}
+			if (upstack) {
 				// Direct ancestor
 				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
 					e.style["opacity"] = "0.5";
@@ -600,8 +619,8 @@ $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2, "Reset Z
 if ($palette) {
 	read_palette();
 }
-# Draw frames
 
+# Draw frames
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
@@ -610,8 +629,14 @@ while (my ($id, $node) = each %Node) {
 
 	my $x1 = $xpad + $stime * $widthpertime;
 	my $x2 = $xpad + $etime * $widthpertime;
-	my $y1 = $imageheight - $ypad2 - ($depth + 1) * $frameheight + 1;
-	my $y2 = $imageheight - $ypad2 - $depth * $frameheight;
+	my ($y1, $y2);
+	unless ($inverted) {
+		$y1 = $imageheight - $ypad2 - ($depth + 1) * $frameheight + $framepad;
+		$y2 = $imageheight - $ypad2 - $depth * $frameheight;
+	} else {
+		$y1 = $ypad1 + $depth * $frameheight;
+		$y2 = $ypad1 + ($depth + 1) * $frameheight - $framepad;
+	}
 
 	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
 	(my $samples_txt = $samples) # add commas per perlfaq5
