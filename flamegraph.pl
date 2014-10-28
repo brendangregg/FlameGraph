@@ -359,17 +359,19 @@ my $time = 0;
 my $ignored = 0;
 my $line;
 
+# reverse if needed
 foreach (<>) {
 	chomp;
 	$line = $_;
-	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
 	if ($stackreverse) {
+		my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
 		unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
 	} else {
 		unshift @Data, $line;
 	}
 }
 
+# process and merge frames
 foreach (sort @Data) {
 	chomp;
 	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
