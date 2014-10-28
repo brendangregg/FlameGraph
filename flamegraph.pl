@@ -224,6 +224,7 @@ SVG
 
 	sub stringTTF {
 		my ($self, $color, $font, $size, $angle, $x, $y, $str, $loc, $extra) = @_;
+		$x = sprintf "%0.2f", $x;
 		$loc = defined $loc ? $loc : "left";
 		$extra = defined $extra ? $extra : "";
 		$self->{svg} .= qq/<text text-anchor="$loc" x="$x" y="$y" font-size="$size" font-family="$font" fill="$color" $extra >$str<\/text>\n/;
