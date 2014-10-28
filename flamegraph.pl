@@ -531,6 +531,9 @@ my $inc = <<INC;
 		var ymin = parseFloat(attr["y"].value);
 		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
 		
+		// Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+		
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style["opacity"] = "1.0";
 		
@@ -543,7 +546,7 @@ my $inc = <<INC;
 			// Is it an ancestor
 			if (parseFloat(a["y"].value) > ymin) {
 				// Direct ancestor
-				if (ex <= xmin && (ex+ew) >= xmax) {
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
 					e.style["opacity"] = "0.5";
 					zoom_parent(e);
 					e.onclick = function(e){unzoom(); zoom(this);};
@@ -556,7 +559,7 @@ my $inc = <<INC;
 			// Children maybe
 			else {
 				// no common path
-				if (ex < xmin || ex >= xmax) {
+				if (ex < xmin || ex + fudge >= xmax) {
 					e.style["display"] = "none";
 				}
 				else {
