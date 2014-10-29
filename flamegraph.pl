@@ -17,6 +17,11 @@
 # of the line.  These can be generated using DTrace with stackcollapse.pl,
 # and other tools using the stackcollapse variants.
 #
+# An optional extra column of counts can be provided to generate a differential
+# flame graph of the counts, colored red for more, and green for less.  This
+# can be useful when using flame graphs for non-regression testing.
+# See the header comment in the difffolded.pl program for instructions.
+#
 # The output graph shows relative presence of functions in stack samples.  The
 # ordering on the x-axis has no meaning; since the data is samples, time order
 # of events is not known.  The order used sorts function names alphabetically.
@@ -26,7 +31,8 @@
 # can use --title to set the title to reflect the content, and --countname
 # to change "samples" to "bytes" etc.
 #
-# There are a few different palettes, selectable using --color.  Functions
+# There are a few different palettes, selectable using --color.  By default,
+# the colors are selected at random (except for differentials).  Functions
 # called "-" will be printed gray, which can be used for stack separators (eg,
 # between user and kernel stacks).
 #
