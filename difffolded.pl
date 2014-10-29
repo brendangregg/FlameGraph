@@ -6,7 +6,7 @@
 # USAGE: ./difffolded.pl folded1 folded2 | ./flamegraph.pl > diff2.svg
 #
 # The flamegraph will be colored based on higher samples (red) and smaller
-# samples (green). The frame widths will be based on the 2nd folded file.
+# samples (blue). The frame widths will be based on the 2nd folded file.
 # This might be confusing if stack frames disappear entirely; it will make
 # the most sense to ALSO create a differential based on the 1st file widths,
 # while switching the hues; eg:

@@ -18,7 +18,7 @@
 # and other tools using the stackcollapse variants.
 #
 # An optional extra column of counts can be provided to generate a differential
-# flame graph of the counts, colored red for more, and green for less.  This
+# flame graph of the counts, colored red for more, and blue for less.  This
 # can be useful when using flame graphs for non-regression testing.
 # See the header comment in the difffolded.pl program for instructions.
 #
@@ -137,7 +137,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
 	--inverted    # icicle graph
-	--negate      # switch differential hues (green<->red)
+	--negate      # switch differential hues (blue<->red)
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -320,7 +320,7 @@ sub color_scale {
 	if ($value > 0) {
 		$g = $b = int(210 * ($max - $value) / $max);
 	} elsif ($value < 0) {
-		$r = $b = int(210 * ($max + $value) / $max);
+		$r = $g = int(210 * ($max + $value) / $max);
 	}
 	return "rgb($r,$g,$b)";
 }
