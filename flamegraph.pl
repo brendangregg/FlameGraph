@@ -91,6 +91,7 @@ my %palette_map;                # palette map hash
 my $pal_file = "palette.map";   # palette map file name
 my $stackreverse = 0;           # reverse stack order, switching merge end
 my $inverted = 0;               # icicle graph
+my $negate = 0;                 # switch differential hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
@@ -114,6 +115,7 @@ GetOptions(
 	'cp'          => \$palette,
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
+	'negate'      => \$negate,
 ) or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title       # change title text
@@ -129,6 +131,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
 	--inverted    # icicle graph
+	--negate      # switch differential hues (green<->red)
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -304,6 +307,18 @@ sub color {
 	return "rgb(0,0,0)";
 }
 
+sub color_scale {
+	my ($value, $max) = @_;
+	my ($r, $g, $b) = (255, 255, 255);
+	$value = -$value if $negate;
+	if ($value > 0) {
+		$g = $b = int(210 * ($max - $value) / $max);
+	} elsif ($value < 0) {
+		$r = $b = int(210 * ($max + $value) / $max);
+	}
+	return "rgb($r,$g,$b)";
+}
+
 sub color_map {
 	my ($colors, $func) = @_;
 	if (exists $palette_map{$func}) {
@@ -338,7 +353,7 @@ my %Node;
 my %Tmp;
 
 sub flow {
-	my ($last, $this, $v) = @_;
+	my ($last, $this, $v, $d) = @_;
 
 	my $len_a = @$last - 1;
 	my $len_b = @$this - 1;
@@ -356,12 +371,18 @@ sub flow {
 		# a unique ID is constructed from "func;depth;etime";
 		# func-depth isn't unique, it may be repeated later.
 		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
+		if (defined $Tmp{$k}->{delta}) {
+			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+		}
 		delete $Tmp{$k};
 	}
 
 	for ($i = $len_same; $i <= $len_b; $i++) {
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
+		if (defined $d) {
+			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
+		}
 	}
 
         return $this;
@@ -371,16 +392,25 @@ sub flow {
 my @Data;
 my $last = [];
 my $time = 0;
+my $delta = undef;
 my $ignored = 0;
 my $line;
+my $maxdelta = 1;
 
 # reverse if needed
 foreach (<>) {
 	chomp;
 	$line = $_;
 	if ($stackreverse) {
-		my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
-		unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
+		# there may be an extra samples column for differentials
+		# XXX todo: redo these REs as one. It's repeated below.
+		my ($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+		my $samples2 = undef;
+		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
+			$samples2 = $samples;
+			($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+		}
+		unshift @Data, join(";", reverse split(";", $stack)) . " $samples $samples2";
 	} else {
 		unshift @Data, $line;
 	}
@@ -389,16 +419,31 @@ foreach (<>) {
 # process and merge frames
 foreach (sort @Data) {
 	chomp;
-	my ($stack, $samples) = (/^(.*)\s+(\d+(?:\.\d*)?)$/);
+	# there may be an extra samples column for differentials
+	my ($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+	my $samples2 = undef;
+	if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
+		$samples2 = $samples;
+		($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+	}
+	$delta = undef;
+	if (defined $samples2) {
+		$delta = $samples2 - $samples;
+		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
+	}
 	unless (defined $samples) {
 		++$ignored;
 		next;
 	}
 	$stack =~ tr/<>/()/;
-	$last = flow($last, [ '', split ";", $stack ], $time);
-	$time += $samples;
+	$last = flow($last, [ '', split ";", $stack ], $time, $delta);
+	if (defined $samples2) {
+		$time += $samples2;
+	} else {
+		$time += $samples;
+	}
 }
-flow($last, [], $time);
+flow($last, [], $time, $delta);
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
 die "ERROR: No stack counts found\n" unless $time;
 
@@ -545,7 +590,7 @@ my $inc = <<INC;
 		var ymin = parseFloat(attr["y"].value);
 		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
 		
-		// Workaround for JavaScript float issues (fix me)
+		// XXX: Workaround for JavaScript float issues (fix me)
 		var fudge = 0.0001;
 		
 		var unzoombtn = document.getElementById("unzoom");
@@ -624,6 +669,7 @@ if ($palette) {
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
+	my $delta = $node->{delta};
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
@@ -651,7 +697,13 @@ while (my ($id, $node) = each %Node) {
 		$escaped_func =~ s/&/&amp;/g;
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
-		$info = "$escaped_func ($samples_txt $countname, $pct%)";
+		unless (defined $delta) {
+			$info = "$escaped_func ($samples_txt $countname, $pct%)";
+		} else {
+			my $deltapct = sprintf "%.2f", ((100 * $delta) / ($timemax * $factor));
+			$deltapct = $delta > 0 ? "+$deltapct" : $deltapct;
+			$info = "$escaped_func ($samples_txt $countname, $pct%; $deltapct%)";
+		}
 	}
 
 	my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
@@ -662,12 +714,17 @@ while (my ($id, $node) = each %Node) {
 	$nameattr->{title}       ||= $info;
 	$im->group_start($nameattr);
 
-	if ($palette) {
-		$im->filledRectangle($x1, $y1, $x2, $y2, color_map($colors, $func), 'rx="2" ry="2"');
+	my $color;
+	if ($func eq "-") {
+		$color = $vdgrey;
+	} elsif (defined $delta) {
+		$color = color_scale($delta, $maxdelta);
+	} elsif ($palette) {
+		$color = color_map($colors, $func);
 	} else {
-		my $color = $func eq "-" ? $vdgrey : color($colors, $hash, $func);
-		$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
+		$color = color($colors, $hash, $func);
 	}
+	$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
