@@ -415,8 +415,10 @@ foreach (<>) {
 		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
 			$samples2 = $samples;
 			($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+			unshift @Data, join(";", reverse split(";", $stack)) . " $samples $samples2";
+		} else {
+			unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
 		}
-		unshift @Data, join(";", reverse split(";", $stack)) . " $samples $samples2";
 	} else {
 		unshift @Data, $line;
 	}
