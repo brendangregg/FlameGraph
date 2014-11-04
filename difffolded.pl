@@ -3,7 +3,9 @@
 # difffolded.pl 	diff two folded stack files. Use this for generating
 #			flame graph differentials.
 #
-# USAGE: ./difffolded.pl folded1 folded2 | ./flamegraph.pl > diff2.svg
+# USAGE: ./difffolded.pl [-hns] folded1 folded2 | ./flamegraph.pl > diff2.svg
+#
+# Options are described in the usage message (-h).
 #
 # The flamegraph will be colored based on higher samples (red) and smaller
 # samples (blue). The frame widths will be based on the 2nd folded file.
@@ -51,14 +53,18 @@
 # 28-Oct-2014	Brendan Gregg	Created this.
 
 use strict;
-use Getopt::Long;
+use Getopt::Std;
 
+# defaults
 my $normalize = 0;	# make sample counts equal
+my $striphex = 0;	# strip hex numbers
 
 sub usage {
 	print STDERR <<USAGE_END;
-USAGE: $0 [-n] folded1 folded2 | flamegraph.pl > diff2.svg
+USAGE: $0 [-hns] folded1 folded2 | flamegraph.pl > diff2.svg
+	    -h       # help message
 	    -n       # normalize sample counts
+	    -s       # strip hex numbers (addresses)
 See stackcollapse scripts for generating folded files.
 Also consider flipping the files and hues to highlight reduced paths:
 $0 folded2 folded1 | ./flamegraph.pl --negate > diff1.svg
@@ -66,11 +72,12 @@ USAGE_END
 	exit 2;
 }
 
-usage if @ARGV < 2;
-GetOptions(
-	'normalize|n' => \$normalize
-) or usage();
-
+usage() if @ARGV < 2;
+our($opt_h, $opt_n, $opt_s);
+getopts('ns') or usage();
+usage() if $opt_h;
+$normalize = 1 if defined $opt_n;
+$striphex = 1 if defined $opt_s;
 
 my ($total1, $total2) = (0, 0);
 my %Folded;
@@ -82,6 +89,7 @@ open FILE, $file1 or die "ERROR: Can't read $file1\n";
 while (<FILE>) {
 	chomp;
 	my ($stack, $count) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+	$stack =~ s/0x[0-9a-fA-F]+/0x.../g if $striphex;
 	$Folded{$stack}{1} += $count;
 	$total1 += $count;
 }
@@ -91,6 +99,7 @@ open FILE, $file2 or die "ERROR: Can't read $file2\n";
 while (<FILE>) {
 	chomp;
 	my ($stack, $count) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+	$stack =~ s/0x[0-9a-fA-F]+/0x.../g if $striphex;
 	$Folded{$stack}{2} += $count;
 	$total2 += $count;
 }
