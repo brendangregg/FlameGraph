@@ -539,7 +539,7 @@ my $inc = <<INC;
 	</linearGradient>
 </defs>
 <style type="text/css">
-	.func_g:hover { stroke:black; stroke-width:0.5; }
+	.func_g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
 </style>
 <script type="text/ecmascript">
 <![CDATA[
@@ -716,7 +716,8 @@ my ($white, $black, $vvdgrey, $vdgrey) = (
     );
 $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2, "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="opacity:0.0"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2,
+    "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
 
 if ($palette) {
 	read_palette();
