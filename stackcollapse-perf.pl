@@ -65,6 +65,7 @@ sub remember_stack {
 my @stack;
 my $pname;
 my $include_pname = 1;	# include process names in stacks
+my $tidy_java = 1;	# condense Java signatures
 
 foreach (<>) {
 	next if m/^#/;
@@ -83,6 +84,18 @@ foreach (<>) {
 	} elsif (/^\s*\w+\s*(.+) (\S+)/) {
 		my ($func, $mod) = ($1, $2);
 		next if $func =~ /^\(/;		# skip process names
+		if ($tidy_java) {
+			# eg, convert the following:
+			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
+			#	Lorg/mozilla/javascript/MemberBox;.<init>(Ljava/lang/reflect/Method;)V
+			# into:
+			#	org/mozilla/javascript/ContextFactory:.call
+			#	org/mozilla/javascript/MemberBox:.init
+			$func =~ s/;/:/g;
+			$func =~ tr/<>//d;
+			$func =~ s/\(.*\).*//;
+			$func =~ s/^L// if $func =~ m:/:;
+		}
 		unshift @stack, $func;
 	} else {
 		warn "Unrecognized line: $_";

@@ -132,7 +132,8 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--fontsize    # font size (default 12)
 	--countname   # count type label (default "samples")
 	--nametype    # name type label (default "Function:")
-	--colors      # "hot", "mem", "io" palette (default "hot")
+	--colors      # set color palette. choices are: hot (default), mem, io,
+	              # java, red, green, blue, yellow, purple, orange
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
@@ -284,6 +285,7 @@ sub namehash {
 sub color {
 	my ($type, $hash, $name) = @_;
 	my ($v1, $v2, $v3);
+
 	if ($hash) {
 		$v1 = namehash($name);
 		$v2 = $v3 = namehash(scalar reverse $name);
@@ -292,6 +294,8 @@ sub color {
 		$v2 = rand(1);
 		$v3 = rand(1);
 	}
+
+	# theme palettes
 	if (defined $type and $type eq "hot") {
 		my $r = 205 + int(50 * $v3);
 		my $g = 0 + int(230 * $v1);
@@ -310,6 +314,51 @@ sub color {
 		my $b = 190 + int(55 * $v2);
 		return "rgb($r,$g,$b)";
 	}
+
+	# multi palettes
+	if (defined $type and $type eq "java") {
+		if ($name =~ /::/) {		# C++
+			$type = "yellow";
+		} elsif ($name =~ m:/:) {	# Java (match "/" in path)
+			$type = "green"
+		} else {			# system
+			$type = "red";
+		}
+		# fall-through to color palettes
+	}
+
+	# color palettes
+	if (defined $type and $type eq "red") {
+		my $r = 200 + int(55 * $v1);
+		my $x = 50 + int(80 * $v1);
+		return "rgb($r,$x,$x)";
+	}
+	if (defined $type and $type eq "green") {
+		my $g = 200 + int(55 * $v1);
+		my $x = 50 + int(60 * $v1);
+		return "rgb($x,$g,$x)";
+	}
+	if (defined $type and $type eq "blue") {
+		my $b = 205 + int(50 * $v1);
+		my $x = 80 + int(60 * $v1);
+		return "rgb($x,$x,$b)";
+	}
+	if (defined $type and $type eq "yellow") {
+		my $x = 175 + int(55 * $v1);
+		my $b = 50 + int(20 * $v1);
+		return "rgb($x,$x,$b)";
+	}
+	if (defined $type and $type eq "purple") {
+		my $x = 190 + int(65 * $v1);
+		my $g = 80 + int(60 * $v1);
+		return "rgb($x,$g,$x)";
+	}
+	if (defined $type and $type eq "orange") {
+		my $r = 190 + int(65 * $v1);
+		my $g = 90 + int(65 * $v1);
+		return "rgb($r,$g,0)";
+	}
+
 	return "rgb(0,0,0)";
 }
 
