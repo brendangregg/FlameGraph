@@ -404,9 +404,10 @@ sub read_palette {
 	}
 }
 
-my %Node;
+my %Node;	# Hash of merged frame data
 my %Tmp;
 
+# flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
 	my ($last, $this, $v, $d) = @_;
 
@@ -443,7 +444,7 @@ sub flow {
         return $this;
 }
 
-# Parse input
+# parse input
 my @Data;
 my $last = [];
 my $time = 0;
@@ -476,8 +477,15 @@ foreach (<>) {
 # process and merge frames
 foreach (sort @Data) {
 	chomp;
-	# there may be an extra samples column for differentials
+	# process: folded_stack count
+	# eg: func_a;func_b;func_c 31
 	my ($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+	unless (defined $samples and defined $stack) {
+		++$ignored;
+		next;
+	}
+
+	# there may be an extra samples column for differentials:
 	my $samples2 = undef;
 	if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
 		$samples2 = $samples;
@@ -488,12 +496,12 @@ foreach (sort @Data) {
 		$delta = $samples2 - $samples;
 		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
 	}
-	unless (defined $samples) {
-		++$ignored;
-		next;
-	}
+
 	$stack =~ tr/<>/()/;
+
+	# merge frames and populate %Node:
 	$last = flow($last, [ '', split ";", $stack ], $time, $delta);
+
 	if (defined $samples2) {
 		$time += $samples2;
 	} else {
@@ -501,9 +509,20 @@ foreach (sort @Data) {
 	}
 }
 flow($last, [], $time, $delta);
-warn "Ignored $ignored lines with invalid format\n" if $ignored;
-die "ERROR: No stack counts found\n" unless $time;
 
+warn "Ignored $ignored lines with invalid format\n" if $ignored;
+unless ($time) {
+	warn "ERROR: No stack counts found\n";
+	my $im = SVG->new();
+	# emit an error message SVG, for tools automating flamegraph use
+	my $imageheight = $fontsize * 5;
+	$im->header($imagewidth, $imageheight);
+	$im->stringTTF($im->colorAllocate(0, 0, 0), $fonttype, $fontsize + 2,
+	    0.0, int($imagewidth / 2), $fontsize * 2,
+	    "ERROR: No valid input provided to flamegraph.pl.", "middle");
+	print $im->svg;
+	exit 2;
+}
 if ($timemax and $timemax < $time) {
 	warn "Specified --total $timemax is less than actual total $time, so ignored\n"
 	if $timemax/$time > 0.02; # only warn is significant (e.g., not rounding etc)
@@ -527,7 +546,7 @@ while (my ($id, $node) = each %Node) {
 	$depthmax = $depth if $depth > $depthmax;
 }
 
-# Draw canvas
+# draw canvas, and embed interactive JavaScript program
 my $imageheight = ($depthmax * $frameheight) + $ypad1 + $ypad2;
 my $im = SVG->new();
 $im->header($imagewidth, $imageheight);
@@ -723,7 +742,7 @@ if ($palette) {
 	read_palette();
 }
 
-# Draw frames
+# draw frames
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
