@@ -87,13 +87,14 @@ foreach (<>) {
 		if ($tidy_java) {
 			# eg, convert the following:
 			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
+			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/C
 			#	Lorg/mozilla/javascript/MemberBox;.<init>(Ljava/lang/reflect/Method;)V
 			# into:
 			#	org/mozilla/javascript/ContextFactory:.call
 			#	org/mozilla/javascript/MemberBox:.init
 			$func =~ s/;/:/g;
 			$func =~ tr/<>//d;
-			$func =~ s/\(.*\).*//;
+			$func =~ s/\(.*//;
 			$func =~ s/^L// if $func =~ m:/:;
 		}
 		unshift @stack, $func;
