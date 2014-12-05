@@ -333,7 +333,7 @@ sub color {
 			$type = "green"
 		} elsif ($name =~ m/:/) {	# JavaScript (match ":" in builtin)
 			$type = "aqua"
-		} elsif ($name =~ m/^ *$/) {	# Missing symbol
+		} elsif ($name =~ m/^ $/) {	# Missing symbol
 			$type = "green"
 		} else {			# system
 			$type = "red";
