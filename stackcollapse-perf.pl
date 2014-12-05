@@ -72,7 +72,7 @@ foreach (<>) {
 	chomp;
 
 	if (m/^$/) {
-		if (defined $pname) { unshift @stack, $pname; }
+		if ($include_pname) { unshift @stack, $pname; }
 		remember_stack(join(";", @stack), 1) if @stack;
 		undef @stack;
 		undef $pname;
@@ -80,16 +80,17 @@ foreach (<>) {
 	}
 
 	if (/^(\S+)\s/) {
-		$include_pname and $pname = $1;	# else skip this line
+		$pname = $1;
 	} elsif (/^\s*\w+\s*(.+) (\S+)/) {
 		my ($func, $mod) = ($1, $2);
 		next if $func =~ /^\(/;		# skip process names
-		if ($tidy_java) {
+		if ($tidy_java and $pname eq "java") {
 			# eg, convert the following:
 			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
 			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/C
 			#	Lorg/mozilla/javascript/MemberBox;.<init>(Ljava/lang/reflect/Method;)V
 			# into:
+			#	org/mozilla/javascript/ContextFactory:.call
 			#	org/mozilla/javascript/ContextFactory:.call
 			#	org/mozilla/javascript/MemberBox:.init
 			$func =~ s/;/:/g;
