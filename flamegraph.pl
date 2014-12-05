@@ -133,7 +133,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--countname   # count type label (default "samples")
 	--nametype    # name type label (default "Function:")
 	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # java, red, green, blue, yellow, purple, orange
+	              # java, js, red, green, blue, yellow, purple, orange
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
@@ -326,6 +326,20 @@ sub color {
 		}
 		# fall-through to color palettes
 	}
+	if (defined $type and $type eq "js") {
+		if ($name =~ /::/) {		# C++
+			$type = "yellow";
+		} elsif ($name =~ m:/:) {	# JavaScript (match "/" in path)
+			$type = "green"
+		} elsif ($name =~ m/:/) {	# JavaScript (match ":" in builtin)
+			$type = "aqua"
+		} elsif ($name =~ m/^ *$/) {	# Missing symbol
+			$type = "green"
+		} else {			# system
+			$type = "red";
+		}
+		# fall-through to color palettes
+	}
 
 	# color palettes
 	if (defined $type and $type eq "red") {
@@ -352,6 +366,12 @@ sub color {
 		my $x = 190 + int(65 * $v1);
 		my $g = 80 + int(60 * $v1);
 		return "rgb($x,$g,$x)";
+	}
+	if (defined $type and $type eq "aqua") {
+		my $r = 50 + int(60 * $v1);
+		my $g = 165 + int(55 * $v1);
+		my $b = 165 + int(55 * $v1);
+		return "rgb($r,$g,$b)";
 	}
 	if (defined $type and $type eq "orange") {
 		my $r = 190 + int(65 * $v1);
