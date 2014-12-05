@@ -66,13 +66,20 @@ my @stack;
 my $pname;
 my $include_pname = 1;	# include process names in stacks
 my $tidy_java = 1;	# condense Java signatures
+my $tidy_generic = 1;	# clean up function names a little
 
 foreach (<>) {
 	next if m/^#/;
 	chomp;
 
 	if (m/^$/) {
-		if ($include_pname) { unshift @stack, $pname; }
+		if ($include_pname) {
+			if (defined $pname) {
+				unshift @stack, $pname;
+			} else {
+				unshift @stack, "";
+			}
+		}
 		remember_stack(join(";", @stack), 1) if @stack;
 		undef @stack;
 		undef $pname;
@@ -84,8 +91,17 @@ foreach (<>) {
 	} elsif (/^\s*\w+\s*(.+) (\S+)/) {
 		my ($func, $mod) = ($1, $2);
 		next if $func =~ /^\(/;		# skip process names
+		if ($tidy_generic) {
+			$func =~ s/;/:/g;
+			$func =~ tr/<>//d;
+			$func =~ s/\(.*//;
+			# now tidy this horrible thing:
+			# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
+			$func =~ tr/"\'//d;
+			# fall through to $tidy_java
+		}
 		if ($tidy_java and $pname eq "java") {
-			# eg, convert the following:
+			# along with $tidy_generic, converts the following:
 			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
 			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/C
 			#	Lorg/mozilla/javascript/MemberBox;.<init>(Ljava/lang/reflect/Method;)V
@@ -93,9 +109,6 @@ foreach (<>) {
 			#	org/mozilla/javascript/ContextFactory:.call
 			#	org/mozilla/javascript/ContextFactory:.call
 			#	org/mozilla/javascript/MemberBox:.init
-			$func =~ s/;/:/g;
-			$func =~ tr/<>//d;
-			$func =~ s/\(.*//;
 			$func =~ s/^L// if $func =~ m:/:;
 		}
 		unshift @stack, $func;
