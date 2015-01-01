@@ -56,5 +56,5 @@ while(<>) {
 }
 
 foreach my $k (sort { $a cmp $b } keys %stacks) {
-  printf "$k $stacks{$k}\n";
+  print "$k $stacks{$k}\n";
 }
