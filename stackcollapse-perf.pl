@@ -54,6 +54,7 @@
 # 02-Jul-2014	   "	  "	Added process name to stacks.
 
 use strict;
+use Getopt::Long;
 
 my %collapsed;
 
@@ -67,8 +68,18 @@ my $pname;
 my $include_pname = 1;	# include process names in stacks
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
+my $the_pname;
 
-foreach (<>) {
+my $show_inline = 0;
+my $show_context = 0;
+GetOptions( 'inline' => \$show_inline,
+            'context' => \$show_context)
+or die("Error in command line arguments\n");
+
+foreach (<STDIN>) {
+	if(/^# cmdline.+\.\.(\S+)( .+|$)/) {
+		$the_pname = $1;
+	}
 	next if m/^#/;
 	chomp;
 
@@ -88,8 +99,39 @@ foreach (<>) {
 
 	if (/^(\S+)\s/) {
 		$pname = $1;
-	} elsif (/^\s*\w+\s*(.+) (\S+)/) {
-		my ($func, $mod) = ($1, $2);
+	} elsif (/^\s*(\w+)\s*(.+) \((\S+)\)/) {
+		my ($pc, $func, $mod) = ($1, $2, $3);
+
+		# Capture addr2line output
+		if ($show_inline == 1 && index($mod, $the_pname) != -1) {
+			my $a2l_output = `addr2line -a $pc -e $mod -i -f -s -C`;
+
+			# Remove first line
+			$a2l_output =~ s/^(.*\n){1}//;
+
+			my @fullfunc;
+			my $one_item = "";
+			for (split /^/, $a2l_output) {
+				chomp $_;
+
+				# Remove discriminator info if exists
+				$_ =~ s/ \(discriminator \S+\)//;
+
+				if ($one_item eq "") {
+					$one_item = $_;
+				} else {
+          if ($show_context == 1) {
+            unshift @fullfunc, $one_item . ":$_";
+          } else {
+            unshift @fullfunc, $one_item;
+          }
+					$one_item = "";
+				}
+			}
+			unshift @stack, join(";", @fullfunc);
+			next;
+		}
+
 		next if $func =~ /^\(/;		# skip process names
 		if ($tidy_generic) {
 			$func =~ s/;/:/g;
