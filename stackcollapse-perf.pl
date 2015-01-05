@@ -118,5 +118,5 @@ foreach (<>) {
 }
 
 foreach my $k (sort { $a cmp $b } keys %collapsed) {
-	printf "$k $collapsed{$k}\n";
+	print "$k $collapsed{$k}\n";
 }
