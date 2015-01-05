@@ -11,7 +11,7 @@
 #
 # Example input:
 #
-#  swapper     0 [000] 158665.570607: cpu-clock: 
+#  swapper     0 [000] 158665.570607: cpu-clock:
 #         ffffffff8103ce3b native_safe_halt ([kernel.kallsyms])
 #         ffffffff8101c6a3 default_idle ([kernel.kallsyms])
 #         ffffffff81013236 cpu_idle ([kernel.kallsyms])
@@ -55,6 +55,7 @@
 
 use strict;
 use Getopt::Long;
+use File::Basename;
 
 my %collapsed;
 
@@ -68,7 +69,8 @@ my $pname;
 my $include_pname = 1;	# include process names in stacks
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
-my $the_pname;
+my $perf_cmdline;
+my $the_pname = "";
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -77,9 +79,11 @@ GetOptions( 'inline' => \$show_inline,
 or die("Error in command line arguments\n");
 
 foreach (<STDIN>) {
-	if(/^# cmdline.+\.\.(\S+)( .+|$)/) {
-		$the_pname = $1;
+	# TODO Move this logic out of main loop
+	if(/^# cmdline : (.+)/) {
+		$perf_cmdline = $1;
 	}
+
 	next if m/^#/;
 	chomp;
 
@@ -102,34 +106,48 @@ foreach (<STDIN>) {
 	} elsif (/^\s*(\w+)\s*(.+) \((\S+)\)/) {
 		my ($pc, $func, $mod) = ($1, $2, $3);
 
-		# Capture addr2line output
-		if ($show_inline == 1 && index($mod, $the_pname) != -1) {
-			my $a2l_output = `addr2line -a $pc -e $mod -i -f -s -C`;
-
-			# Remove first line
-			$a2l_output =~ s/^(.*\n){1}//;
-
-			my @fullfunc;
-			my $one_item = "";
-			for (split /^/, $a2l_output) {
-				chomp $_;
-
-				# Remove discriminator info if exists
-				$_ =~ s/ \(discriminator \S+\)//;
-
-				if ($one_item eq "") {
-					$one_item = $_;
-				} else {
-          if ($show_context == 1) {
-            unshift @fullfunc, $one_item . ":$_";
-          } else {
-            unshift @fullfunc, $one_item;
-          }
-					$one_item = "";
+		# TODO make this run faster
+		if ($show_inline == 1) {
+			# The module is the one that has its filename as substring of $perf_cmdline
+			# TODO Move this logic out of main loop
+			if ($the_pname eq "") {
+				# valid file tree path
+				if (substr($mod, 0, 1)  eq "/") {
+					if (index($mod, "perf") == -1 && index($perf_cmdline, basename($mod)) != -1) {
+						$the_pname = $mod;
+					}
 				}
 			}
-			unshift @stack, join(";", @fullfunc);
-			next;
+
+			# Capture addr2line output
+			if ($mod eq $the_pname) {
+				my $a2l_output = `addr2line -a $pc -e $mod -i -f -s -C`;
+
+				# Remove first line
+				$a2l_output =~ s/^(.*\n){1}//;
+
+				my @fullfunc;
+				my $one_item = "";
+				for (split /^/, $a2l_output) {
+					chomp $_;
+
+					# Remove discriminator info if exists
+					$_ =~ s/ \(discriminator \S+\)//;
+
+					if ($one_item eq "") {
+						$one_item = $_;
+					} else {
+						if ($show_context == 1) {
+							unshift @fullfunc, $one_item . ":$_";
+						} else {
+							unshift @fullfunc, $one_item;
+						}
+						$one_item = "";
+					}
+				}
+				unshift @stack, join(";", @fullfunc);
+				next;
+			}
 		}
 
 		next if $func =~ /^\(/;		# skip process names
