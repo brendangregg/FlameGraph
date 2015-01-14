@@ -797,8 +797,9 @@ while (my ($id, $node) = each %Node) {
 		unless (defined $delta) {
 			$info = "$escaped_func ($samples_txt $countname, $pct%)";
 		} else {
-			my $deltapct = sprintf "%.2f", ((100 * $delta) / ($timemax * $factor));
-			$deltapct = $delta > 0 ? "+$deltapct" : $deltapct;
+			my $d = $negate ? -$delta : $delta;
+			my $deltapct = sprintf "%.2f", ((100 * $d) / ($timemax * $factor));
+			$deltapct = $d > 0 ? "+$deltapct" : $deltapct;
 			$info = "$escaped_func ($samples_txt $countname, $pct%; $deltapct%)";
 		}
 	}
