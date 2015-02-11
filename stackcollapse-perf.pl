@@ -141,16 +141,18 @@ foreach (<STDIN>) {
 		}
 
     if (@stack) {
-      print $stack[-1] . "\n";
+      #print $stack[-1] . "\n";
       my @lasts = split(';', $stack[-1]);
       my @lastelem = split(':', $lasts[-1]);
 
       if (@lastelem == 3) {
         pop @stack;
+        pop @lasts;
+        push @lasts, $lastelem[0] . ":" . Return_Lineno($lastelem[1] . ":" . $lastelem[2]);
         #print "lastelem 1: " . $lastelem[0] . "\n";
         #print "lastelem 1: " . $lastelem[1] . "\n";
         #print "lastelem 2: " . $lastelem[2] . "\n";
-        push @stack, $lastelem[0] . ":" . Return_Lineno($lastelem[1] . ":" . $lastelem[2]);
+        push @stack, join(";", @lasts);
       }
     	remember_stack(join(";", @stack), 1);
     }
