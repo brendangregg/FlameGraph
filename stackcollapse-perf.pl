@@ -139,7 +139,22 @@ foreach (<STDIN>) {
 				unshift @stack, "";
 			}
 		}
-		remember_stack(join(";", @stack), 1) if @stack;
+
+    if (@stack) {
+      print $stack[-1] . "\n";
+      my @lasts = split(';', $stack[-1]);
+      my @lastelem = split(':', $lasts[-1]);
+
+      if (@lastelem == 3) {
+        pop @stack;
+        #print "lastelem 1: " . $lastelem[0] . "\n";
+        #print "lastelem 1: " . $lastelem[1] . "\n";
+        #print "lastelem 2: " . $lastelem[2] . "\n";
+        push @stack, $lastelem[0] . ":" . Return_Lineno($lastelem[1] . ":" . $lastelem[2]);
+      }
+    	remember_stack(join(";", @stack), 1);
+    }
+
 		undef @stack;
 		undef $pname;
 		next;
@@ -203,7 +218,7 @@ foreach (<STDIN>) {
 							#print "input# " . $_ . "\n";
               #print "result# " . $one_item . ":" . $pair[0] . ":" . $matched_lineno . "\n";
               #unshift @fullfunc, $one_item . ":" . $pair[0] . ":" . $matched_lineno;
-              unshift @fullfunc, $one_item . ":" . Return_Lineno($_);
+              unshift @fullfunc, $one_item . ":" . $_;
 						} else {
 							unshift @fullfunc, $one_item;
 						}
