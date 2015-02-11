@@ -259,8 +259,18 @@ foreach (<STDIN>) {
 	}
 }
 
+my $hot_stack;
+my $max = 0;
 foreach my $k (sort { $a cmp $b } keys %collapsed) {
 	printf "$k $collapsed{$k}\n";
+  if ($collapsed{$k} > $max) {
+    $hot_stack = $k;
+    $max = $collapsed{$k};
+  }
 }
+
+open(my $fh, '>', 'flamegraph.hot-stack');
+print $fh $hot_stack;
+close $fh;
 
 #`rm /tmp/xxx`
