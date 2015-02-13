@@ -270,7 +270,7 @@ foreach my $k (sort { $a cmp $b } keys %collapsed) {
 }
 
 open(my $fh, '>', 'flamegraph.hot-stack');
+$hot_stack =~ tr/';'/','/;
 print $fh $hot_stack;
 close $fh;
 
-#`rm /tmp/xxx`
