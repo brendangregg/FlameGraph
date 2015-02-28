@@ -80,22 +80,18 @@ or die("Error in command line arguments\n");
 
 my %LineData;
 
-sub Return_Lineno{
-	 #my $i;
+sub Return_Lineno {
    my @pair = split(':', $_[0]);
 
    #info for this source file exist, look it up
 	 if ( ! exists $LineData{$pair[0]}) {
-	 	  #print $pair[0] . ".ln" . "\n";
 			if (open(my $fh, '<:encoding(UTF-8)', $pair[0] . ".ln")) {
 				my @AoA;
 				while (my $row = <$fh>) {
 				  chomp $row;
-				  #print "$row\n";
 				  my @begin_end = split(',', $row);
 				  my @begin = split(':', $begin_end[0]);
 				  my @end   = split(':', $begin_end[1]);
-				  #print $begin[0] . "," . $end[0] . "\n";
 				  push @AoA, [$begin[0] , $end[0]];
 				}
 
@@ -106,15 +102,10 @@ sub Return_Lineno{
 	 }
 
 	 my @AoA = @{$LineData{$pair[0]}};
-	 #for my $aref ( @AoA ) {
-   #  print "\t [ @$aref ],\n";
-   #}
 
 	 for my $i (0 .. $#AoA) {
-	 	  #print $AoA[$i][0] . "\n";
       if ($pair[1] >= $AoA[$i][0] and $pair[1] <= $AoA[$i][1]) {
       	my $ii = $i + "1";
-      	#print $pair[0] . ":-" . $ii . "\n";
        	return $pair[0] . ":-" . $ii;
       }
 	 }
@@ -149,9 +140,6 @@ foreach (<STDIN>) {
         pop @stack;
         pop @lasts;
         push @lasts, $lastelem[0] . ":" . Return_Lineno($lastelem[1] . ":" . $lastelem[2]);
-        #print "lastelem 1: " . $lastelem[0] . "\n";
-        #print "lastelem 1: " . $lastelem[1] . "\n";
-        #print "lastelem 2: " . $lastelem[2] . "\n";
         push @stack, join(";", @lasts);
       }
     	remember_stack(join(";", @stack), 1);
@@ -199,27 +187,6 @@ foreach (<STDIN>) {
 						$one_item = $_;
 					} else {
 						if ($show_context == 1) {
-              #my @pair = split(':', $_);
-
-							#if ($lineno_data_generated == 0) {
-              #  my $DN = dirname($pair[0]);
-              #  $DN =~ /CPU2006\/[^\.]+\.([^\/]+)\//;
-              #  $DN = $DN . "/" . $1 . ".bc";
-							#	`opt -load ~/Install/generic/llvm-3.5/lib/LLVMLoopRangeDump.so -S -loop-range-dump -o /dev/null $DN > /tmp/xxx`;
-              #  $lineno_data_generated = 1;
-              #}
-
-              #print "bcded";
-              #my $matched_lineno = `clang -emit-llvm -S -g $pair[0] -o - | opt -load ~/Install/generic/llvm-3.5/lib/LLVMLoopRangeDump.so -S -loop-range-dump -o /dev/null | grep -n $pair[1] | cut -f1 -d:`;
-              #my $prog_bc = "../build/" . split('_', $the_pname)[0] . ".bc";
-              #print $prog_bc;
-              #my $matched_lineno = `opt -load ~/Install/generic/llvm-3.5/lib/LLVMLoopRangeDump.so -S -loop-range-dump -o /dev/null $prog_bc | grep -n $pair[1] | cut -f1 -d:`;
-              #my $matched_lineno = `grep -n "$_" /tmp/xxx | cut -f1 -d:`;
-              #print $matched_lineno;
-              #unshift @fullfunc, $one_item . ":$_";
-							#print "input# " . $_ . "\n";
-              #print "result# " . $one_item . ":" . $pair[0] . ":" . $matched_lineno . "\n";
-              #unshift @fullfunc, $one_item . ":" . $pair[0] . ":" . $matched_lineno;
               unshift @fullfunc, $one_item . ":" . $_;
 						} else {
 							unshift @fullfunc, $one_item;
@@ -273,4 +240,3 @@ open(my $fh, '>', 'flamegraph.hot-stack');
 $hot_stack =~ tr/';'/','/;
 print $fh $hot_stack;
 close $fh;
-
