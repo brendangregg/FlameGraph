@@ -81,11 +81,16 @@ or die("Error in command line arguments\n");
 my %LineData;
 
 sub Return_Lineno {
-   my @pair = split(':', $_[0]);
+   #my @pair = split(':', $_[0]);
+   my $funcname = $_[0];
+   my $filename = $_[1];
+   my $lineno = $_[2];
+
+   my $default_ret = join(":", @_);
 
    #info for this source file exist, look it up
-	 if ( ! exists $LineData{$pair[0]}) {
-			if (open(my $fh, '<:encoding(UTF-8)', $pair[0] . ".ln")) {
+	 if ( ! exists $LineData{$filename}) {
+			if (open(my $fh, '<:encoding(UTF-8)', $filename . ".ln")) {
 				my @AoA;
 				while (my $row = <$fh>) {
 				  chomp $row;
@@ -95,22 +100,28 @@ sub Return_Lineno {
 				  push @AoA, [$begin[0] , $end[0]];
 				}
 
-				$LineData{$pair[0]} = [ @AoA ];
+				$LineData{$filename} = [ @AoA ];
 		  } else {
-		  	return $_[0];
+		  	return $default_ret;
 		  }
 	 }
 
-	 my @AoA = @{$LineData{$pair[0]}};
+	 my @AoA = @{$LineData{$filename}};
 
+	 my @Ret;
 	 for my $i (0 .. $#AoA) {
-      if ($pair[1] >= $AoA[$i][0] and $pair[1] <= $AoA[$i][1]) {
+      if ($lineno >= $AoA[$i][0] and $lineno <= $AoA[$i][1]) {
       	my $ii = $i + "1";
-       	return $pair[0] . ":-" . $ii;
+       	#return $filename . ":-" . $ii;
+       	push @Ret, $funcname . ":" . $filename . ":-" . $ii;
       }
 	 }
 
-	 return $_[0];
+	 if (@Ret == 0) {
+	 	return $default_ret;
+	 }
+
+	 return join(";", @Ret);
 }
 
 foreach (<STDIN>) {
@@ -139,7 +150,8 @@ foreach (<STDIN>) {
       if (@lastelem == 3) {
         pop @stack;
         pop @lasts;
-        push @lasts, $lastelem[0] . ":" . Return_Lineno($lastelem[1] . ":" . $lastelem[2]);
+        #push @lasts, $lastelem[0] . ":" . Return_Lineno($lastelem[1] . ":" . $lastelem[2]);
+        push @lasts, Return_Lineno($lastelem[0], $lastelem[1], $lastelem[2]);
         push @stack, join(";", @lasts);
       }
     	remember_stack(join(";", @stack), 1);
