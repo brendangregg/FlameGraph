@@ -91,7 +91,15 @@ sub Return_Lineno {
 
    #info for this source file exist, look it up
 	 if ( ! exists $LineData{$filename}) {
-			if (open(my $fh, '<:encoding(UTF-8)', $filename . ".ln")) {
+      my $fh;
+			if (open($fh, '<:encoding(UTF-8)', $filename . ".ln")) {
+      } else {
+			  if (open($fh, '<:encoding(UTF-8)', "sysdir/" . $filename . ".ln")) {
+        } else {
+		  	  return $default_ret;
+        }
+      }
+
 				my @AoA;
 				while (my $row = <$fh>) {
 				  chomp $row;
@@ -99,13 +107,10 @@ sub Return_Lineno {
 				  my @begin = split(':', $begin_end[0]);
 				  my @end   = split(':', $begin_end[1]);
 				  push @AoA, [$begin[0] , $end[0]];
-				}
+			  }
 
 				$LineData{$filename} = [ @AoA ];
-		  } else {
-		  	return $default_ret;
-		  }
-	 }
+	 } 
 
 	 my @AoA = @{$LineData{$filename}};
 
