@@ -79,6 +79,7 @@ GetOptions( 'inline' => \$show_inline,
 or die("Error in command line arguments\n");
 
 my %LineData;
+my %LoopLinePair;
 
 sub Return_Lineno {
    #my @pair = split(':', $_[0]);
@@ -121,7 +122,12 @@ sub Return_Lineno {
 	 	return $default_ret;
 	 }
 
-	 return join(";", @Ret);
+	 my $key = join(";", @Ret);
+   if ( ! exists $LoopLinePair{$key}) {
+     $LoopLinePair{$key} = "-" . $lineno;
+   } 
+
+   return $funcname . ":" . $filename . ":" . $LoopLinePair{$key};
 }
 
 foreach (<STDIN>) {
