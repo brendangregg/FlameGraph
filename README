@@ -16,7 +16,8 @@ These can be created in three steps:
 
 1. Capture stacks
 =================
-Stack samples can be captured using DTrace, hwpmc, perf_events or SystemTap.
+Stack samples can be captured using DTrace, perf_events, SystemTap, pmcstat,
+Xperf, Intel VTune, or anything else than can capture full stack samples.
 
 Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
 
