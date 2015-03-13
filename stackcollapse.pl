@@ -50,8 +50,9 @@
 
 use strict;
 
+my $headerlines = 3;		# number of input lines to skip
+my $includeoffset = 0;		# include function offset (except leafs)
 my %collapsed;
-my $headerlines = 3;
 
 sub remember_stack {
 	my ($stack, $count) = @_;
@@ -66,7 +67,13 @@ foreach (<>) {
 	chomp;
 
 	if (m/^\s*(\d+)+$/) {
-		remember_stack(join(";", @stack), $1);
+		my $count = $1;
+		my $joined = join(";", @stack);
+
+		# trim leaf offset if these were retained:
+		$joined =~ s/\+[^+]*$// if $includeoffset;
+
+		remember_stack($joined, $count);
 		@stack = ();
 		next;
 	}
@@ -75,9 +82,11 @@ foreach (<>) {
 
 	my $frame = $_;
 	$frame =~ s/^\s*//;
-	$frame =~ s/\+[^+]*$//;
-	# Remove arguments from C++ function names.
+	$frame =~ s/\+[^+]*$// unless $includeoffset;
+
+	# Remove arguments from C++ function names:
 	$frame =~ s/(..)[(<].*/$1/;
+
 	$frame = "-" if $frame eq "";
 	unshift @stack, $frame;
 }
