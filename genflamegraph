@@ -1,0 +1,5 @@
+#!/bin/bash
+
+perf script -i $1 2> /dev/null | stackcollapse-perf.pl --inline --context > /tmp/out.perf-folded
+flamegraph.pl /tmp/out.perf-folded > $2
+rm /tmp/out.perf-folded
