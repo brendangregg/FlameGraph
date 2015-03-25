@@ -76,7 +76,7 @@ GetOptions( 'inline' => \$show_inline,
             'context' => \$show_context)
 or die("Error in command line arguments\n");
 
-foreach (<STDIN>) {
+foreach (<>) {
 	if(/^# cmdline.+\.\.(\S+)( .+|$)/) {
 		$the_pname = $1;
 	}
