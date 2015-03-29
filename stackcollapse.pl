@@ -85,7 +85,7 @@ foreach (<>) {
 	$frame =~ s/\+[^+]*$// unless $includeoffset;
 
 	# Remove arguments from C++ function names:
-	$frame =~ s/(..)[(<].*/$1/;
+	$frame =~ s/(::.*)[(<].*/$1/;
 
 	$frame = "-" if $frame eq "";
 	unshift @stack, $frame;
