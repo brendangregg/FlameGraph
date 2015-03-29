@@ -72,12 +72,12 @@ my $the_pname;
 
 my $show_inline = 0;
 my $show_context = 0;
-GetOptions( 'inline' => \$show_inline,
-            'context' => \$show_context)
+GetOptions('inline' => \$show_inline,
+           'context' => \$show_context)
 or die("Error in command line arguments\n");
 
 foreach (<>) {
-	if(/^# cmdline.+\.\.(\S+)( .+|$)/) {
+	if (/^# cmdline.+\.\.(\S+)( .+|$)/) {
 		$the_pname = $1;
 	}
 	next if m/^#/;
@@ -120,11 +120,12 @@ foreach (<>) {
 				if ($one_item eq "") {
 					$one_item = $_;
 				} else {
-          if ($show_context == 1) {
-            unshift @fullfunc, $one_item . ":$_";
-          } else {
-            unshift @fullfunc, $one_item;
-          }
+					if ($show_context == 1) {
+						unshift @fullfunc,
+						    $one_item . ":$_";
+					} else {
+						unshift @fullfunc, $one_item;
+					}
 					$one_item = "";
 				}
 			}
