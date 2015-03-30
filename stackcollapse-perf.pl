@@ -28,6 +28,11 @@
 #  perf record -a -g -F 997 sleep 60
 #  perf script | ./stackcollapse-perf.pl > out.stacks-folded
 #
+# The output of "perf script" should include stack traces. If these are missing
+# for you, try manually selecting the perf script output; eg:
+#
+#  perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace | ...
+#
 # Copyright 2012 Joyent, Inc.  All rights reserved.
 # Copyright 2012 Brendan Gregg.  All rights reserved.
 #
@@ -63,12 +68,10 @@ sub remember_stack {
 	$collapsed{$stack} += $count;
 }
 
-my @stack;
-my $pname;
 my $include_pname = 1;	# include process names in stacks
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
-my $the_pname;
+my $target_pname;	# target process name from perf invocation
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -76,13 +79,66 @@ GetOptions('inline' => \$show_inline,
            'context' => \$show_context)
 or die("Error in command line arguments\n");
 
-foreach (<>) {
-	if (/^# cmdline.+\.\.(\S+)( .+|$)/) {
-		$the_pname = $1;
+# for the --inline option
+sub inline {
+	my ($pc, $mod) = @_;
+
+	# capture addr2line output
+	my $a2l_output = `addr2line -a $pc -e $mod -i -f -s -C`;
+
+	# remove first line
+	$a2l_output =~ s/^(.*\n){1}//;
+
+	my @fullfunc;
+	my $one_item = "";
+	for (split /^/, $a2l_output) {
+		chomp $_;
+
+		# remove discriminator info if exists
+		$_ =~ s/ \(discriminator \S+\)//;
+
+		if ($one_item eq "") {
+			$one_item = $_;
+		} else {
+			if ($show_context == 1) {
+				unshift @fullfunc,
+				    $one_item . ":$_";
+			} else {
+				unshift @fullfunc, $one_item;
+			}
+			$one_item = "";
+		}
 	}
+
+	return join(";", @fullfunc);
+}
+
+my @stack;
+my $pname;
+
+#
+# Main loop
+#
+foreach (<>) {
+
+	# find the name of the process launched by perf, by stepping backwards
+	# over the args to find the first non-option (no dash):
+	if (/^# cmdline/) {
+		my @args = split ' ', $_;
+		foreach my $arg (reverse @args) {
+			if ($arg !~ /^-/) {
+				$target_pname = $arg;
+				$target_pname =~ s:.*/::;  # strip pathname
+				last;
+			}
+		}
+	}
+
+	# skip remaining comments
 	next if m/^#/;
 	chomp;
 
+	# end of stack. save cached data.
 	if (m/^$/) {
 		if ($include_pname) {
 			if (defined $pname) {
@@ -97,43 +153,21 @@ foreach (<>) {
 		next;
 	}
 
+	# record start
 	if (/^(\S+)\s/) {
 		$pname = $1;
+
+	# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S+)\)/) {
 		my ($pc, $func, $mod) = ($1, $2, $3);
 
-		# Capture addr2line output
-		if ($show_inline == 1 && index($mod, $the_pname) != -1) {
-			my $a2l_output = `addr2line -a $pc -e $mod -i -f -s -C`;
-
-			# Remove first line
-			$a2l_output =~ s/^(.*\n){1}//;
-
-			my @fullfunc;
-			my $one_item = "";
-			for (split /^/, $a2l_output) {
-				chomp $_;
-
-				# Remove discriminator info if exists
-				$_ =~ s/ \(discriminator \S+\)//;
-
-				if ($one_item eq "") {
-					$one_item = $_;
-				} else {
-					if ($show_context == 1) {
-						unshift @fullfunc,
-						    $one_item . ":$_";
-					} else {
-						unshift @fullfunc, $one_item;
-					}
-					$one_item = "";
-				}
-			}
-			unshift @stack, join(";", @fullfunc);
+		if ($show_inline == 1 && index($mod, $target_pname) != -1) {
+			unshift @stack, inline($pc, $mod);
 			next;
 		}
 
 		next if $func =~ /^\(/;		# skip process names
+
 		if ($tidy_generic) {
 			$func =~ s/;/:/g;
 			$func =~ tr/<>//d;
@@ -143,6 +177,7 @@ foreach (<>) {
 			$func =~ tr/"\'//d;
 			# fall through to $tidy_java
 		}
+
 		if ($tidy_java and $pname eq "java") {
 			# along with $tidy_generic, converts the following:
 			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
@@ -154,6 +189,7 @@ foreach (<>) {
 			#	org/mozilla/javascript/MemberBox:.init
 			$func =~ s/^L// if $func =~ m:/:;
 		}
+
 		unshift @stack, $func;
 	} else {
 		warn "Unrecognized line: $_";
