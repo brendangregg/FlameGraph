@@ -7,7 +7,9 @@
 # If memory addresses (+0xd) are present, they are stripped, and resulting
 # identical stacks are colased with their counts summed.
 #
-# USAGE: ./stackcollapse-perf.pl infile > outfile
+# USAGE: ./stackcollapse-perf.pl [options] infile > outfile
+#
+# Run "./stackcollapse-perf.pl -h" to list options.
 #
 # Example input:
 #
@@ -32,6 +34,9 @@
 # for you, try manually selecting the perf script output; eg:
 #
 #  perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace | ...
+#
+# This is also required for the --pid or --tid options, so that the output has
+# both the PID and TID.
 #
 # Copyright 2012 Joyent, Inc.  All rights reserved.
 # Copyright 2012 Brendan Gregg.  All rights reserved.
@@ -69,6 +74,8 @@ sub remember_stack {
 }
 
 my $include_pname = 1;	# include process names in stacks
+my $include_pid = 0;	# include process ID with process name
+my $include_tid = 0;	# include process & thread ID with process name
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
@@ -76,8 +83,18 @@ my $target_pname;	# target process name from perf invocation
 my $show_inline = 0;
 my $show_context = 0;
 GetOptions('inline' => \$show_inline,
-           'context' => \$show_context)
-or die("Error in command line arguments\n");
+           'context' => \$show_context,
+           'pid' => \$include_pid,
+           'tid' => \$include_tid)
+or die <<USAGE_END;
+USAGE: $0 [options] infile > outfile\n
+	--pid		# include PID with process names [1]
+	--tid		# include TID and PID with process names [1]
+	--inline	# un-inline using addr2line
+	--context	# include source context from addr2line\n
+[1] perf script must emit both PID and TIDs for these to work; eg:
+	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
+USAGE_END
 
 # for the --inline option
 sub inline {
@@ -152,12 +169,29 @@ foreach (<>) {
 		next;
 	}
 
-	# record start
-	if (/^(\S+)\s/) {
-		$pname = $1;
+	# event record start
+	if (/^(\S+)\s+(\d+)\s/) {
+		# default "perf script" output has TID but not PID
+		# eg, "java 25607 4794564.109216: cycles:"
+		if ($include_tid) {
+			$pname = "$1-?/$2";
+		} elsif ($include_pid) {
+			$pname = "$1-?";
+		} else {
+			$pname = $1;
+		}
+	} elsif (/^(\S+)\s+(\d+)\/(\d+)/) {
+		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
+		if ($include_tid) {
+			$pname = "$1-$2/$3";
+		} elsif ($include_pid) {
+			$pname = "$1-$2";
+		} else {
+			$pname = $1;
+		}
 
 	# stack line
-	} elsif (/^\s*(\w+)\s*(.+) \((\S+)\)/) {
+	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $func, $mod) = ($1, $2, $3);
 
 		if ($show_inline == 1 && index($mod, $target_pname) != -1) {
