@@ -101,8 +101,7 @@ sub inline {
 			$one_item = $_;
 		} else {
 			if ($show_context == 1) {
-				unshift @fullfunc,
-				    $one_item . ":$_";
+				unshift @fullfunc, $one_item . ":$_";
 			} else {
 				unshift @fullfunc, $one_item;
 			}
