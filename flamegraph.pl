@@ -794,6 +794,7 @@ while (my ($id, $node) = each %Node) {
 		$escaped_func =~ s/&/&amp;/g;
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
+		$escaped_func =~ s/"/&quot;/g;
 		unless (defined $delta) {
 			$info = "$escaped_func ($samples_txt $countname, $pct%)";
 		} else {
@@ -805,8 +806,10 @@ while (my ($id, $node) = each %Node) {
 	}
 
 	my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
+	my $jsinfo = $info;
+	$jsinfo =~ s/'/\\'/g;
 	$nameattr->{class}       ||= "func_g";
-	$nameattr->{onmouseover} ||= "s('".$info."')";
+	$nameattr->{onmouseover} ||= "s('".$jsinfo."')";
 	$nameattr->{onmouseout}  ||= "c()";
 	$nameattr->{onclick}     ||= "zoom(this)";
 	$nameattr->{title}       ||= $info;
