@@ -204,7 +204,7 @@ foreach (<STDIN>) {
 					chomp $_;
 
 					# Remove discriminator info if exists
-					$_ =~ s/ \(discriminator \S+\)//;
+					$_ =~ s/ \(discriminator ([\d]+)\)/\:$1/;
 
 					if ($one_item eq "") {
 						$one_item = $_;
