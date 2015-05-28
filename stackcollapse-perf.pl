@@ -82,8 +82,10 @@ my $target_pname;	# target process name from perf invocation
 
 my $show_inline = 0;
 my $show_context = 0;
+my $show_discriminator = 0;
 GetOptions('inline' => \$show_inline,
            'context' => \$show_context,
+           'discriminator' => \$show_discriminator,
            'pid' => \$include_pid,
            'tid' => \$include_tid)
 or die <<USAGE_END;
@@ -111,13 +113,16 @@ sub inline {
 	for (split /^/, $a2l_output) {
 		chomp $_;
 
-		# remove discriminator info if exists
-		$_ =~ s/ \(discriminator \S+\)//;
-
 		if ($one_item eq "") {
 			$one_item = $_;
 		} else {
 			if ($show_context == 1) {
+		    # handle discriminator info if exists
+        if ($show_discriminator == 1) {
+          $_ =~ s/ \(discriminator ([\d]+)\)/\:$1/;
+        } else {
+		      $_ =~ s/ \(discriminator \S+\)//;
+        }
 				unshift @fullfunc, $one_item . ":$_";
 			} else {
 				unshift @fullfunc, $one_item;
