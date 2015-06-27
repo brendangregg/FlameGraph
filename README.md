@@ -1,54 +1,61 @@
-Flame Graphs visualize profiled code-paths.
+# Flame Graphs visualize profiled code-paths.
 
 Website: http://www.brendangregg.com/flamegraphs.html
 
-CPU profiling using DTrace, perf_events, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
-CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/
-CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/
-Memory profiling: http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html
+CPU profiling using DTrace, perf_events, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html  
+CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/  
+CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/  
+Memory profiling: http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html  
 
 These can be created in three steps:
 
-   1. Capture stacks
-   2. Fold stacks
-   3. flamegraph.pl
-
+1. Capture stacks
+2. Fold stacks
+3. flamegraph.pl
 
 1. Capture stacks
 =================
-Stack samples can be captured using DTrace, perf_events, SystemTap, pmcstat,
-Xperf, Intel VTune, or anything else than can capture full stack samples.
+Stack samples can be captured using DTrace, hwpmc, perf_events or SystemTap.
 
 Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
 
+```
 # dtrace -x stackframes=100 -n 'profile-997 /arg0/ { @[stack()] = count(); } tick-60s { exit(0); }' -o out.kern_stacks
+```
 
 Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 97 Hertz:
 
+```
 # dtrace -x ustackframes=100 -n 'profile-97 /pid == 12345 && arg1/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
+```
 
 Using DTrace to capture 60 seconds of user-level stacks, including while time is spent in the kernel, for PID 12345 at 97 Hertz:
 
+```
 # dtrace -x ustackframes=100 -n 'profile-97 /pid == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
+```
 
-Switch ustack() for jstack() if the application has a ustack helper to include translated frames (eg, node.js frames; see: http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/).  The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using jstack() as it performs additional work to translate frames.
+Switch `ustack()` for `jstack()` if the application has a ustack helper to include translated frames (eg, node.js frames; see: http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/).  The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using `jstack()` as it performs additional work to translate frames.
 
 2. Fold stacks
 ==============
 Use the stackcollapse programs to fold stack samples into single lines.  The programs provided are:
 
-- stackcollapse.pl: for DTrace stacks
-- stackcollapse-perf.pl: for perf_events "perf script" output
-- stackcollapse-pmc.pl: for FreeBSD pmcstat -G stacks
-- stackcollapse-stap.pl: for SystemTap stacks
-- stackcollapse-instruments.pl: for XCode Instruments
+- `stackcollapse.pl`: for DTrace stacks
+- `stackcollapse-perf.pl`: for perf_events "perf script" output
+- `stackcollapse-pmc.pl`: for FreeBSD pmcstat -G stacks
+- `stackcollapse-stap.pl`: for SystemTap stacks
+- `stackcollapse-instruments.pl`: for XCode Instruments
 
 Usage example:
 
+```
 $ ./stackcollapse.pl out.kern_stacks > out.kern_folded
+```
 
 The output looks like this:
 
+```
 unix`_sys_sysenter_post_swapgs 1401
 unix`_sys_sysenter_post_swapgs;genunix`close 5
 unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf 85
@@ -58,24 +65,30 @@ unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_
 unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_unfalloc 2
 unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
 [...]
+```
 
 3. flamegraph.pl
 ================
 Use flamegraph.pl to render a SVG.
 
+```
 $ ./flamegraph.pl out.kern_folded > kernel.svg
+```
 
 An advantage of having the folded input file (and why this is separate to flamegraph.pl) is that you can use grep for functions of interest. Eg:
 
+```
 $ grep cpuid out.kern_folded | ./flamegraph.pl > cpuid.svg
-
+```
 
 Provided Example
 ================
 An example output from DTrace is included, both the captured stacks and
 the resulting Flame Graph. You can generate it yourself using:
 
+```
 $ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl > example.svg
+```
 
 This was from a particular performance investigation: the Flame Graph
 identified that CPU time was spent in the lofs module, and quantified
@@ -108,8 +121,8 @@ such as malloc()s, provided stack traces are gathered.
 
 Consistent Palette
 ==================
-If you use the --cp option, it will use the $colors selection and randomly
-generate the palette like normal. Any future flamegraphs created using the --cp
+If you use the `--cp` option, it will use the $colors selection and randomly
+generate the palette like normal. Any future flamegraphs created using the `--cp`
 option will use the same palette map. Any new symbols from future flamegraphs
 will have their colors randomly generated using the $colors selection.
 
@@ -123,14 +136,16 @@ Example:
 Say we have 2 captures, one with a problem, and one when it was working
 (whatever "it" is):
 
+```
 cat working.folded | ./flamegraph.pl --cp > working.svg
 # this generates a palette.map, as per the normal random generated look.
 
 cat broken.folded | ./flamegraph.pl --cp --colors mem > broken.svg
 # this svg will use the same palette.map for the same events, but a very
 # different colorscheme for any new events.
+```
 
 Take a look at the demo directory for an example:
 
-palette-example-working.svg
+palette-example-working.svg  
 palette-example-broken.svg
