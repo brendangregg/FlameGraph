@@ -66,6 +66,7 @@
 #
 # CDDL HEADER END
 #
+# 11-Oct-2014	Adrien Mahieux	Added zoom.
 # 21-Nov-2013   Shawn Sterling  Added consistent palette file option
 # 17-Mar-2013   Tim Bunce       Added options and more tunables.
 # 15-Dec-2011	Dave Pacheco	Support for frames with whitespace.
@@ -101,6 +102,32 @@ my $negate = 0;                 # switch differential hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
+my $help = 0;
+
+sub usage {
+	die <<USAGE_END;
+USAGE: $0 [options] infile > outfile.svg\n
+	--title       # change title text
+	--width       # width of image (default 1200)
+	--height      # height of each frame (default 16)
+	--minwidth    # omit smaller functions (default 0.1 pixels)
+	--fonttype    # font type (default "Verdana")
+	--fontsize    # font size (default 12)
+	--countname   # count type label (default "samples")
+	--nametype    # name type label (default "Function:")
+	--colors      # set color palette. choices are: hot (default), mem, io,
+	              # java, js, red, green, blue, yellow, purple, orange
+	--hash        # colors are keyed by function name hash
+	--cp          # use consistent palette (palette.map)
+	--reverse     # generate stack-reversed flame graph
+	--inverted    # icicle graph
+	--negate      # switch differential hues (blue<->red)
+	--help        # this message
+
+	eg,
+	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
+USAGE_END
+}
 
 GetOptions(
 	'fonttype=s'  => \$fonttype,
@@ -122,27 +149,9 @@ GetOptions(
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
 	'negate'      => \$negate,
-) or die <<USAGE_END;
-USAGE: $0 [options] infile > outfile.svg\n
-	--title       # change title text
-	--width       # width of image (default 1200)
-	--height      # height of each frame (default 16)
-	--minwidth    # omit smaller functions (default 0.1 pixels)
-	--fonttype    # font type (default "Verdana")
-	--fontsize    # font size (default 12)
-	--countname   # count type label (default "samples")
-	--nametype    # name type label (default "Function:")
-	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # java, js, red, green, blue, yellow, purple, orange
-	--hash        # colors are keyed by function name hash
-	--cp          # use consistent palette (palette.map)
-	--reverse     # generate stack-reversed flame graph
-	--inverted    # icicle graph
-	--negate      # switch differential hues (blue<->red)
-
-	eg,
-	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
-USAGE_END
+	'help'        => \$help,
+) or usage();
+$help && usage();
 
 # internals
 my $ypad1 = $fontsize * 4;      # pad top, include title
@@ -195,6 +204,7 @@ if ($colors eq "io")  { $bgcolor1 = "#f8f8f8"; $bgcolor2 = "#e8e8e8"; }
 <?xml version="1.0"$enc_attr standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" width="$w" height="$h" onload="init(evt)" viewBox="0 0 $w $h" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
 SVG
 	}
 
