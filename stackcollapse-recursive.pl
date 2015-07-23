@@ -37,9 +37,9 @@ my %stacks;
 
 while(<>) {
   chomp;
-  if(/^(.*)\s([0-9]*)/) {
-    my @stack  = split(/;/, $1);
-    my $value  = $2;
+  my ($stack_, $value) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+  if ($stack_) {
+    my @stack  = split(/;/, $stack_);
 
     my @result = ();
     my $i;
