@@ -102,6 +102,7 @@ my $negate = 0;                 # switch differential hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
+my $searchcolor = "rgb(230,0,230)";	# color for search highlighting
 my $help = 0;
 
 sub usage {
@@ -596,9 +597,14 @@ my $inc = <<INC;
 	function init(evt) { 
 		details = document.getElementById("details").firstChild; 
 		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
 	}
+
+	// mouse-over for info
 	function s(info) { details.nodeValue = "$nametype " + info; }
 	function c() { details.nodeValue = ' '; }
+
+	// functions
 	function find_child(parent, name, attr) {
 		var children = parent.childNodes;
 		for (var i=0; i<children.length;i++) {
@@ -644,6 +650,8 @@ my $inc = <<INC;
 		}
 		t.textContent = "";
 	}
+
+	// zoom
 	function zoom_reset(e) {
 		if (e.attributes != undefined) {
 			orig_load(e, "x");
@@ -752,6 +760,70 @@ my $inc = <<INC;
 			update_text(el[i]);
 		}
 	}	
+
+	// search
+	function reset_search() {
+		var el = document.getElementsByTagName("rect");
+		for (var i=0; i < el.length; i++){
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)", "");
+			if (term != null) {
+				search(term)
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			var searchbtn = document.getElementById("search");
+			searchbtn.style["opacity"] = "0.1";
+			searchbtn.firstChild.nodeValue = "Search"
+		}
+	}
+	function search(term) {
+		var re = new RegExp(term);
+		var el = document.getElementsByTagName("g");
+		for (var i=0; i < el.length; i++){
+			var e = el[i];
+			if (e.attributes["class"].value == "func_g") {
+				// Scrape the function name from the onmouseover
+				// callback text. This is a little dirty.
+				var func = e.attributes["onmouseover"].value;
+				if (func != null) {
+					func = func.substr(3);
+					func = func.replace(/ .*/, "");
+					var r = find_child(e, "rect");
+				}
+				if (func != null && r != null &&
+				    func.match(re)) {
+					orig_save(r, "fill");
+					r.attributes["fill"].value =
+					    "$searchcolor";
+					searching = 1;
+				}
+			}
+		}
+		if (searching) {
+			var searchbtn = document.getElementById("search");
+			searchbtn.style["opacity"] = "1.0";
+			searchbtn.firstChild.nodeValue = "Reset Search"
+		}
+	}
+	function searchover(e) {
+		var searchbtn = document.getElementById("search");
+		searchbtn.style["opacity"] = "1.0";
+	}
+	function searchout(e) {
+		var searchbtn = document.getElementById("search");
+		if (searching) {
+			searchbtn.style["opacity"] = "1.0";
+		} else {
+			searchbtn.style["opacity"] = "0.1";
+		}
+	}
 ]]>
 </script>
 INC
@@ -767,6 +839,8 @@ $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fon
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2,
     "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100,
+    $fontsize * 2, "Search", "", 'id="search" onmouseover="searchover()" onmouseout="searchout()" onclick="search_prompt()" style="opacity:0.1;cursor:pointer"');
 
 if ($palette) {
 	read_palette();
