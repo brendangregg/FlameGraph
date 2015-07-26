@@ -120,7 +120,6 @@ pad_top = fontsize * 4
 pad_bottom = fontsize * 2 + 10
 pad_side = 10				# left and right of image
 pad_frame = 1				# white space between frames
-ignored = 0				# ignored input data line count
 depth_max = 0				# deepest retained stack depth
 debug = 0
 
@@ -242,9 +241,94 @@ def include_javascript():
 	function init(evt) {
 		info = document.getElementById("info").firstChild;
 		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
 	}
+	function find_child(parent, name) {
+		var children = parent.childNodes;
+		for (var i = 0; i < children.length; i++) {
+			if (children[i].tagName == name)
+				return children[i];
+		}
+		return;
+	}
+	function orig_save(e, attr) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		e.setAttribute("_orig_" + attr, e.attributes[attr].value);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_" + attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_" + attr);
+	}
+
+	// mouse-over for info
 	function s(details) { info.nodeValue = "%s " + details }
 	function c() { info.nodeValue = ''; }
+
+	// search
+	function reset_search() {
+		var el = document.getElementsByTagName("rect");
+		for (var i=0; i < el.length; i++){
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)", "");
+			if (term != null) {
+				search(term)
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			var searchbtn = document.getElementById("search");
+			searchbtn.style["opacity"] = "0.1";
+			searchbtn.firstChild.nodeValue = "Search"
+		}
+	}
+	function search(term) {
+		var re = new RegExp(term);
+		var el = document.getElementsByTagName("g");
+		for (var i=0; i < el.length; i++){
+			var e = el[i];
+			if (e.attributes["class"].value == "f") {
+				// Scrape the function name from the onmouseover
+				// callback text. This is a little dirty.
+				var func = e.attributes["onmouseover"].value;
+				if (func != null) {
+					func = func.substr(3);
+					func = func.replace(/ .*/, "");
+					var r = find_child(e, "rect");
+				}
+				if (func != null && r != null &&
+				    func.match(re)) {
+					orig_save(r, "fill");
+					r.attributes["fill"].value =
+					    "rgb(230,0,230)";
+					searching = 1;
+				}
+			}
+		}
+		if (searching) {
+			var searchbtn = document.getElementById("search");
+			searchbtn.style["opacity"] = "1.0";
+			searchbtn.firstChild.nodeValue = "Reset Search"
+		}
+	}
+	function searchover(e) {
+		var searchbtn = document.getElementById("search");
+		searchbtn.style["opacity"] = "1.0";
+	}
+	function searchout(e) {
+		var searchbtn = document.getElementById("search");
+		if (searching) {
+			searchbtn.style["opacity"] = "1.0";
+		} else {
+			searchbtn.style["opacity"] = "0.1";
+		}
+	}
 ]]>
 </script>
 """
@@ -297,10 +381,17 @@ data = []
 stack_last = []
 count_total = 0			# count can be samples, time (ms/...), etc.
 diff_max = 0			# differential max delta
+ignored = 0			# ignored input data line count
+saved = 0			# saved input lines
 for line in infile:
 	data.append(line)
 data.sort()
 for line in data:
+	linetest = re.compile("^[^ ]* [0-9][0-9]*( [0-9][0-9]*)?$")
+	if not linetest.match(line):
+		ignored += 1
+		continue
+
 	# normal line format: stack count
 	# differential line format: stack count_a count_b
 	try:
@@ -325,6 +416,7 @@ for line in data:
 	stack.insert(0, "")			# blank root frame
 	merge(stack_last, stack, count_total, diff)
 	stack_last = stack
+	saved += 1
 
 	# increment x-axis offset
 	if differential:
@@ -335,10 +427,14 @@ for line in data:
 # finish and store remaining frames
 merge(stack_last, [], count_total, 0)
 
+# messages
 if debug:
 	print >> sys.stderr, "count_total: %d" % count_total
 if ignored:
 	print >> sys.stderr, "WARNING: ignored %d lines (invalid)" % ignored
+if saved == 0:
+	print >> sys.stderr, "ERROR: no valid input lines found. Exiting."
+	sys.exit()
 
 ### determine max depth, and prune narrow functions
 width_per_count = (image_width - 2.0 * pad_side) / count_total
@@ -362,6 +458,10 @@ include_javascript()
 svg.filled_rectangle(0, 0, image_width, image_height, color_bg)
 svg.string_ttf("black", fonttype, fontsize + 5, int(image_width / 2),
 	fontsize * 2, title, "middle")
+svg.string_ttf("black", fonttype, fontsize, image_width - pad_side - 100,
+	fontsize * 2, "Search", "", 'id="search" onmouseover="searchover()" ' +
+	'onmouseout="searchout()" onclick="search_prompt()" ' +
+	'style="opacity:0.1;cursor:pointer"')
 svg.string_ttf("black", fonttype, fontsize, pad_side,
 	image_height - (pad_bottom / 2), " ", "", 'id="info"')	# " " needed
 
