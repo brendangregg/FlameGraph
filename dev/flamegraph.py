@@ -27,7 +27,7 @@
 # func_a;func_b;func_c;func_d 31
 #
 # Here func_a() would be the root, and func_d() the leaf, and 31 is the count
-# for this stack trace. 
+# for this stack trace.
 #
 # With the resulting flame graph, the y axis is stack depth, and the x axis
 # spans the sample population. Each rectangle is a stack frame (a function),
@@ -232,8 +232,8 @@ def include_javascript():
 	script = """<script type="text/ecmascript">
 <![CDATA[
 	var info, svg;
-	function init(evt) { 
-		info = document.getElementById("info").firstChild; 
+	function init(evt) {
+		info = document.getElementById("info").firstChild;
 		svg = document.getElementsByTagName("svg")[0];
 	}
 	function s(details) { info.nodeValue = "%s " + details }
@@ -390,7 +390,7 @@ for func, depth, end_offset in Merged:
 		info = "%s (%s %s, %.2f%%)" % (escaped, count, countname,
 			(100.0 * count / count_total))
 	svg.group_header(info)
-	
+
 	# rectangle
 	svg.filled_rectangle(x1, y1, x2, y2, color, 'rx="1" ry="2"')
 
