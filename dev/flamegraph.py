@@ -175,7 +175,7 @@ class SVG:
 			(location, sx, sy, size, font, color, extra, text))
 
 	def group_header(self, info):
-		print ('<g class="func_g" onmouseover="s(\'%s\')"'
+		print ('<g class="f" onmouseover="s(\'%s\')"'
 			' onmouseout="c()">' % info)
 
 	def group_footer(self):
@@ -226,6 +226,13 @@ def diff_to_color(max, diff):
 	elif diff < 0:
 		r = g = int(210 * (max + diff) / max)
 	return "rgb(%d,%d,%d)" % (r, g, b)
+
+# css
+def include_css():
+	print """<style type="text/css">
+	.f:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+</style>
+"""
 
 # javascript interactivity
 def include_javascript():
@@ -350,6 +357,7 @@ svg = SVG(image_width, image_height)
 svg.header()
 
 # interactivity, background, title, mouse-over info
+include_css()
 include_javascript()
 svg.filled_rectangle(0, 0, image_width, image_height, color_bg)
 svg.string_ttf("black", fonttype, fontsize + 5, int(image_width / 2),
