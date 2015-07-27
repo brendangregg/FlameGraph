@@ -1,4 +1,4 @@
-# Flame Graphs visualize profiled code-paths.
+# Flame Graphs visualize profiled code
 
 Main Website: http://www.brendangregg.com/flamegraphs.html
 
@@ -15,8 +15,8 @@ Other sites:
 Flame graphs can be created in three steps:
 
 1. Capture stacks
-1. Fold stacks
-1. flamegraph.pl
+2. Fold stacks
+3. flamegraph.pl
 
 1. Capture stacks
 =================
