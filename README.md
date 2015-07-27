@@ -1,21 +1,44 @@
 # Flame Graphs visualize profiled code-paths.
 
-Website: http://www.brendangregg.com/flamegraphs.html
+Main Website: http://www.brendangregg.com/flamegraphs.html
 
-CPU profiling using DTrace, perf_events, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html  
-CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/  
-CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/  
-Memory profiling: http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html  
+Example (click to zoom):
+[![Example](http://brendangregg.github.io/FlameGraph/cpu-bash-flamegraph.svg)](http://brendangregg.github.io/FlameGraph/cpu-bash-flamegraph.svg)
 
-These can be created in three steps:
+Other sites:
+- CPU profiling using Linux perf_events, DTrace, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
+- CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/  
+- CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/  
+- Memory profiling: http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html  
+- Other examples, updates, and news: http://www.brendangregg.com/flamegraphs.html#Updates
+
+Flame graphs can be created in three steps:
 
 1. Capture stacks
-2. Fold stacks
-3. flamegraph.pl
+1. Fold stacks
+1. flamegraph.pl
 
 1. Capture stacks
 =================
-Stack samples can be captured using DTrace, hwpmc, perf_events or SystemTap.
+Stack samples can be captured using Linux perf_events, FreeBSD pmcstat (hwpmc), DTrace, SystemTap, and many other profilers. See the stackcollapse-* converters.
+
+### Linux perf_events
+
+Using Linux perf_events (aka "perf") to capture 60 seconds of 99 Hertz stack samples, both user- and kernel-level stacks, all processes:
+
+```
+# perf record -F 99 -a -g -- sleep 60
+# perf script > out.perf
+```
+
+Now only capturing PID 181:
+
+```
+# perf record -F 99 -p 181 -g -- sleep 60
+# perf script > out.perf
+```
+
+### DTrace
 
 Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:
 
@@ -29,7 +52,7 @@ Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 97 Hert
 # dtrace -x ustackframes=100 -n 'profile-97 /pid == 12345 && arg1/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
 ```
 
-Using DTrace to capture 60 seconds of user-level stacks, including while time is spent in the kernel, for PID 12345 at 97 Hertz:
+60 seconds of user-level stacks, including time spent in-kernel, for PID 12345 at 97 Hertz:
 
 ```
 # dtrace -x ustackframes=100 -n 'profile-97 /pid == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }' -o out.user_stacks
@@ -42,14 +65,22 @@ Switch `ustack()` for `jstack()` if the application has a ustack helper to inclu
 Use the stackcollapse programs to fold stack samples into single lines.  The programs provided are:
 
 - `stackcollapse.pl`: for DTrace stacks
-- `stackcollapse-perf.pl`: for perf_events "perf script" output
+- `stackcollapse-perf.pl`: for Linux perf_events "perf script" output
 - `stackcollapse-pmc.pl`: for FreeBSD pmcstat -G stacks
 - `stackcollapse-stap.pl`: for SystemTap stacks
 - `stackcollapse-instruments.pl`: for XCode Instruments
+- `stackcollapse-vtune.pl`: for Intel VTune profiles
+- `stackcollapse-ljp.awk`: for Lightweight Java Profiler
+- `stackcollapse-jstack.pl`: for Java jstack(1) output
+- `stackcollapse-gdb.pl`: for gdb(1) stacks
 
 Usage example:
 
 ```
+For perf_events:
+$ ./stackcollapse-perf.pl out.perf > out.folded
+
+For DTrace:
 $ ./stackcollapse.pl out.kern_stacks > out.kern_folded
 ```
 
