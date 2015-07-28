@@ -174,6 +174,7 @@ class SVG:
 			(location, sx, sy, size, font, color, extra, text))
 
 	def group_header(self, info):
+		# the onmouseover text is scraped by JS search()
 		print ('<g class="f" onmouseover="s(\'%s\')"'
 			' onmouseout="c()">' % info)
 
@@ -269,7 +270,7 @@ def include_javascript():
 	// search
 	function reset_search() {
 		var el = document.getElementsByTagName("rect");
-		for (var i=0; i < el.length; i++){
+		for (var i = 0; i < el.length; i++){
 			orig_load(el[i], "fill")
 		}
 	}
@@ -291,7 +292,7 @@ def include_javascript():
 	function search(term) {
 		var re = new RegExp(term);
 		var el = document.getElementsByTagName("g");
-		for (var i=0; i < el.length; i++){
+		for (var i = 0; i < el.length; i++){
 			var e = el[i];
 			if (e.attributes["class"].value == "f") {
 				// Scrape the function name from the onmouseover
@@ -334,7 +335,7 @@ def include_javascript():
 """
 	print script % nametype
 
-# this merges two stacks, this and last, and stores the results in Merged
+# this merges two stacks, stack and stack_last, and stores the results in Merged
 Merged = {}	# frame data in memory
 Diff = {}	# frame diff values (differentials only)
 MTmp = {}
