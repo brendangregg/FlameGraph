@@ -796,6 +796,13 @@ my $inc = <<INC;
 					func = func.substr(3);
 					func = func.replace(/ .*/, "");
 					var r = find_child(e, "rect");
+					if (r == null) {
+						// the rect might be wrapped in an anchor
+						// if nameattr href is being used
+						if (r = find_child(e, "a")) {
+						    r = find_child(r, "rect");
+						}
+					}
 				}
 				if (func != null && r != null &&
 				    func.match(re)) {
