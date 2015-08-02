@@ -1,0 +1,5 @@
+Flame Graph demos gathered and created for the talk "Blazing Performance with
+Flame Graphs" at USENIX/LISA 2013.
+
+These SVGs can not be seen on github directly; save them locally first (git
+clone or download), then open them in a browser (file://...).

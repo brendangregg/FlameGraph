@@ -33,13 +33,13 @@
 # Common Development and Distribution License (the "License").
 # You may not use this file except in compliance with the License.
 #
-# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
-# or http://opensource.org/licenses/CDDL-1.0.
+# You can obtain a copy of the license at docs/cddl1.txt or
+# http://opensource.org/licenses/CDDL-1.0.
 # See the License for the specific language governing permissions
 # and limitations under the License.
 #
 # When distributing Covered Code, include this CDDL HEADER in each
-# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# file and include the License file at docs/cddl1.txt.
 # If applicable, add the following below this CDDL HEADER, with the
 # fields enclosed by brackets "[]" replaced with your own identifying
 # information: Portions Copyright [yyyy] [name of copyright owner]
@@ -50,8 +50,9 @@
 
 use strict;
 
+my $headerlines = 3;		# number of input lines to skip
+my $includeoffset = 0;		# include function offset (except leafs)
 my %collapsed;
-my $headerlines = 3;
 
 sub remember_stack {
 	my ($stack, $count) = @_;
@@ -66,7 +67,13 @@ foreach (<>) {
 	chomp;
 
 	if (m/^\s*(\d+)+$/) {
-		remember_stack(join(";", @stack), $1);
+		my $count = $1;
+		my $joined = join(";", @stack);
+
+		# trim leaf offset if these were retained:
+		$joined =~ s/\+[^+]*$// if $includeoffset;
+
+		remember_stack($joined, $count);
 		@stack = ();
 		next;
 	}
@@ -75,13 +82,15 @@ foreach (<>) {
 
 	my $frame = $_;
 	$frame =~ s/^\s*//;
-	$frame =~ s/\+[^+]*$//;
-	# Remove arguments from C++ function names.
-	$frame =~ s/(..)[(<].*/$1/;
+	$frame =~ s/\+[^+]*$// unless $includeoffset;
+
+	# Remove arguments from C++ function names:
+	$frame =~ s/(::.*)[(<].*/$1/;
+
 	$frame = "-" if $frame eq "";
 	unshift @stack, $frame;
 }
 
 foreach my $k (sort { $a cmp $b } keys %collapsed) {
-	printf "$k $collapsed{$k}\n";
+	print "$k $collapsed{$k}\n";
 }

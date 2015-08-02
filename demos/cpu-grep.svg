@@ -1,0 +1,135 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="390" onload="init(evt)" viewBox="0 0 1200 390" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="390.0" fill="url(#background)"  />
+<text text-anchor="middle" x="600" y="40" font-size="25" font-family="Verdana" fill="rgb(0,0,0)"  >Flame Graph</text>
+<text text-anchor="" x="10" y="365" font-size="20" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('libc.so.1`_fwrite_unlocked (17 samples, 0.04%)')" onmouseout="c()">
+<title>libc.so.1`_fwrite_unlocked (17 samples, 0.04%)</title><rect x="1188.1" y="107" width="0.4" height="25.0" fill="rgb(216,95,1)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`memcpy (13 samples, 0.03%)')" onmouseout="c()">
+<title>libc.so.1`memcpy (13 samples, 0.03%)</title><rect x="1189.0" y="107" width="0.3" height="25.0" fill="rgb(232,106,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_UTF8_mbrtowc (12,492 samples, 25.80%)')" onmouseout="c()">
+<title>libc.so.1`_UTF8_mbrtowc (12,492 samples, 25.80%)</title><rect x="754.5" y="107" width="304.4" height="25.0" fill="rgb(246,93,50)" rx="2" ry="2" />
+<text text-anchor="" x="757.452431114967" y="125.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_UTF8_mbrtowc</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_UTF8_mbrtowc (6,203 samples, 12.81%)')" onmouseout="c()">
+<title>libc.so.1`_UTF8_mbrtowc (6,203 samples, 12.81%)</title><rect x="496.6" y="133" width="151.2" height="25.0" fill="rgb(253,112,8)" rx="2" ry="2" />
+<text text-anchor="" x="499.609245259636" y="151.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`..</text>
+</g>
+<g class="func_g" onmouseover="s('grep`check_multibyte_string (39,754 samples, 82.11%)')" onmouseout="c()">
+<title>grep`check_multibyte_string (39,754 samples, 82.11%)</title><rect x="90.0" y="159" width="968.9" height="25.0" fill="rgb(240,175,19)" rx="2" ry="2" />
+<text text-anchor="" x="92.9925641343413" y="177.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep`check_multibyte_string</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`memchr (16 samples, 0.03%)')" onmouseout="c()">
+<title>libc.so.1`memchr (16 samples, 0.03%)</title><rect x="1189.6" y="185" width="0.4" height="25.0" fill="rgb(207,120,19)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`cancel_safe_mutex_unlock (14 samples, 0.03%)')" onmouseout="c()">
+<title>libc.so.1`cancel_safe_mutex_unlock (14 samples, 0.03%)</title><rect x="1188.6" y="107" width="0.4" height="25.0" fill="rgb(237,117,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('grep`EGexecute (48,285 samples, 99.73%)')" onmouseout="c()">
+<title>grep`EGexecute (48,285 samples, 99.73%)</title><rect x="10.2" y="185" width="1176.9" height="25.0" fill="rgb(216,167,19)" rx="2" ry="2" />
+<text text-anchor="" x="13.2193580369315" y="203.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep`EGexecute</text>
+</g>
+<g class="func_g" onmouseover="s('grep`xmalloc (20 samples, 0.04%)')" onmouseout="c()">
+<title>grep`xmalloc (20 samples, 0.04%)</title><rect x="496.1" y="133" width="0.5" height="25.0" fill="rgb(228,71,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('grep`_start (48,414 samples, 100.00%)')" onmouseout="c()">
+<title>grep`_start (48,414 samples, 100.00%)</title><rect x="10.0" y="289" width="1180.0" height="25.0" fill="rgb(214,93,6)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="307.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep`_start</text>
+</g>
+<g class="func_g" onmouseover="s('grep`main (48,414 samples, 100.00%)')" onmouseout="c()">
+<title>grep`main (48,414 samples, 100.00%)</title><rect x="10.0" y="263" width="1180.0" height="25.0" fill="rgb(209,14,25)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="281.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep`main</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mbrtowc (5,022 samples, 10.37%)')" onmouseout="c()">
+<title>libc.so.1`mbrtowc (5,022 samples, 10.37%)</title><rect x="1060.4" y="159" width="122.4" height="25.0" fill="rgb(230,64,35)" rx="2" ry="2" />
+<text text-anchor="" x="1063.38377328872" y="177.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so...</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`memset (172 samples, 0.36%)')" onmouseout="c()">
+<title>libc.so.1`memset (172 samples, 0.36%)</title><rect x="1182.8" y="159" width="4.2" height="25.0" fill="rgb(248,62,12)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mutex_lock_impl (14 samples, 0.03%)')" onmouseout="c()">
+<title>libc.so.1`mutex_lock_impl (14 samples, 0.03%)</title><rect x="1059.6" y="107" width="0.3" height="25.0" fill="rgb(212,104,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mutex_lock (14 samples, 0.03%)')" onmouseout="c()">
+<title>libc.so.1`mutex_lock (14 samples, 0.03%)</title><rect x="1059.6" y="133" width="0.3" height="25.0" fill="rgb(247,174,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mutex_unlock (14 samples, 0.03%)')" onmouseout="c()">
+<title>libc.so.1`mutex_unlock (14 samples, 0.03%)</title><rect x="1060.0" y="133" width="0.3" height="25.0" fill="rgb(205,164,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_malloc_unlocked (7 samples, 0.01%)')" onmouseout="c()">
+<title>libc.so.1`_malloc_unlocked (7 samples, 0.01%)</title><rect x="496.2" y="81" width="0.2" height="25.0" fill="rgb(207,199,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`malloc (18 samples, 0.04%)')" onmouseout="c()">
+<title>libc.so.1`malloc (18 samples, 0.04%)</title><rect x="496.2" y="107" width="0.4" height="25.0" fill="rgb(216,19,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`free (46 samples, 0.10%)')" onmouseout="c()">
+<title>libc.so.1`free (46 samples, 0.10%)</title><rect x="1059.3" y="159" width="1.1" height="25.0" fill="rgb(240,100,43)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('all (48,414 samples, 100%)')" onmouseout="c()">
+<title>all (48,414 samples, 100%)</title><rect x="10.0" y="315" width="1180.0" height="25.0" fill="rgb(238,40,25)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="333.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`cancel_active (8 samples, 0.02%)')" onmouseout="c()">
+<title>libc.so.1`cancel_active (8 samples, 0.02%)</title><rect x="1188.7" y="81" width="0.2" height="25.0" fill="rgb(219,223,39)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`free (7 samples, 0.01%)')" onmouseout="c()">
+<title>libc.so.1`free (7 samples, 0.01%)</title><rect x="1189.4" y="185" width="0.2" height="25.0" fill="rgb(228,8,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mbrtowc (16,865 samples, 34.83%)')" onmouseout="c()">
+<title>libc.so.1`mbrtowc (16,865 samples, 34.83%)</title><rect x="647.9" y="133" width="411.0" height="25.0" fill="rgb(243,167,13)" rx="2" ry="2" />
+<text text-anchor="" x="650.868798281489" y="151.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`mbrtowc</text>
+</g>
+<g class="func_g" onmouseover="s('grep`0x4067d0 (3,243 samples, 6.70%)')" onmouseout="c()">
+<title>grep`0x4067d0 (3,243 samples, 6.70%)</title><rect x="11.0" y="159" width="79.0" height="25.0" fill="rgb(230,205,25)" rx="2" ry="2" />
+<text text-anchor="" x="13.9505514933697" y="177.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mutex_unlock (8 samples, 0.02%)')" onmouseout="c()">
+<title>libc.so.1`mutex_unlock (8 samples, 0.02%)</title><rect x="496.4" y="81" width="0.2" height="25.0" fill="rgb(222,228,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('grep`prtext (94 samples, 0.19%)')" onmouseout="c()">
+<title>grep`prtext (94 samples, 0.19%)</title><rect x="1187.1" y="185" width="2.3" height="25.0" fill="rgb(232,213,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`fwrite (60 samples, 0.12%)')" onmouseout="c()">
+<title>libc.so.1`fwrite (60 samples, 0.12%)</title><rect x="1187.8" y="133" width="1.5" height="25.0" fill="rgb(250,133,23)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('grep`grepbuf (48,411 samples, 99.99%)')" onmouseout="c()">
+<title>grep`grepbuf (48,411 samples, 99.99%)</title><rect x="10.0" y="211" width="1180.0" height="25.0" fill="rgb(242,170,46)" rx="2" ry="2" />
+<text text-anchor="" x="13.0243731152146" y="229.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep`grepbuf</text>
+</g>
+<g class="func_g" onmouseover="s('grep`kwsexec (10 samples, 0.02%)')" onmouseout="c()">
+<title>grep`kwsexec (10 samples, 0.02%)</title><rect x="1058.9" y="159" width="0.3" height="25.0" fill="rgb(215,202,8)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('grep`grepfile (48,414 samples, 100.00%)')" onmouseout="c()">
+<title>grep`grepfile (48,414 samples, 100.00%)</title><rect x="10.0" y="237" width="1180.0" height="25.0" fill="rgb(240,101,10)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="255.5" font-size="20" font-family="Verdana" fill="rgb(0,0,0)"  >grep`grepfile</text>
+</g>
+<g class="func_g" onmouseover="s('grep`prline (76 samples, 0.16%)')" onmouseout="c()">
+<title>grep`prline (76 samples, 0.16%)</title><rect x="1187.4" y="159" width="1.9" height="25.0" fill="rgb(219,226,8)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('grep`print_line_head (5 samples, 0.01%)')" onmouseout="c()">
+<title>grep`print_line_head (5 samples, 0.01%)</title><rect x="1187.6" y="133" width="0.1" height="25.0" fill="rgb(211,228,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`mutex_unlock_queue (6 samples, 0.01%)')" onmouseout="c()">
+<title>libc.so.1`mutex_unlock_queue (6 samples, 0.01%)</title><rect x="496.5" y="55" width="0.1" height="25.0" fill="rgb(248,95,45)" rx="2" ry="2" />
+</g>
+</svg>

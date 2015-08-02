@@ -1,0 +1,1255 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="562" onload="init(evt)" viewBox="0 0 1200 562" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#e0e0ff" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="562.0" fill="url(#background)"  />
+<text text-anchor="middle" x="600" y="24" font-size="17" font-family="Verdana" fill="rgb(0,0,0)"  >Heap Expansion Flame Graph</text>
+<text text-anchor="" x="10" y="545" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="22.2" y="97" width="4.1" height="15.0" fill="rgb(0,214,140)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL19heap_create_handlerP10handlertonP11TABLE_SHAREP11st_mem_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_ZL19heap_create_handlerP10handlertonP11TABLE_SHAREP11st_mem_root (73,728 bytes, 0.34%)</title><rect x="50.7" y="257" width="4.1" height="15.0" fill="rgb(0,233,76)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (589,824 bytes, 2.76%)</title><rect x="1157.4" y="417" width="32.6" height="15.0" fill="rgb(0,233,18)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z22thd_prepare_connectionP3THD (7,151,616 bytes, 33.45%)')" onmouseout="c()">
+<title>mysqld`_Z22thd_prepare_connectionP3THD (7,151,616 bytes, 33.45%)</title><rect x="681.4" y="417" width="394.7" height="15.0" fill="rgb(0,233,99)" rx="2" ry="2" />
+<text text-anchor="" x="684.379310344828" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z22thd_prepare_connectionP3THD</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z16dispatch_command19enum_server_commandP3THDPcj (12,017,664 bytes, 56.21%)')" onmouseout="c()">
+<title>mysqld`_Z16dispatch_command19enum_server_commandP3THDPcj (12,017,664 bytes, 56.21%)</title><rect x="18.1" y="417" width="663.3" height="15.0" fill="rgb(0,205,86)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z16dispatch_command19enum_server_commandP3THDPcj</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="14.1" y="337" width="4.0" height="15.0" fill="rgb(0,196,107)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (589,824 bytes, 2.76%)</title><rect x="1157.4" y="401" width="32.6" height="15.0" fill="rgb(0,230,66)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN6String10real_allocEj (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>mysqld`_ZN6String10real_allocEj (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="369" width="69.1" height="15.0" fill="rgb(0,190,228)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="225" width="65.2" height="15.0" fill="rgb(0,222,205)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('all (21,381,120 bytes, 100%)')" onmouseout="c()">
+<title>all (21,381,120 bytes, 100%)</title><rect x="10.0" y="513" width="1180.0" height="15.0" fill="rgb(0,231,88)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="523.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="62.9" y="241" width="4.1" height="15.0" fill="rgb(0,203,204)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (147,456 bytes, 0.69%)</title><rect x="54.8" y="161" width="8.1" height="15.0" fill="rgb(0,238,208)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="18.1" y="145" width="4.1" height="15.0" fill="rgb(0,224,214)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21find_or_create_digestP10PFS_threadP18PSI_digest_storagePKcj (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21find_or_create_digestP10PFS_threadP18PSI_digest_storagePKcj (73,728 bytes, 0.34%)</title><rect x="677.3" y="385" width="4.1" height="15.0" fill="rgb(0,199,69)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (589,824 bytes, 2.76%)</title><rect x="213.4" y="209" width="32.6" height="15.0" fill="rgb(0,224,12)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN11ha_innobase4openEPKcij (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_ZN11ha_innobase4openEPKcij (147,456 bytes, 0.69%)</title><rect x="22.2" y="161" width="8.1" height="15.0" fill="rgb(0,235,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="113" width="57.0" height="15.0" fill="rgb(0,228,88)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>mysqld`my_malloc (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="337" width="130.2" height="15.0" fill="rgb(0,199,72)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`my_malloc</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN7handler7ha_openEP5TABLEPKcii (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_ZN7handler7ha_openEP5TABLEPKcii (147,456 bytes, 0.69%)</title><rect x="22.2" y="177" width="8.1" height="15.0" fill="rgb(0,224,63)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (2,064,384 bytes, 9.66%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (2,064,384 bytes, 9.66%)</title><rect x="364.0" y="209" width="113.9" height="15.0" fill="rgb(0,192,43)" rx="2" ry="2" />
+<text text-anchor="" x="367" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`sbrk</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z23dict_table_open_on_namePKcmm17dict_err_ignore_t (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z23dict_table_open_on_namePKcmm17dict_err_ignore_t (73,728 bytes, 0.34%)</title><rect x="26.3" y="145" width="4.0" height="15.0" fill="rgb(0,208,214)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (294,912 bytes, 1.38%)</title><rect x="50.7" y="353" width="16.3" height="15.0" fill="rgb(0,220,10)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z15get_new_handlerP11TABLE_SHAREP11st_mem_rootP10handlerton (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z15get_new_handlerP11TABLE_SHAREP11st_mem_rootP10handlerton (73,728 bytes, 0.34%)</title><rect x="50.7" y="273" width="4.1" height="15.0" fill="rgb(0,217,218)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (589,824 bytes, 2.76%)</title><rect x="1157.4" y="385" width="32.6" height="15.0" fill="rgb(0,235,9)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL16buf_do_LRU_batchP10buf_pool_tm (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_ZL16buf_do_LRU_batchP10buf_pool_tm (147,456 bytes, 0.69%)</title><rect x="10.0" y="433" width="8.1" height="15.0" fill="rgb(0,220,151)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="273" width="69.1" height="15.0" fill="rgb(0,225,219)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN4ItemnwEmP11st_mem_root (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_ZN4ItemnwEmP11st_mem_root (147,456 bytes, 0.69%)</title><rect x="477.9" y="337" width="8.2" height="15.0" fill="rgb(0,222,52)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (2,064,384 bytes, 9.66%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (2,064,384 bytes, 9.66%)</title><rect x="364.0" y="241" width="113.9" height="15.0" fill="rgb(0,225,212)" rx="2" ry="2" />
+<text text-anchor="" x="367" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)</title><rect x="71.0" y="161" width="65.1" height="15.0" fill="rgb(0,198,86)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="1153.4" y="289" width="4.0" height="15.0" fill="rgb(0,195,177)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`handle_one_connection (20,275,200 bytes, 94.83%)')" onmouseout="c()">
+<title>mysqld`handle_one_connection (20,275,200 bytes, 94.83%)</title><rect x="18.1" y="449" width="1119.0" height="15.0" fill="rgb(0,225,47)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`handle_one_connection</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN13st_join_table10sort_tableEv (2,211,840 bytes, 10.34%)')" onmouseout="c()">
+<title>mysqld`_ZN13st_join_table10sort_tableEv (2,211,840 bytes, 10.34%)</title><rect x="71.0" y="241" width="122.1" height="15.0" fill="rgb(0,212,197)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN13st_..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="257" width="65.2" height="15.0" fill="rgb(0,207,83)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL21execute_sqlcom_selectP3THDP10TABLE_LIST (884,736 bytes, 4.14%)')" onmouseout="c()">
+<title>mysqld`_ZL21execute_sqlcom_selectP3THDP10TABLE_LIST (884,736 bytes, 4.14%)</title><rect x="18.1" y="369" width="48.9" height="15.0" fill="rgb(0,232,133)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysq..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)</title><rect x="22.2" y="113" width="4.1" height="15.0" fill="rgb(0,221,164)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="209" width="57.0" height="15.0" fill="rgb(0,214,167)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="62.9" y="225" width="4.1" height="15.0" fill="rgb(0,198,152)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`alloc_root (147,456 bytes, 0.69%)</title><rect x="54.8" y="257" width="8.1" height="15.0" fill="rgb(0,232,127)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (589,824 bytes, 2.76%)</title><rect x="213.4" y="257" width="32.6" height="15.0" fill="rgb(0,195,201)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN18Prepared_statement12execute_loopEP6StringbPhS2_ (3,170,304 bytes, 14.83%)')" onmouseout="c()">
+<title>mysqld`_ZN18Prepared_statement12execute_loopEP6StringbPhS2_ (3,170,304 bytes, 14.83%)</title><rect x="71.0" y="385" width="175.0" height="15.0" fill="rgb(0,218,36)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN18Prepared_s..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="177" width="65.1" height="15.0" fill="rgb(0,234,124)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (294,912 bytes, 1.38%)</title><rect x="1137.1" y="369" width="16.3" height="15.0" fill="rgb(0,238,82)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z9lex_startP3THD (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_Z9lex_startP3THD (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="401" width="65.1" height="15.0" fill="rgb(0,230,114)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (147,456 bytes, 0.69%)</title><rect x="54.8" y="209" width="8.1" height="15.0" fill="rgb(0,225,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="289" width="69.1" height="15.0" fill="rgb(0,220,37)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="305" width="61.0" height="15.0" fill="rgb(0,204,127)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="353" width="69.1" height="15.0" fill="rgb(0,214,35)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="62.9" y="161" width="4.1" height="15.0" fill="rgb(0,213,141)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="677.3" y="337" width="4.1" height="15.0" fill="rgb(0,225,134)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (2,064,384 bytes, 9.66%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (2,064,384 bytes, 9.66%)</title><rect x="364.0" y="257" width="113.9" height="15.0" fill="rgb(0,227,33)" rx="2" ry="2" />
+<text text-anchor="" x="367" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (294,912 bytes, 1.38%)</title><rect x="1137.1" y="433" width="16.3" height="15.0" fill="rgb(0,215,186)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="321" width="65.1" height="15.0" fill="rgb(0,225,182)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>mysqld`my_malloc (368,640 bytes, 1.72%)</title><rect x="193.1" y="225" width="20.3" height="15.0" fill="rgb(0,220,174)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (368,640 bytes, 1.72%)</title><rect x="193.1" y="145" width="20.3" height="15.0" fill="rgb(0,235,71)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`calloc (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`calloc (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="385" width="61.0" height="15.0" fill="rgb(0,203,78)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (294,912 bytes, 1.38%)</title><rect x="50.7" y="337" width="16.3" height="15.0" fill="rgb(0,235,77)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z19create_schema_tableP3THDP10TABLE_LIST (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>mysqld`_Z19create_schema_tableP3THDP10TABLE_LIST (294,912 bytes, 1.38%)</title><rect x="50.7" y="305" width="16.3" height="15.0" fill="rgb(0,201,161)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="67.0" y="241" width="4.0" height="15.0" fill="rgb(0,228,1)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="14.1" y="353" width="4.0" height="15.0" fill="rgb(0,197,157)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="1153.4" y="305" width="4.0" height="15.0" fill="rgb(0,223,104)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN4JOIN4execEv (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_ZN4JOIN4execEv (589,824 bytes, 2.76%)</title><rect x="18.1" y="321" width="32.6" height="15.0" fill="rgb(0,221,161)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="62.9" y="209" width="4.1" height="15.0" fill="rgb(0,228,137)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z10open_tableP3THDP10TABLE_LISTP18Open_table_context (221,184 bytes, 1.03%)')" onmouseout="c()">
+<title>mysqld`_Z10open_tableP3THDP10TABLE_LISTP18Open_table_context (221,184 bytes, 1.03%)</title><rect x="22.2" y="209" width="12.2" height="15.0" fill="rgb(0,207,114)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="177" width="57.0" height="15.0" fill="rgb(0,204,26)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z24do_handle_one_connectionP3THD (20,275,200 bytes, 94.83%)')" onmouseout="c()">
+<title>mysqld`_Z24do_handle_one_connectionP3THD (20,275,200 bytes, 94.83%)</title><rect x="18.1" y="433" width="1119.0" height="15.0" fill="rgb(0,231,54)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z24do_handle_one_connectionP3THD</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z24get_default_db_collationP3THDPKc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z24get_default_db_collationP3THDPKc (73,728 bytes, 0.34%)</title><rect x="681.4" y="337" width="4.0" height="15.0" fill="rgb(0,192,163)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="273" width="65.1" height="15.0" fill="rgb(0,239,197)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="257" width="130.2" height="15.0" fill="rgb(0,211,215)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_brk_u..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`alloc_root (147,456 bytes, 0.69%)</title><rect x="477.9" y="321" width="8.2" height="15.0" fill="rgb(0,219,132)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (147,456 bytes, 0.69%)</title><rect x="477.9" y="241" width="8.2" height="15.0" fill="rgb(0,208,194)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="337" width="69.1" height="15.0" fill="rgb(0,217,14)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN4JOIN4execEv (2,211,840 bytes, 10.34%)')" onmouseout="c()">
+<title>mysqld`_ZN4JOIN4execEv (2,211,840 bytes, 10.34%)</title><rect x="71.0" y="289" width="122.1" height="15.0" fill="rgb(0,220,95)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN4JOIN..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="677.3" y="289" width="4.1" height="15.0" fill="rgb(0,191,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="305" width="130.2" height="15.0" fill="rgb(0,232,164)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so.1..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="1153.4" y="337" width="4.0" height="15.0" fill="rgb(0,196,168)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="26.3" y="81" width="4.0" height="15.0" fill="rgb(0,198,133)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="46.6" y="161" width="4.1" height="15.0" fill="rgb(0,218,64)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`open_cached_file (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>mysqld`open_cached_file (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="209" width="57.0" height="15.0" fill="rgb(0,197,39)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN18Prepared_statement7executeEP6Stringb (3,170,304 bytes, 14.83%)')" onmouseout="c()">
+<title>mysqld`_ZN18Prepared_statement7executeEP6Stringb (3,170,304 bytes, 14.83%)</title><rect x="71.0" y="369" width="175.0" height="15.0" fill="rgb(0,221,115)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN18Prepared_s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z22trx_allocate_for_mysqlv (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z22trx_allocate_for_mysqlv (73,728 bytes, 0.34%)</title><rect x="67.0" y="321" width="4.0" height="15.0" fill="rgb(0,236,158)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="10.0" y="353" width="4.1" height="15.0" fill="rgb(0,212,4)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="273" width="65.2" height="15.0" fill="rgb(0,194,145)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z17dict_stats_updateP12dict_table_t23dict_stats_upd_option_t (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z17dict_stats_updateP12dict_table_t23dict_stats_upd_option_t (73,728 bytes, 0.34%)</title><rect x="22.2" y="145" width="4.1" height="15.0" fill="rgb(0,192,89)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="46.6" y="209" width="4.1" height="15.0" fill="rgb(0,227,108)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="50.7" y="209" width="4.1" height="15.0" fill="rgb(0,226,91)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="42.6" y="193" width="4.0" height="15.0" fill="rgb(0,234,111)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_thrp_setup (20,422,656 bytes, 95.52%)')" onmouseout="c()">
+<title>libc.so.1`_thrp_setup (20,422,656 bytes, 95.52%)</title><rect x="10.0" y="481" width="1127.1" height="15.0" fill="rgb(0,224,187)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="491.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_thrp_setup</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z15mysql_change_dbP3THDPK19st_mysql_lex_stringb (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z15mysql_change_dbP3THDPK19st_mysql_lex_stringb (73,728 bytes, 0.34%)</title><rect x="681.4" y="353" width="4.0" height="15.0" fill="rgb(0,196,154)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="10.0" y="289" width="4.1" height="15.0" fill="rgb(0,234,132)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="677.3" y="273" width="4.1" height="15.0" fill="rgb(0,217,87)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="161" width="57.0" height="15.0" fill="rgb(0,239,131)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="30.3" y="177" width="4.1" height="15.0" fill="rgb(0,206,41)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z12make_db_listP3THDP4ListI19st_mysql_lex_stringEP22st_lookup_field_valuesPb (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z12make_db_listP3THDP4ListI19st_mysql_lex_stringEP22st_lookup_field_valuesPb (147,456 bytes, 0.69%)</title><rect x="38.5" y="257" width="8.1" height="15.0" fill="rgb(0,229,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN11ha_innobase5extraE17ha_extra_function (3,096,576 bytes, 14.48%)')" onmouseout="c()">
+<title>mysqld`_ZN11ha_innobase5extraE17ha_extra_function (3,096,576 bytes, 14.48%)</title><rect x="307.0" y="337" width="170.9" height="15.0" fill="rgb(0,233,209)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN11ha_innobas..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z12mysql_selectP3THDP10TABLE_LISTjR4ListI4ItemEPS4_P10SQL_I_ListI8st_orderESB_S7_yP13select_resultP18st_select_lex_unitP13st_select_lex (2,580,480 bytes, 12.07%)')" onmouseout="c()">
+<title>mysqld`_Z12mysql_selectP3THDP10TABLE_LISTjR4ListI4ItemEPS4_P10SQL_I_ListI8st_orderESB_S7_yP13select_resultP18st_select_lex_unitP13st_select_lex (2,580,480 bytes, 12.07%)</title><rect x="71.0" y="305" width="142.4" height="15.0" fill="rgb(0,209,219)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z12mysql_s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`init_alloc_root (73,728 bytes, 0.34%)</title><rect x="46.6" y="241" width="4.1" height="15.0" fill="rgb(0,219,82)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_alloc_root (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>mysqld`init_alloc_root (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="353" width="130.2" height="15.0" fill="rgb(0,236,162)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`init_allo..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="34.4" y="209" width="4.1" height="15.0" fill="rgb(0,226,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="273" width="126.2" height="15.0" fill="rgb(0,215,153)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_brk_..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="289" width="126.2" height="15.0" fill="rgb(0,216,97)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`sbrk</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="22.2" y="65" width="4.1" height="15.0" fill="rgb(0,236,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`end_statement_v1 (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`end_statement_v1 (73,728 bytes, 0.34%)</title><rect x="677.3" y="401" width="4.1" height="15.0" fill="rgb(0,220,152)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z10open_tableP3THDP10TABLE_LISTP18Open_table_context (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_Z10open_tableP3THDP10TABLE_LISTP18Open_table_context (589,824 bytes, 2.76%)</title><rect x="213.4" y="289" width="32.6" height="15.0" fill="rgb(0,198,94)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z13handle_selectP3THDP13select_resultm (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_Z13handle_selectP3THDP13select_resultm (589,824 bytes, 2.76%)</title><rect x="18.1" y="353" width="32.6" height="15.0" fill="rgb(0,200,153)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="305" width="61.0" height="15.0" fill="rgb(0,232,44)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="289" width="65.1" height="15.0" fill="rgb(0,226,40)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="50.7" y="177" width="4.1" height="15.0" fill="rgb(0,199,212)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL24server_mpvio_read_packetP13st_plugin_vioPPh (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_ZL24server_mpvio_read_packetP13st_plugin_vioPPh (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="321" width="65.2" height="15.0" fill="rgb(0,237,37)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,105,920 bytes, 5.17%)</title><rect x="246.0" y="321" width="61.0" height="15.0" fill="rgb(0,197,221)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="209" width="65.1" height="15.0" fill="rgb(0,207,56)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (147,456 bytes, 0.69%)</title><rect x="477.9" y="257" width="8.2" height="15.0" fill="rgb(0,229,197)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z14get_all_tablesP3THDP10TABLE_LISTP4Item (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>mysqld`_Z14get_all_tablesP3THDP10TABLE_LISTP4Item (368,640 bytes, 1.72%)</title><rect x="18.1" y="273" width="20.4" height="15.0" fill="rgb(0,237,201)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="34.4" y="193" width="4.1" height="15.0" fill="rgb(0,194,148)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="50.7" y="225" width="4.1" height="15.0" fill="rgb(0,230,104)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="38.5" y="113" width="4.1" height="15.0" fill="rgb(0,194,184)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL28send_server_handshake_packetP9MPVIO_EXTPKcj (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_ZL28send_server_handshake_packetP9MPVIO_EXTPKcj (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="305" width="65.1" height="15.0" fill="rgb(0,231,121)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>mysqld`my_malloc (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="353" width="126.2" height="15.0" fill="rgb(0,208,165)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`my_malloc</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>mysqld`alloc_root (368,640 bytes, 1.72%)</title><rect x="193.1" y="241" width="20.3" height="15.0" fill="rgb(0,229,58)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_lwp_start (20,422,656 bytes, 95.52%)')" onmouseout="c()">
+<title>libc.so.1`_lwp_start (20,422,656 bytes, 95.52%)</title><rect x="10.0" y="497" width="1127.1" height="15.0" fill="rgb(0,238,93)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="507.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_lwp_start</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z16create_tmp_tableP3THDP15TMP_TABLE_PARAMR4ListI4ItemEP8st_orderbbyyPKc (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>mysqld`_Z16create_tmp_tableP3THDP15TMP_TABLE_PARAMR4ListI4ItemEP8st_orderbbyyPKc (294,912 bytes, 1.38%)</title><rect x="50.7" y="289" width="16.3" height="15.0" fill="rgb(0,231,134)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)</title><rect x="71.0" y="193" width="65.1" height="15.0" fill="rgb(0,190,23)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (73,728 bytes, 0.34%)</title><rect x="67.0" y="385" width="4.0" height="15.0" fill="rgb(0,194,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="42.6" y="161" width="4.0" height="15.0" fill="rgb(0,228,216)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`init_alloc_root (73,728 bytes, 0.34%)</title><rect x="18.1" y="225" width="4.1" height="15.0" fill="rgb(0,233,42)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="321" width="126.2" height="15.0" fill="rgb(0,223,180)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so...</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (3,096,576 bytes, 14.48%)')" onmouseout="c()">
+<title>mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (3,096,576 bytes, 14.48%)</title><rect x="307.0" y="369" width="170.9" height="15.0" fill="rgb(0,195,121)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z30open_normal..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z27trx_allocate_for_backgroundv (3,096,576 bytes, 14.48%)')" onmouseout="c()">
+<title>mysqld`_Z27trx_allocate_for_backgroundv (3,096,576 bytes, 14.48%)</title><rect x="307.0" y="289" width="170.9" height="15.0" fill="rgb(0,232,13)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z27trx_allocat..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11mysqld_mainiPPc (958,464 bytes, 4.48%)')" onmouseout="c()">
+<title>mysqld`_Z11mysqld_mainiPPc (958,464 bytes, 4.48%)</title><rect x="1137.1" y="481" width="52.9" height="15.0" fill="rgb(0,201,39)" rx="2" ry="2" />
+<text text-anchor="" x="1140.10344827586" y="491.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysql..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z14init_sql_allocP11st_mem_rootjj (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>mysqld`_Z14init_sql_allocP11st_mem_rootjj (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="369" width="130.2" height="15.0" fill="rgb(0,226,34)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z14init_..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z26handle_connections_socketsv (958,464 bytes, 4.48%)')" onmouseout="c()">
+<title>mysqld`_Z26handle_connections_socketsv (958,464 bytes, 4.48%)</title><rect x="1137.1" y="465" width="52.9" height="15.0" fill="rgb(0,211,207)" rx="2" ry="2" />
+<text text-anchor="" x="1140.10344827586" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysql..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,105,920 bytes, 5.17%)</title><rect x="246.0" y="305" width="61.0" height="15.0" fill="rgb(0,215,72)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z27trx_allocate_for_backgroundv (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z27trx_allocate_for_backgroundv (73,728 bytes, 0.34%)</title><rect x="22.2" y="129" width="4.1" height="15.0" fill="rgb(0,201,161)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="273" width="61.0" height="15.0" fill="rgb(0,233,27)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="14.1" y="369" width="4.0" height="15.0" fill="rgb(0,213,108)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="42.6" y="145" width="4.0" height="15.0" fill="rgb(0,202,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (147,456 bytes, 0.69%)</title><rect x="54.8" y="177" width="8.1" height="15.0" fill="rgb(0,226,100)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z28prepare_new_connection_stateP3THD (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>mysqld`_Z28prepare_new_connection_stateP3THD (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="401" width="126.2" height="15.0" fill="rgb(0,210,166)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z28prep..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="38.5" y="145" width="4.1" height="15.0" fill="rgb(0,199,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="677.3" y="257" width="4.1" height="15.0" fill="rgb(0,212,50)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z18mysqld_list_fieldsP3THDP10TABLE_LISTPKc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z18mysqld_list_fieldsP3THDP10TABLE_LISTPKc (73,728 bytes, 0.34%)</title><rect x="67.0" y="401" width="4.0" height="15.0" fill="rgb(0,231,211)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (221,184 bytes, 1.03%)')" onmouseout="c()">
+<title>mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (221,184 bytes, 1.03%)</title><rect x="22.2" y="241" width="12.2" height="15.0" fill="rgb(0,238,79)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z27trx_allocate_for_backgroundv (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z27trx_allocate_for_backgroundv (73,728 bytes, 0.34%)</title><rect x="67.0" y="305" width="4.0" height="15.0" fill="rgb(0,191,137)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,179,648 bytes, 5.52%)</title><rect x="71.0" y="209" width="65.1" height="15.0" fill="rgb(0,218,217)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`init_alloc_root (73,728 bytes, 0.34%)</title><rect x="1153.4" y="385" width="4.0" height="15.0" fill="rgb(0,222,174)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="62.9" y="193" width="4.1" height="15.0" fill="rgb(0,197,44)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z12mysql_selectP3THDP10TABLE_LISTjR4ListI4ItemEPS4_P10SQL_I_ListI8st_orderESB_S7_yP13select_resultP18st_select_lex_unitP13st_select_lex (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_Z12mysql_selectP3THDP10TABLE_LISTjR4ListI4ItemEPS4_P10SQL_I_ListI8st_orderESB_S7_yP13select_resultP18st_select_lex_unitP13st_select_lex (589,824 bytes, 2.76%)</title><rect x="18.1" y="337" width="32.6" height="15.0" fill="rgb(0,199,217)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="289" width="130.2" height="15.0" fill="rgb(0,228,50)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so.1..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="18.1" y="177" width="4.1" height="15.0" fill="rgb(0,198,122)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="305" width="126.2" height="15.0" fill="rgb(0,209,181)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so...</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL20make_join_statisticsP4JOINP10TABLE_LISTP4ItemP14Mem_root_arrayI7Key_useLb1EEb (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>mysqld`_ZL20make_join_statisticsP4JOINP10TABLE_LISTP4ItemP14Mem_root_arrayI7Key_useLb1EEb (368,640 bytes, 1.72%)</title><rect x="193.1" y="273" width="20.3" height="15.0" fill="rgb(0,230,6)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="50.7" y="193" width="4.1" height="15.0" fill="rgb(0,208,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN18Prepared_statementC1EP3THD (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>mysqld`_ZN18Prepared_statementC1EP3THD (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="385" width="130.2" height="15.0" fill="rgb(0,190,187)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN18Prep..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="677.3" y="321" width="4.1" height="15.0" fill="rgb(0,200,157)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="38.5" y="129" width="4.1" height="15.0" fill="rgb(0,198,206)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`my_malloc (147,456 bytes, 0.69%)</title><rect x="477.9" y="305" width="8.2" height="15.0" fill="rgb(0,233,174)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="353" width="61.0" height="15.0" fill="rgb(0,223,118)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="26.3" y="49" width="4.0" height="15.0" fill="rgb(0,207,17)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_dir (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_dir (73,728 bytes, 0.34%)</title><rect x="18.1" y="241" width="4.1" height="15.0" fill="rgb(0,214,133)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL29parse_client_handshake_packetP9MPVIO_EXTPPhm (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_ZL29parse_client_handshake_packetP9MPVIO_EXTPPhm (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="305" width="65.2" height="15.0" fill="rgb(0,203,189)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (589,824 bytes, 2.76%)</title><rect x="1157.4" y="353" width="32.6" height="15.0" fill="rgb(0,204,189)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z20fill_schema_schemataP3THDP10TABLE_LISTP4Item (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z20fill_schema_schemataP3THDP10TABLE_LISTP4Item (147,456 bytes, 0.69%)</title><rect x="38.5" y="273" width="8.1" height="15.0" fill="rgb(0,219,188)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="42.6" y="177" width="4.0" height="15.0" fill="rgb(0,236,204)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)</title><rect x="71.0" y="177" width="65.1" height="15.0" fill="rgb(0,223,209)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z15os_event_createv (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>mysqld`_Z15os_event_createv (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="257" width="57.0" height="15.0" fill="rgb(0,228,163)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="337" width="61.0" height="15.0" fill="rgb(0,212,14)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z18mysql_schema_tableP3THDP3LEXP10TABLE_LIST (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>mysqld`_Z18mysql_schema_tableP3THDP3LEXP10TABLE_LIST (294,912 bytes, 1.38%)</title><rect x="50.7" y="321" width="16.3" height="15.0" fill="rgb(0,222,141)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`my_malloc (589,824 bytes, 2.76%)</title><rect x="213.4" y="273" width="32.6" height="15.0" fill="rgb(0,233,77)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="38.5" y="161" width="4.1" height="15.0" fill="rgb(0,218,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN9base_list10push_frontEPv (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_ZN9base_list10push_frontEPv (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="369" width="65.1" height="15.0" fill="rgb(0,235,102)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libstdc++.so.6.0.17`_Znwm (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>libstdc++.so.6.0.17`_Znwm (294,912 bytes, 1.38%)</title><rect x="1137.1" y="449" width="16.3" height="15.0" fill="rgb(0,227,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL25fill_schema_table_by_openP3THDbP5TABLEP15st_schema_tableP19st_mysql_lex_stringS6_P18Open_tables_backupb.isra.131 (221,184 bytes, 1.03%)')" onmouseout="c()">
+<title>mysqld`_ZL25fill_schema_table_by_openP3THDbP5TABLEP15st_schema_tableP19st_mysql_lex_stringS6_P18Open_tables_backupb.isra.131 (221,184 bytes, 1.03%)</title><rect x="22.2" y="257" width="12.2" height="15.0" fill="rgb(0,224,215)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (368,640 bytes, 1.72%)</title><rect x="193.1" y="177" width="20.3" height="15.0" fill="rgb(0,232,54)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="67.0" y="273" width="4.0" height="15.0" fill="rgb(0,239,188)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="97" width="57.0" height="15.0" fill="rgb(0,196,26)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z10find_filesP3THDP4ListI19st_mysql_lex_stringEPKcS6_S6_b (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z10find_filesP3THDP4ListI19st_mysql_lex_stringEPKcS6_S6_b (147,456 bytes, 0.69%)</title><rect x="38.5" y="241" width="8.1" height="15.0" fill="rgb(0,233,143)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN12Warning_infoC1Eyb (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_ZN12Warning_infoC1Eyb (73,728 bytes, 0.34%)</title><rect x="46.6" y="273" width="4.1" height="15.0" fill="rgb(0,191,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="681.4" y="257" width="4.0" height="15.0" fill="rgb(0,199,20)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="18.1" y="209" width="4.1" height="15.0" fill="rgb(0,211,166)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="67.0" y="257" width="4.0" height="15.0" fill="rgb(0,237,102)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,179,648 bytes, 5.52%)</title><rect x="71.0" y="145" width="65.1" height="15.0" fill="rgb(0,225,98)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="273" width="130.2" height="15.0" fill="rgb(0,212,58)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`sbrk</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`alloc_root (73,728 bytes, 0.34%)</title><rect x="62.9" y="257" width="4.1" height="15.0" fill="rgb(0,210,223)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_strndup (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`my_strndup (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="289" width="65.2" height="15.0" fill="rgb(0,208,5)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (147,456 bytes, 0.69%)</title><rect x="477.9" y="273" width="8.2" height="15.0" fill="rgb(0,201,106)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z18buf_LRU_free_blockP10buf_page_tm (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z18buf_LRU_free_blockP10buf_page_tm (147,456 bytes, 0.69%)</title><rect x="10.0" y="417" width="8.1" height="15.0" fill="rgb(0,218,18)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="26.3" y="65" width="4.0" height="15.0" fill="rgb(0,206,163)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z19load_db_opt_by_nameP3THDPKcP24st_ha_create_information (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z19load_db_opt_by_nameP3THDPKcP24st_ha_create_information (73,728 bytes, 0.34%)</title><rect x="681.4" y="321" width="4.0" height="15.0" fill="rgb(0,226,125)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="681.4" y="273" width="4.0" height="15.0" fill="rgb(0,225,110)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="42.6" y="209" width="4.0" height="15.0" fill="rgb(0,193,165)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="30.3" y="161" width="4.1" height="15.0" fill="rgb(0,196,80)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="337" width="65.1" height="15.0" fill="rgb(0,200,227)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (589,824 bytes, 2.76%)</title><rect x="213.4" y="305" width="32.6" height="15.0" fill="rgb(0,234,212)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z16login_connectionP3THD (3,686,400 bytes, 17.24%)')" onmouseout="c()">
+<title>mysqld`_Z16login_connectionP3THD (3,686,400 bytes, 17.24%)</title><rect x="681.4" y="401" width="203.4" height="15.0" fill="rgb(0,211,137)" rx="2" ry="2" />
+<text text-anchor="" x="684.379310344828" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z16login_connectio..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="38.5" y="193" width="4.1" height="15.0" fill="rgb(0,234,51)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="225" width="57.0" height="15.0" fill="rgb(0,229,228)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (147,456 bytes, 0.69%)</title><rect x="54.8" y="193" width="8.1" height="15.0" fill="rgb(0,192,38)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,105,920 bytes, 5.17%)</title><rect x="246.0" y="337" width="61.0" height="15.0" fill="rgb(0,209,193)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z15dict_load_tablePKcm17dict_err_ignore_t (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z15dict_load_tablePKcm17dict_err_ignore_t (73,728 bytes, 0.34%)</title><rect x="26.3" y="129" width="4.0" height="15.0" fill="rgb(0,207,3)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11mysql_parseP3THDPcjP12Parser_state (884,736 bytes, 4.14%)')" onmouseout="c()">
+<title>mysqld`_Z11mysql_parseP3THDPcjP12Parser_state (884,736 bytes, 4.14%)</title><rect x="18.1" y="401" width="48.9" height="15.0" fill="rgb(0,234,221)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysq..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="50.7" y="161" width="4.1" height="15.0" fill="rgb(0,238,110)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="241" width="65.1" height="15.0" fill="rgb(0,229,194)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="50.7" y="145" width="4.1" height="15.0" fill="rgb(0,194,222)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`init_alloc_root (73,728 bytes, 0.34%)</title><rect x="38.5" y="209" width="4.1" height="15.0" fill="rgb(0,207,93)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_dir (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`my_dir (147,456 bytes, 0.69%)</title><rect x="38.5" y="225" width="8.1" height="15.0" fill="rgb(0,224,168)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="30.3" y="129" width="4.1" height="15.0" fill="rgb(0,227,91)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="18.1" y="161" width="4.1" height="15.0" fill="rgb(0,226,96)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="193" width="65.1" height="15.0" fill="rgb(0,234,227)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="67.0" y="225" width="4.0" height="15.0" fill="rgb(0,214,129)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="177" width="57.0" height="15.0" fill="rgb(0,228,197)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="34.4" y="161" width="4.1" height="15.0" fill="rgb(0,218,79)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL21execute_sqlcom_selectP3THDP10TABLE_LIST (3,170,304 bytes, 14.83%)')" onmouseout="c()">
+<title>mysqld`_ZL21execute_sqlcom_selectP3THDP10TABLE_LIST (3,170,304 bytes, 14.83%)</title><rect x="71.0" y="337" width="175.0" height="15.0" fill="rgb(0,215,124)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZL21execute_sq..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL28native_password_authenticateP13st_plugin_vioP25st_mysql_server_auth_info (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>mysqld`_ZL28native_password_authenticateP13st_plugin_vioP25st_mysql_server_auth_info (2,359,296 bytes, 11.03%)</title><rect x="685.4" y="337" width="130.3" height="15.0" fill="rgb(0,203,101)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZL28nati..</text>
+</g>
+<g class="func_g" onmouseover="s('libstdc++.so.6.0.17`_Znwm (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libstdc++.so.6.0.17`_Znwm (1,105,920 bytes, 5.17%)</title><rect x="246.0" y="385" width="61.0" height="15.0" fill="rgb(0,214,25)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libstd..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`lf_hash_search (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`lf_hash_search (73,728 bytes, 0.34%)</title><rect x="677.3" y="369" width="4.1" height="15.0" fill="rgb(0,224,183)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z14init_sql_allocP11st_mem_rootjj (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z14init_sql_allocP11st_mem_rootjj (73,728 bytes, 0.34%)</title><rect x="1153.4" y="401" width="4.0" height="15.0" fill="rgb(0,218,117)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="193" width="65.2" height="15.0" fill="rgb(0,212,21)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z20rec_get_offsets_funcPKhPK12dict_index_tPmmPP16mem_block_info_tPKcm (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z20rec_get_offsets_funcPKhPK12dict_index_tPmmPP16mem_block_info_tPKcm (73,728 bytes, 0.34%)</title><rect x="10.0" y="385" width="4.1" height="15.0" fill="rgb(0,228,108)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="161" width="57.0" height="15.0" fill="rgb(0,203,14)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN10SQL_SELECT17test_quick_selectEP3THD6BitmapILj64EEyybN8st_order10enum_orderE (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>mysqld`_ZN10SQL_SELECT17test_quick_selectEP3THD6BitmapILj64EEyybN8st_order10enum_orderE (368,640 bytes, 1.72%)</title><rect x="193.1" y="257" width="20.3" height="15.0" fill="rgb(0,212,58)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="225" width="61.0" height="15.0" fill="rgb(0,229,16)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_dynamic_array2 (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`init_dynamic_array2 (73,728 bytes, 0.34%)</title><rect x="34.4" y="257" width="4.1" height="15.0" fill="rgb(0,236,114)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (221,184 bytes, 1.03%)')" onmouseout="c()">
+<title>mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (221,184 bytes, 1.03%)</title><rect x="22.2" y="225" width="12.2" height="15.0" fill="rgb(0,190,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (589,824 bytes, 2.76%)</title><rect x="213.4" y="225" width="32.6" height="15.0" fill="rgb(0,194,209)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="681.4" y="209" width="4.0" height="15.0" fill="rgb(0,202,89)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_start (958,464 bytes, 4.48%)')" onmouseout="c()">
+<title>mysqld`_start (958,464 bytes, 4.48%)</title><rect x="1137.1" y="497" width="52.9" height="15.0" fill="rgb(0,239,228)" rx="2" ry="2" />
+<text text-anchor="" x="1140.10344827586" y="507.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysql..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="22.2" y="81" width="4.1" height="15.0" fill="rgb(0,225,121)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="30.3" y="145" width="4.1" height="15.0" fill="rgb(0,230,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="14.1" y="321" width="4.0" height="15.0" fill="rgb(0,237,84)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z16acl_authenticateP3THDj (2,433,024 bytes, 11.38%)')" onmouseout="c()">
+<title>mysqld`_Z16acl_authenticateP3THDj (2,433,024 bytes, 11.38%)</title><rect x="681.4" y="369" width="134.3" height="15.0" fill="rgb(0,208,9)" rx="2" ry="2" />
+<text text-anchor="" x="684.379310344828" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z16acl_a..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (294,912 bytes, 1.38%)</title><rect x="1137.1" y="417" width="16.3" height="15.0" fill="rgb(0,195,85)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z18buf_flush_LRU_tailv (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z18buf_flush_LRU_tailv (147,456 bytes, 0.69%)</title><rect x="10.0" y="449" width="8.1" height="15.0" fill="rgb(0,204,169)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="22.2" y="49" width="4.1" height="15.0" fill="rgb(0,229,163)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="30.3" y="113" width="4.1" height="15.0" fill="rgb(0,208,60)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="1153.4" y="369" width="4.0" height="15.0" fill="rgb(0,213,156)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="209" width="65.2" height="15.0" fill="rgb(0,215,175)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z19mysqld_stmt_prepareP3THDPKcj (7,815,168 bytes, 36.55%)')" onmouseout="c()">
+<title>mysqld`_Z19mysqld_stmt_prepareP3THDPKcj (7,815,168 bytes, 36.55%)</title><rect x="246.0" y="401" width="431.3" height="15.0" fill="rgb(0,223,75)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z19mysqld_stmt_prepareP3THDPKcj</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="145" width="57.0" height="15.0" fill="rgb(0,233,38)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="305" width="65.1" height="15.0" fill="rgb(0,197,98)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z19mysqld_stmt_executeP3THDPcj (3,170,304 bytes, 14.83%)')" onmouseout="c()">
+<title>mysqld`_Z19mysqld_stmt_executeP3THDPcj (3,170,304 bytes, 14.83%)</title><rect x="71.0" y="401" width="175.0" height="15.0" fill="rgb(0,199,213)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z19mysqld_stmt..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="67.0" y="209" width="4.0" height="15.0" fill="rgb(0,239,36)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="34.4" y="177" width="4.1" height="15.0" fill="rgb(0,216,144)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`alloc_root (73,728 bytes, 0.34%)</title><rect x="50.7" y="241" width="4.1" height="15.0" fill="rgb(0,209,109)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z13ut_malloc_lowmm (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>mysqld`_Z13ut_malloc_lowmm (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="241" width="57.0" height="15.0" fill="rgb(0,223,70)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z9parse_sqlP3THDP12Parser_stateP19Object_creation_ctx (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>mysqld`_Z9parse_sqlP3THDP12Parser_stateP19Object_creation_ctx (1,253,376 bytes, 5.86%)</title><rect x="477.9" y="369" width="69.2" height="15.0" fill="rgb(0,209,43)" rx="2" ry="2" />
+<text text-anchor="" x="480.931034482759" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (589,824 bytes, 2.76%)</title><rect x="1157.4" y="369" width="32.6" height="15.0" fill="rgb(0,198,117)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="34.4" y="225" width="4.1" height="15.0" fill="rgb(0,195,164)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN12Warning_infoC1Eyb (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_ZN12Warning_infoC1Eyb (73,728 bytes, 0.34%)</title><rect x="1153.4" y="417" width="4.0" height="15.0" fill="rgb(0,195,78)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="289" width="61.0" height="15.0" fill="rgb(0,215,74)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN16Diagnostics_areaC1Eyb (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_ZN16Diagnostics_areaC1Eyb (73,728 bytes, 0.34%)</title><rect x="1153.4" y="433" width="4.0" height="15.0" fill="rgb(0,220,114)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)</title><rect x="71.0" y="129" width="65.1" height="15.0" fill="rgb(0,197,5)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN18Prepared_statement7prepareEPKcj (4,349,952 bytes, 20.34%)')" onmouseout="c()">
+<title>mysqld`_ZN18Prepared_statement7prepareEPKcj (4,349,952 bytes, 20.34%)</title><rect x="307.0" y="385" width="240.1" height="15.0" fill="rgb(0,223,213)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN18Prepared_statement7..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21open_table_from_shareP3THDP11TABLE_SHAREPKcjjjP5TABLEb (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z21open_table_from_shareP3THDP11TABLE_SHAREPKcjjjP5TABLEb (147,456 bytes, 0.69%)</title><rect x="22.2" y="193" width="8.1" height="15.0" fill="rgb(0,206,7)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21join_init_read_recordP13st_join_table (2,211,840 bytes, 10.34%)')" onmouseout="c()">
+<title>mysqld`_Z21join_init_read_recordP13st_join_table (2,211,840 bytes, 10.34%)</title><rect x="71.0" y="257" width="122.1" height="15.0" fill="rgb(0,214,28)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z21join..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z10MYSQLparsePv (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>mysqld`_Z10MYSQLparsePv (1,253,376 bytes, 5.86%)</title><rect x="477.9" y="353" width="69.2" height="15.0" fill="rgb(0,196,228)" rx="2" ry="2" />
+<text text-anchor="" x="480.931034482759" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="10.0" y="321" width="4.1" height="15.0" fill="rgb(0,223,142)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_Z30open_normal_and_derived_tablesP3THDP10TABLE_LISTj (589,824 bytes, 2.76%)</title><rect x="213.4" y="321" width="32.6" height="15.0" fill="rgb(0,194,43)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (2,064,384 bytes, 9.66%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (2,064,384 bytes, 9.66%)</title><rect x="364.0" y="193" width="113.9" height="15.0" fill="rgb(0,234,212)" rx="2" ry="2" />
+<text text-anchor="" x="367" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`_brk..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z13handle_selectP3THDP13select_resultm (2,580,480 bytes, 12.07%)')" onmouseout="c()">
+<title>mysqld`_Z13handle_selectP3THDP13select_resultm (2,580,480 bytes, 12.07%)</title><rect x="71.0" y="321" width="142.4" height="15.0" fill="rgb(0,208,99)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z13handle_..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="369" width="61.0" height="15.0" fill="rgb(0,235,54)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL25server_mpvio_write_packetP13st_plugin_vioPKhi (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_ZL25server_mpvio_write_packetP13st_plugin_vioPKhi (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="321" width="65.1" height="15.0" fill="rgb(0,219,6)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (368,640 bytes, 1.72%)</title><rect x="193.1" y="161" width="20.3" height="15.0" fill="rgb(0,226,55)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="62.9" y="177" width="4.1" height="15.0" fill="rgb(0,215,72)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="257" width="65.1" height="15.0" fill="rgb(0,236,190)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)</title><rect x="67.0" y="289" width="4.0" height="15.0" fill="rgb(0,221,194)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (2,359,296 bytes, 11.03%)</title><rect x="547.1" y="321" width="130.2" height="15.0" fill="rgb(0,213,157)" rx="2" ry="2" />
+<text text-anchor="" x="550.103448275862" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so.1..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="38.5" y="177" width="4.1" height="15.0" fill="rgb(0,236,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="681.4" y="241" width="4.0" height="15.0" fill="rgb(0,207,64)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="26.3" y="97" width="4.0" height="15.0" fill="rgb(0,200,155)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (589,824 bytes, 2.76%)</title><rect x="213.4" y="241" width="32.6" height="15.0" fill="rgb(0,205,73)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z24get_schema_tables_resultP4JOIN23enum_schema_table_state (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_Z24get_schema_tables_resultP4JOIN23enum_schema_table_state (589,824 bytes, 2.76%)</title><rect x="18.1" y="289" width="32.6" height="15.0" fill="rgb(0,237,52)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (73,728 bytes, 0.34%)</title><rect x="67.0" y="369" width="4.0" height="15.0" fill="rgb(0,192,128)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z34init_new_connection_handler_threadv (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>mysqld`_Z34init_new_connection_handler_threadv (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="417" width="61.0" height="15.0" fill="rgb(0,222,167)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZNK10Eq_creator6createEP4ItemS1_ (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>mysqld`_ZNK10Eq_creator6createEP4ItemS1_ (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="337" width="61.0" height="15.0" fill="rgb(0,221,17)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z22trx_allocate_for_mysqlv (3,096,576 bytes, 14.48%)')" onmouseout="c()">
+<title>mysqld`_Z22trx_allocate_for_mysqlv (3,096,576 bytes, 14.48%)</title><rect x="307.0" y="305" width="170.9" height="15.0" fill="rgb(0,231,30)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z22trx_allocat..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="30.3" y="193" width="4.1" height="15.0" fill="rgb(0,192,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="34.4" y="241" width="4.1" height="15.0" fill="rgb(0,204,136)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="1153.4" y="321" width="4.0" height="15.0" fill="rgb(0,205,221)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="257" width="61.0" height="15.0" fill="rgb(0,212,33)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z17mutex_create_funcP10ib_mutex_tPKcm (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>mysqld`_Z17mutex_create_funcP10ib_mutex_tPKcm (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="273" width="57.0" height="15.0" fill="rgb(0,232,209)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)</title><rect x="26.3" y="113" width="4.0" height="15.0" fill="rgb(0,228,65)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)</title><rect x="14.1" y="385" width="4.0" height="15.0" fill="rgb(0,204,150)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN13st_select_lex10init_queryEv (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`_ZN13st_select_lex10init_queryEv (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="385" width="65.1" height="15.0" fill="rgb(0,210,150)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (368,640 bytes, 1.72%)</title><rect x="193.1" y="209" width="20.3" height="15.0" fill="rgb(0,229,121)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21innobase_trx_allocateP3THD (3,096,576 bytes, 14.48%)')" onmouseout="c()">
+<title>mysqld`_Z21innobase_trx_allocateP3THD (3,096,576 bytes, 14.48%)</title><rect x="307.0" y="321" width="170.9" height="15.0" fill="rgb(0,199,7)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z21innobase_tr..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN3THD16init_for_queriesEP14Relay_log_info (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>mysqld`_ZN3THD16init_for_queriesEP14Relay_log_info (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="385" width="126.2" height="15.0" fill="rgb(0,196,84)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZN3THD1..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (589,824 bytes, 2.76%)</title><rect x="213.4" y="193" width="32.6" height="15.0" fill="rgb(0,210,218)" rx="2" ry="2" />
+<text text-anchor="" x="216.448275862069" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >li..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="677.3" y="305" width="4.1" height="15.0" fill="rgb(0,190,126)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="321" width="61.0" height="15.0" fill="rgb(0,190,108)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mysql_execute_commandP3THD (3,170,304 bytes, 14.83%)')" onmouseout="c()">
+<title>mysqld`_Z21mysql_execute_commandP3THD (3,170,304 bytes, 14.83%)</title><rect x="71.0" y="353" width="175.0" height="15.0" fill="rgb(0,234,176)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z21mysql_execu..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (147,456 bytes, 0.69%)</title><rect x="477.9" y="225" width="8.2" height="15.0" fill="rgb(0,212,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_io_cache (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`init_io_cache (73,728 bytes, 0.34%)</title><rect x="681.4" y="289" width="4.0" height="15.0" fill="rgb(0,234,177)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z10sub_selectP4JOINP13st_join_tableb (2,211,840 bytes, 10.34%)')" onmouseout="c()">
+<title>mysqld`_Z10sub_selectP4JOINP13st_join_tableb (2,211,840 bytes, 10.34%)</title><rect x="71.0" y="273" width="122.1" height="15.0" fill="rgb(0,236,137)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z10sub_..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>mysqld`alloc_root (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="321" width="61.0" height="15.0" fill="rgb(0,192,171)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z10find_filesP3THDP4ListI19st_mysql_lex_stringEPKcS6_S6_b (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z10find_filesP3THDP4ListI19st_mysql_lex_stringEPKcS6_S6_b (73,728 bytes, 0.34%)</title><rect x="18.1" y="257" width="4.1" height="15.0" fill="rgb(0,233,7)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,032,192 bytes, 4.83%)</title><rect x="307.0" y="193" width="57.0" height="15.0" fill="rgb(0,222,47)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="46.6" y="177" width="4.1" height="15.0" fill="rgb(0,223,179)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="225" width="65.1" height="15.0" fill="rgb(0,232,144)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`multi_alloc_root (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`multi_alloc_root (73,728 bytes, 0.34%)</title><rect x="62.9" y="273" width="4.1" height="15.0" fill="rgb(0,214,68)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mysql_execute_commandP3THD (884,736 bytes, 4.14%)')" onmouseout="c()">
+<title>mysqld`_Z21mysql_execute_commandP3THD (884,736 bytes, 4.14%)</title><rect x="18.1" y="385" width="48.9" height="15.0" fill="rgb(0,206,150)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysq..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="18.1" y="129" width="4.1" height="15.0" fill="rgb(0,234,108)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z31btr_search_drop_page_hash_indexP11buf_block_t (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_Z31btr_search_drop_page_hash_indexP11buf_block_t (147,456 bytes, 0.69%)</title><rect x="10.0" y="401" width="8.1" height="15.0" fill="rgb(0,238,58)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`alloc_root (1,179,648 bytes, 5.52%)</title><rect x="1011.0" y="353" width="65.1" height="15.0" fill="rgb(0,223,188)" rx="2" ry="2" />
+<text text-anchor="" x="1013.96551724138" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z14init_sql_allocP11st_mem_rootjj (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z14init_sql_allocP11st_mem_rootjj (73,728 bytes, 0.34%)</title><rect x="46.6" y="257" width="4.1" height="15.0" fill="rgb(0,196,28)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (147,456 bytes, 0.69%)</title><rect x="54.8" y="225" width="8.1" height="15.0" fill="rgb(0,231,30)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="22.2" y="33" width="4.1" height="15.0" fill="rgb(0,200,96)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (2,064,384 bytes, 9.66%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (2,064,384 bytes, 9.66%)</title><rect x="364.0" y="225" width="113.9" height="15.0" fill="rgb(0,216,96)" rx="2" ry="2" />
+<text text-anchor="" x="367" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL16check_connectionP3THD (3,686,400 bytes, 17.24%)')" onmouseout="c()">
+<title>mysqld`_ZL16check_connectionP3THD (3,686,400 bytes, 17.24%)</title><rect x="681.4" y="385" width="203.4" height="15.0" fill="rgb(0,238,180)" rx="2" ry="2" />
+<text text-anchor="" x="684.379310344828" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZL16check_connecti..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="18.1" y="193" width="4.1" height="15.0" fill="rgb(0,217,3)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_lf_dynarray_lvalue (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_lf_dynarray_lvalue (73,728 bytes, 0.34%)</title><rect x="677.3" y="353" width="4.1" height="15.0" fill="rgb(0,234,118)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN3THDC1Eb (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_ZN3THDC1Eb (73,728 bytes, 0.34%)</title><rect x="1153.4" y="449" width="4.0" height="15.0" fill="rgb(0,236,155)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11load_db_optP3THDPKcP24st_ha_create_information (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z11load_db_optP3THDPKcP24st_ha_create_information (73,728 bytes, 0.34%)</title><rect x="681.4" y="305" width="4.0" height="15.0" fill="rgb(0,239,141)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_net_init (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`my_net_init (589,824 bytes, 2.76%)</title><rect x="1157.4" y="449" width="32.6" height="15.0" fill="rgb(0,199,133)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="459.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (73,728 bytes, 0.34%)</title><rect x="1153.4" y="353" width="4.0" height="15.0" fill="rgb(0,198,135)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (368,640 bytes, 1.72%)</title><rect x="193.1" y="193" width="20.3" height="15.0" fill="rgb(0,212,95)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z8filesortP3THDP5TABLEP8FilesortbPyS5_ (2,211,840 bytes, 10.34%)')" onmouseout="c()">
+<title>mysqld`_Z8filesortP3THDP5TABLEP8FilesortbPyS5_ (2,211,840 bytes, 10.34%)</title><rect x="71.0" y="225" width="122.1" height="15.0" fill="rgb(0,219,129)" rx="2" ry="2" />
+<text text-anchor="" x="74.0344827586207" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z8files..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (1,105,920 bytes, 5.17%)</title><rect x="246.0" y="369" width="61.0" height="15.0" fill="rgb(0,190,117)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (73,728 bytes, 0.34%)</title><rect x="10.0" y="369" width="4.1" height="15.0" fill="rgb(0,198,3)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`buf_flush_page_cleaner_thread (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`buf_flush_page_cleaner_thread (147,456 bytes, 0.69%)</title><rect x="10.0" y="465" width="8.1" height="15.0" fill="rgb(0,196,145)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (73,728 bytes, 0.34%)</title><rect x="10.0" y="305" width="4.1" height="15.0" fill="rgb(0,231,105)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`reset_root_defaults (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>mysqld`reset_root_defaults (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="369" width="126.2" height="15.0" fill="rgb(0,205,103)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`reset_ro..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="681.4" y="193" width="4.0" height="15.0" fill="rgb(0,239,40)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`my_malloc (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="257" width="65.1" height="15.0" fill="rgb(0,235,154)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`my_malloc (589,824 bytes, 2.76%)</title><rect x="1157.4" y="433" width="32.6" height="15.0" fill="rgb(0,226,191)" rx="2" ry="2" />
+<text text-anchor="" x="1160.44827586207" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="321" width="69.1" height="15.0" fill="rgb(0,202,137)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="10.0" y="337" width="4.1" height="15.0" fill="rgb(0,202,21)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`pfs_spawn_thread (20,275,200 bytes, 94.83%)')" onmouseout="c()">
+<title>mysqld`pfs_spawn_thread (20,275,200 bytes, 94.83%)</title><rect x="18.1" y="465" width="1119.0" height="15.0" fill="rgb(0,193,200)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="475.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`pfs_spawn_thread</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (147,456 bytes, 0.69%)</title><rect x="477.9" y="289" width="8.2" height="15.0" fill="rgb(0,224,1)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_thread_init (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>mysqld`my_thread_init (1,105,920 bytes, 5.17%)</title><rect x="1076.1" y="401" width="61.0" height="15.0" fill="rgb(0,190,104)" rx="2" ry="2" />
+<text text-anchor="" x="1079.06896551724" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (73,728 bytes, 0.34%)</title><rect x="46.6" y="193" width="4.1" height="15.0" fill="rgb(0,217,168)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc (2,285,568 bytes, 10.69%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc (2,285,568 bytes, 10.69%)</title><rect x="884.8" y="337" width="126.2" height="15.0" fill="rgb(0,201,38)" rx="2" ry="2" />
+<text text-anchor="" x="887.827586206897" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtmalloc.so...</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (294,912 bytes, 1.38%)</title><rect x="1137.1" y="401" width="16.3" height="15.0" fill="rgb(0,222,181)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="26.3" y="33" width="4.0" height="15.0" fill="rgb(0,237,34)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (2,064,384 bytes, 9.66%)')" onmouseout="c()">
+<title>mysqld`_Z21mem_heap_create_blockP16mem_block_info_tmmPKcm (2,064,384 bytes, 9.66%)</title><rect x="364.0" y="273" width="113.9" height="15.0" fill="rgb(0,190,70)" rx="2" ry="2" />
+<text text-anchor="" x="367" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z21mem..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="14.1" y="305" width="4.0" height="15.0" fill="rgb(0,224,37)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN4JOIN8optimizeEv (368,640 bytes, 1.72%)')" onmouseout="c()">
+<title>mysqld`_ZN4JOIN8optimizeEv (368,640 bytes, 1.72%)</title><rect x="193.1" y="289" width="20.3" height="15.0" fill="rgb(0,205,182)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`alloc_root (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`alloc_root (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="273" width="65.1" height="15.0" fill="rgb(0,216,34)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN5FieldnwEm (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`_ZN5FieldnwEm (147,456 bytes, 0.69%)</title><rect x="54.8" y="273" width="8.1" height="15.0" fill="rgb(0,206,221)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`memdup_root (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>mysqld`memdup_root (1,179,648 bytes, 5.52%)</title><rect x="750.6" y="289" width="65.1" height="15.0" fill="rgb(0,233,75)" rx="2" ry="2" />
+<text text-anchor="" x="753.551724137931" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z21innobase_trx_allocateP3THD (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_Z21innobase_trx_allocateP3THD (73,728 bytes, 0.34%)</title><rect x="67.0" y="337" width="4.0" height="15.0" fill="rgb(0,208,73)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZL12do_auth_onceP3THDP19st_mysql_lex_stringP9MPVIO_EXT (2,359,296 bytes, 11.03%)')" onmouseout="c()">
+<title>mysqld`_ZL12do_auth_onceP3THDP19st_mysql_lex_stringP9MPVIO_EXT (2,359,296 bytes, 11.03%)</title><rect x="685.4" y="353" width="130.3" height="15.0" fill="rgb(0,230,33)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_ZL12do_a..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (294,912 bytes, 1.38%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (294,912 bytes, 1.38%)</title><rect x="1137.1" y="385" width="16.3" height="15.0" fill="rgb(0,213,95)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="42.6" y="129" width="4.0" height="15.0" fill="rgb(0,221,152)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (73,728 bytes, 0.34%)</title><rect x="681.4" y="225" width="4.0" height="15.0" fill="rgb(0,218,15)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (147,456 bytes, 0.69%)')" onmouseout="c()">
+<title>mysqld`my_malloc (147,456 bytes, 0.69%)</title><rect x="54.8" y="241" width="8.1" height="15.0" fill="rgb(0,216,33)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>libc.so.1`_brk_unlocked (73,728 bytes, 0.34%)</title><rect x="46.6" y="145" width="4.1" height="15.0" fill="rgb(0,201,181)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN11ha_innobase5extraE17ha_extra_function (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`_ZN11ha_innobase5extraE17ha_extra_function (73,728 bytes, 0.34%)</title><rect x="67.0" y="353" width="4.0" height="15.0" fill="rgb(0,227,216)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="129" width="57.0" height="15.0" fill="rgb(0,238,208)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,105,920 bytes, 5.17%)</title><rect x="246.0" y="353" width="61.0" height="15.0" fill="rgb(0,219,135)" rx="2" ry="2" />
+<text text-anchor="" x="249" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtm..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`morecore (1,253,376 bytes, 5.86%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`morecore (1,253,376 bytes, 5.86%)</title><rect x="815.7" y="305" width="69.1" height="15.0" fill="rgb(0,232,44)" rx="2" ry="2" />
+<text text-anchor="" x="818.655172413793" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (3,096,576 bytes, 14.48%)')" onmouseout="c()">
+<title>mysqld`_Z11open_tablesP3THDPP10TABLE_LISTPjjP19Prelocking_strategy (3,096,576 bytes, 14.48%)</title><rect x="307.0" y="353" width="170.9" height="15.0" fill="rgb(0,190,83)" rx="2" ry="2" />
+<text text-anchor="" x="310.034482758621" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld`_Z11open_tables..</text>
+</g>
+<g class="func_g" onmouseover="s('libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)')" onmouseout="c()">
+<title>libmtmalloc.so.1`malloc_internal (1,179,648 bytes, 5.52%)</title><rect x="685.4" y="241" width="65.2" height="15.0" fill="rgb(0,216,229)" rx="2" ry="2" />
+<text text-anchor="" x="688.448275862069" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libmtma..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`my_malloc (73,728 bytes, 0.34%)')" onmouseout="c()">
+<title>mysqld`my_malloc (73,728 bytes, 0.34%)</title><rect x="46.6" y="225" width="4.1" height="15.0" fill="rgb(0,230,143)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('mysqld`_ZN4JOIN14prepare_resultEPP4ListI4ItemE (589,824 bytes, 2.76%)')" onmouseout="c()">
+<title>mysqld`_ZN4JOIN14prepare_resultEPP4ListI4ItemE (589,824 bytes, 2.76%)</title><rect x="18.1" y="305" width="32.6" height="15.0" fill="rgb(0,216,37)" rx="2" ry="2" />
+<text text-anchor="" x="21.1379310344828" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >my..</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`sbrk (1,105,920 bytes, 5.17%)')" onmouseout="c()">
+<title>libc.so.1`sbrk (1,105,920 bytes, 5.17%)</title><rect x="486.1" y="241" width="61.0" height="15.0" fill="rgb(0,207,213)" rx="2" ry="2" />
+<text text-anchor="" x="489.068965517241" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.s..</text>
+</g>
+<g class="func_g" onmouseover="s('mysqld`init_io_cache (1,032,192 bytes, 4.83%)')" onmouseout="c()">
+<title>mysqld`init_io_cache (1,032,192 bytes, 4.83%)</title><rect x="136.1" y="193" width="57.0" height="15.0" fill="rgb(0,204,39)" rx="2" ry="2" />
+<text text-anchor="" x="139.137931034483" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mysqld..</text>
+</g>
+</svg>

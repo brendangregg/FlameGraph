@@ -1,0 +1,162 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="500" height="274" onload="init(evt)" viewBox="0 0 500 274" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#f8f8f8" offset="5%" />
+		<stop stop-color="#e8e8e8" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "Function: " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="500.0" height="274.0" fill="url(#background)"  />
+<text text-anchor="middle" x="250" y="24" font-size="17" font-family="Verdana" fill="rgb(0,0,0)"  >FS I/O Time Flame Graph</text>
+<text text-anchor="" x="10" y="257" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('gzip`flush_outbuf (224 ms, 65.52%)')" onmouseout="c()">
+<title>gzip`flush_outbuf (224 ms, 65.52%)</title><rect x="163.6" y="81" width="314.7" height="15.0" fill="rgb(94,94,227)" rx="2" ry="2" />
+<text text-anchor="" x="166.597689572442" y="91.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`flush_outbuf</text>
+</g>
+<g class="func_g" onmouseover="s('tail (2 ms, 0.58%)')" onmouseout="c()">
+<title>tail (2 ms, 0.58%)</title><rect x="478.4" y="209" width="2.9" height="15.0" fill="rgb(88,88,215)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`send_bits (2 ms, 0.58%)')" onmouseout="c()">
+<title>gzip`send_bits (2 ms, 0.58%)</title><rect x="160.9" y="81" width="2.7" height="15.0" fill="rgb(123,123,223)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`copy_block (224 ms, 65.52%)')" onmouseout="c()">
+<title>gzip`copy_block (224 ms, 65.52%)</title><rect x="163.6" y="97" width="314.7" height="15.0" fill="rgb(112,112,226)" rx="2" ry="2" />
+<text text-anchor="" x="166.570231414009" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`copy_block</text>
+</g>
+<g class="func_g" onmouseover="s('gzip`flush_outbuf (2 ms, 0.58%)')" onmouseout="c()">
+<title>gzip`flush_outbuf (2 ms, 0.58%)</title><rect x="160.9" y="65" width="2.7" height="15.0" fill="rgb(99,99,201)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_filbuf (1 ms, 0.29%)')" onmouseout="c()">
+<title>libc.so.1`_filbuf (1 ms, 0.29%)</title><rect x="480.0" y="129" width="1.3" height="15.0" fill="rgb(129,129,211)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zoneadmd`mcap_zone (6 ms, 1.75%)')" onmouseout="c()">
+<title>zoneadmd`mcap_zone (6 ms, 1.75%)</title><rect x="481.3" y="161" width="8.7" height="15.0" fill="rgb(80,80,234)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tail`_start (2 ms, 0.58%)')" onmouseout="c()">
+<title>tail`_start (2 ms, 0.58%)</title><rect x="478.4" y="193" width="2.9" height="15.0" fill="rgb(84,84,220)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zoneadmd`pageout_mapping (2 ms, 0.58%)')" onmouseout="c()">
+<title>zoneadmd`pageout_mapping (2 ms, 0.58%)</title><rect x="487.2" y="129" width="2.8" height="15.0" fill="rgb(106,106,239)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_thrp_setup (6 ms, 1.75%)')" onmouseout="c()">
+<title>libc.so.1`_thrp_setup (6 ms, 1.75%)</title><rect x="481.3" y="177" width="8.7" height="15.0" fill="rgb(90,90,222)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`fill_window (108 ms, 31.59%)')" onmouseout="c()">
+<title>gzip`fill_window (108 ms, 31.59%)</title><rect x="10.0" y="113" width="150.9" height="15.0" fill="rgb(106,106,194)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`fill_window</text>
+</g>
+<g class="func_g" onmouseover="s('gzip`file_read (108 ms, 31.59%)')" onmouseout="c()">
+<title>gzip`file_read (108 ms, 31.59%)</title><rect x="10.0" y="97" width="150.9" height="15.0" fill="rgb(97,97,205)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="107.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`file_read</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_syscall6 (1 ms, 0.29%)')" onmouseout="c()">
+<title>libc.so.1`_syscall6 (1 ms, 0.29%)</title><rect x="486.2" y="113" width="1.0" height="15.0" fill="rgb(125,125,213)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__write (2 ms, 0.58%)')" onmouseout="c()">
+<title>libc.so.1`__write (2 ms, 0.58%)</title><rect x="160.9" y="33" width="2.7" height="15.0" fill="rgb(112,112,243)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('all (342 ms, 100%)')" onmouseout="c()">
+<title>all (342 ms, 100%)</title><rect x="10.0" y="225" width="480.0" height="15.0" fill="rgb(93,93,209)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('libproc.so.1`Psyscall (2 ms, 0.58%)')" onmouseout="c()">
+<title>libproc.so.1`Psyscall (2 ms, 0.58%)</title><rect x="487.2" y="97" width="2.8" height="15.0" fill="rgb(95,95,200)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`flush_block (226 ms, 66.10%)')" onmouseout="c()">
+<title>gzip`flush_block (226 ms, 66.10%)</title><rect x="160.9" y="113" width="317.4" height="15.0" fill="rgb(119,119,238)" rx="2" ry="2" />
+<text text-anchor="" x="163.934231357161" y="123.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`flush_block</text>
+</g>
+<g class="func_g" onmouseover="s('gzip`deflate (334 ms, 97.69%)')" onmouseout="c()">
+<title>gzip`deflate (334 ms, 97.69%)</title><rect x="10.0" y="129" width="468.3" height="15.0" fill="rgb(99,99,220)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="139.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`deflate</text>
+</g>
+<g class="func_g" onmouseover="s('gzip`main (334 ms, 97.69%)')" onmouseout="c()">
+<title>gzip`main (334 ms, 97.69%)</title><rect x="10.0" y="177" width="468.3" height="15.0" fill="rgb(94,94,237)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="187.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`main</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__write (224 ms, 65.52%)')" onmouseout="c()">
+<title>libc.so.1`__write (224 ms, 65.52%)</title><rect x="163.6" y="49" width="314.7" height="15.0" fill="rgb(134,134,199)" rx="2" ry="2" />
+<text text-anchor="" x="166.597689572442" y="59.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`__write</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (1 ms, 0.29%)')" onmouseout="c()">
+<title>libc.so.1`__read (1 ms, 0.29%)</title><rect x="480.0" y="113" width="1.3" height="15.0" fill="rgb(106,106,230)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tail`follow (2 ms, 0.58%)')" onmouseout="c()">
+<title>tail`follow (2 ms, 0.58%)</title><rect x="478.4" y="161" width="2.9" height="15.0" fill="rgb(92,92,229)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip (334 ms, 97.69%)')" onmouseout="c()">
+<title>gzip (334 ms, 97.69%)</title><rect x="10.0" y="209" width="468.3" height="15.0" fill="rgb(96,96,205)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="219.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip</text>
+</g>
+<g class="func_g" onmouseover="s('gzip`write_buf (224 ms, 65.52%)')" onmouseout="c()">
+<title>gzip`write_buf (224 ms, 65.52%)</title><rect x="163.6" y="65" width="314.7" height="15.0" fill="rgb(86,86,236)" rx="2" ry="2" />
+<text text-anchor="" x="166.597689572442" y="75.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`write_buf</text>
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (108 ms, 31.59%)')" onmouseout="c()">
+<title>libc.so.1`__read (108 ms, 31.59%)</title><rect x="10.0" y="81" width="150.9" height="15.0" fill="rgb(94,94,211)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="91.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >libc.so.1`__read</text>
+</g>
+<g class="func_g" onmouseover="s('zoneadmd`pageout_process (6 ms, 1.75%)')" onmouseout="c()">
+<title>zoneadmd`pageout_process (6 ms, 1.75%)</title><rect x="481.3" y="145" width="8.7" height="15.0" fill="rgb(83,83,192)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libproc.so.1`pr_memcntl (2 ms, 0.58%)')" onmouseout="c()">
+<title>libproc.so.1`pr_memcntl (2 ms, 0.58%)</title><rect x="487.2" y="113" width="2.8" height="15.0" fill="rgb(111,111,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tail`main (2 ms, 0.58%)')" onmouseout="c()">
+<title>tail`main (2 ms, 0.58%)</title><rect x="478.4" y="177" width="2.9" height="15.0" fill="rgb(139,139,196)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`syscall (1 ms, 0.29%)')" onmouseout="c()">
+<title>libc.so.1`syscall (1 ms, 0.29%)</title><rect x="478.4" y="145" width="1.6" height="15.0" fill="rgb(111,111,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('zoneadmd (6 ms, 1.75%)')" onmouseout="c()">
+<title>zoneadmd (6 ms, 1.75%)</title><rect x="481.3" y="209" width="8.7" height="15.0" fill="rgb(88,88,195)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`zip (334 ms, 97.69%)')" onmouseout="c()">
+<title>gzip`zip (334 ms, 97.69%)</title><rect x="10.0" y="145" width="468.3" height="15.0" fill="rgb(117,117,238)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="155.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`zip</text>
+</g>
+<g class="func_g" onmouseover="s('gzip`write_buf (2 ms, 0.58%)')" onmouseout="c()">
+<title>gzip`write_buf (2 ms, 0.58%)</title><rect x="160.9" y="49" width="2.7" height="15.0" fill="rgb(116,116,190)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`_start (334 ms, 97.69%)')" onmouseout="c()">
+<title>gzip`_start (334 ms, 97.69%)</title><rect x="10.0" y="193" width="468.3" height="15.0" fill="rgb(135,135,241)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="203.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`_start</text>
+</g>
+<g class="func_g" onmouseover="s('zoneadmd`init_map (4 ms, 1.17%)')" onmouseout="c()">
+<title>zoneadmd`init_map (4 ms, 1.17%)</title><rect x="481.3" y="129" width="5.9" height="15.0" fill="rgb(94,94,238)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__pread (2 ms, 0.58%)')" onmouseout="c()">
+<title>libc.so.1`__pread (2 ms, 0.58%)</title><rect x="487.2" y="65" width="2.8" height="15.0" fill="rgb(89,89,199)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`_lwp_start (6 ms, 1.75%)')" onmouseout="c()">
+<title>libc.so.1`_lwp_start (6 ms, 1.75%)</title><rect x="481.3" y="193" width="8.7" height="15.0" fill="rgb(136,136,197)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libproc.so.1`Pscantext (2 ms, 0.58%)')" onmouseout="c()">
+<title>libproc.so.1`Pscantext (2 ms, 0.58%)</title><rect x="487.2" y="81" width="2.8" height="15.0" fill="rgb(118,118,191)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('libc.so.1`__read (3 ms, 0.88%)')" onmouseout="c()">
+<title>libc.so.1`__read (3 ms, 0.88%)</title><rect x="481.3" y="113" width="4.9" height="15.0" fill="rgb(133,133,207)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('tail`show (1 ms, 0.29%)')" onmouseout="c()">
+<title>tail`show (1 ms, 0.29%)</title><rect x="480.0" y="145" width="1.3" height="15.0" fill="rgb(109,109,229)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`compress_block (2 ms, 0.58%)')" onmouseout="c()">
+<title>gzip`compress_block (2 ms, 0.58%)</title><rect x="160.9" y="97" width="2.7" height="15.0" fill="rgb(126,126,240)" rx="2" ry="2" />
+</g>
+<g class="func_g" onmouseover="s('gzip`treat_file (334 ms, 97.69%)')" onmouseout="c()">
+<title>gzip`treat_file (334 ms, 97.69%)</title><rect x="10.0" y="161" width="468.3" height="15.0" fill="rgb(126,126,218)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="171.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >gzip`treat_file</text>
+</g>
+</svg>
