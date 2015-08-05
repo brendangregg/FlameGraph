@@ -302,7 +302,7 @@ def include_javascript():
 			return;
 
 		for (var x = txt.length - 2; x > 0; x--) {
-			if (t.getSubStringLength(0, x + 2) <= w) { 
+			if (t.getSubStringLength(0, x + 2) <= w) {
 				t.textContent = txt.substring(0, x) + "..";
 				return;
 			}
@@ -337,7 +337,7 @@ def include_javascript():
 				e.attributes["width"].value = parseFloat(e.attributes["width"].value) * ratio;
 			}
 		}
-		
+
 		if (e.childNodes == undefined) return;
 		for(var i = 0, c = e.childNodes; i < c.length; i++) {
 			zoom_child(c[i], x - xpad, ratio);
@@ -359,20 +359,20 @@ def include_javascript():
 			zoom_parent(c[i]);
 		}
 	}
-	function zoom(node) { 
+	function zoom(node) {
 		var attr = find_child(node, "rect").attributes;
 		var width = parseFloat(attr["width"].value);
 		var xmin = parseFloat(attr["x"].value);
 		var xmax = parseFloat(xmin + width);
 		var ymin = parseFloat(attr["y"].value);
 		var ratio = (svg.width.baseVal.value - 2 * xpad) / width;
-		
+
 		// XXX: Workaround for JavaScript float issues (fix me)
 		var fudge = 0.0001;
-		
+
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style["opacity"] = "1.0";
-		
+
 		var el = document.getElementsByTagName("g");
 		for (var i = 0; i < el.length; i++) {
 			var e = el[i];
@@ -417,7 +417,7 @@ def include_javascript():
 	function unzoom() {
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style["opacity"] = "0.0";
-		
+
 		var el = document.getElementsByTagName("g");
 		for(i=0;i<el.length;i++) {
 			el[i].style["display"] = "block";
@@ -425,7 +425,7 @@ def include_javascript():
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
-	}	
+	}
 
 	// search
 	function reset_search() {
