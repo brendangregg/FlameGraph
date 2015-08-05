@@ -79,6 +79,7 @@
 #  (http://www.gnu.org/copyleft/gpl.html)
 #
 # 21-Jul-2015	Brendan Gregg	Created this.
+# 05-Aug-2015	Adrien Mahieux	Zoom code.
 
 import sys
 import re
@@ -116,11 +117,12 @@ fonttype = "Verdana"
 fontsize = 12
 fontwidth = 0.59
 color_bg = "#eeeeee"			# background color
-pad_top = fontsize * 4
+pad_top = fontsize * 5
 pad_bottom = fontsize * 2 + 10
 pad_side = 10				# left and right of image
 pad_frame = 1				# white space between frames
 depth_max = 0				# deepest retained stack depth
+inverted = 0
 debug = 0
 
 ### option logic
@@ -128,10 +130,11 @@ if args["title"]:
 	title = args["title"]
 elif args["inverted"]:
 	title = "Icicle Graph"
+	inverted = 1
 else:
 	title = "Flame Graph"
 image_width = args["width"]
-minwidth = int(args["minwidth"])
+minwidth = float(args["minwidth"])
 frameheight = int(args["frameheight"])
 infile = args["infile"]
 palette = args["color"]
@@ -154,29 +157,29 @@ class SVG:
 """
 		print header % (sw, sh, sw, sh)
 
-	def filled_rectangle(self, x1, y1, x2, y2, fill, extra=""):
+	def rectangle_filled(self, x1, y1, x2, y2, fill, extra=""):
 		sx1 = "%0.1f" % x1
 		sx2 = "%0.1f" % x2
 		sy1 = str(y1)
 		sy2 = str(y2)
-		sw = "%0.1f" % (x2 - x1)
+		# width must be based on the x values passed, so operate
+		# on the strings:
+		sw = "%0.1f" % (float(sx2) - float(sx1))
 		sh = "%0.1f" % (y2 - y1)
 		print ('<rect x="%s" y="%s" width="%s" height="%s" fill="%s"'
 			' %s />' % (sx1, sy1, sw, sh, fill, extra))
 
 	def string_ttf(self, color, font, size, x, y, text, location, extra=""):
-		sx = str(x)
+		sx = "%0.2f" % x
 		sy = str(y)
-		if location == "":
-			location = "left"
 		print ('<text text-anchor="%s" x="%s" y="%s" font-size="%s" '
 			'font-family="%s" fill="%s" %s >%s</text>' %
 			(location, sx, sy, size, font, color, extra, text))
 
 	def group_header(self, info):
-		# the onmouseover text is scraped by JS search()
+		# the onmouseover text is scraped by JS g_to_func()
 		print ('<g class="f" onmouseover="s(\'%s\')"'
-			' onmouseout="c()">' % info)
+			' onmouseout="c()" onclick="zoom(this)">' % info)
 
 	def group_footer(self):
 		print "</g>"
@@ -243,12 +246,20 @@ def include_javascript():
 		info = document.getElementById("info").firstChild;
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
+		// pull in flamegraph globals
+		xpad = %s;
+		fontsize = %s;
+		fontwidth = %s;
+		nametype = "%s";
+		inverted = %s;
 	}
-	function find_child(parent, name) {
+	function find_child(parent, name, attr) {
 		var children = parent.childNodes;
 		for (var i = 0; i < children.length; i++) {
-			if (children[i].tagName == name)
-				return children[i];
+			if (children[i].tagName == name) {
+				return (attr != undefined) ?
+				    children[i].attributes[attr].value : children[i];
+			}
 		}
 		return;
 	}
@@ -262,10 +273,159 @@ def include_javascript():
 		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
 		e.removeAttribute("_orig_" + attr);
 	}
+	function g_to_func(e) {
+		// Scrape the function name from the onmouseover callback text.
+		// This is a little dirty, but saves space in the SVG.
+		var func = e.attributes["onmouseover"].value;
+		if (func != null) {
+			func = func.substr(3);
+			func = func.replace(/ .*/, "");
+		}
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes["width"].value) - 3;
+		var txt = g_to_func(e);
+		t.attributes["x"].value = parseFloat(r.attributes["x"].value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * fontsize * fontwidth) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		// Fit in full text width
+		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+			return;
+
+		for (var x = txt.length - 2; x > 0; x--) {
+			if (t.getSubStringLength(0, x + 2) <= w) { 
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
 
 	// mouse-over for info
-	function s(details) { info.nodeValue = "%s " + details }
+	function s(details) { info.nodeValue = nametype + " " + details }
 	function c() { info.nodeValue = ''; }
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for(var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes["x"] != undefined) {
+				orig_save(e, "x");
+				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x - xpad) * ratio + xpad;
+				if (e.tagName == "text") e.attributes["x"].value = find_child(e.parentNode, "rect", "x") + 3;
+			}
+			if (e.attributes["width"] != undefined) {
+				orig_save(e, "width");
+				e.attributes["width"].value = parseFloat(e.attributes["width"].value) * ratio;
+			}
+		}
+		
+		if (e.childNodes == undefined) return;
+		for(var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - xpad, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes["x"] != undefined) {
+				orig_save(e, "x");
+				e.attributes["x"].value = xpad;
+			}
+			if (e.attributes["width"] != undefined) {
+				orig_save(e, "width");
+				e.attributes["width"].value = parseInt(svg.width.baseVal.value) - (xpad * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for(var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) { 
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr["width"].value);
+		var xmin = parseFloat(attr["x"].value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr["y"].value);
+		var ratio = (svg.width.baseVal.value - 2 * xpad) / width;
+		
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+		
+		var unzoombtn = document.getElementById("unzoom");
+		unzoombtn.style["opacity"] = "1.0";
+		
+		var el = document.getElementsByTagName("g");
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a["x"].value);
+			var ew = parseFloat(a["width"].value);
+			// Is it an ancestor
+			if (inverted == 0) {
+				var upstack = parseFloat(a["y"].value) > ymin;
+			} else {
+				var upstack = parseFloat(a["y"].value) < ymin;
+			}
+			if (upstack) {
+				if (ex <= xmin && (ex + ew + fudge) >= xmax) {
+					// direct ancestor
+					e.style["opacity"] = "0.5";
+					zoom_parent(e);
+					e.onclick = function(e) {
+						unzoom();
+						zoom(this);
+					};
+					update_text(e);
+				} else {
+					// not in current path
+					e.style["display"] = "none";
+				}
+			} else {
+				// children maybe
+				if (ex < xmin || ex + fudge >= xmax) {
+					// no common path
+					e.style["display"] = "none";
+				} else {
+					zoom_child(e, xmin, ratio);
+					e.onclick = function(e){
+						zoom(this);
+					};
+					update_text(e);
+				}
+			}
+		}
+	}
+	function unzoom() {
+		var unzoombtn = document.getElementById("unzoom");
+		unzoombtn.style["opacity"] = "0.0";
+		
+		var el = document.getElementsByTagName("g");
+		for(i=0;i<el.length;i++) {
+			el[i].style["display"] = "block";
+			el[i].style["opacity"] = "1";
+			zoom_reset(el[i]);
+			update_text(el[i]);
+		}
+	}	
 
 	// search
 	function reset_search() {
@@ -295,18 +455,12 @@ def include_javascript():
 		for (var i = 0; i < el.length; i++){
 			var e = el[i];
 			if (e.attributes["class"].value == "f") {
-				// Scrape the function name from the onmouseover
-				// callback text. This is a little dirty.
-				var func = e.attributes["onmouseover"].value;
-				if (func != null) {
-					func = func.substr(3);
-					func = func.replace(/ .*/, "");
-					var r = find_child(e, "rect");
-				}
-				if (func != null && r != null &&
+				var func = g_to_func(e);
+				var rect = find_child(e, "rect");
+				if (func != null && rect != null &&
 				    func.match(re)) {
-					orig_save(r, "fill");
-					r.attributes["fill"].value =
+					orig_save(rect, "fill");
+					rect.attributes["fill"].value =
 					    "rgb(230,0,230)";
 					searching = 1;
 				}
@@ -333,7 +487,7 @@ def include_javascript():
 ]]>
 </script>
 """
-	print script % nametype
+	print script % (pad_side, fontsize, fontwidth, nametype, inverted)
 
 # this merges two stacks, stack and stack_last, and stores the results in Merged
 Merged = {}	# frame data in memory
@@ -440,12 +594,11 @@ if saved == 0:
 ### determine max depth, and prune narrow functions
 width_per_count = (image_width - 2.0 * pad_side) / count_total
 minwidth_count = minwidth / width_per_count
-for func, depth, end_offset in Merged:
+for func, depth, end_offset in list(Merged):
 	start_offset = Merged[(func, depth, end_offset)]
 	if ((int(end_offset) - int(start_offset)) < minwidth_count):
 		del Merged[(func, depth, end_offset)];
-		next;
-	if int(depth) > depth_max:
+	elif int(depth) > depth_max:
 		depth_max = int(depth)
 image_height = (depth_max * frameheight) + pad_top + pad_bottom
 
@@ -456,9 +609,12 @@ svg.header()
 # interactivity, background, title, mouse-over info
 include_css()
 include_javascript()
-svg.filled_rectangle(0, 0, image_width, image_height, color_bg)
+svg.rectangle_filled(0, 0, image_width, image_height, color_bg)
 svg.string_ttf("black", fonttype, fontsize + 5, int(image_width / 2),
 	fontsize * 2, title, "middle")
+svg.string_ttf("black", fonttype, fontsize, pad_side, fontsize * 2,
+	"Reset Zoom", "", 'id="unzoom" onclick="unzoom()" ' +
+	'style="opacity:0.0;cursor:pointer"')
 svg.string_ttf("black", fonttype, fontsize, image_width - pad_side - 100,
 	fontsize * 2, "Search", "", 'id="search" onmouseover="searchover()" ' +
 	'onmouseout="searchout()" onclick="search_prompt()" ' +
@@ -472,9 +628,13 @@ for func, depth, end_offset in Merged:
 	start_offset = Merged[(func, depth, end_offset)]
 	x1 = pad_side + int(start_offset) * width_per_count
 	x2 = pad_side + int(end_offset) * width_per_count
-	y1 = image_height - pad_bottom - (int(depth) + 1) * frameheight + \
-		pad_frame
-	y2 = image_height - pad_bottom - int(depth) * frameheight
+	if not inverted:
+		y1 = (image_height - pad_bottom -
+			(int(depth) + 1) * frameheight + pad_frame)
+		y2 = image_height - pad_bottom - int(depth) * frameheight
+	else:
+		y1 = pad_top + int(depth) * frameheight
+		y2 = pad_top + (int(depth) + 1) * frameheight - pad_frame
 
 	# determine color
 	if diff_max:
@@ -501,7 +661,7 @@ for func, depth, end_offset in Merged:
 	svg.group_header(info)
 
 	# rectangle
-	svg.filled_rectangle(x1, y1, x2, y2, color, 'rx="1" ry="2"')
+	svg.rectangle_filled(x1, y1, x2, y2, color, 'rx="1" ry="2"')
 
 	# text in rectangle
 	chars = int((x2 - x1) / (fontsize * fontwidth))
