@@ -604,8 +604,13 @@ my $inc = <<INC;
 	}
 
 	// mouse-over for info
-	function s(info) { details.nodeValue = "$nametype " + info; }
-	function c() { details.nodeValue = ' '; }
+	function s(node) {		// show
+		info = g_to_text(node);
+		details.nodeValue = "$nametype " + info;
+	}
+	function c() {			// clear
+		details.nodeValue = ' ';
+	}
 
 	// ctrl-F for search
 	window.addEventListener("keydown",function (e) {
@@ -634,6 +639,16 @@ my $inc = <<INC;
 		if (e.attributes["_orig_"+attr] == undefined) return;
 		e.attributes[attr].value = e.attributes["_orig_"+attr].value;
 		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		if (func != null)
+			func = func.replace(/ .*/, "");
+		return (func);
 	}
 	function update_text(e) {
 		var r = find_child(e, "rect");
@@ -800,12 +815,8 @@ my $inc = <<INC;
 		for (var i=0; i < el.length; i++){
 			var e = el[i];
 			if (e.attributes["class"].value == "func_g") {
-				// Scrape the function name from the onmouseover
-				// callback text. This is a little dirty.
-				var func = e.attributes["onmouseover"].value;
+				var func = g_to_func(e);
 				if (func != null) {
-					func = func.substr(3);
-					func = func.replace(/ .*/, "");
 					var r = find_child(e, "rect");
 					if (r == null) {
 						// the rect might be wrapped in an anchor
@@ -908,10 +919,8 @@ while (my ($id, $node) = each %Node) {
 	}
 
 	my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
-	my $jsinfo = $info;
-	$jsinfo =~ s/'/\\'/g;
 	$nameattr->{class}       ||= "func_g";
-	$nameattr->{onmouseover} ||= "s('".$jsinfo."')";
+	$nameattr->{onmouseover} ||= "s(this)";
 	$nameattr->{onmouseout}  ||= "c()";
 	$nameattr->{onclick}     ||= "zoom(this)";
 	$nameattr->{title}       ||= $info;
