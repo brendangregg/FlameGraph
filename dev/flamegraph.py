@@ -16,7 +16,10 @@
 #
 # USAGE: ./flamegraph.py [options] input.txt > flamegraph.svg
 #
-# See --help for the full USAGE message.
+# Then open the resulting .svg in a web browser, for interactivity: mouse-over
+# frames for info, click to zoom, and ctrl-F to search.
+#
+# See --help for the full flamegraph.pl USAGE message.
 #
 # Separate converters exist to process the output from different profilers into
 # a generic single line format for each stack, where functions are separated by
@@ -253,6 +256,8 @@ def include_javascript():
 		nametype = "%s";
 		inverted = %s;
 	}
+
+	// functions
 	function find_child(parent, name, attr) {
 		var children = parent.childNodes;
 		for (var i = 0; i < children.length; i++) {
@@ -313,6 +318,14 @@ def include_javascript():
 	// mouse-over for info
 	function s(details) { info.nodeValue = nametype + " " + details }
 	function c() { info.nodeValue = ''; }
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	})
 
 	// zoom
 	function zoom_reset(e) {
