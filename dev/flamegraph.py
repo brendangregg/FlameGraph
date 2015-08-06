@@ -179,10 +179,13 @@ class SVG:
 			'font-family="%s" fill="%s" %s >%s</text>' %
 			(location, sx, sy, size, font, color, extra, text))
 
-	def group_header(self, info):
-		# the onmouseover text is scraped by JS g_to_func()
-		print ('<g class="f" onmouseover="s(\'%s\')"'
-			' onmouseout="c()" onclick="zoom(this)">' % info)
+	def title(self, info):
+		# also used by mouse-over info, and search
+		print "<title>" + info + "</title>"
+
+	def group_header(self):
+		print ('<g class="f" onmouseover="s(this)"'
+			' onmouseout="c()" onclick="z(this)">')
 
 	def group_footer(self):
 		print "</g>"
@@ -244,9 +247,9 @@ def include_css():
 def include_javascript():
 	script = """<script type="text/ecmascript">
 <![CDATA[
-	var info, svg;
+	var details, svg;
 	function init(evt) {
-		info = document.getElementById("info").firstChild;
+		details = document.getElementById("details").firstChild;
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 		// pull in flamegraph globals
@@ -278,14 +281,14 @@ def include_javascript():
 		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
 		e.removeAttribute("_orig_" + attr);
 	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
 	function g_to_func(e) {
-		// Scrape the function name from the onmouseover callback text.
-		// This is a little dirty, but saves space in the SVG.
-		var func = e.attributes["onmouseover"].value;
-		if (func != null) {
-			func = func.substr(3);
+		var func = g_to_text(e);
+		if (func != null)
 			func = func.replace(/ .*/, "");
-		}
 		return (func);
 	}
 	function update_text(e) {
@@ -316,8 +319,13 @@ def include_javascript():
 	}
 
 	// mouse-over for info
-	function s(details) { info.nodeValue = nametype + " " + details }
-	function c() { info.nodeValue = ''; }
+	function s(node) {		// show
+		info = g_to_text(node);
+		details.nodeValue = nametype + " " + info;
+	}
+	function c() {			// clear
+		details.nodeValue = '';
+	}
 
 	// ctrl-F for search
 	window.addEventListener("keydown",function (e) {
@@ -372,7 +380,7 @@ def include_javascript():
 			zoom_parent(c[i]);
 		}
 	}
-	function zoom(node) {
+	function z(node) {		// zoom
 		var attr = find_child(node, "rect").attributes;
 		var width = parseFloat(attr["width"].value);
 		var xmin = parseFloat(attr["x"].value);
@@ -405,7 +413,7 @@ def include_javascript():
 					zoom_parent(e);
 					e.onclick = function(e) {
 						unzoom();
-						zoom(this);
+						z(this);
 					};
 					update_text(e);
 				} else {
@@ -420,7 +428,7 @@ def include_javascript():
 				} else {
 					zoom_child(e, xmin, ratio);
 					e.onclick = function(e){
-						zoom(this);
+						z(this);
 					};
 					update_text(e);
 				}
@@ -633,7 +641,7 @@ svg.string_ttf("black", fonttype, fontsize, image_width - pad_side - 100,
 	'onmouseout="searchout()" onclick="search_prompt()" ' +
 	'style="opacity:0.1;cursor:pointer"')
 svg.string_ttf("black", fonttype, fontsize, pad_side,
-	image_height - (pad_bottom / 2), " ", "", 'id="info"')	# " " needed
+	image_height - (pad_bottom / 2), " ", "", 'id="details"') # " " needed
 
 # draw frames
 for func, depth, end_offset in Merged:
@@ -671,7 +679,8 @@ for func, depth, end_offset in Merged:
 		escaped = re.sub(">", "&gt;", escaped)
 		info = "%s (%s %s, %.2f%%)" % (escaped, count, countname,
 			(100.0 * count / count_total))
-	svg.group_header(info)
+	svg.group_header()
+	svg.title(info)
 
 	# rectangle
 	svg.rectangle_filled(x1, y1, x2, y2, color, 'rx="1" ry="2"')
