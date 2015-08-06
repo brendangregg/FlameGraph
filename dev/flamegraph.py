@@ -19,7 +19,7 @@
 # Then open the resulting .svg in a web browser, for interactivity: mouse-over
 # frames for info, click to zoom, and ctrl-F to search.
 #
-# See --help for the full flamegraph.pl USAGE message.
+# See --help for the full flamegraph.py USAGE message.
 #
 # Separate converters exist to process the output from different profilers into
 # a generic single line format for each stack, where functions are separated by
