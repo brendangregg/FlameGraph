@@ -596,9 +596,11 @@ my $inc = <<INC;
 </style>
 <script type="text/ecmascript">
 <![CDATA[
-	var details, svg;
+	var details, searchbtn, matchedtxt, svg;
 	function init(evt) { 
 		details = document.getElementById("details").firstChild; 
+		searchbtn = document.getElementById("search");
+		matchedtxt = document.getElementById("matched");
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 	}
@@ -790,7 +792,7 @@ my $inc = <<INC;
 	// search
 	function reset_search() {
 		var el = document.getElementsByTagName("rect");
-		for (var i=0; i < el.length; i++){
+		for (var i=0; i < el.length; i++) {
 			orig_load(el[i], "fill")
 		}
 	}
@@ -804,49 +806,105 @@ my $inc = <<INC;
 		} else {
 			reset_search();
 			searching = 0;
-			var searchbtn = document.getElementById("search");
 			searchbtn.style["opacity"] = "0.1";
 			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.style["opacity"] = "0.0";
+			matchedtxt.firstChild.nodeValue = ""
 		}
 	}
 	function search(term) {
 		var re = new RegExp(term);
 		var el = document.getElementsByTagName("g");
-		for (var i=0; i < el.length; i++){
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
 			var e = el[i];
-			if (e.attributes["class"].value == "func_g") {
-				var func = g_to_func(e);
-				if (func != null) {
-					var r = find_child(e, "rect");
-					if (r == null) {
-						// the rect might be wrapped in an anchor
-						// if nameattr href is being used
-						if (r = find_child(e, "a")) {
-						    r = find_child(r, "rect");
-						}
-					}
-				}
-				if (func != null && r != null &&
-				    func.match(re)) {
-					orig_save(r, "fill");
-					r.attributes["fill"].value =
-					    "$searchcolor";
-					searching = 1;
+			if (e.attributes["class"].value != "func_g")
+				continue;
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (rect == null) {
+				// the rect might be wrapped in an anchor
+				// if nameattr href is being used
+				if (rect = find_child(e, "a")) {
+				    rect = find_child(r, "rect");
 				}
 			}
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes["width"].value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes["x"].value);
+				orig_save(rect, "fill");
+				rect.attributes["fill"].value =
+				    "$searchcolor";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
 		}
-		if (searching) {
-			var searchbtn = document.getElementById("search");
-			searchbtn.style["opacity"] = "1.0";
-			searchbtn.firstChild.nodeValue = "Reset Search"
+		if (!searching)
+			return;
+
+		searchbtn.style["opacity"] = "1.0";
+		searchbtn.firstChild.nodeValue = "Reset Search"
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
 		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+				return a - b;
+			if (a < b || a > b)
+				return a - b;
+			return matches[b] - matches[a];
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.style["opacity"] = "1.0";
+		pct = 100 * count / maxwidth;
+		if (pct == 100)
+			pct = "100"
+		else
+			pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
 	}
 	function searchover(e) {
-		var searchbtn = document.getElementById("search");
 		searchbtn.style["opacity"] = "1.0";
 	}
 	function searchout(e) {
-		var searchbtn = document.getElementById("search");
 		if (searching) {
 			searchbtn.style["opacity"] = "1.0";
 		} else {
@@ -870,6 +928,7 @@ $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2,
     "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100,
     $fontsize * 2, "Search", "", 'id="search" onmouseover="searchover()" onmouseout="searchout()" onclick="search_prompt()" style="opacity:0.1;cursor:pointer"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ", "", 'id="matched"');
 
 if ($palette) {
 	read_palette();
