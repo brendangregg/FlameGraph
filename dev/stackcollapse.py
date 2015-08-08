@@ -40,14 +40,18 @@ import argparse
 
 ### options
 parser = argparse.ArgumentParser(
-	description="Process \"perf script\" output for flamegraph.py")
+	formatter_class=argparse.RawDescriptionHelpFormatter,
+	description="Process \"perf script\" output for flamegraph.py",
+	epilog="[1] requires both PIDs and TIDs in input; eg,\n" +
+	"\tperf script -F comm,pid,tid,cpu,time,event,ip,sym,dso,trace\n" +
+	"    note: older perf versions use -f instead of -F")
 parser.add_argument("infile", nargs="?", type=argparse.FileType('r'),
 	default=sys.stdin,
 	help="input file (output of perf script)")
 parser.add_argument("-p", "--pid", action="store_true",
-	help="include PID with process names")
+	help="include PID with process names [1]")
 parser.add_argument("-t", "--tid", action="store_true",
-	help="include TID and PID with process names")
+	help="include TID and PID with process names [1]")
 args = vars(parser.parse_args())
 
 ### other globals
