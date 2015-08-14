@@ -13,7 +13,7 @@
 #
 # Example input:
 #
-#  swapper     0 [000] 158665.570607: cpu-clock: 
+#  swapper     0 [000] 158665.570607: cpu-clock:
 #         ffffffff8103ce3b native_safe_halt ([kernel.kallsyms])
 #         ffffffff8101c6a3 default_idle ([kernel.kallsyms])
 #         ffffffff81013236 cpu_idle ([kernel.kallsyms])
@@ -170,9 +170,9 @@ foreach (<>) {
 	}
 
 	# event record start
-	if (/^(\S+)\s+(\d+)\s/) {
+	if (/^(.+)\s(\d+)\s\d+\.\d+:\scycles:/) {
 		# default "perf script" output has TID but not PID
-		# eg, "java 25607 4794564.109216: cycles:"
+		# eg, "V8 WorkerThread 22601 303873.280167: cycles:"
 		if ($include_tid) {
 			$pname = "$1-?/$2";
 		} elsif ($include_pid) {
@@ -180,8 +180,8 @@ foreach (<>) {
 		} else {
 			$pname = $1;
 		}
-	} elsif (/^(\S+)\s+(\d+)\/(\d+)/) {
-		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
+	} elsif (/^(.+)\s(\d+)\/(\d+)\s\[\d+\].*cycles:/) {
+		# eg, "V8 WorkerThread 24636/25607 [000] 4794564.109216: cycles:"
 		if ($include_tid) {
 			$pname = "$1-$2/$3";
 		} elsif ($include_pid) {
