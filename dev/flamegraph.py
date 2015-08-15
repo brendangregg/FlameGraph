@@ -529,7 +529,6 @@ def include_javascript():
 		// sort the matched frames by their x location
 		// ascending, then width descending
 		keys.sort(function(a, b){
-				return a - b;
 			if (a < b || a > b)
 				return a - b;
 			return matches[b] - matches[a];
