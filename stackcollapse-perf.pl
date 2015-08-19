@@ -170,7 +170,7 @@ foreach (<>) {
 	}
 
 	# event record start
-	if (/^(\S+)\s+(\d+)\s/) {
+	if (/^((\S+\s*)+)\s+(\d+)\s/) {
 		# default "perf script" output has TID but not PID
 		# eg, "java 25607 4794564.109216: cycles:"
 		if ($include_tid) {
@@ -180,7 +180,7 @@ foreach (<>) {
 		} else {
 			$pname = $1;
 		}
-	} elsif (/^(\S+)\s+(\d+)\/(\d+)/) {
+	} elsif (/^((\S+\s*)+)\s+(\d+)\/(\d+)/) {
 		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
 		if ($include_tid) {
 			$pname = "$1-$2/$3";
