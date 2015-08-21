@@ -62,6 +62,11 @@ while(<>) {
   }
 }
 
+if(!($current eq "")) {
+  $stacks{$current} += 1;
+  $current = "";
+}
+
 foreach my $k (sort { $a cmp $b } keys %stacks) {
   print "$k $stacks{$k}\n";
 }
