@@ -170,9 +170,12 @@ foreach (<>) {
 	}
 
 	# event record start
-	if (/^((\S+\s*)+)\s+(\d+)\s/) {
+	if (/^(\S+\s*?\S*?)\s+(\d+)\s/) {
 		# default "perf script" output has TID but not PID
 		# eg, "java 25607 4794564.109216: cycles:"
+		# eg, "java 12688 [002] 6544038.708352: cpu-clock:"
+		# eg, "V8 WorkerThread 25607 4794564.109216: cycles:"
+		# other combinations possible
 		if ($include_tid) {
 			$pname = "$1-?/$2";
 		} elsif ($include_pid) {
@@ -180,8 +183,12 @@ foreach (<>) {
 		} else {
 			$pname = $1;
 		}
-	} elsif (/^((\S+\s*)+)\s+(\d+)\/(\d+)/) {
+		$pname =~ tr/ /_/;
+	} elsif (/^(\S+\s*?\S*?)\s+(\d+)\/(\d+)/) {
 		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
+		# eg, "java 12688/12764 6544038.708352: cpu-clock:"
+		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: cycles:"
+		# other combinations possible
 		if ($include_tid) {
 			$pname = "$1-$2/$3";
 		} elsif ($include_pid) {
@@ -189,6 +196,7 @@ foreach (<>) {
 		} else {
 			$pname = $1;
 		}
+		$pname =~ tr/ /_/;
 
 	# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
