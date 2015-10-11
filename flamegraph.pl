@@ -10,6 +10,9 @@
 #
 #        grep funcA input.txt | ./flamegraph.pl [options] > graph.svg
 #
+# Then open the resulting .svg in a web browser, for interactivity: mouse-over
+# frames for info, click to zoom, and ctrl-F to search.
+#
 # Options are listed in the usage message (--help).
 #
 # The input is stack frames and sample counts formatted as single lines.  Each
@@ -610,6 +613,14 @@ my $inc = <<INC;
 	function c() {			// clear
 		details.nodeValue = ' ';
 	}
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	})
 
 	// functions
 	function find_child(parent, name, attr) {
