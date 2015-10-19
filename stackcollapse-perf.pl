@@ -212,7 +212,7 @@ foreach (<>) {
 		if ($tidy_generic) {
 			$func =~ s/;/:/g;
 			$func =~ tr/<>//d;
-			$func =~ s/\(.*//;
+			$func =~ s/[^\.]\(.*//;
 			# now tidy this horrible thing:
 			# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
 			$func =~ tr/"\'//d;
