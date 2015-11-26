@@ -72,7 +72,7 @@ sub remember_stack {
 	my ($stack, $count) = @_;
 	$collapsed{$stack} += $count;
 }
-
+my $annotate_kernel = 0; # put an annotation on kernel function
 my $include_pname = 1;	# include process names in stacks
 my $include_pid = 0;	# include process ID with process name
 my $include_tid = 0;	# include process & thread ID with process name
@@ -85,12 +85,14 @@ my $show_context = 0;
 GetOptions('inline' => \$show_inline,
            'context' => \$show_context,
            'pid' => \$include_pid,
+           'kernel' => \$annotate_kernel,
            'tid' => \$include_tid)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
 	--tid		# include TID and PID with process names [1]
 	--inline	# un-inline using addr2line
+	--kernel	# annotate kernel functions with a [k]
 	--context	# include source context from addr2line\n
 [1] perf script must emit both PID and TIDs for these to work; eg:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
@@ -201,7 +203,7 @@ foreach (<>) {
 	# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $func, $mod) = ($1, $2, $3);
-
+		$func.=" [k]" if ($annotate_kernel == 1 && $mod =~ m/kernel.kall/);
 		if ($show_inline == 1 && index($mod, $target_pname) != -1) {
 			unshift @stack, inline($pc, $mod);
 			next;
