@@ -429,7 +429,7 @@ sub color_map {
 	if (exists $palette_map{$func}) {
 		return $palette_map{$func};
 	} else {
-		$palette_map{$func} = color($colors);
+		$palette_map{$func} = color($colors, $hash, $func);
 		return $palette_map{$func};
 	}
 }
