@@ -14,7 +14,7 @@ my @stack = ();
 <>;
 foreach (<>) {
 	chomp;
-	/\d+\.\d+ms[^,]+,(\d+),\s+,(\s*)(.+)/ or die;
+	/\d+\.\d+ms[^,]+,(\d+(?:\.\d*)?),\s+,(\s*)(.+)/ or die;
 	my $func = $3;
 	my $depth = length ($2);
 	$stack [$depth] = $3;
