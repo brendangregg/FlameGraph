@@ -112,8 +112,8 @@ An advantage of having the folded input file (and why this is separate to flameg
 $ grep cpuid out.kern_folded | ./flamegraph.pl > cpuid.svg
 ```
 
-Provided Example
-================
+Provided Examples
+=================
 
 ### Linux perf\_events
 
@@ -124,7 +124,7 @@ An example output from Linux "perf script" is included, gzip'd, as example-perf-
 You can create this using:
 
 ```
-gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --kernel | ./flamegraph.pl --color=java --hash > example-perf.svg
+$ gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --kernel | ./flamegraph.pl --color=java --hash > example-perf.svg
 ```
 
 This shows my typical workflow: I'll gzip profiles on the target, then copy them to my laptop for analysis. Since I have hundreds of profiles, I leave them gzip'd!
