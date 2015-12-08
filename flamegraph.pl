@@ -120,7 +120,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--countname   # count type label (default "samples")
 	--nametype    # name type label (default "Function:")
 	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # java, js, red, green, blue, yellow, purple, orange
+	              # java, js, perl, red, green, blue, yellow, purple, orange
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
@@ -335,6 +335,20 @@ sub color {
 			$type = "yellow";
 		} elsif ($name =~ m:/:) {	# Java (match "/" in path)
 			$type = "green"
+		} elsif ($name =~ m: \[k\]:) {	# kernel
+			$type = "purple"
+		} else {			# system
+			$type = "red";
+		}
+		# fall-through to color palettes
+	}
+	if (defined $type and $type eq "perl") {
+		if ($name =~ /::/) {		# C++
+			$type = "yellow";
+		} elsif ($name =~ m:Perl: or $name =~ m:\.pl:) {	# Perl
+			$type = "green";
+		} elsif ($name =~ m: \[k\]:) {	# kernel
+			$type = "purple"
 		} else {			# system
 			$type = "red";
 		}
@@ -349,6 +363,8 @@ sub color {
 			$type = "aqua"
 		} elsif ($name =~ m/^ $/) {	# Missing symbol
 			$type = "green"
+		} elsif ($name =~ m: \[k\]:) {	# kernel
+			$type = "purple"
 		} else {			# system
 			$type = "red";
 		}
@@ -413,7 +429,7 @@ sub color_map {
 	if (exists $palette_map{$func}) {
 		return $palette_map{$func};
 	} else {
-		$palette_map{$func} = color($colors);
+		$palette_map{$func} = color($colors, $hash, $func);
 		return $palette_map{$func};
 	}
 }
