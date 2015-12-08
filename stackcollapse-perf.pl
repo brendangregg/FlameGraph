@@ -79,19 +79,23 @@ my $include_tid = 0;	# include process & thread ID with process name
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
+my $event_filter;	# if non-empty only process samples of the specified
+			# event type
 
 my $show_inline = 0;
 my $show_context = 0;
 GetOptions('inline' => \$show_inline,
            'context' => \$show_context,
            'pid' => \$include_pid,
-           'tid' => \$include_tid)
+           'tid' => \$include_tid,
+           'filter=s' => \$event_filter)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
 	--tid		# include TID and PID with process names [1]
 	--inline	# un-inline using addr2line
 	--context	# include source context from addr2line\n
+	--filter	# only process samples of the specified event type
 [1] perf script must emit both PID and TIDs for these to work; eg:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
 USAGE_END
@@ -156,21 +160,21 @@ while (defined($_ = <>)) {
 
 	# end of stack. save cached data.
 	if (m/^$/) {
-		if ($include_pname) {
-			if (defined $pname) {
+		if (defined $pname) {
+			if ($include_pname) {
 				unshift @stack, $pname;
-			} else {
-				unshift @stack, "";
 			}
+			remember_stack(join(";", @stack), 1) if @stack;
+			undef $pname;
 		}
-		remember_stack(join(";", @stack), 1) if @stack;
 		undef @stack;
-		undef $pname;
 		next;
 	}
 
 	# event record start
-	if (/^(\S+\s*?\S*?)\s+(\d+)\s/) {
+	if (/^(\S+\s*?\S*?)\s+(\d+)\s+(\[\d+\]\s+)?\S+:\s+\d+\s+(\S+\s*?\S*?):/) {
+		next if defined $event_filter and $4 ne $event_filter;
+
 		# default "perf script" output has TID but not PID
 		# eg, "java 25607 4794564.109216: cycles:"
 		# eg, "java 12688 [002] 6544038.708352: cpu-clock:"
@@ -184,7 +188,9 @@ while (defined($_ = <>)) {
 			$pname = $1;
 		}
 		$pname =~ tr/ /_/;
-	} elsif (/^(\S+\s*?\S*?)\s+(\d+)\/(\d+)/) {
+	} elsif (/^(\S+\s*?\S*?)\s+(\d+)\/(\d+)\s+(\[\d+\]\s+)?\S+:\s+\d+\s+(\S+\s*?\S*?):/) {
+		next if defined $event_filter and $5 ne $event_filter;
+
 		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
 		# eg, "java 12688/12764 6544038.708352: cpu-clock:"
 		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: cycles:"
@@ -200,6 +206,8 @@ while (defined($_ = <>)) {
 
 	# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
+		next if not defined $pname;
+
 		my ($pc, $func, $mod) = ($1, $2, $3);
 
 		if ($show_inline == 1 && index($mod, $target_pname) != -1) {
