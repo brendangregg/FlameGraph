@@ -92,7 +92,7 @@ USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
 	--tid		# include TID and PID with process names [1]
 	--inline	# un-inline using addr2line
-	--kernel	# annotate kernel functions with a [k]
+	--kernel	# annotate kernel functions with a _[k]
 	--context	# include source context from addr2line\n
 [1] perf script must emit both PID and TIDs for these to work; eg:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
@@ -203,7 +203,7 @@ while (defined($_ = <>)) {
 	# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $func, $mod) = ($1, $2, $3);
-		$func.=" [k]" if ($annotate_kernel == 1 && $mod =~ m/kernel.kall/);
+		$func.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/kernel.kall/);
 		if ($show_inline == 1 && index($mod, $target_pname) != -1) {
 			unshift @stack, inline($pc, $mod);
 			next;

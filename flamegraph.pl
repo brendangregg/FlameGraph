@@ -335,8 +335,8 @@ sub color {
 			$type = "yellow";
 		} elsif ($name =~ m:/:) {	# Java (match "/" in path)
 			$type = "green"
-		} elsif ($name =~ m: \[k\]:) {	# kernel
-			$type = "purple"
+		} elsif ($name =~ m:_\[k\]:) {	# kernel
+			$type = "orange"
 		} else {			# system
 			$type = "red";
 		}
@@ -347,8 +347,8 @@ sub color {
 			$type = "yellow";
 		} elsif ($name =~ m:Perl: or $name =~ m:\.pl:) {	# Perl
 			$type = "green";
-		} elsif ($name =~ m: \[k\]:) {	# kernel
-			$type = "purple"
+		} elsif ($name =~ m:_\[k\]:) {	# kernel
+			$type = "orange"
 		} else {			# system
 			$type = "red";
 		}
@@ -363,8 +363,8 @@ sub color {
 			$type = "aqua"
 		} elsif ($name =~ m/^ $/) {	# Missing symbol
 			$type = "green"
-		} elsif ($name =~ m: \[k\]:) {	# kernel
-			$type = "purple"
+		} elsif ($name =~ m:_\[k\]:) {	# kernel
+			$type = "orange"
 		} else {			# system
 			$type = "red";
 		}
@@ -1016,6 +1016,7 @@ while (my ($id, $node) = each %Node) {
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
 	if ($chars >= 3) { # room for one char plus two dots
+		$func =~ s/_\[k\]$//;	# strip any kernel annotation
 		$text = substr $func, 0, $chars;
 		substr($text, -2, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;
