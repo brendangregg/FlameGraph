@@ -6,7 +6,7 @@ Example (click to zoom):
 [![Example](http://brendangregg.github.io/FlameGraph/cpu-bash-flamegraph.svg)](http://brendangregg.github.io/FlameGraph/cpu-bash-flamegraph.svg)
 
 Other sites:
-- CPU profiling using Linux perf_events, DTrace, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
+- CPU profiling using Linux perf\_events, DTrace, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
 - CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/  
 - CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/  
 - Memory profiling: http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html  
@@ -20,11 +20,11 @@ Flame graphs can be created in three steps:
 
 1. Capture stacks
 =================
-Stack samples can be captured using Linux perf_events, FreeBSD pmcstat (hwpmc), DTrace, SystemTap, and many other profilers. See the stackcollapse-* converters.
+Stack samples can be captured using Linux perf\_events, FreeBSD pmcstat (hwpmc), DTrace, SystemTap, and many other profilers. See the stackcollapse-\* converters.
 
-### Linux perf_events
+### Linux perf\_events
 
-Using Linux perf_events (aka "perf") to capture 60 seconds of 99 Hertz stack samples, both user- and kernel-level stacks, all processes:
+Using Linux perf\_events (aka "perf") to capture 60 seconds of 99 Hertz stack samples, both user- and kernel-level stacks, all processes:
 
 ```
 # perf record -F 99 -a -g -- sleep 60
@@ -114,16 +114,38 @@ $ grep cpuid out.kern_folded | ./flamegraph.pl > cpuid.svg
 
 Provided Example
 ================
-An example output from DTrace is included, both the captured stacks and
-the resulting Flame Graph. You can generate it yourself using:
+
+### Linux perf\_events
+
+An example output from Linux "perf script" is included, gzip'd, as example-perf-stacks.txt.gz. The resulting flame graph is example-perf.svg:
+
+[![Example](http://brendangregg.github.io/FlameGraph/example-perf.svg)](http://brendangregg.github.io/FlameGraph/example-perf.svg)
+
+You can create this using:
+
+```
+gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --kernel | ./flamegraph.pl --color=java --hash > example-perf.svg
+```
+
+This shows my typical workflow: I'll gzip profiles on the target, then copy them to my laptop for analysis. Since I have hundreds of profiles, I leave them gzip'd!
+
+Since this profile included Java, I used the flamegraph.pl --color=java palette. I've also used stackcollapse-perf.pl --kernel, which allows a separate color to be used for kernel code. The resulting flame graph uses: green == Java, yellow == C++, red == user-mode native, orange == kernel.
+
+This profile was from an analysis of vert.x performance. The benchmark client, wrk, is also visible in the flame graph.
+
+### DTrace
+
+An example output from DTrace is also included, example-dtrace-stacks.txt, and the resulting flame graph, example-dtrace.svg:
+
+[![Example](http://brendangregg.github.io/FlameGraph/example-dtrace.svg)](http://brendangregg.github.io/FlameGraph/example-dtrace.svg)
+
+You can generate this using:
 
 ```
 $ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl > example.svg
 ```
 
-This was from a particular performance investigation: the Flame Graph
-identified that CPU time was spent in the lofs module, and quantified
-that time.
+This was from a particular performance investigation: the Flame Graph identified that CPU time was spent in the lofs module, and quantified that time.
 
 
 Options
@@ -132,19 +154,25 @@ See the USAGE message (--help) for options:
 
 USAGE: ./flamegraph.pl [options] infile > outfile.svg
 
-        --titletext             # change title text
-        --width                 # width of image (default 1200)
-        --height                # height of each frame (default 16)
-        --minwidth              # omit smaller functions (default 0.1 pixels)
-        --fonttype              # font type (default "Verdana")
-        --fontsize              # font size (default 12)
-        --countname             # count type label (default "samples")
-        --nametype              # name type label (default "Function:")
-        --colors                # "hot", "mem", "io" palette (default "hot")
-        --hash                  # colors are keyed by function name hash
-        --cp                    # use consistent palette (palette.map)
-    eg,
-        ./flamegraph.pl --titletext="Flame Graph: malloc()" trace.txt > graph.svg
+	--title       # change title text
+	--width       # width of image (default 1200)
+	--height      # height of each frame (default 16)
+	--minwidth    # omit smaller functions (default 0.1 pixels)
+	--fonttype    # font type (default "Verdana")
+	--fontsize    # font size (default 12)
+	--countname   # count type label (default "samples")
+	--nametype    # name type label (default "Function:")
+	--colors      # set color palette. choices are: hot (default), mem, io,
+	              # java, js, perl, red, green, blue, yellow, purple, orange
+	--hash        # colors are keyed by function name hash
+	--cp          # use consistent palette (palette.map)
+	--reverse     # generate stack-reversed flame graph
+	--inverted    # icicle graph
+	--negate      # switch differential hues (blue<->red)
+	--help        # this message
+
+	eg,
+	./flamegraph.pl --title="Flame Graph: malloc()" trace.txt > graph.svg
 
 As suggested in the example, flame graphs can process traces of any event,
 such as malloc()s, provided stack traces are gathered.
