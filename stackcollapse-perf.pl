@@ -135,7 +135,7 @@ my $pname;
 #
 # Main loop
 #
-foreach (<>) {
+while (defined($_ = <>)) {
 
 	# find the name of the process launched by perf, by stepping backwards
 	# over the args to find the first non-option (no dash):
