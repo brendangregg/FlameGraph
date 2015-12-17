@@ -3,7 +3,7 @@
 Main Website: http://www.brendangregg.com/flamegraphs.html
 
 Example (click to zoom):
-[![Example](http://brendangregg.github.io/FlameGraph/cpu-bash-flamegraph.svg)](http://brendangregg.github.io/FlameGraph/cpu-bash-flamegraph.svg)
+[![Example](http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg)](http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg)
 
 Other sites:
 - CPU profiling using Linux perf\_events, DTrace, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
@@ -119,7 +119,7 @@ Provided Examples
 
 An example output from Linux "perf script" is included, gzip'd, as example-perf-stacks.txt.gz. The resulting flame graph is example-perf.svg:
 
-[![Example](http://brendangregg.github.io/FlameGraph/example-perf.svg)](http://brendangregg.github.io/FlameGraph/example-perf.svg)
+[![Example](http://www.brendangregg.com/FlameGraphs/example-perf.svg)](http://www.brendangregg.com/FlameGraphs/example-perf.svg)
 
 You can create this using:
 
@@ -137,7 +137,7 @@ This profile was from an analysis of vert.x performance. The benchmark client, w
 
 An example output from DTrace is also included, example-dtrace-stacks.txt, and the resulting flame graph, example-dtrace.svg:
 
-[![Example](http://brendangregg.github.io/FlameGraph/example-dtrace.svg)](http://brendangregg.github.io/FlameGraph/example-dtrace.svg)
+[![Example](http://www.brendangregg.com/FlameGraphs/example-dtrace.svg)](http://www.brendangregg.com/FlameGraphs/example-dtrace.svg)
 
 You can generate this using:
 
