@@ -80,15 +80,40 @@
 # Copyright (c) 2015 by MemSQL. All rights reserved.
 #
 
+#
+# Match a perf captured variable, returning just the contents. For example, for
+# the following line, get_perf_captured_variable("pid") would return "27235":
+#
+#     swapper     0 [006] 708189.626415: sched:sched_stat_sleep: comm=memsqld pid=27235 delay=100078421 [ns
+#
+function get_perf_captured_variable(variable)
+{
+	match($0, variable "=[^[:space:]]+")
+	return substr($0, RSTART + length(variable) + 1,
+                      RLENGTH - length(variable) - 1)
+}
+
+#
+# The timestamp is the first field that ends in a colon, e.g.:
+#
+#     swapper     0 [006] 708189.626415: sched:sched_stat_sleep: comm=memsqld pid=27235 delay=100078421 [ns
+#
+# or
+#
+#     swapper     0/0     708189.626415: sched:sched_stat_sleep: comm=memsqld pid=27235 delay=100078421 [ns]
+#
+function get_perf_timestamp()
+{
+	match($0, " [^ :]+:")
+	return substr($0, RSTART + 1, RLENGTH - 2)
+}
+
 !/^#/ && /sched:sched_switch/ {
-	gsub(/comm=/, "", $5)
-	switchcommand=$5
+	switchcommand = get_perf_captured_variable("comm")
 
-	gsub(/prev_pid=/, "", $6)
-	switchpid=$6
+	switchpid = get_perf_captured_variable("prev_pid")
 
-	gsub(/:$/, "", $3)
-	switchtime=$3
+	switchtime=get_perf_timestamp()
 
 	switchstack=""
 }
@@ -132,17 +157,13 @@ function get_function_name()
 	wakecommand=$1
 	wakepid=$2
 
-	gsub(/:$/, "", $3)
-	waketime=$3
+	waketime=get_perf_timestamp()
 
-	gsub(/comm=/, "", $5)
-	stat_next_command=$5
+	stat_next_command = get_perf_captured_variable("comm")
 
-	gsub(/pid=/, "", $6)
-	stat_next_pid=$6
+	stat_next_pid = get_perf_captured_variable("pid")
 
-	gsub(/delay=/, "", $7)
-	stat_delay_ns = int($7)
+	stat_delay_ns = int(get_perf_captured_variable("delay"))
 
 	wakestack=""
 }
