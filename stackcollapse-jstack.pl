@@ -57,6 +57,39 @@
 
 use strict;
 
+use Getopt::Long;
+
+# tunables
+my $include_tname = 1;		# include thread names in stacks
+my $include_tid = 0;		# include thread IDs in stacks
+my $shorten_pkgs = 0;		# shorten package names
+my $help = 0;
+
+sub usage {
+	die <<USAGE_END;
+USAGE: $0 [options] infile > outfile\n
+	--include-tname
+	--no-include-tname # include/omit thread names in stacks (default: include)
+	--include-tid
+	--no-include-tid   # include/omit thread IDs in stacks (default: omit)
+	--shorten-pkgs
+	--no-shorten-pkgs  # (don't) shorten package names (default: don't shorten)
+
+	eg,
+	$0 --no-include-tname stacks.txt > collapsed.txt
+USAGE_END
+}
+
+GetOptions(
+	'include-tname!'  => \$include_tname,
+	'include-tid!'    => \$include_tid,
+	'shorten-pkgs!'   => \$shorten_pkgs,
+	'help'            => \$help,
+) or usage();
+$help && usage();
+
+
+# internals
 my %collapsed;
 
 sub remember_stack {
@@ -65,10 +98,7 @@ sub remember_stack {
 }
 
 my @stack;
-my $pname;
-my $include_pname = 1;		# include process names in stacks
-my $include_tid = 0;		# include thread IDs in stacks
-my $shorten_pkgs = 0;		# shorten package names
+my $tname;
 my $state = "?";
 
 foreach (<>) {
@@ -80,11 +110,11 @@ foreach (<>) {
 		goto clear if $state ne "RUNNABLE";
 
 		# save stack
-		if (defined $pname) { unshift @stack, $pname; }
+		if (defined $tname) { unshift @stack, $tname; }
 		remember_stack(join(";", @stack), 1) if @stack;
 clear:
 		undef @stack;
-		undef $pname;
+		undef $tname;
 		$state = "?";
 		next;
 	}
@@ -98,10 +128,10 @@ clear:
 	if (/^"([^"]*)/) {
 		my $name = $1;
 
-		if ($include_pname) {
-			$pname = $name;
+		if ($include_tname) {
+			$tname = $name;
 			unless ($include_tid) {
-				$pname =~ s/-\d+$//;
+				$tname =~ s/-\d+$//;
 			}
 		}
 
