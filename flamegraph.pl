@@ -711,6 +711,8 @@ my $inc = <<INC;
 		var t = find_child(e, "text");
 		var w = parseFloat(r.attributes["width"].value) -3;
 		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)\$/,"");
+		var rx = parseFloat(r.attributes["x"].value);
+		var ry = parseFloat(r.attributes["y"].value);
 		t.attributes["x"].value = parseFloat(r.attributes["x"].value) +3;
 		
 		// Smaller than this size won't fit anything
@@ -720,16 +722,21 @@ my $inc = <<INC;
 		}
 		
 		t.textContent = txt;
+
 		// Fit in full text width
-		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+		if (/^ *\$/.test(txt) || t.getComputedTextLength() < w)
 			return;
-		
-		for (var x=txt.length-2; x>0; x--) {
-			if (t.getSubStringLength(0, x+2) <= w) { 
-				t.textContent = txt.substring(0,x) + "..";
-				return;
-			}
+
+		var point = t.ownerSVGElement.createSVGPoint();
+		point.x = rx + w - 5;
+		point.y = ry + 5;
+		var pos = t.getCharNumAtPosition(point)
+
+		if (pos != -1) {
+			t.textContent = txt.substring(0, pos) + "..";
+			return;
 		}
+
 		t.textContent = "";
 	}
 
