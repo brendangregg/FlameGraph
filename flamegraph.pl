@@ -672,7 +672,7 @@ my $inc = <<INC;
 		var r = find_child(e, "rect");
 		var t = find_child(e, "text");
 		var w = parseFloat(r.attributes["width"].value) -3;
-		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)/,"");
+		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)\$/,"");
 		t.attributes["x"].value = parseFloat(r.attributes["x"].value) +3;
 		
 		// Smaller than this size won't fit anything
