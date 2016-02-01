@@ -1,0 +1,73 @@
+dd 29776 666709.771979:   10101010 cpu-clock: 
+	          414b3b fsnotify (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6b4c vfs_read (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6b9f sys_read (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5f70 read (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.782078:   10101010 cpu-clock: 
+	          3d5d39 rw_verify_area (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d68f3 vfs_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6c4f sys_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5fd0 write (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.792207:   10101010 cpu-clock: 
+	          2d0c00 __srcu_read_unlock (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          414d4c fsnotify (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d69de vfs_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6c4f sys_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5fd0 write (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.802280:   10101010 cpu-clock: 
+	           e5f70 read (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.812381:   10101010 cpu-clock: 
+	          3d6c5b sys_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5fd0 write (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.822526:   10101010 cpu-clock: 
+	          2d0bfc __srcu_read_unlock (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          414d4c fsnotify (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d69de vfs_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6c4f sys_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5fd0 write (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.832583:   10101010 cpu-clock: 
+	          2d0c0b __srcu_read_unlock (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          414d4c fsnotify (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d69de vfs_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6c4f sys_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5fd0 write (/lib/x86_64-linux-gnu/libc-2.15.so)
+
+dd 29776 666709.842684:   10101010 cpu-clock: 
+	          3f2fa6 __fget_light (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3f2fe3 __fdget (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3f3ab2 __fdget_pos (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          3d6c28 sys_write (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5fd0 write (/lib/x86_64-linux-gnu/libc-2.15.so)
+
+dd 29776 666709.852785:   10101010 cpu-clock: 
+	            31ef [unknown] (/bin/dd)
+	    7f2eb2b31c2c [unknown] ([unknown])
+
+dd 29776 666709.862886:   10101010 cpu-clock: 
+	          3f3aa0 __fdget_pos (/lib/modules/4.1.0-virtual/build/vmlinux)
+	          968f6e system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	           e5f70 read (/lib/x86_64-linux-gnu/libc-2.15.so)
+	               0 [unknown] ([unknown])
+
+dd 29776 666709.872987:   10101010 cpu-clock: 
+	          968f37 system_call (/lib/modules/4.1.0-virtual/build/vmlinux)
+	             246 [unknown] ([unknown])

@@ -1,0 +1,351 @@
+# ========
+# captured on: Wed Jan 27 00:56:27 2016
+# hostname : lgud-bgregg
+# os release : 3.13.0-44-generic
+# perf version : 3.13.11-ckt12
+# arch : x86_64
+# nrcpus online : 4
+# nrcpus avail : 4
+# cpudesc : Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz
+# cpuid : GenuineIntel,6,42,7
+# total memory : 3130540 kB
+# cmdline : /usr/lib/linux-tools-3.13.0-44/perf record -F 99 -a --call-graph=dwarf -- sleep 10 
+# event : name = cpu-clock, type = 1, config = 0x0, config1 = 0x0, config2 = 0x0, excl_usr = 0, excl_kern = 0, excl_host = 0, excl_guest = 1, precise_ip = 0, attr_mmap2 = 0, attr_mmap  = 1, attr_mmap_data = 0
+# HEADER_CPU_TOPOLOGY info available, use -I to display
+# HEADER_NUMA_TOPOLOGY info available, use -I to display
+# pmu mappings: software = 1, tracepoint = 2, breakpoint = 5
+# ========
+#
+mir-console 23166 [000]  1333.768765: cpu-clock: 
+	          44bee3 camlLwt__return_1285 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4093d0 camlMain__fun_1418 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+
+swapper     0 [001]  1333.768770: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.768806: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.768847: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.778865: cpu-clock: 
+	          44b1d0 camlLwt__repr_rec_1132 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	    7f57a760d920 [unknown] ([unknown])
+
+swapper     0 [001]  1333.778869: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.778907: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.778947: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.788966: cpu-clock: 
+	          44c8f9 camlLwt__bind_1394 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+
+swapper     0 [001]  1333.788979: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.789008: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.789054: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.799067: cpu-clock: 
+	          44c8fe camlLwt__bind_1394 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+
+swapper     0 [001]  1333.799077: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.799113: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.799155: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [001]  1333.809178: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.809182: cpu-clock: 
+	          40955c camlUnikernel__fun_1396 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+
+swapper     0 [002]  1333.809217: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.809257: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.819269: cpu-clock: 
+	          44c92f camlLwt__bind_1394 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          6eaf28 [unknown] ([unknown])
+
+swapper     0 [001]  1333.819279: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.819315: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.819357: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.829370: cpu-clock: 
+	          409598 camlUnikernel____pa_lwt_loop_1382 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4093d0 camlMain__fun_1418 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+
+swapper     0 [001]  1333.829381: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.829417: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.829458: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.839471: cpu-clock: 
+	          44c918 camlLwt__bind_1394 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4095de camlUnikernel____pa_lwt_loop_1382 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          409533 camlMain__entry (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4059c9 caml_program (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4b43ca caml_start_program (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	    7fff978f8dd0 [unknown] ([unknown])
+
+swapper     0 [001]  1333.839481: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.839517: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.839559: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.849572: cpu-clock: 
+	          44bef5 camlLwt__return_1285 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4093d0 camlMain__fun_1418 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+
+swapper     0 [001]  1333.849583: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.849619: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.849661: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.859673: cpu-clock: 
+	          44c918 camlLwt__bind_1394 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4095de camlUnikernel____pa_lwt_loop_1382 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          409533 camlMain__entry (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4059c9 caml_program (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4b43ca caml_start_program (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	    7fff978f8dd0 [unknown] ([unknown])
+
+swapper     0 [001]  1333.859683: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.859722: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.859761: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.869775: cpu-clock: 
+	          44b1d0 camlLwt__repr_rec_1132 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	    7f57a7549e40 [unknown] ([unknown])
+
+swapper     0 [001]  1333.869785: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.869823: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.869863: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.879875: cpu-clock: 
+	          44bef9 camlLwt__return_1285 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          6eaf28 [unknown] ([unknown])
+
+swapper     0 [001]  1333.879885: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.879924: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.879965: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.889977: cpu-clock: 
+	          44c92f camlLwt__bind_1394 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          6eaf28 [unknown] ([unknown])
+
+swapper     0 [001]  1333.889987: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [002]  1333.890023: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+swapper     0 [003]  1333.890065: cpu-clock: 
+	ffffffff810013aa xen_hypercall_sched_op ([kernel.kallsyms])
+	ffffffff8101caaf default_idle ([kernel.kallsyms])
+	ffffffff8101d376 arch_cpu_idle ([kernel.kallsyms])
+	ffffffff810bef35 cpu_startup_entry ([kernel.kallsyms])
+	ffffffff810101b8 cpu_bringup_and_idle ([kernel.kallsyms])
+
+mir-console 23166 [000]  1333.900077: cpu-clock: 
+	          44bee3 camlLwt__return_1285 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
+	          4093d0 camlMain__fun_1418 (/mnt/mirage/mirage-skeleton/console.unix2/_build/main.native)
