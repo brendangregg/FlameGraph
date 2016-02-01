@@ -47,6 +47,7 @@
 # was in turn inspired by the work on vftrace by Jan Boerhout".  See:
 # https://blogs.oracle.com/realneel/entry/visualizing_callstacks_via_dtrace_and
 #
+# Copyright 2016 Netflix, Inc.
 # Copyright 2011 Joyent, Inc.  All rights reserved.
 # Copyright 2011 Brendan Gregg.  All rights reserved.
 #
@@ -120,7 +121,8 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--countname   # count type label (default "samples")
 	--nametype    # name type label (default "Function:")
 	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # java, js, perl, red, green, blue, yellow, purple, orange
+	              # wakeup, chain, java, js, perl, red, green, blue, aqua,
+	              # yellow, purple, orange
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
@@ -186,8 +188,16 @@ if ($nameattrfile) {
 	}
 }
 
-if ($colors eq "mem") { $bgcolor1 = "#eeeeee"; $bgcolor2 = "#e0e0ff"; }
-if ($colors eq "io")  { $bgcolor1 = "#f8f8f8"; $bgcolor2 = "#e8e8e8"; }
+# background colors:
+# - yellow gradient: default (hot, java, js, perl)
+# - blue gradient: mem, chain
+# - gray gradient: io, wakeup, flat colors (red, green, blue, ...)
+if ($colors eq "mem" or $colors eq "chain") {
+	$bgcolor1 = "#eeeeee"; $bgcolor2 = "#e0e0ff";
+}
+if ($colors =~ /^(io|wakeup|red|green|blue|aqua|yellow|purple|orange)$/) {
+	$bgcolor1 = "#f8f8f8"; $bgcolor2 = "#e8e8e8";
+}
 
 # SVG functions
 { package SVG;
@@ -370,6 +380,18 @@ sub color {
 		}
 		# fall-through to color palettes
 	}
+	if (defined $type and $type eq "wakeup") {
+		$type = "aqua";
+		# fall-through to color palettes
+	}
+	if (defined $type and $type eq "chain") {
+		if ($name =~ m:_\[w\]:) {	# waker
+			$type = "aqua"
+		} else {			# off-CPU
+			$type = "blue";
+		}
+		# fall-through to color palettes
+	}
 
 	# color palettes
 	if (defined $type and $type eq "red") {
@@ -510,7 +532,7 @@ foreach (<>) {
 	if ($stackreverse) {
 		# there may be an extra samples column for differentials
 		# XXX todo: redo these REs as one. It's repeated below.
-		my ($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+		my($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
 		my $samples2 = undef;
 		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
 			$samples2 = $samples;
@@ -547,7 +569,23 @@ foreach (sort @Data) {
 		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
 	}
 
+	# clean up SVG breaking characters:
 	$stack =~ tr/<>/()/;
+
+	# for chain graphs, annotate waker frames with "_[w]", for later
+	# coloring. This is a hack, but has a precedent ("_[k]" from perf).
+	if ($colors eq "chain") {
+		my @parts = split ";-;", $stack;
+		my @newparts = ();
+		$stack = shift @parts;
+		$stack .= ";-;";
+		foreach my $part (@parts) {
+			$part =~ s/;/_[w];/g;
+			$part .= "_[w]";
+			push @newparts, $part;
+		}
+		$stack .= join ";-;", @parts;
+	}
 
 	# merge frames and populate %Node:
 	$last = flow($last, [ '', split ";", $stack ], $time, $delta);
@@ -983,7 +1021,7 @@ while (my ($id, $node) = each %Node) {
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
 		$escaped_func =~ s/"/&quot;/g;
-		$escaped_func =~ s/_\[k\]$//;	# strip any kernel annotation
+		$escaped_func =~ s/_\[[kw]\]$//;	# strip any annotation
 		unless (defined $delta) {
 			$info = "$escaped_func ($samples_txt $countname, $pct%)";
 		} else {
@@ -1017,7 +1055,7 @@ while (my ($id, $node) = each %Node) {
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
 	if ($chars >= 3) { # room for one char plus two dots
-		$func =~ s/_\[k\]$//;	# strip any kernel annotation
+		$func =~ s/_\[[kw]\]$//;	# strip any annotation
 		$text = substr $func, 0, $chars;
 		substr($text, -2, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;

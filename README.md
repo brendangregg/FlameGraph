@@ -163,7 +163,8 @@ USAGE: ./flamegraph.pl [options] infile > outfile.svg
 	--countname   # count type label (default "samples")
 	--nametype    # name type label (default "Function:")
 	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # java, js, perl, red, green, blue, yellow, purple, orange
+	              # wakeup, chain, java, js, perl, red, green, blue, aqua,
+	              # yellow, purple, orange
 	--hash        # colors are keyed by function name hash
 	--cp          # use consistent palette (palette.map)
 	--reverse     # generate stack-reversed flame graph
