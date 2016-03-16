@@ -209,6 +209,12 @@ while (defined($_ = <>)) {
 			next;
 		}
 
+		if ($func eq "[unknown]" && $mod ne "[unknown]") { # use module name instead, if known
+			$func = $mod;
+			$func =~ s/.*\///;
+			$func = "\[$func\]";
+		}
+
 		next if $func =~ /^\(/;		# skip process names
 
 		if ($tidy_generic) {
