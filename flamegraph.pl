@@ -341,10 +341,10 @@ sub color {
 
 	# multi palettes
 	if (defined $type and $type eq "java") {
-		if ($name =~ /::/) {		# C++
-			$type = "yellow";
-		} elsif ($name =~ m:/:) {	# Java (match "/" in path)
+		if ($name =~ m:/:) {		# Java (match "/" in path)
 			$type = "green"
+		} elsif ($name =~ /::/) {	# C++
+			$type = "yellow";
 		} elsif ($name =~ m:_\[k\]:) {	# kernel
 			$type = "orange"
 		} else {			# system
