@@ -13,7 +13,7 @@
 #
 # Example input:
 #
-#  swapper     0 [000] 158665.570607: cpu-clock: 
+#  swapper     0 [000] 158665.570607: cpu-clock:
 #         ffffffff8103ce3b native_safe_halt ([kernel.kallsyms])
 #         ffffffff8101c6a3 default_idle ([kernel.kallsyms])
 #         ffffffff81013236 cpu_idle ([kernel.kallsyms])
@@ -200,45 +200,49 @@ while (defined($_ = <>)) {
 		}
 		$pname =~ tr/ /_/;
 
-	# stack line
+		# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
-		my ($pc, $func, $mod) = ($1, $2, $3);
-		$func.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/kernel\./);
+		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
+		$rawfunc.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/kernel\./);
 		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
-		        unshift @stack, inline($pc, $mod);
+			unshift @stack, inline($pc, $mod);
 			next;
 		}
 
-		next if $func =~ /^\(/;		# skip process names
+		next if $rawfunc =~ /^\(/;		# skip process names
 
-		if ($tidy_generic) {
-			$func =~ s/;/:/g;
-			$func =~ tr/<>//d;
-			if ($func !~ m/\.\(.*\)\./) {
-				# This doesn't look like a Go method name (such as
-				# "net/http.(*Client).Do"), so everything after the first open
-				# paren is just noise.
-				$func =~ s/\(.*//;
+		for (split /\->/, $rawfunc) {
+			my $func = $_;
+
+			if ($tidy_generic) {
+				$func =~ s/;/:/g;
+				$func =~ tr/<>//d;
+				if ($func !~ m/\.\(.*\)\./) {
+					# This doesn't look like a Go method name (such as
+					# "net/http.(*Client).Do"), so everything after the first open
+					# paren is just noise.
+					$func =~ s/\(.*//;
+				}
+				# now tidy this horrible thing:
+				# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
+				$func =~ tr/"\'//d;
+				# fall through to $tidy_java
 			}
-			# now tidy this horrible thing:
-			# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
-			$func =~ tr/"\'//d;
-			# fall through to $tidy_java
-		}
 
-		if ($tidy_java and $pname eq "java") {
-			# along with $tidy_generic, converts the following:
-			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
-			#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/C
-			#	Lorg/mozilla/javascript/MemberBox;.<init>(Ljava/lang/reflect/Method;)V
-			# into:
-			#	org/mozilla/javascript/ContextFactory:.call
-			#	org/mozilla/javascript/ContextFactory:.call
-			#	org/mozilla/javascript/MemberBox:.init
-			$func =~ s/^L// if $func =~ m:/:;
-		}
+			if ($tidy_java and $pname eq "java") {
+				# along with $tidy_generic, converts the following:
+				#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/ContextAction;)Ljava/lang/Object;
+				#	Lorg/mozilla/javascript/ContextFactory;.call(Lorg/mozilla/javascript/C
+				#	Lorg/mozilla/javascript/MemberBox;.<init>(Ljava/lang/reflect/Method;)V
+				# into:
+				#	org/mozilla/javascript/ContextFactory:.call
+				#	org/mozilla/javascript/ContextFactory:.call
+				#	org/mozilla/javascript/MemberBox:.init
+				$func =~ s/^L// if $func =~ m:/:;
+			}
 
-		unshift @stack, $func;
+			unshift @stack, $func;
+		}
 	} else {
 		warn "Unrecognized line: $_";
 	}
