@@ -203,9 +203,9 @@ while (defined($_ = <>)) {
 	# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $func, $mod) = ($1, $2, $3);
-		$func.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/kernel.kall/);
-		if ($show_inline == 1 && index($mod, $target_pname) != -1) {
-			unshift @stack, inline($pc, $mod);
+		$func.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/kernel\./);
+		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
+		        unshift @stack, inline($pc, $mod);
 			next;
 		}
 
