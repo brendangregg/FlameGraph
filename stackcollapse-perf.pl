@@ -211,6 +211,7 @@ while (defined($_ = <>)) {
 
 		next if $rawfunc =~ /^\(/;		# skip process names
 
+		my @inline;
 		for (split /\->/, $rawfunc) {
 			my $func = $_;
 
@@ -241,8 +242,11 @@ while (defined($_ = <>)) {
 				$func =~ s/^L// if $func =~ m:/:;
 			}
 
-			unshift @stack, $func;
+			$func .= "_[i]" if scalar(@inline) > 0; #inlined
+			push @inline, $func;
 		}
+
+		unshift @stack, @inline;
 	} else {
 		warn "Unrecognized line: $_";
 	}
