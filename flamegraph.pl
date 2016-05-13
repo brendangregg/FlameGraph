@@ -341,8 +341,9 @@ sub color {
 
 	# multi palettes
 	if (defined $type and $type eq "java") {
-		if ($name =~ m:/:) {		# Java (match "/" in path)
-			$type = "green"
+		if ($name =~ m:(/|\.):) {		# Java (match "/" in path)
+			$type = "green";
+			$type = "aqua" if $name =~ m/_\[i\]/; #inline
 		} elsif ($name =~ /::/) {	# C++
 			$type = "yellow";
 		} elsif ($name =~ m:_\[k\]:) {	# kernel
@@ -651,8 +652,8 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	var details, searchbtn, matchedtxt, svg;
-	function init(evt) { 
-		details = document.getElementById("details").firstChild; 
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
 		matchedtxt = document.getElementById("matched");
 		svg = document.getElementsByTagName("svg")[0];
@@ -712,20 +713,20 @@ my $inc = <<INC;
 		var w = parseFloat(r.attributes["width"].value) -3;
 		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)\$/,"");
 		t.attributes["x"].value = parseFloat(r.attributes["x"].value) +3;
-		
+
 		// Smaller than this size won't fit anything
 		if (w < 2*$fontsize*$fontwidth) {
 			t.textContent = "";
 			return;
 		}
-		
+
 		t.textContent = txt;
 		// Fit in full text width
 		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
 			return;
-		
+
 		for (var x=txt.length-2; x>0; x--) {
-			if (t.getSubStringLength(0, x+2) <= w) { 
+			if (t.getSubStringLength(0, x+2) <= w) {
 				t.textContent = txt.substring(0,x) + "..";
 				return;
 			}
@@ -756,7 +757,7 @@ my $inc = <<INC;
 				e.attributes["width"].value = parseFloat(e.attributes["width"].value) * ratio;
 			}
 		}
-		
+
 		if (e.childNodes == undefined) return;
 		for(var i=0, c=e.childNodes; i<c.length; i++) {
 			zoom_child(c[i], x-$xpad, ratio);
@@ -778,20 +779,20 @@ my $inc = <<INC;
 			zoom_parent(c[i]);
 		}
 	}
-	function zoom(node) { 
+	function zoom(node) {
 		var attr = find_child(node, "rect").attributes;
 		var width = parseFloat(attr["width"].value);
 		var xmin = parseFloat(attr["x"].value);
 		var xmax = parseFloat(xmin + width);
 		var ymin = parseFloat(attr["y"].value);
 		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
-		
+
 		// XXX: Workaround for JavaScript float issues (fix me)
 		var fudge = 0.0001;
-		
+
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style["opacity"] = "1.0";
-		
+
 		var el = document.getElementsByTagName("g");
 		for(var i=0;i<el.length;i++){
 			var e = el[i];
@@ -833,7 +834,7 @@ my $inc = <<INC;
 	function unzoom() {
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style["opacity"] = "0.0";
-		
+
 		var el = document.getElementsByTagName("g");
 		for(i=0;i<el.length;i++) {
 			el[i].style["display"] = "block";
@@ -841,7 +842,7 @@ my $inc = <<INC;
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
-	}	
+	}
 
 	// search
 	function reset_search() {
@@ -1021,7 +1022,7 @@ while (my ($id, $node) = each %Node) {
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
 		$escaped_func =~ s/"/&quot;/g;
-		$escaped_func =~ s/_\[[kw]\]$//;	# strip any annotation
+		$escaped_func =~ s/_\[[kwi]\]$//;	# strip any annotation
 		unless (defined $delta) {
 			$info = "$escaped_func ($samples_txt $countname, $pct%)";
 		} else {
@@ -1055,7 +1056,7 @@ while (my ($id, $node) = each %Node) {
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
 	if ($chars >= 3) { # room for one char plus two dots
-		$func =~ s/_\[[kw]\]$//;	# strip any annotation
+		$func =~ s/_\[[kwi]\]$//;	# strip any annotation
 		$text = substr $func, 0, $chars;
 		substr($text, -2, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;
