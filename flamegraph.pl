@@ -107,6 +107,7 @@ my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
 my $searchcolor = "rgb(230,0,230)";	# color for search highlighting
+my $callgraph = 0;		# produce a callgraph (don't sort or merge)
 my $help = 0;
 
 sub usage {
@@ -128,6 +129,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--reverse     # generate stack-reversed flame graph
 	--inverted    # icicle graph
 	--negate      # switch differential hues (blue<->red)
+	--callgraph   # produce a callgraph (don't sort or merge stacks)
 	--help        # this message
 
 	eg,
@@ -155,6 +157,7 @@ GetOptions(
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
 	'negate'      => \$negate,
+	'callgraph'   => \$callgraph,
 	'help'        => \$help,
 ) or usage();
 $help && usage();
@@ -167,6 +170,10 @@ my $framepad = 1;		# vertical padding for frames
 my $depthmax = 0;
 my %Events;
 my %nameattr;
+
+if ($callgraph && $titletext eq "") {
+	$titletext = "Call Graph";
+}
 
 if ($titletext eq "") {
 	unless ($inverted) {
@@ -519,6 +526,7 @@ sub flow {
 
 # parse input
 my @Data;
+my @SortedData;
 my $last = [];
 my $time = 0;
 my $delta = undef;
@@ -547,8 +555,16 @@ foreach (<>) {
 	}
 }
 
+if ($callgraph) {
+	# In callgraph mode, just reverse the data so time moves from
+	# left to right.
+	@SortedData = reverse @Data;
+} else {
+	@SortedData = sort @Data;
+}
+
 # process and merge frames
-foreach (sort @Data) {
+foreach (@SortedData) {
 	chomp;
 	# process: folded_stack count
 	# eg: func_a;func_b;func_c 31
