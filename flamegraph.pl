@@ -107,7 +107,7 @@ my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
 my $searchcolor = "rgb(230,0,230)";	# color for search highlighting
-my $callgraph = 0;		# produce a callgraph (don't sort or merge)
+my $flamechart = 0;		# produce a flame chart (don't sort or merge)
 my $help = 0;
 
 sub usage {
@@ -129,7 +129,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--reverse     # generate stack-reversed flame graph
 	--inverted    # icicle graph
 	--negate      # switch differential hues (blue<->red)
-	--callgraph   # produce a callgraph (don't sort or merge stacks)
+	--flamechart  # produce a flame chart (don't sort or merge stacks)
 	--help        # this message
 
 	eg,
@@ -157,7 +157,7 @@ GetOptions(
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
 	'negate'      => \$negate,
-	'callgraph'   => \$callgraph,
+	'flamechart'  => \$flamechart,
 	'help'        => \$help,
 ) or usage();
 $help && usage();
@@ -171,8 +171,8 @@ my $depthmax = 0;
 my %Events;
 my %nameattr;
 
-if ($callgraph && $titletext eq "") {
-	$titletext = "Call Graph";
+if ($flamechart && $titletext eq "") {
+	$titletext = "Flame Chart";
 }
 
 if ($titletext eq "") {
@@ -555,8 +555,8 @@ foreach (<>) {
 	}
 }
 
-if ($callgraph) {
-	# In callgraph mode, just reverse the data so time moves from
+if ($flamechart) {
+	# In flame chart mode, just reverse the data so time moves from
 	# left to right.
 	@SortedData = reverse @Data;
 } else {
