@@ -133,6 +133,8 @@ sub inline {
 
 my @stack;
 my $pname;
+my $m_pid;
+my $m_tid;
 
 #
 # Main loop
@@ -172,29 +174,25 @@ while (defined($_ = <>)) {
 	}
 
 	# event record start
-	if (/^(\S+\s*?\S*?)\s+(\d+)\s/) {
+	if (/^(.*?)\s+(\d+)\/*(\d+)*(\s+\[\d+])*\s+\d/) {
 		# default "perf script" output has TID but not PID
 		# eg, "java 25607 4794564.109216: cycles:"
 		# eg, "java 12688 [002] 6544038.708352: cpu-clock:"
 		# eg, "V8 WorkerThread 25607 4794564.109216: cycles:"
-		# other combinations possible
-		if ($include_tid) {
-			$pname = "$1-?/$2";
-		} elsif ($include_pid) {
-			$pname = "$1-?";
-		} else {
-			$pname = $1;
-		}
-		$pname =~ tr/ /_/;
-	} elsif (/^(\S+\s*?\S*?)\s+(\d+)\/(\d+)/) {
 		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
 		# eg, "java 12688/12764 6544038.708352: cpu-clock:"
 		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: cycles:"
 		# other combinations possible
+		if ($3) {
+			($m_pid, $m_tid) = ($2, $3);
+		} else {
+			($m_pid, $m_tid) = ("?", $2);
+		}
+
 		if ($include_tid) {
-			$pname = "$1-$2/$3";
+			$pname = "$1-$m_pid/$m_tid";
 		} elsif ($include_pid) {
-			$pname = "$1-$2";
+			$pname = "$1-$m_pid";
 		} else {
 			$pname = $1;
 		}
