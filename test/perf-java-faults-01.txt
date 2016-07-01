@@ -1,0 +1,189 @@
+perf 47118 [011] 51499.088689:          1 page-faults: 
+	           29ebc cmd_record (/usr/bin/perf)
+	           69695 run_builtin (/usr/bin/perf)
+	           1cfa6 main (/usr/bin/perf)
+	           21ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+perf 47118 [011] 51499.088702:          1 page-faults: 
+	           29f65 cmd_record (/usr/bin/perf)
+	           69695 run_builtin (/usr/bin/perf)
+	           1cfa6 main (/usr/bin/perf)
+	           21ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+perf 47118 [011] 51499.088706:          1 page-faults: 
+	           29f65 cmd_record (/usr/bin/perf)
+	           69695 run_builtin (/usr/bin/perf)
+	           1cfa6 main (/usr/bin/perf)
+	           21ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+perf 47118 [011] 51499.088709:          4 page-faults: 
+	           29f65 cmd_record (/usr/bin/perf)
+	           69695 run_builtin (/usr/bin/perf)
+	           1cfa6 main (/usr/bin/perf)
+	           21ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+perf 47119 [029] 51499.088715:          1 page-faults: 
+	            9ffa do_lookup_x (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+perf 47118 [011] 51499.088718:         33 page-faults: 
+	           29f65 cmd_record (/usr/bin/perf)
+	           69695 run_builtin (/usr/bin/perf)
+	           1cfa6 main (/usr/bin/perf)
+	           21ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+perf 47119 [029] 51499.088725:          1 page-faults: 
+	            9ffa do_lookup_x (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+perf 47119 [029] 51499.088733:          1 page-faults: 
+	            9ffa do_lookup_x (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+perf 47119 [029] 51499.088738:          4 page-faults: 
+	            9ffa do_lookup_x (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+perf 47119 [029] 51499.088764:         20 page-faults: 
+	            9ffa do_lookup_x (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+sleep 47119 [021] 51499.089086:          1 page-faults: 
+	          5b0415 __clear_user (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          5b046b clear_user (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          447364 padzero (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          449719 load_elf_binary (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3f938e search_binary_handler (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3fa9e7 do_execveat_common.isra.31 (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3fae1a sys_execve (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          990b95 return_from_execve (/lib/modules/4.4.9-virtual/build/vmlinux)
+	           c1337 __execve (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+sleep 47119 [021] 51499.089108:          1 page-faults: 
+	          5b0415 __clear_user (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          5b046b clear_user (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          447364 padzero (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          44a419 load_elf_binary (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3f938e search_binary_handler (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3fa9e7 do_execveat_common.isra.31 (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3fae1a sys_execve (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          990b95 return_from_execve (/lib/modules/4.4.9-virtual/build/vmlinux)
+	           c1337 __execve (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+sleep 47119 [021] 51499.089124:          1 page-faults: 
+	          5aebb5 copy_user_enhanced_fast_string (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3f938e search_binary_handler (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3fa9e7 do_execveat_common.isra.31 (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          3fae1a sys_execve (/lib/modules/4.4.9-virtual/build/vmlinux)
+	          990b95 return_from_execve (/lib/modules/4.4.9-virtual/build/vmlinux)
+	           c1337 __execve (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+sleep 47119 [021] 51499.089142:          3 page-faults: 
+	            12d0 _start (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+sleep 47119 [021] 51499.089157:          9 page-faults: 
+	            4eba _dl_start (/lib/x86_64-linux-gnu/ld-2.19.so)
+	            12d8 _dl_start_user (/lib/x86_64-linux-gnu/ld-2.19.so)
+
+sleep 47119 [021] 51499.089220:         24 page-faults: 
+	           1a41a memcmp (/lib/x86_64-linux-gnu/ld-2.19.so)
+	6873756c66660036 [unknown] ([unknown])
+
+sleep 47119 [021] 51499.089410:         72 page-faults: 
+	           a1a20 handle_intel (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+java 43869 [025] 51499.133872:          1 page-faults: 
+	           80786 _int_malloc (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+java 43869 [025] 51499.133952:          1 page-faults: 
+	           80786 _int_malloc (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+java 43869 [025] 51499.133957:          1 page-faults: 
+	          1501e4 __memmove_ssse3_back (/lib/x86_64-linux-gnu/libc-2.19.so)
+	            bfa3 inflate (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/libzip.so)
+	            34da Java_java_util_zip_Inflater_inflateBytes (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/libzip.so)
+	    7fcf703ea8c6 Ljava/util/zip/Inflater;::inflateBytes (/tmp/perf-43287.map)
+	    7fcf7f388018 Lcom/XXX::XXX (/tmp/perf-43287.map)
+	    7fcf78101ab8 Lnet/spy/memcached/transcoders/TranscodeService$1;::call (/tmp/perf-43287.map)
+	    7fcf78bb95bc Lnet/spy/memcached/protocol/binary/GetOperationImpl;::decodePayload (/tmp/perf-43287.map)
+	    7fcf7786b600 Lnet/spy/memcached/protocol/binary/OperationImpl;::finishedPayload (/tmp/perf-43287.map)
+	    7fcf763ed7c8 Lnet/spy/memcached/protocol/binary/OperationImpl;::readFromBuffer (/tmp/perf-43287.map)
+	    7fcf8efb0540 Lnet/spy/memcached/MemcachedConnection;::handleReads (/tmp/perf-43287.map)
+	    7fcf8efc0630 Lnet/spy/memcached/MemcachedConnection;::handleIO (/tmp/perf-43287.map)
+	    7fcf743b01b4 Lnet/spy/memcached/MemcachedConnection;::handleIO (/tmp/perf-43287.map)
+	    7fcf75b155bc Lnet/spy/memcached/EVCacheConnection;::run (/tmp/perf-43287.map)
+	    7fcf700004e0 call_stub (/tmp/perf-43287.map)
+	          68c616 _ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cb21 _ZN9JavaCalls12call_virtualEP9JavaValue11KlassHandleP6SymbolS4_P17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cfc7 _ZN9JavaCalls12call_virtualEP9JavaValue6Handle11KlassHandleP6SymbolS5_P6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          723d80 _ZL12thread_entryP10JavaThreadP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69dcf _ZN10JavaThread17thread_main_innerEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69efc _ZN10JavaThread3runEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          91d9d8 _ZL10java_startP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	            8182 start_thread (/lib/x86_64-linux-gnu/libpthread-2.19.so)
+
+java 43869 [025] 51499.133962:          2 page-faults: 
+	          1501e4 __memmove_ssse3_back (/lib/x86_64-linux-gnu/libc-2.19.so)
+	            bfa3 inflate (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/libzip.so)
+	            34da Java_java_util_zip_Inflater_inflateBytes (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/libzip.so)
+	    7fcf703ea8c6 Ljava/util/zip/Inflater;::inflateBytes (/tmp/perf-43287.map)
+	    7fcf7f388018 XXX::XXX (/tmp/perf-43287.map)
+	    7fcf78101ab8 Lnet/spy/memcached/transcoders/TranscodeService$1;::call (/tmp/perf-43287.map)
+	    7fcf78bb95bc Lnet/spy/memcached/protocol/binary/GetOperationImpl;::decodePayload (/tmp/perf-43287.map)
+	    7fcf7786b600 Lnet/spy/memcached/protocol/binary/OperationImpl;::finishedPayload (/tmp/perf-43287.map)
+	    7fcf763ed7c8 Lnet/spy/memcached/protocol/binary/OperationImpl;::readFromBuffer (/tmp/perf-43287.map)
+	    7fcf8efb0540 Lnet/spy/memcached/MemcachedConnection;::handleReads (/tmp/perf-43287.map)
+	    7fcf8efc0630 Lnet/spy/memcached/MemcachedConnection;::handleIO (/tmp/perf-43287.map)
+	    7fcf743b01b4 Lnet/spy/memcached/MemcachedConnection;::handleIO (/tmp/perf-43287.map)
+	    7fcf75b155bc Lnet/spy/memcached/EVCacheConnection;::run (/tmp/perf-43287.map)
+	    7fcf700004e0 call_stub (/tmp/perf-43287.map)
+	          68c616 _ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cb21 _ZN9JavaCalls12call_virtualEP9JavaValue11KlassHandleP6SymbolS4_P17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cfc7 _ZN9JavaCalls12call_virtualEP9JavaValue6Handle11KlassHandleP6SymbolS5_P6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          723d80 _ZL12thread_entryP10JavaThreadP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69dcf _ZN10JavaThread17thread_main_innerEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69efc _ZN10JavaThread3runEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          91d9d8 _ZL10java_startP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	            8182 start_thread (/lib/x86_64-linux-gnu/libpthread-2.19.so)
+
+java 43869 [025] 51499.134005:         16 page-faults: 
+	          1501e4 __memmove_ssse3_back (/lib/x86_64-linux-gnu/libc-2.19.so)
+	            bfa3 inflate (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/libzip.so)
+	            34da Java_java_util_zip_Inflater_inflateBytes (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/libzip.so)
+	    7fcf703ea8c6 Ljava/util/zip/Inflater;::inflateBytes (/tmp/perf-43287.map)
+	    7fcf7f388018 XXX::XXX (/tmp/perf-43287.map)
+	    7fcf78101ab8 Lnet/spy/memcached/transcoders/TranscodeService$1;::call (/tmp/perf-43287.map)
+	    7fcf78bb95bc Lnet/spy/memcached/protocol/binary/GetOperationImpl;::decodePayload (/tmp/perf-43287.map)
+	    7fcf7786b600 Lnet/spy/memcached/protocol/binary/OperationImpl;::finishedPayload (/tmp/perf-43287.map)
+	    7fcf763ed7c8 Lnet/spy/memcached/protocol/binary/OperationImpl;::readFromBuffer (/tmp/perf-43287.map)
+	    7fcf8efb0540 Lnet/spy/memcached/MemcachedConnection;::handleReads (/tmp/perf-43287.map)
+	    7fcf8efc0630 Lnet/spy/memcached/MemcachedConnection;::handleIO (/tmp/perf-43287.map)
+	    7fcf743b01b4 Lnet/spy/memcached/MemcachedConnection;::handleIO (/tmp/perf-43287.map)
+	    7fcf75b155bc Lnet/spy/memcached/EVCacheConnection;::run (/tmp/perf-43287.map)
+	    7fcf700004e0 call_stub (/tmp/perf-43287.map)
+	          68c616 _ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cb21 _ZN9JavaCalls12call_virtualEP9JavaValue11KlassHandleP6SymbolS4_P17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cfc7 _ZN9JavaCalls12call_virtualEP9JavaValue6Handle11KlassHandleP6SymbolS5_P6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          723d80 _ZL12thread_entryP10JavaThreadP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69dcf _ZN10JavaThread17thread_main_innerEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69efc _ZN10JavaThread3runEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          91d9d8 _ZL10java_startP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	            8182 start_thread (/lib/x86_64-linux-gnu/libpthread-2.19.so)
+
+java 44406 [013] 51499.134798:          1 page-faults: 
+	    7fcf73dcea29 Lorg/apache/tomcat/jni/Socket;::sendbb (/tmp/perf-43287.map)
+	    7fcf77b96440 Lorg/apache/coyote/http11/AbstractHttp11Processor;::action (/tmp/perf-43287.map)
+	    7fcf932a30e0 Lorg/apache/catalina/connector/CoyoteAdapter;::service (/tmp/perf-43287.map)
+	    7fcf79ac3840 Lorg/apache/coyote/http11/AbstractHttp11Processor;::process (/tmp/perf-43287.map)
+	    7fcf853cee48 Lorg/apache/coyote/AbstractProtocol$AbstractConnectionHandler;::process (/tmp/perf-43287.map)
+	    7fcf7f38306c Lorg/apache/tomcat/util/net/AprEndpoint$SocketProcessor;::doRun (/tmp/perf-43287.map)
+	    7fcf7f41faa8 Lorg/apache/tomcat/util/net/AprEndpoint$SocketProcessor;::run (/tmp/perf-43287.map)
+	    7fcf75c71028 Ljava/util/concurrent/ThreadPoolExecutor;::runWorker (/tmp/perf-43287.map)
+	    7fcf73173544 Ljava/util/concurrent/ThreadPoolExecutor$Worker;::run (/tmp/perf-43287.map)
+	    7fcf700079a9 Interpreter (/tmp/perf-43287.map)
+	    7fcf7316bbc4 Ljava/lang/Thread;::run (/tmp/perf-43287.map)
+	    7fcf700004e0 call_stub (/tmp/perf-43287.map)
+	          68c616 _ZN9JavaCalls11call_helperEP9JavaValueP12methodHandleP17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cb21 _ZN9JavaCalls12call_virtualEP9JavaValue11KlassHandleP6SymbolS4_P17JavaCallArgumentsP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          68cfc7 _ZN9JavaCalls12call_virtualEP9JavaValue6Handle11KlassHandleP6SymbolS5_P6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          723d80 _ZL12thread_entryP10JavaThreadP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69dcf _ZN10JavaThread17thread_main_innerEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          a69efc _ZN10JavaThread3runEv (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	          91d9d8 _ZL10java_startP6Thread (/usr/lib/jvm/java-8-oracle-1.8.0.72/jre/lib/amd64/server/libjvm.so)
+	            8182 start_thread (/lib/x86_64-linux-gnu/libpthread-2.19.so)
+
