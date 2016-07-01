@@ -201,7 +201,12 @@ while (defined($_ = <>)) {
 		# stack line
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
-		$rawfunc.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/kernel\./);
+
+		# detect kernel from the module name; eg, frames to parse include:
+		#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
+		#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
+		$rawfunc.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/(kernel\.|vmlinux$)/);
+
 		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
 			unshift @stack, inline($pc, $mod);
 			next;
