@@ -225,8 +225,9 @@ while (defined($_ = <>)) {
 				if ($func !~ m/\.\(.*\)\./) {
 					# This doesn't look like a Go method name (such as
 					# "net/http.(*Client).Do"), so everything after the first open
-					# paren is just noise.
-					$func =~ s/\(.*//;
+					# paren (that is not part of an "(anonymous namespace)") is
+					# just noise.
+					$func =~ s/\((?!anonymous namespace\)).*//;
 				}
 				# now tidy this horrible thing:
 				# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
