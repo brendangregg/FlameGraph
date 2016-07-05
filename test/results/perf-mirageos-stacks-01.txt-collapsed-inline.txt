@@ -1,0 +1,5 @@
+mir-console; 3
+mir-console;; 3
+mir-console;[unknown]; 5
+mir-console;[unknown];;;;; 2
+swapper;cpu_bringup_and_idle;cpu_startup_entry;arch_cpu_idle;default_idle;xen_hypercall_sched_op 39

@@ -1,0 +1,9 @@
+dd;[unknown];[dd] 1
+dd;[unknown];read 1
+dd;[unknown];read;system_call;__fdget_pos 1
+dd;[unknown];read;system_call;sys_read;vfs_read;fsnotify 1
+dd;[unknown];write;system_call;sys_write 1
+dd;[unknown];write;system_call;sys_write;vfs_write;fsnotify;__srcu_read_unlock 2
+dd;[unknown];write;system_call;sys_write;vfs_write;rw_verify_area 1
+dd;write;system_call;sys_write;__fdget_pos;__fdget;__fget_light 1
+dd;write;system_call;sys_write;vfs_write;fsnotify;__srcu_read_unlock 1
