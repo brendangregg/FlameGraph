@@ -1,0 +1,9 @@
+mir-console-?;[unknown];camlLwt__bind_1394 2
+mir-console-?;[unknown];camlLwt__repr_rec_1132 2
+mir-console-?;[unknown];camlLwt__return_1285 1
+mir-console-?;[unknown];caml_start_program;caml_program;camlMain__entry;camlUnikernel____pa_lwt_loop_1382;camlLwt__bind_1394 2
+mir-console-?;camlLwt__bind_1394 2
+mir-console-?;camlMain__fun_1418;camlLwt__return_1285 2
+mir-console-?;camlMain__fun_1418;camlUnikernel____pa_lwt_loop_1382 1
+mir-console-?;camlUnikernel__fun_1396 1
+swapper-?;cpu_bringup_and_idle;cpu_startup_entry;arch_cpu_idle;default_idle;xen_hypercall_sched_op 39
