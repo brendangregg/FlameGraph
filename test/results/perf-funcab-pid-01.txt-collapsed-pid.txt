@@ -1,0 +1,2 @@
+func_ab-?;__libc_start_main;main;func_a 112
+func_ab-?;__libc_start_main;main;func_b 116
