@@ -1,0 +1,863 @@
+# ========
+# captured on: Thu Jul  7 20:47:43 2016
+# hostname : bgregg-test-i-xxxxxxxx
+# os release : 3.13.0-49-generic
+# perf version : 3.13.11-ckt17
+# arch : x86_64
+# nrcpus online : 2
+# nrcpus avail : 2
+# cpudesc : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+# cpuid : GenuineIntel,6,62,4
+# total memory : 7693752 kB
+# cmdline : /usr/lib/linux-tools-3.13.0-49/perf record -F 99 -g ./func_ab 
+# event : name = cpu-clock, type = 1, config = 0x0, config1 = 0x0, config2 = 0x0, excl_usr = 0, excl_kern = 0, excl_host = 0, excl_guest = 1, precise_ip = 0, attr_mmap2 = 0, attr_mmap  = 1, attr_mmap_data = 0
+# HEADER_CPU_TOPOLOGY info available, use -I to display
+# HEADER_NUMA_TOPOLOGY info available, use -I to display
+# pmu mappings: software = 1, tracepoint = 2, breakpoint = 5
+# ========
+#
+func_ab 15285 28075374.517811: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.530122: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.542454: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.554769: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.567082: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.579396: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.591710: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.604026: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.615216: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.627530: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.639851: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.652209: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.664492: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.676807: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.689123: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.701438: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.713751: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.724990: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.737309: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.749628: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.761973: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.775638: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.787952: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.800267: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.812587: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.824901: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.837234: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.848441: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.860755: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.873052: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.885365: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.897680: cpu-clock: 
+	          40056c func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.909993: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.922308: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.934639: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.946953: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.959267: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.970475: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.982769: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075374.995083: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.007397: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.019712: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.032056: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.044397: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.056721: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.069036: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.080244: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.092556: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.105076: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.117390: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.129691: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.142020: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.154335: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.166633: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.178947: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.191263: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.202470: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.214783: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.227079: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.239433: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.251747: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.264056: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.276375: cpu-clock: 
+	          400541 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.288683: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.300999: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.313313: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.324520: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.336851: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.349164: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.361479: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.374963: cpu-clock: 
+	          400568 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.387278: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.399592: cpu-clock: 
+	          400545 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.411878: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.424221: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.435408: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.447766: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.460056: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.472392: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.484706: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.497070: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.509403: cpu-clock: 
+	          400545 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.521718: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.534048: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.546363: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.557572: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.569886: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.582198: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.594491: cpu-clock: 
+	          400568 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.606826: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.619110: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.631423: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.643754: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.656056: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.668383: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.679591: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.691906: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.704220: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.716535: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.728897: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.741228: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.753548: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.765902: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.778217: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.790578: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.801722: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.814042: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.826400: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.838733: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.851048: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.863362: cpu-clock: 
+	          400541 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.875676: cpu-clock: 
+	          400541 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.887990: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.900305: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.911513: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.923789: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.936193: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.948433: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.960746: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.973061: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.985376: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075375.997691: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.010006: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.022308: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.033606: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.045882: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.058195: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.070515: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.082829: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.095142: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.107456: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.119771: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.132056: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.144455: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.155623: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.167936: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.180224: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.192537: cpu-clock: 
+	          400568 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.204850: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.217165: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.229481: cpu-clock: 
+	          400541 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.241717: cpu-clock: 
+	          400549 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.254032: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.265201: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.277516: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.289829: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.302145: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.314460: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.326774: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.339106: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.351420: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.363736: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.376057: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.387267: cpu-clock: 
+	          400570 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.399550: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.411889: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.424209: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.436532: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.448852: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.461166: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.473480: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.485794: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.498151: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.509361: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.521675: cpu-clock: 
+	          400568 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.533989: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.546259: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.558590: cpu-clock: 
+	          400577 func_b (/root/lang/func_ab)
+	          4005b1 main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
+func_ab 15285 28075376.570905: cpu-clock: 
+	          400550 func_a (/root/lang/func_ab)
+	          40059d main (/root/lang/func_ab)
+	    7f9ca5486ec5 __libc_start_main (/lib/x86_64-linux-gnu/libc-2.19.so)
+
