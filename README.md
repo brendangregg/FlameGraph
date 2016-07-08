@@ -6,6 +6,7 @@ Example (click to zoom):
 [![Example](http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg)](http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg)
 
 Other sites:
+- The Flame Graph article in ACMQ and CACM: http://queue.acm.org/detail.cfm?id=2927301 http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract
 - CPU profiling using Linux perf\_events, DTrace, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
 - CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/  
 - CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/  
