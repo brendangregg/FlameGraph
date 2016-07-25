@@ -444,6 +444,11 @@ sub color_scale {
 	} elsif ($value < 0) {
 		$r = $g = int(210 * ($max + $value) / $max);
 	}
+	while ($r > 240 && $b > $240) {
+		$r--;
+		$g--;
+		$b--;
+	}
 	return "rgb($r,$g,$b)";
 }
 
