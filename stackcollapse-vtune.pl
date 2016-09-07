@@ -15,8 +15,11 @@
 #    amplxe-cl -collect hotspots -r result_vtune_tachyon -- ./tachyon_find_hotspots
 #
 # 2. Export raw VTune data to csv file:
-#
-#    amplxe-cl -R top-down -report-out result_vtune_tachyon.csv -filter "Function Stack" -format csv -csv-delimiter comma -r result_vtune_tachyon
+#    ###for Intel VTune 2013
+#    amplxe-cl -R top-down -call-stack-mode all -report-out result_vtune_tachyon.csv -filter "Function Stack" -format csv -csv-delimiter comma -r result_vtune_tachyon
+#    
+#    ###for Intel VTune 2015 & 2016
+#    amplxe-cl -R top-down -call-stack-mode all -column="CPU Time:Self","Module" -report-out result_vtune_tachyon.csv -filter "Function Stack" -format csv -csv-delimiter comma -r result_vtune_tachyon
 #
 # 3. Generate a flamegraph:
 #
@@ -49,11 +52,19 @@ while (my $currLine = <$fh>){
 	chomp $currLine;
 	#VTune - sometimes the call stack information is enclosed in double quotes (?).  To remove double quotes. 
 	$currLine =~ s/\"//g;
-	$currLine =~ /(\s*)(.*),(.*),[0-9]*\.?[0-9]+[%],([0-9]*\.?[0-9]+)/ or die "Error in regular expression on the current line\n";
 	
-	my $func = $3.'!'.$2; 
+	### for Intel VTune 2013
+	#$currLine =~ /(\s*)(.*),(.*),[0-9]*\.?[0-9]+[%],([0-9]*\.?[0-9]+)/ or die "Error in regular expression on the current line\n";
+	#my $func = $3.'!'.$2; 
+	#my $depth = length ($1);
+	#my $selfTime = $4*1000; # selfTime in msec
+	
+	### for Intel VTune 2015 & 2016
+	$currLine =~ /(\s*)(.*?),([0-9]*\.?[0-9]+?),(.*)/ or die "Error in regular expression on the current line $currLine\n";
+	my $func = $4.'!'.$2; 
 	my $depth = length ($1);
-	my $selfTime = $4*1000; # selfTime in msec
+	my $selfTime = $3*1000; # selfTime in msec
+	
 	my $tempString = '';
 	$stack [$depth] = $func;
 	foreach my $i (0 .. $depth - 1) {
