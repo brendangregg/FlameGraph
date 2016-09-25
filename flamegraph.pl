@@ -570,9 +570,6 @@ foreach (sort @Data) {
 		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
 	}
 
-	# clean up SVG breaking characters:
-	$stack =~ tr/<>/()/;
-
 	# for chain graphs, annotate waker frames with "_[w]", for later
 	# coloring. This is a hack, but has a precedent ("_[k]" from perf).
 	if ($colors eq "chain") {
