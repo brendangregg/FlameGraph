@@ -159,6 +159,8 @@ USAGE: ./flamegraph.pl [options] infile > outfile.svg
 	--width       # width of image (default 1200)
 	--height      # height of each frame (default 16)
 	--minwidth    # omit smaller functions (default 0.1 pixels)
+	--minpercent  # omit functions with small running time
+	              # (default 0.1%)
 	--fonttype    # font type (default "Verdana")
 	--fontsize    # font size (default 12)
 	--countname   # count type label (default "samples")

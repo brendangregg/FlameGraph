@@ -88,6 +88,7 @@ my $frameheight = 16;           # max height is dynamic
 my $fontsize = 12;              # base text size
 my $fontwidth = 0.59;           # avg width relative to fontsize
 my $minwidth = 0.1;             # min function width, pixels
+my $minpercent = 0.1;           # min fonction time, percent of the total time
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
@@ -116,6 +117,8 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--width       # width of image (default 1200)
 	--height      # height of each frame (default 16)
 	--minwidth    # omit smaller functions (default 0.1 pixels)
+	--minpercent  # omit functions with small running time
+	              # (default 0.1%)
 	--fonttype    # font type (default "Verdana")
 	--fontsize    # font size (default 12)
 	--countname   # count type label (default "samples")
@@ -143,6 +146,7 @@ GetOptions(
 	'fontsize=f'  => \$fontsize,
 	'fontwidth=f' => \$fontwidth,
 	'minwidth=f'  => \$minwidth,
+	'minpercent=f'=> \$minpercent,
 	'title=s'     => \$titletext,
 	'nametype=s'  => \$nametype,
 	'countname=s' => \$countname,
@@ -625,7 +629,8 @@ while (my ($id, $node) = each %Node) {
 	my $stime = $node->{stime};
 	die "missing start for $id" if not defined $stime;
 
-	if (($etime-$stime) < $minwidth_time) {
+	if (($etime-$stime) < $minwidth_time ||
+	    ($etime-$stime) < $timemax * $minpercent / 100) {
 		delete $Node{$id};
 		next;
 	}
