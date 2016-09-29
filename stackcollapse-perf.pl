@@ -226,7 +226,6 @@ while (defined($_ = <>)) {
 
 			if ($tidy_generic) {
 				$func =~ s/;/:/g;
-				$func =~ tr/<>//d;
 				if ($func !~ m/\.\(.*\)\./) {
 					# This doesn't look like a Go method name (such as
 					# "net/http.(*Client).Do"), so everything after the first open

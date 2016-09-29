@@ -570,9 +570,6 @@ foreach (sort @Data) {
 		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
 	}
 
-	# clean up SVG breaking characters:
-	$stack =~ tr/<>/()/;
-
 	# for chain graphs, annotate waker frames with "_[w]", for later
 	# coloring. This is a hack, but has a precedent ("_[k]" from perf).
 	if ($colors eq "chain") {
@@ -1018,6 +1015,7 @@ while (my ($id, $node) = each %Node) {
 	} else {
 		my $pct = sprintf "%.2f", ((100 * $samples) / ($timemax * $factor));
 		my $escaped_func = $func;
+		# clean up SVG breaking characters:
 		$escaped_func =~ s/&/&amp;/g;
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
