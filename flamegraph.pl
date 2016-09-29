@@ -341,7 +341,7 @@ sub color {
 
 	# multi palettes
 	if (defined $type and $type eq "java") {
-		if ($name =~ m:(/|\.):) {		# Java (match "/" in path)
+		if ($name =~ m:/:) {		# Java (match "/" in path)
 			$type = "green";
 			$type = "aqua" if $name =~ m/_\[i\]/; #inline
 		} elsif ($name =~ /::/) {	# C++
