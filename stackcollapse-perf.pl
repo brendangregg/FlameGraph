@@ -79,6 +79,7 @@ my $include_tid = 0;	# include process & thread ID with process name
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
+my $tidy_ocaml = 0;	# tidy ocaml function names
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -86,14 +87,16 @@ GetOptions('inline' => \$show_inline,
            'context' => \$show_context,
            'pid' => \$include_pid,
            'kernel' => \$annotate_kernel,
-           'tid' => \$include_tid)
+           'tid' => \$include_tid,
+           'tidy-ocaml' => \$tidy_ocaml)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
 	--tid		# include TID and PID with process names [1]
 	--inline	# un-inline using addr2line
 	--kernel	# annotate kernel functions with a _[k]
-	--context	# adds source context to --inline\n
+	--context	# adds source context to --inline
+	--tidy-ocaml	# tidy up ocaml function names\n
 [1] perf script must emit both PID and TIDs for these to work; eg:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
 USAGE_END
@@ -203,7 +206,7 @@ while (defined($_ = <>)) {
 		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
 
 		# detect kernel from the module name; eg, frames to parse include:
-		#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
+		#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms])
 		#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
 		$rawfunc.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/(kernel\.|vmlinux$)/);
 
@@ -249,6 +252,18 @@ while (defined($_ = <>)) {
 				#	org/mozilla/javascript/ContextFactory:.call
 				#	org/mozilla/javascript/MemberBox:.init
 				$func =~ s/^L// if $func =~ m:/:;
+			}
+
+			# transform stuff like camlModule__init_1234 to OCaml::Module::init
+			if ($tidy_ocaml && $func =~ /^caml/) {
+				# mark like namespace
+				$func =~ s/^caml/OCaml::/;
+
+				# replace __ with namespace markers
+				$func =~ s/__/::/;
+
+				# kill suffix, if any, to 'pseudo' inline cut out function parts + allow later recursion folding to work
+				$func =~ s/_\d+$//;
 			}
 
 			$func .= "_[i]" if scalar(@inline) > 0; #inlined
