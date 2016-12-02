@@ -236,6 +236,7 @@ while (defined($_ = <>)) {
 				# now tidy this horrible thing:
 				# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
 				$func =~ tr/"\'//d;
+                $func =~ s/\+0x[\da-f]+//;
 				# fall through to $tidy_java
 			}
 
