@@ -206,6 +206,11 @@ while (defined($_ = <>)) {
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
 
+		# Linux 4.8 included symbol offsets in perf script output by default, eg:
+		# 7fffb84c9afc cpu_startup_entry+0x800047c022ec ([kernel.kallsyms])
+		# strip these off:
+		$rawfunc =~ s/\+0x[\da-f]+$//;
+
 		# detect kernel from the module name; eg, frames to parse include:
 		#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
 		#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
@@ -221,11 +226,6 @@ while (defined($_ = <>)) {
 		my @inline;
 		for (split /\->/, $rawfunc) {
 			my $func = $_;
-
-			# Linux 4.8 included symbol offsets in perf script output by default, eg:
-			# 7fffb84c9afc cpu_startup_entry+0x800047c022ec ([kernel.kallsyms])
-			# strip these off:
-			$func =~ s/\+0x[\da-f]+$//;
 
 			if ($func eq "[unknown]" && $mod ne "[unknown]") { # use module name instead, if known
 				$func = $mod;
