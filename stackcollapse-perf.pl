@@ -173,7 +173,9 @@ while (defined($_ = <>)) {
 		next;
 	}
 
+	#
 	# event record start
+	#
 	if (/^(\S.+?)\s+(\d+)\/*(\d+)*\s+/) {
 		# default "perf script" output has TID but not PID
 		# eg, "java 25607 4794564.109216: cycles:"
@@ -198,7 +200,9 @@ while (defined($_ = <>)) {
 		}
 		$pname =~ tr/ /_/;
 
-		# stack line
+	#
+	# stack line
+	#
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
 		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
 
@@ -217,6 +221,11 @@ while (defined($_ = <>)) {
 		my @inline;
 		for (split /\->/, $rawfunc) {
 			my $func = $_;
+
+			# Linux 4.8 included symbol offsets in perf script output by default, eg:
+			# 7fffb84c9afc cpu_startup_entry+0x800047c022ec ([kernel.kallsyms])
+			# strip these off:
+			$func =~ s/\+0x[\da-f]+$//;
 
 			if ($func eq "[unknown]" && $mod ne "[unknown]") { # use module name instead, if known
 				$func = $mod;
