@@ -34,7 +34,7 @@ sub wanted {
 	my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size) = stat($_);
 	my $path = $File::Find::name;
 	$path =~ tr/\//;/;		# delimiter
-	$path =~ tr/;.a-zA-Z0-9/_/c;	# ditch whitespace and other chars
+	$path =~ tr/;.a-zA-Z0-9-/_/c;	# ditch whitespace and other chars
 	$path =~ s/^;//;
 	print "$path $size\n";
 }
