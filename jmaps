@@ -7,6 +7,9 @@
 # are read by perf_events (aka "perf") when doing system profiles (specifically,
 # the "report" and "script" subcommands).
 #
+# USAGE: jmaps [-u]
+#		-u	# unfoldall: include inlined symbols
+#
 # My typical workflow is this:
 #
 # perf record -F 99 -a -g -- sleep 30; jmaps
@@ -20,9 +23,11 @@
 # Tune two environment settings below.
 #
 # 13-Feb-2015	Brendan Gregg	Created this.
+# 20-Feb-2017      "      "     Added -u for unfoldall.
 
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-AGENT_HOME=/home/vagrant/perf-map-agent # from https://github.com/jrudolph/perf-map-agent
+JAVA_HOME=/usr/lib/jvm/java-8-oracle
+AGENT_HOME=/usr/lib/jvm/perf-map-agent  # from https://github.com/jrudolph/perf-map-agent
+debug=0
 
 if [[ "$USER" != root ]]; then
 	echo "ERROR: not root user? exiting..."
@@ -37,6 +42,10 @@ fi
 if [[ ! -x $AGENT_HOME ]]; then
 	echo "ERROR: AGENT_HOME not set correctly; edit $0 and fix"
 	exit
+fi
+
+if [[ "$1" == "-u" ]]; then
+	opts=unfoldall
 fi
 
 # figure out where the agent files are:
@@ -57,27 +66,35 @@ if [[ "$AGENT_OUT" == "" || "$AGENT_JAR" == "" ]]; then
 	exit
 fi
 
+# Fetch map for all "java" processes
 echo "Fetching maps for all java processes..."
 for pid in $(pgrep -x java); do
 	mapfile=/tmp/perf-$pid.map
 	[[ -e $mapfile ]] && rm $mapfile
-	cmd="cd $AGENT_OUT; $JAVA_HOME/bin/java -Xms32m -Xmx128m -cp $AGENT_JAR:$JAVA_HOME/lib/tools.jar net.virtualvoid.perf.AttachOnce $pid"
-echo $cmd
+
+	cmd="cd $AGENT_OUT; $JAVA_HOME/bin/java -Xms32m -Xmx128m -cp $AGENT_JAR:$JAVA_HOME/lib/tools.jar net.virtualvoid.perf.AttachOnce $pid $opts"
+	(( debug )) && echo $cmd
+
 	user=$(ps ho user -p $pid)
 	if [[ "$user" != root ]]; then
 		# make $user the username if it is a UID:
 		if [[ "$user" == [0-9]* ]]; then user=$(awk -F: '$3 == '$user' { print $1 }' /etc/passwd); fi
 		cmd="sudo -u $user sh -c '$cmd'"
 	fi
+
 	echo "Mapping PID $pid (user $user):"
-	time eval $cmd
+	if (( debug )); then
+		time eval $cmd
+	else
+		eval $cmd
+	fi
 	if [[ -e "$mapfile" ]]; then
 		chown root $mapfile
 		chmod 666 $mapfile
 	else
 		echo "ERROR: $mapfile not created."
 	fi
-	echo
+
 	echo "wc(1): $(wc $mapfile)"
 	echo
 done
