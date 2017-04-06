@@ -21,14 +21,16 @@ sub usage {
 	print STDERR "Intended to be piped to flamegraph.pl. Full example:\n";
 	print STDERR "   $0 /Users | flamegraph.pl " .
 	    "--hash --countname=bytes > files.svg\n";
+	print STDERR "   $0 /usr /home /root /etc | flamegraph.pl " .
+	    "--hash --countname=bytes > files.svg\n";
 	exit 1;
 }
 
 usage() if @ARGV == 0 or $ARGV[0] eq "--help" or $ARGV[0] eq "-h";
 
-my $dir = $ARGV[0];
-
-find(\&wanted, $dir);
+foreach my $dir (@ARGV) {
+    find(\&wanted, $dir);
+}
 
 sub wanted {
 	my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size) = stat($_);
