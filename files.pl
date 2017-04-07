@@ -31,7 +31,7 @@ my $dir = $ARGV[0];
 find(\&wanted, $dir);
 
 sub wanted {
-	my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size) = stat($_);
+	my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size) = lstat($_);
 	return unless defined $size;
 	my $path = $File::Find::name;
 	$path =~ tr/\//;/;		# delimiter
