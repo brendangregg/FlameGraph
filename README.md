@@ -15,9 +15,9 @@ Other sites:
 
 Flame graphs can be created in three steps:
 
-  - Capture stacks
-  - Fold stacks
-  - flamegraph.pl
+1. Capture stacks
+2. Fold stacks
+3. flamegraph.pl
 
 1\. Capture stacks
 =================
