@@ -19,7 +19,7 @@ Flame graphs can be created in three steps:
 2. Fold stacks
 3. flamegraph.pl
 
-1. Capture stacks
+1\. Capture stacks
 =================
 Stack samples can be captured using Linux perf\_events, FreeBSD pmcstat (hwpmc), DTrace, SystemTap, and many other profilers. See the stackcollapse-\* converters.
 
@@ -61,7 +61,7 @@ Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 97 Hert
 
 Switch `ustack()` for `jstack()` if the application has a ustack helper to include translated frames (eg, node.js frames; see: http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/).  The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using `jstack()` as it performs additional work to translate frames.
 
-2. Fold stacks
+2\. Fold stacks
 ==============
 Use the stackcollapse programs to fold stack samples into single lines.  The programs provided are:
 
@@ -100,7 +100,7 @@ unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef
 [...]
 ```
 
-3. flamegraph.pl
+3\. flamegraph.pl
 ================
 Use flamegraph.pl to render a SVG.
 
