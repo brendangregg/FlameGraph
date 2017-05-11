@@ -237,7 +237,7 @@ SVG
 
 		my @g_attr = map {
 			exists $attr->{$_} ? sprintf(qq/$_="%s"/, $attr->{$_}) : ()
-		} qw(class style onmouseover onmouseout onclick);
+		} qw(class style onmouseover onmouseout onclick id);
 		push @g_attr, $attr->{g_extra} if $attr->{g_extra};
 		$self->{svg} .= sprintf qq/<g %s>\n/, join(' ', @g_attr);
 
@@ -655,6 +655,12 @@ my $inc = <<INC;
 		matchedtxt = document.getElementById("matched");
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
+
+		//try auto-zoom based on optional ?zoom= param
+		match = /zoom=(\\d+)/.exec(window.location.href)
+		if(match && match.length > 1) {
+			zoom(document.getElementById(match[1]))
+		}
 	}
 
 	// mouse-over for info
@@ -827,6 +833,8 @@ my $inc = <<INC;
 				}
 			}
 		}
+		//update url anchor to allow auto-zoom behavior
+		document.location.href = ("#?zoom=" + node.id);
 	}
 	function unzoom() {
 		var unzoombtn = document.getElementById("unzoom");
@@ -839,6 +847,7 @@ my $inc = <<INC;
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
+		history.replaceState("", document.title, window.location.pathname);
 	}
 
 	// search
@@ -987,6 +996,7 @@ if ($palette) {
 	read_palette();
 }
 
+my $nodeid = 0;
 # draw frames
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
@@ -1038,6 +1048,7 @@ while (my ($id, $node) = each %Node) {
 	$nameattr->{onmouseout}  ||= "c()";
 	$nameattr->{onclick}     ||= "zoom(this)";
 	$nameattr->{title}       ||= $info;
+	$nameattr->{id}          ||= $nodeid++;
 	$im->group_start($nameattr);
 
 	my $color;
