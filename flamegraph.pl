@@ -80,6 +80,8 @@ use strict;
 
 use Getopt::Long;
 
+use open qw(:std :utf8);
+
 # tunables
 my $encoding;
 my $fonttype = "Verdana";
