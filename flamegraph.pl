@@ -702,8 +702,8 @@ my $inc = <<INC;
 	}
 	function g_to_func(e) {
 		var func = g_to_text(e);
-		if (func != null)
-			func = func.replace(/ .*/, "");
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
 		return (func);
 	}
 	function update_text(e) {
