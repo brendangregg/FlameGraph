@@ -77,9 +77,12 @@ for pid in $(pgrep -x java); do
 
 	user=$(ps ho user -p $pid)
 	if [[ "$user" != root ]]; then
-		# make $user the username if it is a UID:
-		if [[ "$user" == [0-9]* ]]; then user=$(awk -F: '$3 == '$user' { print $1 }' /etc/passwd); fi
-		cmd="sudo -u $user sh -c '$cmd'"
+		if [[ "$user" == [0-9]* ]]; then
+			# UID only, run sudo with #UID:
+			cmd="sudo -u '#'$user sh -c '$cmd'"
+		else
+			cmd="sudo -u $user sh -c '$cmd'"
+		fi
 	fi
 
 	echo "Mapping PID $pid (user $user):"
