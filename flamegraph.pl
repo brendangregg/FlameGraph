@@ -70,6 +70,7 @@
 #
 # CDDL HEADER END
 #
+# 08-Jun-2017	Guus Sliepen	Strip call site prefixes.
 # 11-Oct-2014	Adrien Mahieux	Added zoom.
 # 21-Nov-2013   Shawn Sterling  Added consistent palette file option
 # 17-Mar-2013   Tim Bunce       Added options and more tunables.
@@ -631,7 +632,10 @@ while (my ($id, $node) = each %Node) {
 		delete $Node{$id};
 		next;
 	}
-	$depthmax = $depth if $depth > $depthmax;
+
+	if (substr($func, -1) ne "+") {
+		$depthmax = $depth if $depth > $depthmax;
+	}
 }
 
 # draw canvas, and embed interactive JavaScript program
@@ -991,9 +995,12 @@ if ($palette) {
 
 # draw frames
 while (my ($id, $node) = each %Node) {
-	my ($func, $depth, $etime) = split ";", $id;
+	my ($pcfunc, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
 	my $delta = $node->{delta};
+
+	my ($pc, $func) = ($pcfunc =~ /(\w*\+)?(.*)/);
+	next if (not $func) and $pc;
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 

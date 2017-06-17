@@ -62,6 +62,7 @@
 #
 # 02-Mar-2012	Brendan Gregg	Created this.
 # 02-Jul-2014	   "	  "	Added process name to stacks.
+# 08-Jun-2017	Guus Sliepen	Added call site prefixing option.
 
 use strict;
 use Getopt::Long;
@@ -81,8 +82,10 @@ my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
 
 my $show_inline = 0;
+my $call_site = 0;
 my $show_context = 0;
 GetOptions('inline' => \$show_inline,
+           'call-site' => \$call_site,
            'context' => \$show_context,
            'pid' => \$include_pid,
            'kernel' => \$annotate_kernel,
@@ -93,6 +96,7 @@ USAGE: $0 [options] infile > outfile\n
 	--tid		# include TID and PID with process names [1]
 	--inline	# un-inline using addr2line
 	--kernel	# annotate kernel functions with a _[k]
+	--call-site	# prefix functions with their call site location
 	--context	# adds source context to --inline\n
 [1] perf script must emit both PID and TIDs for these to work; eg:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
@@ -132,6 +136,7 @@ sub inline {
 }
 
 my @stack;
+my @pcstack;
 my $pname;
 my $m_pid;
 my $m_tid;
@@ -166,9 +171,23 @@ while (defined($_ = <>)) {
 			} else {
 				unshift @stack, "";
 			}
+			unshift @pcstack, "0";
 		}
-		remember_stack(join(";", @stack), 1) if @stack;
+		next if not @stack;
+
+		if ($call_site) {
+			my @tmp;
+			push @stack, "";
+			push @tmp, $stack[0];
+			for (my $i = 1; $i < @stack; $i++) {
+				push @tmp, sprintf("%08s+%s", $pcstack[$i - 1], $stack[$i]);
+			}
+			@stack = @tmp;
+		}
+
+		remember_stack(join(";", @stack), 1);
 		undef @stack;
+		undef @pcstack;
 		undef $pname;
 		next;
 	}
@@ -218,6 +237,7 @@ while (defined($_ = <>)) {
 
 		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
 			unshift @stack, inline($pc, $mod);
+			unshift @pcstack, $pc;
 			next;
 		}
 
@@ -265,6 +285,7 @@ while (defined($_ = <>)) {
 		}
 
 		unshift @stack, @inline;
+		unshift @pcstack, $pc;
 	} else {
 		warn "Unrecognized line: $_";
 	}
