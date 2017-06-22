@@ -100,8 +100,10 @@ USAGE: $0 [options] infile > outfile\n
 	--kernel	# annotate kernel functions with a _[k]
 	--jit		# annotate jit functions with a _[j]
 	--context	# adds source context to --inline\n
-[1] perf script must emit both PID and TIDs for these to work; eg:
+[1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
+    for Linux >= 4.1:
+	perf script -F comm,pid,tid,cpu,time,event,ip,sym,dso,trace
 USAGE_END
 
 if ($annotate_all) {
