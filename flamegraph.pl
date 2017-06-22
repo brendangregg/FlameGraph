@@ -17,17 +17,31 @@
 #
 # The input is stack frames and sample counts formatted as single lines.  Each
 # frame in the stack is semicolon separated, with a space and count at the end
-# of the line.  These can be generated using DTrace with stackcollapse.pl,
-# and other tools using the stackcollapse variants.
+# of the line.  These can be generated for Linux perf script output using
+# stackcollapse-perf.pl, for DTrace using stackcollapse.pl, and for other tools
+# using the other stackcollapse programs.  Example input:
+#
+#  swapper;start_kernel;rest_init;cpu_idle;default_idle;native_safe_halt 1
 #
 # An optional extra column of counts can be provided to generate a differential
 # flame graph of the counts, colored red for more, and blue for less.  This
 # can be useful when using flame graphs for non-regression testing.
 # See the header comment in the difffolded.pl program for instructions.
 #
-# The output graph shows relative presence of functions in stack samples.  The
-# ordering on the x-axis has no meaning; since the data is samples, time order
-# of events is not known.  The order used sorts function names alphabetically.
+# The input functions can optionally have annotations at the end of each
+# function name, following a precedent by some tools (Linux perf's _[k]):
+# 	_[k] for kernel
+#	_[i] for inlined
+#	_[j] for jit
+#	_[w] for waker
+# Some of the stackcollapse programs support adding these annotations, eg,
+# stackcollapse-perf.pl --kernel --jit. They are used merely for colors by
+# some palettes, eg, flamegraph.pl --color=java.
+#
+# The output flame graph shows relative presence of functions in stack samples.
+# The ordering on the x-axis has no meaning; since the data is samples, time
+# order of events is not known.  The order used sorts function names
+# alphabetically.
 #
 # While intended to process stack samples, this can also process stack traces.
 # For example, tracing stacks for memory allocation, or resource usage.  You
@@ -343,13 +357,20 @@ sub color {
 
 	# multi palettes
 	if (defined $type and $type eq "java") {
-		if ($name =~ m:/:) {		# Java (match "/" in path)
+		# Handle both annotations (_[j], _[i], ...; which are
+		# accurate), as well as input that lacks any annotations, as
+		# best as possible. Without annotations, we get a little hacky
+		# and match on java|org|com, etc.
+		if ($name =~ m:_\[j\]$:) {	# jit annotation
 			$type = "green";
-			$type = "aqua" if $name =~ m/_\[i\]/; #inline
+		} elsif ($name =~ m:_\[i\]$:) {	# inline annotation
+			$type = "aqua";
+		} elsif ($name =~ m:^L?(java|org|com|io|sun)/:) {	# Java
+			$type = "green";
 		} elsif ($name =~ /::/) {	# C++
 			$type = "yellow";
-		} elsif ($name =~ m:_\[k\]:) {	# kernel
-			$type = "orange"
+		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
+			$type = "orange";
 		} else {			# system
 			$type = "red";
 		}
@@ -360,24 +381,34 @@ sub color {
 			$type = "yellow";
 		} elsif ($name =~ m:Perl: or $name =~ m:\.pl:) {	# Perl
 			$type = "green";
-		} elsif ($name =~ m:_\[k\]:) {	# kernel
-			$type = "orange"
+		} elsif ($name =~ m:_\[k\]$:) {	# kernel
+			$type = "orange";
 		} else {			# system
 			$type = "red";
 		}
 		# fall-through to color palettes
 	}
 	if (defined $type and $type eq "js") {
-		if ($name =~ /::/) {		# C++
+		# Handle both annotations (_[j], _[i], ...; which are
+		# accurate), as well as input that lacks any annotations, as
+		# best as possible. Without annotations, we get a little hacky,
+		# and match on a "/" with a ".js", etc.
+		if ($name =~ m:_\[j\]$:) {	# jit annotation
+			if ($name =~ m:/:) {
+				$type = "green";	# source
+			} else {
+				$type = "aqua";		# builtin
+			}
+		} elsif ($name =~ /::/) {	# C++
 			$type = "yellow";
-		} elsif ($name =~ m:/:) {	# JavaScript (match "/" in path)
-			$type = "green"
+		} elsif ($name =~ m:/.*\.js:) {	# JavaScript (match "/" in path)
+			$type = "green";
 		} elsif ($name =~ m/:/) {	# JavaScript (match ":" in builtin)
-			$type = "aqua"
+			$type = "aqua";
 		} elsif ($name =~ m/^ $/) {	# Missing symbol
-			$type = "green"
+			$type = "green";
 		} elsif ($name =~ m:_\[k\]:) {	# kernel
-			$type = "orange"
+			$type = "orange";
 		} else {			# system
 			$type = "red";
 		}
@@ -1023,7 +1054,7 @@ while (my ($id, $node) = each %Node) {
 		$escaped_func =~ s/</&lt;/g;
 		$escaped_func =~ s/>/&gt;/g;
 		$escaped_func =~ s/"/&quot;/g;
-		$escaped_func =~ s/_\[[kwi]\]$//;	# strip any annotation
+		$escaped_func =~ s/_\[[kwij]\]$//;	# strip any annotation
 		unless (defined $delta) {
 			$info = "$escaped_func ($samples_txt $countname, $pct%)";
 		} else {
@@ -1059,7 +1090,7 @@ while (my ($id, $node) = each %Node) {
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
 	if ($chars >= 3) { # room for one char plus two dots
-		$func =~ s/_\[[kwi]\]$//;	# strip any annotation
+		$func =~ s/_\[[kwij]\]$//;	# strip any annotation
 		$text = substr $func, 0, $chars;
 		substr($text, -2, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;

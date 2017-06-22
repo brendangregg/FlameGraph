@@ -126,12 +126,12 @@ An example output from Linux "perf script" is included, gzip'd, as example-perf-
 You can create this using:
 
 ```
-$ gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --kernel | ./flamegraph.pl --color=java --hash > example-perf.svg
+$ gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --all | ./flamegraph.pl --color=java --hash > example-perf.svg
 ```
 
 This shows my typical workflow: I'll gzip profiles on the target, then copy them to my laptop for analysis. Since I have hundreds of profiles, I leave them gzip'd!
 
-Since this profile included Java, I used the flamegraph.pl --color=java palette. I've also used stackcollapse-perf.pl --kernel, which allows a separate color to be used for kernel code. The resulting flame graph uses: green == Java, yellow == C++, red == user-mode native, orange == kernel.
+Since this profile included Java, I used the flamegraph.pl --color=java palette. I've also used stackcollapse-perf.pl --all, which includes all annotations that help flamegraph.pl use separate colors for kernel and user level code. The resulting flame graph uses: green == Java, yellow == C++, red == user-mode native, orange == kernel.
 
 This profile was from an analysis of vert.x performance. The benchmark client, wrk, is also visible in the flame graph.
 

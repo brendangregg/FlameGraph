@@ -73,6 +73,8 @@ sub remember_stack {
 	$collapsed{$stack} += $count;
 }
 my $annotate_kernel = 0; # put an annotation on kernel function
+my $annotate_jit = 0;   # put an annotation on jit symbols
+my $annotate_all = 0;   # enale all annotations
 my $include_pname = 1;	# include process names in stacks
 my $include_pid = 0;	# include process ID with process name
 my $include_tid = 0;	# include process & thread ID with process name
@@ -86,17 +88,25 @@ GetOptions('inline' => \$show_inline,
            'context' => \$show_context,
            'pid' => \$include_pid,
            'kernel' => \$annotate_kernel,
+           'jit' => \$annotate_jit,
+           'all' => \$annotate_all,
            'tid' => \$include_tid)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
 	--tid		# include TID and PID with process names [1]
 	--inline	# un-inline using addr2line
+	--all		# all annotations (--kernel --jit)
 	--kernel	# annotate kernel functions with a _[k]
+	--jit		# annotate jit functions with a _[j]
 	--context	# adds source context to --inline\n
 [1] perf script must emit both PID and TIDs for these to work; eg:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
 USAGE_END
+
+if ($annotate_all) {
+	$annotate_kernel = $annotate_jit = 1;
+}
 
 # for the --inline option
 sub inline {
@@ -211,11 +221,6 @@ while (defined($_ = <>)) {
 		# strip these off:
 		$rawfunc =~ s/\+0x[\da-f]+$//;
 
-		# detect kernel from the module name; eg, frames to parse include:
-		#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
-		#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
-		$rawfunc.="_[k]" if ($annotate_kernel == 1 && $mod =~ m/(kernel\.|vmlinux$)/);
-
 		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
 			unshift @stack, inline($pc, $mod);
 			next;
@@ -260,7 +265,22 @@ while (defined($_ = <>)) {
 				$func =~ s/^L// if $func =~ m:/:;
 			}
 
-			$func .= "_[i]" if scalar(@inline) > 0; #inlined
+			#
+			# Annotations
+			#
+			# detect inlined from the @inline array
+			# detect kernel from the module name; eg, frames to parse include:
+			#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
+			#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
+			# detect jit from the module name; eg:
+			#          7f722d142778 Ljava/io/PrintStream;::print (/tmp/perf-19982.map)
+			if (scalar(@inline) > 0) {
+				$func .= "_[i]";	# inlined
+			} elsif ($annotate_kernel == 1 && $mod =~ m/(kernel\.|vmlinux$)/) {
+				$func .= "_[k]";	# kernel
+			} elsif ($annotate_jit == 1 && $mod =~ m:/tmp/perf-\d+\.map:) {
+				$func .= "_[j]";	# jitted
+			}
 			push @inline, $func;
 		}
 
