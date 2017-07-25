@@ -960,10 +960,7 @@ my $inc = <<INC;
 		// sort the matched frames by their x location
 		// ascending, then width descending
 		keys.sort(function(a, b){
-				return a - b;
-			if (a < b || a > b)
-				return a - b;
-			return matches[b] - matches[a];
+			return a - b;
 		});
 		// Step through frames saving only the biggest bottom-up frames
 		// thanks to the sort order. This relies on the tree property
