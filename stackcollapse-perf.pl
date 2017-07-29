@@ -81,6 +81,7 @@ my $include_tid = 0;	# include process & thread ID with process name
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
+my $event_filter = "";    # event type filter, defaults to first encountered event
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -90,7 +91,8 @@ GetOptions('inline' => \$show_inline,
            'kernel' => \$annotate_kernel,
            'jit' => \$annotate_jit,
            'all' => \$annotate_all,
-           'tid' => \$include_tid)
+           'tid' => \$include_tid,
+           'event-filter=s' => \$event_filter)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
@@ -99,7 +101,8 @@ USAGE: $0 [options] infile > outfile\n
 	--all		# all annotations (--kernel --jit)
 	--kernel	# annotate kernel functions with a _[k]
 	--jit		# annotate jit functions with a _[j]
-	--context	# adds source context to --inline\n
+	--context	# adds source context to --inline
+	--event-filter	# event name filter\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
     for Linux >= 4.1:
@@ -172,6 +175,9 @@ while (defined($_ = <>)) {
 
 	# end of stack. save cached data.
 	if (m/^$/) {
+		# ignore filtered samples
+		next if not $pname;
+
 		if ($include_pname) {
 			if (defined $pname) {
 				unshift @stack, $pname;
@@ -197,18 +203,34 @@ while (defined($_ = <>)) {
 		# eg, "java 12688/12764 6544038.708352: cpu-clock:"
 		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: cycles:"
 		# other combinations possible
-		if ($3) {
-			($m_pid, $m_tid) = ($2, $3);
-		} else {
-			($m_pid, $m_tid) = ("?", $2);
+		my ($comm, $pid, $tid) = ($1, $2, $3);
+		if (not $tid) {
+			$tid = $pid;
+			$pid = "?";
 		}
 
+		if (/(\S+):\s*$/) {
+			my $event = $1;
+
+			if ($event_filter eq "") {
+				# By default only show events of the first encountered
+				# event type. Merging together different types, such as
+				# instructions and cycles, produces misleading results.
+				$event_filter = $event;
+				print STDERR "Filtering for events of type: $event\n";
+			} elsif ($event ne $event_filter) {
+				next;
+			}
+		}
+
+		($m_pid, $m_tid) = ($pid, $tid);
+
 		if ($include_tid) {
-			$pname = "$1-$m_pid/$m_tid";
+			$pname = "$comm-$m_pid/$m_tid";
 		} elsif ($include_pid) {
-			$pname = "$1-$m_pid";
+			$pname = "$comm-$m_pid";
 		} else {
-			$pname = $1;
+			$pname = "$comm";
 		}
 		$pname =~ tr/ /_/;
 
@@ -216,6 +238,9 @@ while (defined($_ = <>)) {
 	# stack line
 	#
 	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
+		# ignore filtered samples
+		next if not $pname;
+
 		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
 
 		# Linux 4.8 included symbol offsets in perf script output by default, eg:
