@@ -1,5 +1,5 @@
 iperf;[unknown];[iperf] 1
-iperf;[unknown];[iperf];__vdso_gettimeofday 1
+iperf;[unknown];[iperf];__vdso_gettimeofday_[k] 1
 iperf;[unknown];[libpthread-2.19.so];entry_SYSCALL_64_fastpath_[k];__fdget_pos_[k] 1
 iperf;[unknown];[libpthread-2.19.so];entry_SYSCALL_64_fastpath_[k];sys_write_[k];vfs_write_[k];__vfs_write_[k];sock_write_iter_[k];sock_sendmsg_[k];inet_sendmsg_[k];copy_from_iter_[k] 1
 iperf;[unknown];[libpthread-2.19.so];entry_SYSCALL_64_fastpath_[k];sys_write_[k];vfs_write_[k];__vfs_write_[k];sock_write_iter_[k];sock_sendmsg_[k];inet_sendmsg_[k];release_sock_[k] 1
