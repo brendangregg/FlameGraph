@@ -18,6 +18,9 @@
 # just saying: run "perf script", and B) the option to choose fields itself
 # changed between kernel versions! -f became -F.
 #
+# Copyright 2017 Netflix, Inc.
+# Licensed under the Apache License, Version 2.0 (the "License")
+#
 # 20-Sep-2016	Brendan Gregg	Created this.
 
 use strict;
