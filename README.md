@@ -75,6 +75,7 @@ Use the stackcollapse programs to fold stack samples into single lines.  The pro
 - `stackcollapse-jstack.pl`: for Java jstack(1) output
 - `stackcollapse-gdb.pl`: for gdb(1) stacks
 - `stackcollapse-go.pl`: for Golang pprof stacks
+- `stackcollapse-vsprof.pl`: for Microsoft Visual Studio profiles
 
 Usage example:
 
