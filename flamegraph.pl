@@ -123,28 +123,30 @@ my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
 my $searchcolor = "rgb(230,0,230)";	# color for search highlighting
+my $notestext = "";		# embedded notes in SVG
 my $help = 0;
 
 sub usage {
 	die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
-	--title       # change title text
-	--width       # width of image (default 1200)
-	--height      # height of each frame (default 16)
-	--minwidth    # omit smaller functions (default 0.1 pixels)
-	--fonttype    # font type (default "Verdana")
-	--fontsize    # font size (default 12)
-	--countname   # count type label (default "samples")
-	--nametype    # name type label (default "Function:")
-	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # wakeup, chain, java, js, perl, red, green, blue, aqua,
-	              # yellow, purple, orange
-	--hash        # colors are keyed by function name hash
-	--cp          # use consistent palette (palette.map)
-	--reverse     # generate stack-reversed flame graph
-	--inverted    # icicle graph
-	--negate      # switch differential hues (blue<->red)
-	--help        # this message
+	--title TEXT     # change title text
+	--width NUM      # width of image (default 1200)
+	--height NUM     # height of each frame (default 16)
+	--minwidth NUM   # omit smaller functions (default 0.1 pixels)
+	--fonttype FONT  # font type (default "Verdana")
+	--fontsize NUM   # font size (default 12)
+	--countname TEXT # count type label (default "samples")
+	--nametype TEXT  # name type label (default "Function:")
+	--colors PALETTE # set color palette. choices are: hot (default), mem,
+	                 # io, wakeup, chain, java, js, perl, red, green, blue,
+	                 # aqua, yellow, purple, orange
+	--hash           # colors are keyed by function name hash
+	--cp             # use consistent palette (palette.map)
+	--reverse        # generate stack-reversed flame graph
+	--inverted       # icicle graph
+	--negate         # switch differential hues (blue<->red)
+	--notes TEXT     # add notes comment in SVG (for debugging)
+	--help           # this message
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -171,6 +173,7 @@ GetOptions(
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
 	'negate'      => \$negate,
+	'notes=s'     => \$notestext,
 	'help'        => \$help,
 ) or usage();
 $help && usage();
@@ -204,6 +207,10 @@ if ($nameattrfile) {
 	}
 }
 
+if ($notestext =~ /[<>]/) {
+	die "Notes string can't contain < or >"
+}
+
 # background colors:
 # - yellow gradient: default (hot, java, js, perl)
 # - blue gradient: mem, chain
@@ -235,6 +242,7 @@ if ($colors =~ /^(io|wakeup|red|green|blue|aqua|yellow|purple|orange)$/) {
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" width="$w" height="$h" onload="init(evt)" viewBox="0 0 $w $h" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES: $notestext -->
 SVG
 	}
 
