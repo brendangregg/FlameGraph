@@ -78,6 +78,7 @@ my $annotate_all = 0;   # enale all annotations
 my $include_pname = 1;	# include process names in stacks
 my $include_pid = 0;	# include process ID with process name
 my $include_tid = 0;	# include process & thread ID with process name
+my $include_addrs = 0;	# include raw address where a symbol can't be found
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
@@ -92,6 +93,7 @@ GetOptions('inline' => \$show_inline,
            'jit' => \$annotate_jit,
            'all' => \$annotate_all,
            'tid' => \$include_tid,
+           'addrs' => \$include_addrs,
            'event-filter=s' => \$event_filter)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
@@ -102,6 +104,7 @@ USAGE: $0 [options] infile > outfile\n
 	--kernel	# annotate kernel functions with a _[k]
 	--jit		# annotate jit functions with a _[j]
 	--context	# adds source context to --inline
+	--addrs		# include raw addresses where symbols can't be found
 	--event-filter	# event name filter\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
@@ -259,10 +262,19 @@ while (defined($_ = <>)) {
 		for (split /\->/, $rawfunc) {
 			my $func = $_;
 
-			if ($func eq "[unknown]" && $mod ne "[unknown]") { # use module name instead, if known
-				$func = $mod;
-				$func =~ s/.*\///;
-				$func = "\[$func\]";
+			if ($func eq "[unknown]") {
+				if ($mod ne "[unknown]") { # use module name instead, if known
+					$func = $mod;
+					$func =~ s/.*\///;
+				} else {
+					$func = "unknown";
+				}
+
+				if ($include_addrs) {
+					$func = "\[$func \<$pc\>\]";
+				} else {
+					$func = "\[$func\]";
+				}
 			}
 
 			if ($tidy_generic) {
