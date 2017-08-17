@@ -88,7 +88,20 @@ foreach (<>) {
 	$frame =~ s/(::.*)[(<].*/$1/;
 
 	$frame = "-" if $frame eq "";
-	unshift @stack, $frame;
+
+        my @inline;
+        for (split /\->/, $frame) {
+            my $func = $_;
+
+            # Strip out L and ; included in java stacks
+            $func =~ tr/\;/:/;
+            $func =~ s/^L//;
+            $func .= "_[i]" if scalar(@inline) > 0; #inlined
+
+            push @inline, $func;
+        }
+
+	unshift @stack, @inline;
 }
 
 foreach my $k (sort { $a cmp $b } keys %collapsed) {
