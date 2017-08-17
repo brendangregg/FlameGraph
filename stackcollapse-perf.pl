@@ -83,6 +83,8 @@ my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
 my $event_filter = "";    # event type filter, defaults to first encountered event
+my $event_defaulted = 0;  # whether we defaulted to an event (none provided)
+my $event_warning = 0;	  # if we printed a warning for the event
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -221,8 +223,15 @@ while (defined($_ = <>)) {
 				# event type. Merging together different types, such as
 				# instructions and cycles, produces misleading results.
 				$event_filter = $event;
-				print STDERR "Filtering for events of type: $event\n";
+				$event_defaulted = 1;
 			} elsif ($event ne $event_filter) {
+				if ($event_defaulted and $event_warning == 0) {
+					# only print this warning if necessary:
+					# when we defaulted and there was
+					# multiple event types.
+					print STDERR "Filtering for events of type: $event\n";
+					$event_warning = 1;
+				}
 				next;
 			}
 		}
