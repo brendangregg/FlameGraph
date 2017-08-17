@@ -124,12 +124,14 @@ my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
 my $searchcolor = "rgb(230,0,230)";	# color for search highlighting
 my $notestext = "";		# embedded notes in SVG
+my $subtitletext = "";		# second level title (optional)
 my $help = 0;
 
 sub usage {
 	die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title TEXT     # change title text
+	--subtitle TEXT  # second level title (optional)
 	--width NUM      # width of image (default 1200)
 	--height NUM     # height of each frame (default 16)
 	--minwidth NUM   # omit smaller functions (default 0.1 pixels)
@@ -162,6 +164,7 @@ GetOptions(
 	'fontwidth=f' => \$fontwidth,
 	'minwidth=f'  => \$minwidth,
 	'title=s'     => \$titletext,
+	'subtitle=s'  => \$subtitletext,
 	'nametype=s'  => \$nametype,
 	'countname=s' => \$countname,
 	'nameattr=s'  => \$nameattrfile,
@@ -181,6 +184,7 @@ $help && usage();
 # internals
 my $ypad1 = $fontsize * 4;      # pad top, include title
 my $ypad2 = $fontsize * 2 + 10; # pad bottom, include labels
+my $ypad3 = $fontsize * 2 + 1;  # pad top, include subtitle (optional)
 my $xpad = 10;                  # pad lefm and right
 my $framepad = 1;		# vertical padding for frames
 my $depthmax = 0;
@@ -675,6 +679,7 @@ while (my ($id, $node) = each %Node) {
 
 # draw canvas, and embed interactive JavaScript program
 my $imageheight = ($depthmax * $frameheight) + $ypad1 + $ypad2;
+$imageheight += $ypad3 if $subtitletext ne "";
 my $im = SVG->new();
 $im->header($imagewidth, $imageheight);
 my $inc = <<INC;
@@ -1014,6 +1019,9 @@ my ($white, $black, $vvdgrey, $vdgrey, $dgrey) = (
 	$im->colorAllocate(200, 200, 200),
     );
 $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
+if ($subtitletext ne "") {
+	$im->stringTTF($black, $fonttype, $fontsize, 0.0, int($imagewidth / 2), $fontsize * 4, $subtitletext, "middle");
+}
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2,
     "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
