@@ -1,0 +1,6 @@
+cksum;_start;__libc_start_main;main;cksum 31
+cksum;cksum 6
+cksum;cksum;__GI___fread_unlocked;_IO_file_xsgetn;_IO_file_read;entry_SYSCALL_64_fastpath_[k];sys_read_[k];vfs_read_[k];__vfs_read_[k];ext4_file_read_iter_[k] 1
+cksum;main;cksum 19
+noploop;[unknown] 2
+noploop;main 274

@@ -1,0 +1,1614 @@
+# ========
+# captured on: Thu Aug 17 14:14:43 2017
+# hostname : bgregg-lgud2
+# os release : 4.13.0-rc1
+# perf version : 4.13.0-rc1
+# arch : x86_64
+# nrcpus online : 8
+# nrcpus avail : 8
+# cpudesc : Intel(R) Xeon(R) CPU E3-1245 v5 @ 3.50GHz
+# cpuid : GenuineIntel,6,94,3
+# total memory : 8058796 kB
+# cmdline : /usr/bin/perf record -e cycles -e instructions -c 100000000 -a --call-graph=lbr -- sleep 1 
+# event : name = cycles, , id = { 550, 551, 552, 553, 554, 555, 556, 557 }, size = 112, { sample_period, sample_freq } = 100000000, sample_type = IP|TID|TIME|CALLCHAIN|ID|CPU|BRANCH_STACK, read_format = ID, disabled = 1, inherit = 1, mmap = 1, comm = 1, task = 1, sample_id_all = 1, exclude_guest = 1, mmap2 = 1, comm_exec = 1, branch_sample_type = USER|CALL_STACK|NO_FLAGS|NO_CYCLES
+# event : name = instructions, , id = { 558, 559, 560, 561, 562, 563, 564, 565 }, size = 112, config = 0x1, { sample_period, sample_freq } = 100000000, sample_type = IP|TID|TIME|CALLCHAIN|ID|CPU|BRANCH_STACK, read_format = ID, disabled = 1, inherit = 1, sample_id_all = 1, exclude_guest = 1, branch_sample_type = USER|CALL_STACK|NO_FLAGS|NO_CYCLES
+# HEADER_CPU_TOPOLOGY info available, use -I to display
+# HEADER_NUMA_TOPOLOGY info available, use -I to display
+# pmu mappings: intel_pt = 7, intel_bts = 6, uncore_arb = 13, uncore_cbox_3 = 12, cstate_pkg = 16, breakpoint = 5, uncore_cbox_1 = 10, power = 14, cpu = 4, software = 1, uncore_cbox_2 = 11, uncore_cbox_0 = 9, cstate_core = 15, tracepoint = 2, msr = 8
+# HEADER_CACHE info available, use -I to display
+# missing features: HEADER_TRACING_DATA HEADER_BRANCH_STACK HEADER_GROUP_DESC HEADER_AUXTRACE HEADER_STAT 
+# ========
+#
+noploop 21796 [001] 1410597.984841: instructions: 
+	             993 main (/root/noploop)
+
+noploop 21797 [002] 1410597.984850: instructions: 
+	             69b main (/root/noploop)
+
+noploop 21796 [001] 1410597.992030: instructions: 
+	             7df main (/root/noploop)
+
+noploop 21797 [002] 1410597.992037: instructions: 
+	             883 main (/root/noploop)
+
+cksum 21804 [000] 1410597.994832: instructions: 
+	            1ad1 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410597.999214: instructions: 
+	             6e7 main (/root/noploop)
+
+noploop 21797 [002] 1410597.999221: instructions: 
+	             917 main (/root/noploop)
+
+cksum 21804 [000] 1410598.006198:       cycles: 
+	            1ad1 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.006210:       cycles: 
+	             6a7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.006219:       cycles: 
+	             68f main (/root/noploop)
+
+noploop 21796 [001] 1410598.006401: instructions: 
+	             7a7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.006407: instructions: 
+	             78f main (/root/noploop)
+
+cksum 21804 [000] 1410598.011998: instructions: 
+	            1ad1 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.013586: instructions: 
+	             797 main (/root/noploop)
+
+noploop 21797 [002] 1410598.013593: instructions: 
+	             857 main (/root/noploop)
+
+noploop 21796 [001] 1410598.020771: instructions: 
+	             6d7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.020778: instructions: 
+	             763 main (/root/noploop)
+
+noploop 21796 [001] 1410598.027957: instructions: 
+	             7bb main (/root/noploop)
+
+noploop 21797 [002] 1410598.027963: instructions: 
+	             817 main (/root/noploop)
+
+cksum 21804 [000] 1410598.029069: instructions: 
+	            1ad1 cksum (/usr/bin/cksum)
+
+cksum 21804 [000] 1410598.034839:       cycles: 
+	          4e85d9 ext4_file_read_iter (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.034851:       cycles: 
+	             9e7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.034861:       cycles: 
+	             8df main (/root/noploop)
+
+noploop 21796 [001] 1410598.035143: instructions: 
+	             7c7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.035148: instructions: 
+	             7fb main (/root/noploop)
+
+noploop 21796 [001] 1410598.042328: instructions: 
+	             89f main (/root/noploop)
+
+noploop 21797 [002] 1410598.042333: instructions: 
+	             98b main (/root/noploop)
+
+cksum 21804 [000] 1410598.046169: instructions: 
+	          4e85d9 ext4_file_read_iter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          44b0fe __vfs_read (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          44bd56 vfs_read (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          44d495 sys_read (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          af30bb entry_SYSCALL_64_fastpath (/lib/modules/4.13.0-rc1/build/vmlinux)
+	           7afe0 _IO_file_read (/lib/x86_64-linux-gnu/libc-2.24.so)
+	           7ad41 _IO_file_xsgetn (/lib/x86_64-linux-gnu/libc-2.24.so)
+	           79b8f __GI___fread_unlocked (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1b23 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.049514: instructions: 
+	             907 main (/root/noploop)
+
+noploop 21797 [002] 1410598.049518: instructions: 
+	             9ff main (/root/noploop)
+
+noploop 21796 [001] 1410598.056699: instructions: 
+	             87b main (/root/noploop)
+
+noploop 21797 [002] 1410598.056703: instructions: 
+	             743 main (/root/noploop)
+
+cksum 21804 [000] 1410598.063350: instructions: 
+	            1ad4 cksum (/usr/bin/cksum)
+
+cksum 21804 [000] 1410598.063483:       cycles: 
+	            1ab5 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.063493:       cycles: 
+	             773 main (/root/noploop)
+
+noploop 21797 [002] 1410598.063503:       cycles: 
+	             6e3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.063886: instructions: 
+	             6ff main (/root/noploop)
+
+noploop 21797 [002] 1410598.063890: instructions: 
+	             8d3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.071069: instructions: 
+	             6eb main (/root/noploop)
+
+noploop 21797 [002] 1410598.071074: instructions: 
+	             67b main (/root/noploop)
+
+noploop 21796 [001] 1410598.078254: instructions: 
+	             8a3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.078259: instructions: 
+	             80b main (/root/noploop)
+
+cksum 21804 [000] 1410598.080529: instructions: 
+	            1ad1 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.085439: instructions: 
+	             823 main (/root/noploop)
+
+noploop 21797 [002] 1410598.085444: instructions: 
+	             6f7 main (/root/noploop)
+
+cksum 21804 [000] 1410598.092123:       cycles: 
+	    552c0000552c [unknown] ([unknown])
+
+noploop 21796 [001] 1410598.092134:       cycles: 
+	             81f main (/root/noploop)
+
+noploop 21797 [002] 1410598.092144:       cycles: 
+	             6ff main (/root/noploop)
+
+noploop 21796 [001] 1410598.092625: instructions: 
+	             8ff main (/root/noploop)
+
+noploop 21797 [002] 1410598.092630: instructions: 
+	             74b main (/root/noploop)
+
+noploop 21796 [001] 1410598.099811: instructions: 
+	             6e7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.099816: instructions: 
+	             75f main (/root/noploop)
+
+noploop 21796 [001] 1410598.106996: instructions: 
+	             8b3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.107000: instructions: 
+	             847 main (/root/noploop)
+
+noploop 21796 [001] 1410598.114182: instructions: 
+	             7f3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.114186: instructions: 
+	             7ff main (/root/noploop)
+
+cksum 21807 [004] 1410598.116168: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.120777:       cycles: 
+	             a23 main (/root/noploop)
+
+noploop 21797 [002] 1410598.120786:       cycles: 
+	             6ff main (/root/noploop)
+
+noploop 21796 [001] 1410598.121368: instructions: 
+	             91b main (/root/noploop)
+
+noploop 21797 [002] 1410598.121372: instructions: 
+	             893 main (/root/noploop)
+
+cksum 21807 [004] 1410598.127157:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.128553: instructions: 
+	             8f3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.128557: instructions: 
+	             a53 main (/root/noploop)
+
+cksum 21807 [004] 1410598.133347: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.135738: instructions: 
+	             90b main (/root/noploop)
+
+noploop 21797 [002] 1410598.135743: instructions: 
+	             9cf main (/root/noploop)
+
+noploop 21796 [001] 1410598.142921: instructions: 
+	             6fb main (/root/noploop)
+
+noploop 21797 [002] 1410598.142926: instructions: 
+	             823 main (/root/noploop)
+
+noploop 21796 [001] 1410598.149418:       cycles: 
+	             9ef main (/root/noploop)
+
+noploop 21797 [002] 1410598.149428:       cycles: 
+	             94f main (/root/noploop)
+
+noploop 21796 [001] 1410598.150108: instructions: 
+	             8f3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.150113: instructions: 
+	             9cf main (/root/noploop)
+
+cksum 21807 [004] 1410598.150509: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.155801:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.157294: instructions: 
+	             69b main (/root/noploop)
+
+noploop 21797 [002] 1410598.157298: instructions: 
+	             8e3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.164479: instructions: 
+	             673 main (/root/noploop)
+
+noploop 21797 [002] 1410598.164483: instructions: 
+	             97b main (/root/noploop)
+
+cksum 21807 [004] 1410598.167744: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.171664: instructions: 
+	             6e7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.171668: instructions: 
+	             977 main (/root/noploop)
+
+noploop 21796 [001] 1410598.178060:       cycles: 
+	             a4b main (/root/noploop)
+
+noploop 21797 [002] 1410598.178069:       cycles: 
+	             79f main (/root/noploop)
+
+noploop 21796 [001] 1410598.178849: instructions: 
+	             73f main (/root/noploop)
+
+noploop 21797 [002] 1410598.178853: instructions: 
+	             96f main (/root/noploop)
+
+cksum 21807 [004] 1410598.184443:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.184923: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.186034: instructions: 
+	             723 main (/root/noploop)
+
+noploop 21797 [002] 1410598.186038: instructions: 
+	             a17 main (/root/noploop)
+
+noploop 21796 [001] 1410598.193219: instructions: 
+	             70b main (/root/noploop)
+
+noploop 21797 [002] 1410598.193223: instructions: 
+	             8af main (/root/noploop)
+
+noploop 21796 [001] 1410598.200405: instructions: 
+	             9c7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.200408: instructions: 
+	             83f main (/root/noploop)
+
+cksum 21807 [004] 1410598.202111: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.206701:       cycles: 
+	             76b main (/root/noploop)
+
+noploop 21797 [002] 1410598.206711:       cycles: 
+	             807 main (/root/noploop)
+
+noploop 21796 [001] 1410598.207592: instructions: 
+	             78b main (/root/noploop)
+
+noploop 21797 [002] 1410598.207595: instructions: 
+	             7fb main (/root/noploop)
+
+cksum 21807 [004] 1410598.213085:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.214776: instructions: 
+	             6d7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.214779: instructions: 
+	             6ef main (/root/noploop)
+
+cksum 21807 [004] 1410598.219228: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.221961: instructions: 
+	             7eb main (/root/noploop)
+
+noploop 21797 [002] 1410598.221964: instructions: 
+	             86f main (/root/noploop)
+
+noploop 21797 [002] 1410598.229149: instructions: 
+	             96f main (/root/noploop)
+
+noploop 21796 [001] 1410598.229155: instructions: 
+	             87f main (/root/noploop)
+
+noploop 21796 [001] 1410598.235343:       cycles: 
+	             8e7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.235353:       cycles: 
+	             76b main (/root/noploop)
+
+cksum 21807 [004] 1410598.236321: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.236337: instructions: 
+	             95f main (/root/noploop)
+
+noploop 21796 [001] 1410598.236342: instructions: 
+	             8db main (/root/noploop)
+
+cksum 21807 [004] 1410598.241728:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.243521: instructions: 
+	             993 main (/root/noploop)
+
+noploop 21796 [001] 1410598.243527: instructions: 
+	             74b main (/root/noploop)
+
+noploop 21797 [002] 1410598.250705: instructions: 
+	             8cf main (/root/noploop)
+
+noploop 21796 [001] 1410598.250711: instructions: 
+	             74f main (/root/noploop)
+
+cksum 21807 [004] 1410598.253484: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.257890: instructions: 
+	             937 main (/root/noploop)
+
+noploop 21796 [001] 1410598.257896: instructions: 
+	             6ef main (/root/noploop)
+
+noploop 21796 [001] 1410598.263985:       cycles: 
+	             937 main (/root/noploop)
+
+noploop 21797 [002] 1410598.263994:       cycles: 
+	             867 main (/root/noploop)
+
+noploop 21797 [002] 1410598.265076: instructions: 
+	             9b3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.265082: instructions: 
+	             953 main (/root/noploop)
+
+cksum 21807 [004] 1410598.270369:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.270672: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.272261: instructions: 
+	             6d7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.272267: instructions: 
+	             8ff main (/root/noploop)
+
+noploop 21797 [002] 1410598.279446: instructions: 
+	             6c7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.279452: instructions: 
+	             91f main (/root/noploop)
+
+noploop 21797 [002] 1410598.286631: instructions: 
+	             76f main (/root/noploop)
+
+noploop 21796 [001] 1410598.286636: instructions: 
+	             813 main (/root/noploop)
+
+cksum 21807 [004] 1410598.287836: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.292627:       cycles: 
+	             973 main (/root/noploop)
+
+noploop 21797 [002] 1410598.292636:       cycles: 
+	             6cf main (/root/noploop)
+
+noploop 21797 [002] 1410598.293818: instructions: 
+	             86b main (/root/noploop)
+
+noploop 21796 [001] 1410598.293823: instructions: 
+	             953 main (/root/noploop)
+
+cksum 21807 [004] 1410598.299012:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.301003: instructions: 
+	             85b main (/root/noploop)
+
+noploop 21796 [001] 1410598.301008: instructions: 
+	             85b main (/root/noploop)
+
+cksum 21807 [004] 1410598.304899: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.308188: instructions: 
+	             853 main (/root/noploop)
+
+noploop 21796 [001] 1410598.308194: instructions: 
+	             a4f main (/root/noploop)
+
+noploop 21797 [002] 1410598.315372: instructions: 
+	             80b main (/root/noploop)
+
+noploop 21796 [001] 1410598.315377: instructions: 
+	             8a7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.321268:       cycles: 
+	             923 main (/root/noploop)
+
+noploop 21797 [002] 1410598.321278:       cycles: 
+	             943 main (/root/noploop)
+
+cksum 21807 [004] 1410598.322082: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.322558: instructions: 
+	             7ab main (/root/noploop)
+
+noploop 21796 [001] 1410598.322564: instructions: 
+	             9a3 main (/root/noploop)
+
+cksum 21807 [004] 1410598.327656:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.329743: instructions: 
+	             93b main (/root/noploop)
+
+noploop 21796 [001] 1410598.329749: instructions: 
+	             973 main (/root/noploop)
+
+noploop 21797 [002] 1410598.336927: instructions: 
+	             6ab main (/root/noploop)
+
+noploop 21796 [001] 1410598.336934: instructions: 
+	             8c7 main (/root/noploop)
+
+cksum 21807 [004] 1410598.339259: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.344113: instructions: 
+	             7e3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.344119: instructions: 
+	             8cb main (/root/noploop)
+
+noploop 21796 [001] 1410598.349909:       cycles: 
+	             6d3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.349919:       cycles: 
+	             877 main (/root/noploop)
+
+noploop 21797 [002] 1410598.351297: instructions: 
+	             9b7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.351304: instructions: 
+	             68b main (/root/noploop)
+
+cksum 21807 [004] 1410598.356297:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.356460: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.358482: instructions: 
+	             75f main (/root/noploop)
+
+noploop 21796 [001] 1410598.358489: instructions: 
+	             a3b main (/root/noploop)
+
+noploop 21797 [002] 1410598.365667: instructions: 
+	             8f3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.365674: instructions: 
+	             a13 main (/root/noploop)
+
+noploop 21797 [002] 1410598.372852: instructions: 
+	             a3f main (/root/noploop)
+
+noploop 21796 [001] 1410598.372859: instructions: 
+	             737 main (/root/noploop)
+
+cksum 21807 [004] 1410598.373647: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.378550:       cycles: 
+	             7d3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.378560:       cycles: 
+	             873 main (/root/noploop)
+
+noploop 21797 [002] 1410598.380038: instructions: 
+	             74f main (/root/noploop)
+
+noploop 21796 [001] 1410598.380045: instructions: 
+	             91b main (/root/noploop)
+
+cksum 21807 [004] 1410598.384940:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.387221: instructions: 
+	             8c7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.387229: instructions: 
+	             72f main (/root/noploop)
+
+cksum 21807 [004] 1410598.390867: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.394407: instructions: 
+	             66b main (/root/noploop)
+
+noploop 21796 [001] 1410598.394414: instructions: 
+	             a23 main (/root/noploop)
+
+noploop 21797 [002] 1410598.401592: instructions: 
+	             85f main (/root/noploop)
+
+noploop 21796 [001] 1410598.401598: instructions: 
+	             7b7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.407192:       cycles: 
+	             77f main (/root/noploop)
+
+noploop 21797 [002] 1410598.407201:       cycles: 
+	             9a7 main (/root/noploop)
+
+cksum 21807 [004] 1410598.408043: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.408778: instructions: 
+	             757 main (/root/noploop)
+
+noploop 21796 [001] 1410598.408784: instructions: 
+	             73f main (/root/noploop)
+
+cksum 21807 [004] 1410598.413583:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.415963: instructions: 
+	             6c3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.415969: instructions: 
+	             75f main (/root/noploop)
+
+noploop 21797 [002] 1410598.423147: instructions: 
+	             85b main (/root/noploop)
+
+noploop 21796 [001] 1410598.423153: instructions: 
+	             953 main (/root/noploop)
+
+cksum 21807 [004] 1410598.425233: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.430332: instructions: 
+	             a17 main (/root/noploop)
+
+noploop 21796 [001] 1410598.430338: instructions: 
+	             a1f main (/root/noploop)
+
+noploop 21796 [001] 1410598.435833:       cycles: 
+	             a4f main (/root/noploop)
+
+noploop 21797 [002] 1410598.435843:       cycles: 
+	             7e3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.437519: instructions: 
+	             8eb main (/root/noploop)
+
+noploop 21796 [001] 1410598.437525: instructions: 
+	             a17 main (/root/noploop)
+
+cksum 21807 [004] 1410598.442225:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.442373: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.444704: instructions: 
+	             7e7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.444710: instructions: 
+	             87f main (/root/noploop)
+
+noploop 21797 [002] 1410598.451889: instructions: 
+	             6c7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.451912: instructions: 
+	             99f main (/root/noploop)
+
+noploop 21797 [002] 1410598.459073: instructions: 
+	             87b main (/root/noploop)
+
+noploop 21796 [001] 1410598.459096: instructions: 
+	             9cb main (/root/noploop)
+
+cksum 21807 [004] 1410598.459586: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.464475:       cycles: 
+	             6cf main (/root/noploop)
+
+noploop 21797 [002] 1410598.464485:       cycles: 
+	             76f main (/root/noploop)
+
+noploop 21797 [002] 1410598.466259: instructions: 
+	             90b main (/root/noploop)
+
+noploop 21796 [001] 1410598.466283: instructions: 
+	             9db main (/root/noploop)
+
+cksum 21807 [004] 1410598.470867:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.473443: instructions: 
+	             877 main (/root/noploop)
+
+noploop 21796 [001] 1410598.473468: instructions: 
+	             a37 main (/root/noploop)
+
+cksum 21807 [004] 1410598.476672: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.480628: instructions: 
+	             6f3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.480652: instructions: 
+	             9df main (/root/noploop)
+
+noploop 21797 [002] 1410598.487813: instructions: 
+	             93b main (/root/noploop)
+
+noploop 21796 [001] 1410598.487837: instructions: 
+	             9b7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.493116:       cycles: 
+	             7ef main (/root/noploop)
+
+noploop 21797 [002] 1410598.493126:       cycles: 
+	             89b main (/root/noploop)
+
+cksum 21807 [004] 1410598.493741: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.494998: instructions: 
+	             6db main (/root/noploop)
+
+noploop 21796 [001] 1410598.495022: instructions: 
+	             7cf main (/root/noploop)
+
+cksum 21807 [004] 1410598.499510:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.502183: instructions: 
+	             8c3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.502207: instructions: 
+	             797 main (/root/noploop)
+
+noploop 21797 [002] 1410598.509368: instructions: 
+	             70f main (/root/noploop)
+
+noploop 21796 [001] 1410598.509392: instructions: 
+	             987 main (/root/noploop)
+
+cksum 21807 [004] 1410598.510883: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.516553: instructions: 
+	             70b main (/root/noploop)
+
+noploop 21796 [001] 1410598.516577: instructions: 
+	             a07 main (/root/noploop)
+
+noploop 21796 [001] 1410598.521758:       cycles: 
+	             9c7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.521768:       cycles: 
+	             78f main (/root/noploop)
+
+noploop 21797 [002] 1410598.523740: instructions: 
+	             8c3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.523763: instructions: 
+	             793 main (/root/noploop)
+
+cksum 21807 [004] 1410598.528071: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.528153:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.530923: instructions: 
+	             673 main (/root/noploop)
+
+noploop 21796 [001] 1410598.530947: instructions: 
+	             8cb main (/root/noploop)
+
+noploop 21797 [002] 1410598.538108: instructions: 
+	             7fb main (/root/noploop)
+
+noploop 21796 [001] 1410598.538132: instructions: 
+	             887 main (/root/noploop)
+
+cksum 21807 [004] 1410598.545275: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.545293: instructions: 
+	             703 main (/root/noploop)
+
+noploop 21796 [001] 1410598.545317: instructions: 
+	             7db main (/root/noploop)
+
+noploop 21796 [001] 1410598.550399:       cycles: 
+	             9ab main (/root/noploop)
+
+noploop 21797 [002] 1410598.550409:       cycles: 
+	             9e7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.552479: instructions: 
+	             89f main (/root/noploop)
+
+noploop 21796 [001] 1410598.552503: instructions: 
+	             9c7 main (/root/noploop)
+
+cksum 21807 [004] 1410598.556794:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.559664: instructions: 
+	             9bf main (/root/noploop)
+
+noploop 21796 [001] 1410598.559688: instructions: 
+	             947 main (/root/noploop)
+
+cksum 21807 [004] 1410598.562462: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.566847: instructions: 
+	             a13 main (/root/noploop)
+
+noploop 21796 [001] 1410598.566871: instructions: 
+	             9af main (/root/noploop)
+
+noploop 21797 [002] 1410598.574032: instructions: 
+	             7fb main (/root/noploop)
+
+noploop 21796 [001] 1410598.574056: instructions: 
+	             8f0 main (/root/noploop)
+
+noploop 21796 [001] 1410598.579040:       cycles: 
+	             7af main (/root/noploop)
+
+noploop 21797 [002] 1410598.579050:       cycles: 
+	             75f main (/root/noploop)
+
+cksum 21807 [004] 1410598.579636: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.581218: instructions: 
+	             8d7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.581604: instructions: 
+	             717 main (/root/noploop)
+
+cksum 21807 [004] 1410598.585437:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.588402: instructions: 
+	             8db main (/root/noploop)
+
+noploop 21796 [001] 1410598.589229: instructions: 
+	             9e4 main (/root/noploop)
+
+noploop 21797 [002] 1410598.595587: instructions: 
+	             8d3 main (/root/noploop)
+
+cksum 21807 [004] 1410598.596815: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.596855: instructions: 
+	             6ef main (/root/noploop)
+
+noploop 21797 [002] 1410598.602771: instructions: 
+	             947 main (/root/noploop)
+
+swapper     0 [005] 1410598.603979:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.604482: instructions: 
+	             928 main (/root/noploop)
+
+noploop 21796 [001] 1410598.607682:       cycles: 
+	             6c4 main (/root/noploop)
+
+noploop 21797 [002] 1410598.607691:       cycles: 
+	             893 main (/root/noploop)
+
+noploop 21797 [002] 1410598.609957: instructions: 
+	             733 main (/root/noploop)
+
+noploop 21796 [001] 1410598.612110: instructions: 
+	             67f main (/root/noploop)
+
+cksum 21807 [004] 1410598.613988: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.614079:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.617142: instructions: 
+	             75b main (/root/noploop)
+
+noploop 21796 [001] 1410598.619736: instructions: 
+	             6b3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.624328: instructions: 
+	             8f7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.627360: instructions: 
+	             a18 main (/root/noploop)
+
+cksum 21807 [004] 1410598.631186: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.631513: instructions: 
+	             a0b main (/root/noploop)
+
+swapper     0 [005] 1410598.632619:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.634987: instructions: 
+	             66b main (/root/noploop)
+
+noploop 21796 [001] 1410598.636324:       cycles: 
+	             92c main (/root/noploop)
+
+noploop 21797 [002] 1410598.636333:       cycles: 
+	             6e7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.638698: instructions: 
+	             8a3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.642614: instructions: 
+	             8ef main (/root/noploop)
+
+cksum 21807 [004] 1410598.642721:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+	           203ef __libc_start_main (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1724 _start (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.645883: instructions: 
+	             7e7 main (/root/noploop)
+
+cksum 21807 [004] 1410598.648405: instructions: 
+	            1adb cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.650240: instructions: 
+	             9c4 main (/root/noploop)
+
+noploop 21797 [002] 1410598.653067: instructions: 
+	             94b main (/root/noploop)
+
+noploop 21796 [001] 1410598.657866: instructions: 
+	             9e0 main (/root/noploop)
+
+noploop 21797 [002] 1410598.660253: instructions: 
+	             957 main (/root/noploop)
+
+swapper     0 [005] 1410598.661259:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.664965:       cycles: 
+	             717 main (/root/noploop)
+
+noploop 21797 [002] 1410598.664975:       cycles: 
+	             69b main (/root/noploop)
+
+noploop 21796 [001] 1410598.665495: instructions: 
+	             a0c main (/root/noploop)
+
+cksum 21807 [004] 1410598.665552: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.667440: instructions: 
+	             697 main (/root/noploop)
+
+cksum 21807 [004] 1410598.671379:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.673121: instructions: 
+	             677 main (/root/noploop)
+
+noploop 21797 [002] 1410598.674624: instructions: 
+	             837 main (/root/noploop)
+
+noploop 21796 [001] 1410598.680736: instructions: 
+	             a48 main (/root/noploop)
+
+noploop 21797 [002] 1410598.681808: instructions: 
+	             6eb main (/root/noploop)
+
+cksum 21807 [004] 1410598.682522: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.688362: instructions: 
+	             79b main (/root/noploop)
+
+noploop 21797 [002] 1410598.688994: instructions: 
+	             94b main (/root/noploop)
+
+swapper     0 [005] 1410598.689898:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.693606:       cycles: 
+	             96f main (/root/noploop)
+
+noploop 21797 [002] 1410598.693617:       cycles: 
+	             87b main (/root/noploop)
+
+noploop 21796 [001] 1410598.695990: instructions: 
+	             7c0 main (/root/noploop)
+
+noploop 21797 [002] 1410598.696180: instructions: 
+	             86f main (/root/noploop)
+
+cksum 21807 [004] 1410598.699700: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.700021:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.703364: instructions: 
+	             737 main (/root/noploop)
+
+noploop 21796 [001] 1410598.703616: instructions: 
+	             9c0 main (/root/noploop)
+
+noploop 21797 [002] 1410598.710549: instructions: 
+	             867 main (/root/noploop)
+
+noploop 21796 [001] 1410598.711241: instructions: 
+	             70b main (/root/noploop)
+
+cksum 21807 [004] 1410598.716851: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.717736: instructions: 
+	             85b main (/root/noploop)
+
+swapper     0 [005] 1410598.718538:       cycles: 
+	          af2c01 poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.718864: instructions: 
+	             71c main (/root/noploop)
+
+noploop 21796 [001] 1410598.722248:       cycles: 
+	             76b main (/root/noploop)
+
+noploop 21797 [002] 1410598.722259:       cycles: 
+	             99f main (/root/noploop)
+
+noploop 21797 [002] 1410598.724923: instructions: 
+	             683 main (/root/noploop)
+
+noploop 21796 [001] 1410598.726493: instructions: 
+	             6df main (/root/noploop)
+
+cksum 21807 [004] 1410598.728663:       cycles: 
+	          ae2d1e copy_user_enhanced_fast_string (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          651824 copy_page_to_iter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          3b5d64 generic_file_read_iter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          4e8626 ext4_file_read_iter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          44b0fe __vfs_read (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          44bd56 vfs_read (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          44d495 sys_read (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          af30bb entry_SYSCALL_64_fastpath (/lib/modules/4.13.0-rc1/build/vmlinux)
+	           7afe0 _IO_file_read (/lib/x86_64-linux-gnu/libc-2.24.so)
+	           7ad41 _IO_file_xsgetn (/lib/x86_64-linux-gnu/libc-2.24.so)
+	           79b8f __GI___fread_unlocked (/lib/x86_64-linux-gnu/libc-2.24.so)
+	            1b23 cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.732108: instructions: 
+	             7cf main (/root/noploop)
+
+cksum 21807 [004] 1410598.733868: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.734119: instructions: 
+	             8a8 main (/root/noploop)
+
+noploop 21797 [002] 1410598.739299: instructions: 
+	             6a3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.741746: instructions: 
+	             a1c main (/root/noploop)
+
+noploop 21797 [002] 1410598.746484: instructions: 
+	             77f main (/root/noploop)
+
+swapper     0 [005] 1410598.747178:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.749373: instructions: 
+	             a44 main (/root/noploop)
+
+cksum 21807 [004] 1410598.750821: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.750890:       cycles: 
+	             7eb main (/root/noploop)
+
+noploop 21797 [002] 1410598.750900:       cycles: 
+	             98f main (/root/noploop)
+
+noploop 21797 [002] 1410598.753670: instructions: 
+	             73f main (/root/noploop)
+
+noploop 21796 [001] 1410598.757000: instructions: 
+	             a4c main (/root/noploop)
+
+cksum 21807 [004] 1410598.757306:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.760856: instructions: 
+	             8c7 main (/root/noploop)
+
+noploop 21796 [001] 1410598.764626: instructions: 
+	             95b main (/root/noploop)
+
+cksum 21807 [004] 1410598.767889: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.768041: instructions: 
+	             9fb main (/root/noploop)
+
+noploop 21796 [001] 1410598.771989: instructions: 
+	             69b main (/root/noploop)
+
+noploop 21797 [002] 1410598.775226: instructions: 
+	             727 main (/root/noploop)
+
+noploop 21796 [001] 1410598.779173: instructions: 
+	             7ef main (/root/noploop)
+
+noploop 21796 [001] 1410598.779532:       cycles: 
+	             78b main (/root/noploop)
+
+noploop 21797 [002] 1410598.779543:       cycles: 
+	             853 main (/root/noploop)
+
+noploop 21797 [002] 1410598.782412: instructions: 
+	             77f main (/root/noploop)
+
+cksum 21807 [004] 1410598.785060: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.785948:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.786362: instructions: 
+	             9fb main (/root/noploop)
+
+noploop 21797 [002] 1410598.789597: instructions: 
+	             8e3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.793547: instructions: 
+	             a1b main (/root/noploop)
+
+noploop 21797 [002] 1410598.796782: instructions: 
+	             887 main (/root/noploop)
+
+noploop 21796 [001] 1410598.800732: instructions: 
+	             923 main (/root/noploop)
+
+cksum 21807 [004] 1410598.802246: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.803967: instructions: 
+	             93f main (/root/noploop)
+
+noploop 21796 [001] 1410598.807917: instructions: 
+	             887 main (/root/noploop)
+
+noploop 21796 [001] 1410598.808173:       cycles: 
+	             913 main (/root/noploop)
+
+noploop 21797 [002] 1410598.808184:       cycles: 
+	             a53 main (/root/noploop)
+
+noploop 21797 [002] 1410598.811152: instructions: 
+	             807 main (/root/noploop)
+
+cksum 21807 [004] 1410598.814589:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.815102: instructions: 
+	             72f main (/root/noploop)
+
+noploop 21797 [002] 1410598.818337: instructions: 
+	             99f main (/root/noploop)
+
+cksum 21807 [004] 1410598.819414: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.822287: instructions: 
+	             703 main (/root/noploop)
+
+noploop 21797 [002] 1410598.825521: instructions: 
+	             73b main (/root/noploop)
+
+noploop 21796 [001] 1410598.829472: instructions: 
+	             a23 main (/root/noploop)
+
+noploop 21797 [002] 1410598.832706: instructions: 
+	             803 main (/root/noploop)
+
+cksum 21807 [004] 1410598.836558: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.836657: instructions: 
+	             7d3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.836815:       cycles: 
+	             8d7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.836825:       cycles: 
+	             95f main (/root/noploop)
+
+noploop 21797 [002] 1410598.839892: instructions: 
+	             8cf main (/root/noploop)
+
+cksum 21807 [004] 1410598.843232:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.843843: instructions: 
+	             89f main (/root/noploop)
+
+noploop 21797 [002] 1410598.847076: instructions: 
+	             a3f main (/root/noploop)
+
+noploop 21796 [001] 1410598.851027: instructions: 
+	             76b main (/root/noploop)
+
+cksum 21807 [004] 1410598.853729: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.854261: instructions: 
+	             a03 main (/root/noploop)
+
+noploop 21796 [001] 1410598.858212: instructions: 
+	             80b main (/root/noploop)
+
+noploop 21797 [002] 1410598.861446: instructions: 
+	             a07 main (/root/noploop)
+
+noploop 21796 [001] 1410598.865397: instructions: 
+	             917 main (/root/noploop)
+
+noploop 21796 [001] 1410598.865456:       cycles: 
+	             7ef main (/root/noploop)
+
+noploop 21797 [002] 1410598.865466:       cycles: 
+	             92b main (/root/noploop)
+
+noploop 21797 [002] 1410598.868632: instructions: 
+	             6db main (/root/noploop)
+
+cksum 21807 [004] 1410598.870889: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.871891:       cycles: 
+	            1ac6 cksum (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.872583: instructions: 
+	             9f7 main (/root/noploop)
+
+noploop 21797 [002] 1410598.875817: instructions: 
+	             697 main (/root/noploop)
+
+noploop 21796 [001] 1410598.879768: instructions: 
+	             7d3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.883000: instructions: 
+	             933 main (/root/noploop)
+
+noploop 21796 [001] 1410598.886951: instructions: 
+	             9cc main (/root/noploop)
+
+cksum 21807 [004] 1410598.888074: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.890185: instructions: 
+	             993 main (/root/noploop)
+
+noploop 21796 [001] 1410598.894096:       cycles: 
+	             6eb main (/root/noploop)
+
+noploop 21797 [002] 1410598.894108:       cycles: 
+	             6c3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.894553: instructions: 
+	             9e0 main (/root/noploop)
+
+swapper     0 [005] 1410598.895787:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21797 [002] 1410598.897371: instructions: 
+	             7c3 main (/root/noploop)
+
+cksum 21807 [004] 1410598.900532:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.902180: instructions: 
+	             9a4 main (/root/noploop)
+
+noploop 21797 [002] 1410598.904556: instructions: 
+	             95f main (/root/noploop)
+
+cksum 21807 [004] 1410598.905217: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.909806: instructions: 
+	             9c0 main (/root/noploop)
+
+noploop 21797 [002] 1410598.911741: instructions: 
+	             95f main (/root/noploop)
+
+noploop 21796 [001] 1410598.917432: instructions: 
+	             8e4 main (/root/noploop)
+
+noploop 21797 [002] 1410598.918925: instructions: 
+	             8cb main (/root/noploop)
+
+cksum 21807 [004] 1410598.922385: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.922738:       cycles: 
+	             a18 main (/root/noploop)
+
+noploop 21797 [002] 1410598.922749:       cycles: 
+	             7d3 main (/root/noploop)
+
+swapper     0 [005] 1410598.924427:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21796 [001] 1410598.925060: instructions: 
+	             9e3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.926110: instructions: 
+	             953 main (/root/noploop)
+
+cksum 21807 [004] 1410598.929175:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.932685: instructions: 
+	             9c4 main (/root/noploop)
+
+noploop 21797 [002] 1410598.933295: instructions: 
+	             6cf main (/root/noploop)
+
+cksum 21807 [004] 1410598.939563: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21796 [001] 1410598.940311: instructions: 
+	             8cb main (/root/noploop)
+
+noploop 21797 [002] 1410598.940480: instructions: 
+	             867 main (/root/noploop)
+
+noploop 21797 [002] 1410598.947665: instructions: 
+	             a03 main (/root/noploop)
+
+noploop 21796 [001] 1410598.947923: instructions: 
+	             893 main (/root/noploop)
+
+noploop 21796 [001] 1410598.951379:       cycles: 
+	             687 main (/root/noploop)
+
+noploop 21797 [002] 1410598.951390:       cycles: 
+	             78b main (/root/noploop)
+
+swapper     0 [005] 1410598.953066:       cycles: 
+	          af2bfe poll_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956752 cpuidle_enter_state (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          956957 cpuidle_enter (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8623 call_cpuidle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c88c9 do_idle (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2c8b13 cpu_startup_entry (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          252886 start_secondary (/lib/modules/4.13.0-rc1/build/vmlinux)
+	          2000cf verify_cpu (/lib/modules/4.13.0-rc1/build/vmlinux)
+
+noploop 21797 [002] 1410598.954849: instructions: 
+	             6e3 main (/root/noploop)
+
+noploop 21796 [001] 1410598.955534: instructions: 
+	             68b main (/root/noploop)
+
+cksum 21807 [004] 1410598.956752: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+cksum 21807 [004] 1410598.957817:       cycles: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.962034: instructions: 
+	             703 main (/root/noploop)
+
+noploop 21796 [001] 1410598.962952: instructions: 
+	             9b3 main (/root/noploop)
+
+noploop 21797 [002] 1410598.969219: instructions: 
+	             89f main (/root/noploop)
+
+noploop 21796 [001] 1410598.970137: instructions: 
+	             707 main (/root/noploop)
+
+cksum 21807 [004] 1410598.973926: instructions: 
+	            193b cksum (/usr/bin/cksum)
+	            1f52 main (/usr/bin/cksum)
+
+noploop 21797 [002] 1410598.976404: instructions: 
+	    552f0000552f [unknown] ([unknown])
+
+noploop 21796 [001] 1410598.977322: instructions: 
+	      774db3aa23 [unknown] ([unknown])
+

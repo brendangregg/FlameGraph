@@ -105,11 +105,12 @@ USAGE: $0 [options] infile > outfile\n
 	--jit		# annotate jit functions with a _[j]
 	--context	# adds source context to --inline
 	--addrs		# include raw addresses where symbols can't be found
-	--event-filter	# event name filter\n
+	--event-filter=EVENT	# event name filter\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
     for Linux >= 4.1:
 	perf script -F comm,pid,tid,cpu,time,event,ip,sym,dso,trace
+    If you save this output add --header on Linux >= 3.14 to include perf info.
 USAGE_END
 
 if ($annotate_all) {
