@@ -978,10 +978,11 @@ my $inc = <<INC;
 		// Step through frames saving only the biggest bottom-up frames
 		// thanks to the sort order. This relies on the tree property
 		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
 		for (var k in keys) {
 			var x = parseFloat(keys[k]);
 			var w = matches[keys[k]];
-			if (x >= lastx + lastw) {
+			if (x >= lastx + lastw - fudge) {
 				count += w;
 				lastx = x;
 				lastw = w;
