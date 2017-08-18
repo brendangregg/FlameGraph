@@ -182,9 +182,9 @@ GetOptions(
 $help && usage();
 
 # internals
-my $ypad1 = $fontsize * 4;      # pad top, include title
+my $ypad1 = $fontsize * 3;      # pad top, include title
 my $ypad2 = $fontsize * 2 + 10; # pad bottom, include labels
-my $ypad3 = $fontsize * 2 + 1;  # pad top, include subtitle (optional)
+my $ypad3 = $fontsize * 2;      # pad top, include subtitle (optional)
 my $xpad = 10;                  # pad lefm and right
 my $framepad = 1;		# vertical padding for frames
 my $depthmax = 0;
@@ -678,7 +678,7 @@ while (my ($id, $node) = each %Node) {
 }
 
 # draw canvas, and embed interactive JavaScript program
-my $imageheight = ($depthmax * $frameheight) + $ypad1 + $ypad2;
+my $imageheight = (($depthmax + 1) * $frameheight) + $ypad1 + $ypad2;
 $imageheight += $ypad3 if $subtitletext ne "";
 my $im = SVG->new();
 $im->header($imagewidth, $imageheight);
