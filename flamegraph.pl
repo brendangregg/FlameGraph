@@ -377,8 +377,10 @@ sub color {
 			$type = "green";
 		} elsif ($name =~ m:_\[i\]$:) {	# inline annotation
 			$type = "aqua";
-		} elsif ($name =~ m:^L?(java|org|com|io|sun)/:) {	# Java
+		} elsif ($name =~ m:^L?(java|org|com|io|sun|jdk)/:) {	# Java
 			$type = "green";
+		} elsif ($name =~ /:::/) {      # Java, typical perf-map-agent method separator
+			$type = "green";	              
 		} elsif ($name =~ /::/) {	# C++
 			$type = "yellow";
 		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
