@@ -9,7 +9,7 @@
 # WORKFLOW:
 #
 # This assumes you have Intel VTune installed and on path (using Command Line)
-# 
+#
 # 1. Profile C++ application tachyon_find_hotspots (example shipped with Intel VTune 2013):
 #
 #    amplxe-cl -collect hotspots -r result_vtune_tachyon -- ./tachyon_find_hotspots
@@ -39,6 +39,10 @@ exit;
 }
 
 my $inputCSVFile = $ARGV[0];
+my $funcOnly = '';
+my $depth = 0;
+my $selfTime = 0;
+my $dllName = '';
 
 open(my $fh, '<', $inputCSVFile) or die "Can't read file '$inputCSVFile' [$!]\n";
 
@@ -47,20 +51,43 @@ while (my $currLine = <$fh>){
 	# to discard first row which typically contains headers
 	next if $rowCounter == 1;
 	chomp $currLine;
-	#VTune - sometimes the call stack information is enclosed in double quotes (?).  To remove double quotes. 
+
+	### VTune 2013 & 2015
+	#VTune - sometimes the call stack information is enclosed in double quotes (?).  To remove double quotes.  Not necessary for XCode instruments (MAC)
 	$currLine =~ s/\"//g;
-	$currLine =~ /(\s*)(.*),(.*),[0-9]*\.?[0-9]+[%],([0-9]*\.?[0-9]+)/ or die "Error in regular expression on the current line\n";
-	
-	my $func = $3.'!'.$2; 
-	my $depth = length ($1);
-	my $selfTime = $4*1000; # selfTime in msec
+	$currLine =~ /(\s*)(.*),(.*),.*,([0-9]*\.?[0-9]+)/ or die "Error in regular expression on the current line\n";
+	$dllName = $3;
+	$func = $dllName.'!'.$2; # Eg : m_lxe.dll!MathWorks::lxe::IrEngineDecorator::Apply
+	$depth = length ($1);
+	$selfTime = $4*1000; # selfTime in msec
+	### VTune 2013 & 2015
+
+	### VTune 2016
+	# $currLine =~ /(\s*)(.*?),([0-9]*\.?[0-9]+?),(.*)/ or die "Error in regular expression on the current line $currLine\n";
+	#  if ($2 =~ /\"/)
+	#  {
+	# 	$currLine =~ /(\s*)\"(.*?)\",([0-9]*\.?[0-9]+?),(.*)/ or die "Error in regular expression on the current line $currLine\n";
+	#  	$funcOnly = $2;
+	#  	$depth = length ($1);
+	#  	$selfTime = $3*1000; # selfTime in msec
+	#  	$dllName = $4;
+	#  }
+	#  else
+	#  {
+	#  	$funcOnly = $2;
+	#  	$depth = length ($1);
+	#  	$selfTime = $3*1000; # selfTime in msec
+	#  	$dllName = $4;
+	#  }
+	#  my $func = $dllName.'!'.$funcOnly; # Eg : m_lxe.dll!MathWorks::lxe::IrEngineDecorator::Apply
+	 ### VTune 2016
+
 	my $tempString = '';
 	$stack [$depth] = $func;
 	foreach my $i (0 .. $depth - 1) {
 		$tempString = $tempString.$stack[$i].";";
 	}
 	$tempString = $tempString.$func." $selfTime\n";
-	
 	if ($selfTime != 0){
 		print "$tempString";
 	}
