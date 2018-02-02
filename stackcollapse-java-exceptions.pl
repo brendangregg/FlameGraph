@@ -59,6 +59,7 @@ foreach (<>) {
 		}
 		unshift @stack, $func;
 	} elsif (@stack ) {
+		next if m/.*waiting on .*/;
 		remember_stack(join(";", @stack), 1) if @stack;
 		undef @stack;
   }
