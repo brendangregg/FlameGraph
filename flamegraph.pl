@@ -1103,7 +1103,7 @@ while (my ($id, $node) = each %Node) {
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
-	if ($chars >= 3) { # room for one char plus two dots
+	if ($chars >= 3) { # room for one char plus two dots
 		$func =~ s/_\[[kwij]\]$//;	# strip any annotation
 		$text = substr $func, 0, $chars;
 		substr($text, -2, 2) = ".." if $chars < length $func;
