@@ -72,25 +72,54 @@ for pid in $(pgrep -x java); do
 	mapfile=/tmp/perf-$pid.map
 	[[ -e $mapfile ]] && rm $mapfile
 
-	cmd="cd $AGENT_OUT; $JAVA_HOME/bin/java -Xms32m -Xmx128m -cp $AGENT_JAR:$JAVA_HOME/lib/tools.jar net.virtualvoid.perf.AttachOnce $pid $opts"
-	(( debug )) && echo $cmd
-
 	user=$(ps ho user -p $pid)
-	if [[ "$user" != root ]]; then
-		if [[ "$user" == [0-9]* ]]; then
-			# UID only, run sudo with #UID:
-			cmd="sudo -u '#'$user sh -c '$cmd'"
+
+	container=$(cat /proc/$pid/cgroup | grep :/docker/ | awk -F/ '{ print $NF }' | head -n1)
+	if [[ $container != "" ]]; then
+		echo "Prorcess $pid is in container $container"
+
+		tmpfile=$(mktemp -u)
+
+		container_pid=$(cat /proc/$pid/status | grep ^NSpid | awk '{ print $NF }')
+		nsenter="sudo nsenter --target $pid --setuid $user --setgid $(sudo nsenter --target $pid --mount --pid id -g $user) --mount --pid"
+
+		java_home=$(sudo cat /proc/$pid/environ | xargs --null --max-args=1 | grep ^JAVA_HOME | awk -F= '{ print $2 }')
+		if [[ $java_home == "" ]]; then
+			java_home=$($nsenter jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')
+		fi
+
+		cat $AGENT_JAR | $nsenter dd status=none of=$tmpfile
+		$nsenter mv $tmpfile /tmp/attach-main.jar
+
+		cat $AGENT_HOME/libperfmap.so | $nsenter dd status=none of=$tmpfile
+		$nsenter mv $tmpfile /tmp/libperfmap.so
+
+		$nsenter sh -c "cd /tmp; java -Xms32m -Xmx128m -cp attach-main.jar:$java_home/../lib/tools.jar net.virtualvoid.perf.AttachOnce $container_pid $opts"
+
+		$nsenter cat /tmp/perf-$container_pid.map > $tmpfile
+		mv $tmpfile $mapfile
+		$nsenter rm /tmp/perf-$container_pid.map
+	else
+		cmd="cd $AGENT_OUT; $JAVA_HOME/bin/java -Xms32m -Xmx128m -cp $AGENT_JAR:$JAVA_HOME/lib/tools.jar net.virtualvoid.perf.AttachOnce $pid $opts"
+		(( debug )) && echo $cmd
+
+		if [[ "$user" != root ]]; then
+			if [[ "$user" == [0-9]* ]]; then
+				# UID only, run sudo with #UID:
+				cmd="sudo -u '#'$user sh -c '$cmd'"
+			else
+				cmd="sudo -u $user sh -c '$cmd'"
+			fi
+		fi
+
+		echo "Mapping PID $pid (user $user):"
+		if (( debug )); then
+			time eval $cmd
 		else
-			cmd="sudo -u $user sh -c '$cmd'"
+			eval $cmd
 		fi
 	fi
 
-	echo "Mapping PID $pid (user $user):"
-	if (( debug )); then
-		time eval $cmd
-	else
-		eval $cmd
-	fi
 	if [[ -e "$mapfile" ]]; then
 		chown root $mapfile
 		chmod 666 $mapfile
