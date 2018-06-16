@@ -379,10 +379,10 @@ sub color {
 			$type = "aqua";
 		} elsif ($name =~ m:^L?(java|org|com|io|sun)/:) {	# Java
 			$type = "green";
-		} elsif ($name =~ /::/) {	# C++
-			$type = "yellow";
 		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
 			$type = "orange";
+		} elsif ($name =~ /::/) {	# C++
+			$type = "yellow";
 		} else {			# system
 			$type = "red";
 		}
