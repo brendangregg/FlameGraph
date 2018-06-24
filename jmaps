@@ -88,17 +88,16 @@ for pid in $(pgrep -x java); do
 			java_home=$($nsenter jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')
 		fi
 
-		cat $AGENT_JAR | $nsenter dd status=none of=$tmpfile
-		$nsenter mv $tmpfile /tmp/attach-main.jar
+		cp $AGENT_JAR /proc/$pid/root/$tmpfile
+		mv /proc/$pid/root/$tmpfile /proc/$pid/root/tmp/attach-main.jar
 
-		cat $AGENT_HOME/libperfmap.so | $nsenter dd status=none of=$tmpfile
-		$nsenter mv $tmpfile /tmp/libperfmap.so
+		cp $AGENT_HOME/libperfmap.so /proc/$pid/root/$tmpfile
+		mv /proc/$pid/root/$tmpfile /proc/$pid/root/tmp/libperfmap.so
 
 		$nsenter sh -c "cd /tmp; java -Xms32m -Xmx128m -cp attach-main.jar:$java_home/../lib/tools.jar net.virtualvoid.perf.AttachOnce $container_pid $opts"
 
-		$nsenter cat /tmp/perf-$container_pid.map > $tmpfile
+		mv /proc/$pid/root/tmp/perf-$container_pid.map $tmpfile
 		mv $tmpfile $mapfile
-		$nsenter rm /tmp/perf-$container_pid.map
 	else
 		cmd="cd $AGENT_OUT; $JAVA_HOME/bin/java -Xms32m -Xmx128m -cp $AGENT_JAR:$JAVA_HOME/lib/tools.jar net.virtualvoid.perf.AttachOnce $pid $opts"
 		(( debug )) && echo $cmd
