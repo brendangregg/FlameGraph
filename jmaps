@@ -81,7 +81,7 @@ for pid in $(pgrep -x java); do
 		tmpfile=$(mktemp -u)
 
 		container_pid=$(awk -F: '$1 == "NSpid" { print $2 }' /proc/$pid/status | awk '{ print $2 }')
-		nsenter="sudo nsenter --target $pid --setuid $user --setgid $(sudo nsenter --target $pid --mount --pid id -g $user) --mount --pid"
+		nsenter="nsenter --target $pid --setuid $user --setgid $(nsenter --target $pid --mount --pid id -g $user) --mount --pid"
 
 		java_home=$(awk -F= 'BEGIN { RS = "\0" } $1 == "JAVA_HOME" { print $2 }' /proc/$pid/environ)
 		if [[ $java_home == "" ]]; then
