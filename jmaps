@@ -74,16 +74,16 @@ for pid in $(pgrep -x java); do
 
 	user=$(ps ho user -p $pid)
 
-	container=$(cat /proc/$pid/cgroup | grep :/docker/ | awk -F/ '{ print $NF }' | head -n1)
-	if [[ $container != "" ]]; then
+	container=$(awk -F/ 'NR == 1 { print $NF }' /proc/$pid/cgroup)
+	if [[ "$container" != "" ]]; then
 		echo "Prorcess $pid is in container $container"
 
 		tmpfile=$(mktemp -u)
 
-		container_pid=$(cat /proc/$pid/status | grep ^NSpid | awk '{ print $NF }')
+		container_pid=$(awk -F: '$1 == "NSpid" { print $2 }' /proc/$pid/status | awk '{ print $2 }')
 		nsenter="sudo nsenter --target $pid --setuid $user --setgid $(sudo nsenter --target $pid --mount --pid id -g $user) --mount --pid"
 
-		java_home=$(sudo cat /proc/$pid/environ | xargs --null --max-args=1 | grep ^JAVA_HOME | awk -F= '{ print $2 }')
+		java_home=$(awk -F= 'BEGIN { RS = "\0" } $1 == "JAVA_HOME" { print $2 }' /proc/$pid/environ)
 		if [[ $java_home == "" ]]; then
 			java_home=$($nsenter jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')
 		fi
