@@ -37,9 +37,18 @@
 BEGIN {FS="|"}
 
 # Skip header and border
-NR < 9 { next }
-match($0, /^\-+$/) { next }
+match($0, /^\-+$/) { separator_count++; next }
+!in_data {
+    if(separator_count == 3) {
+        in_data = 1
+    }
+    if (separator_count == 4) {
+       in_data = 0
+    }
+    next
+}
 
+# Maintain stacks of seen functions and their depth
 {
 	spaces = count_spaces($0);
 	while (depth_stack_size() > 0 && spaces <= depth_stack_top()) {
@@ -50,8 +59,10 @@ match($0, /^\-+$/) { next }
 	depth_stack_push(spaces);
 }
 
+# Print entries with self time > 0
 $5 != "" && parse_time($5) != "0" {print value_stack_combine() " " parse_time($5)}
 
+# Util functions
 function count_spaces(s) {
 	match(s, /^ */);
 	return RLENGTH;
