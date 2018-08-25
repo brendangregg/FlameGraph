@@ -125,6 +125,7 @@ my $titleinverted = "Icicle Graph";	#   "    "
 my $searchcolor = "rgb(230,0,230)";	# color for search highlighting
 my $notestext = "";		# embedded notes in SVG
 my $subtitletext = "";		# second level title (optional)
+my $inclusive_diff = 0; # inclusive differential 
 my $help = 0;
 
 sub usage {
@@ -148,6 +149,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--inverted       # icicle graph
 	--negate         # switch differential hues (blue<->red)
 	--notes TEXT     # add notes comment in SVG (for debugging)
+	--inclusive      # inclusive differential flumegraph
 	--help           # this message
 
 	eg,
@@ -177,6 +179,7 @@ GetOptions(
 	'inverted'    => \$inverted,
 	'negate'      => \$negate,
 	'notes=s'     => \$notestext,
+	'inclusive'   => \$inclusive_diff,
 	'help'        => \$help,
 ) or usage();
 $help && usage();
@@ -524,6 +527,7 @@ sub read_palette {
 
 my %Node;	# Hash of merged frame data
 my %Tmp;
+my $maxdelta = 1;
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
@@ -546,7 +550,14 @@ sub flow {
 		# func-depth isn't unique, it may be repeated later.
 		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
 		if (defined $Tmp{$k}->{delta}) {
-			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+			my $delta = delete $Tmp{$k}->{delta};
+            $Node{"$k;$v"}->{delta} = $delta;
+            if ($inclusive_diff) {
+            	my $j = $i - 1;
+            	my $b_k = "$last->[$j];$j";
+            	$Tmp{$b_k}->{delta} += $delta;
+            }
+            $maxdelta = abs($delta) if abs($delta) > $maxdelta;
 		}
 		delete $Tmp{$k};
 	}
@@ -569,7 +580,6 @@ my $time = 0;
 my $delta = undef;
 my $ignored = 0;
 my $line;
-my $maxdelta = 1;
 
 # reverse if needed
 foreach (<>) {
