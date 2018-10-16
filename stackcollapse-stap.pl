@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# stackcolllapse-stap.pl	collapse multiline SystemTap stacks
+# stackcollapse-stap.pl	collapse multiline SystemTap stacks
 #				into single lines.
 #
 # Parses a multiline stack followed by a number on a separate line, and
