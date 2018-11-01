@@ -94,6 +94,8 @@ use strict;
 
 use Getopt::Long;
 
+use List::Util qw[min max];
+
 use open qw(:std :utf8);
 
 # tunables
@@ -782,10 +784,16 @@ my $inc = <<INC;
 		// Fit in full text width
 		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
 			return;
+		
+		var ws = parseFloat(w - 2*$fontsize*$fontwidth);
+		if (ws < 2*$fontsize*$fontwidth) {
+			t.textContent = "";
+			return;
+		}
 
-		for (var x=txt.length-2; x>0; x--) {
-			if (t.getSubStringLength(0, x+2) <= w) {
-				t.textContent = txt.substring(0,x) + "..";
+		for (var x=2; x<txt.length-1; x++) {
+			if (t.getSubStringLength(x, txt.length-x) <= ws) {
+				t.textContent = ".." + txt.substring(x, txt.length);
 				return;
 			}
 		}
@@ -1120,8 +1128,9 @@ while (my ($id, $node) = each %Node) {
 	my $text = "";
 	if ($chars >= 3) { # room for one char plus two dots
 		$func =~ s/_\[[kwij]\]$//;	# strip any annotation
-		$text = substr $func, 0, $chars;
-		substr($text, -2, 2) = ".." if $chars < length $func;
+		# truncate function name start, helps with long class/package names
+		$text = substr $func, max ((length $func) - $chars, 0), length $func;
+		substr($text, 0, 2) = ".." if $chars < length $func;
 		$text =~ s/&/&amp;/g;
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
