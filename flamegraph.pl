@@ -719,7 +719,8 @@ my $inc = <<INC;
 </style>
 <script type="text/ecmascript">
 <![CDATA[
-	var details, searchbtn, matchedtxt, svg;
+	"use strict";
+	var details, searchbtn, matchedtxt, svg, searching;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
@@ -762,7 +763,7 @@ my $inc = <<INC;
 	// functions
 	function find_child(parent, name, attr) {
 		var children = parent.childNodes;
-		for (var i=0; i<children.length;i++) {
+		for (var i = 0; i < children.length; i++) {
 			if (children[i].tagName == name)
 				return (attr != undefined) ? children[i].attributes[attr].value : children[i];
 		}
@@ -813,7 +814,7 @@ my $inc = <<INC;
 		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
 			return;
 
-		for (var x=txt.length-2; x>0; x--) {
+		for (var x = txt.length - 2; x > 0; x--) {
 			if (t.getSubStringLength(0, x+2) <= w) {
 				t.textContent = txt.substring(0,x) + "..";
 				return;
@@ -829,7 +830,7 @@ my $inc = <<INC;
 			orig_load(e, "width");
 		}
 		if (e.childNodes == undefined) return;
-		for(var i=0, c=e.childNodes; i<c.length; i++) {
+		for(var i = 0, c = e.childNodes; i < c.length; i++) {
 			zoom_reset(c[i]);
 		}
 	}
@@ -847,7 +848,7 @@ my $inc = <<INC;
 		}
 
 		if (e.childNodes == undefined) return;
-		for(var i=0, c=e.childNodes; i<c.length; i++) {
+		for(var i = 0, c = e.childNodes; i < c.length; i++) {
 			zoom_child(c[i], x-$xpad, ratio);
 		}
 	}
@@ -863,7 +864,7 @@ my $inc = <<INC;
 			}
 		}
 		if (e.childNodes == undefined) return;
-		for(var i=0, c=e.childNodes; i<c.length; i++) {
+		for(var i = 0, c = e.childNodes; i < c.length; i++) {
 			zoom_parent(c[i]);
 		}
 	}
@@ -882,16 +883,17 @@ my $inc = <<INC;
 		unzoombtn.style.opacity = "1";
 
 		var el = document.getElementsByTagName("g");
-		for(var i=0;i<el.length;i++){
+		for(var i = 0; i < el.length; i++) {
 			var e = el[i];
 			var a = find_child(e, "rect").attributes;
 			var ex = parseFloat(a["x"].value);
 			var ew = parseFloat(a["width"].value);
+			var upstack;
 			// Is it an ancestor
 			if ($inverted == 0) {
-				var upstack = parseFloat(a["y"].value) > ymin;
+				upstack = parseFloat(a["y"].value) > ymin;
 			} else {
-				var upstack = parseFloat(a["y"].value) < ymin;
+				upstack = parseFloat(a["y"].value) < ymin;
 			}
 			if (upstack) {
 				// Direct ancestor
@@ -922,7 +924,7 @@ my $inc = <<INC;
 		unzoombtn.style.opacity = "";
 
 		var el = document.getElementsByTagName("g");
-		for(i=0;i<el.length;i++) {
+		for(var i = 0; i < el.length; i++) {
 			el[i].style.display = "";
 			el[i].style.opacity = "";
 			zoom_reset(el[i]);
@@ -933,7 +935,7 @@ my $inc = <<INC;
 	// search
 	function reset_search() {
 		var el = document.getElementsByTagName("rect");
-		for (var i=0; i < el.length; i++) {
+		for (var i = 0; i < el.length; i++) {
 			orig_load(el[i], "fill")
 		}
 	}
@@ -1032,11 +1034,8 @@ my $inc = <<INC;
 		}
 		// display matched percent
 		matchedtxt.style.opacity = "1";
-		pct = 100 * count / maxwidth;
-		if (pct == 100)
-			pct = "100"
-		else
-			pct = pct.toFixed(1)
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
 		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
 	}
 ]]>
