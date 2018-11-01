@@ -718,14 +718,26 @@ my $inc = <<INC;
 		searching = 0;
 	}
 
+	window.addEventListener("click", function(e) {
+		var target = find_parent(e.target, "g", "func_g");
+		if (target) {
+			if (target.style['opacity'] == 0.5) unzoom();
+			zoom(target);
+		}
+	}, false)
+
 	// mouse-over for info
-	function s(node) {		// show
-		info = g_to_text(node);
-		details.nodeValue = "$nametype " + info;
-	}
-	function c() {			// clear
-		details.nodeValue = ' ';
-	}
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_parent(e.target, "g", "func_g");
+		if (target) details.nodeValue = "$nametype " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_parent(e.target, "g", "func_g");
+		if (target) details.nodeValue = ' ';
+	}, false)
 
 	// ctrl-F for search
 	window.addEventListener("keydown",function (e) {
@@ -733,7 +745,7 @@ my $inc = <<INC;
 			e.preventDefault();
 			search_prompt();
 		}
-	})
+	}, false)
 
 	// functions
 	function find_child(parent, name, attr) {
@@ -743,6 +755,12 @@ my $inc = <<INC;
 				return (attr != undefined) ? children[i].attributes[attr].value : children[i];
 		}
 		return;
+	}
+	function find_parent(node, name, className) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.tagName == name && (className == undefined || (parent.classList && parent.classList.contains(className)))) return parent;
+		find_parent(parent, name);
 	}
 	function orig_save(e, attr, val) {
 		if (e.attributes["_orig_"+attr] != undefined) return;
@@ -868,7 +886,6 @@ my $inc = <<INC;
 				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
 					e.style["opacity"] = "0.5";
 					zoom_parent(e);
-					e.onclick = function(e){unzoom(); zoom(this);};
 					update_text(e);
 				}
 				// not in current path
@@ -883,7 +900,6 @@ my $inc = <<INC;
 				}
 				else {
 					zoom_child(e, xmin, ratio);
-					e.onclick = function(e){zoom(this);};
 					update_text(e);
 				}
 			}
@@ -1096,9 +1112,6 @@ while (my ($id, $node) = each %Node) {
 
 	my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
 	$nameattr->{class}       ||= "func_g";
-	$nameattr->{onmouseover} ||= "s(this)";
-	$nameattr->{onmouseout}  ||= "c()";
-	$nameattr->{onclick}     ||= "zoom(this)";
 	$nameattr->{title}       ||= $info;
 	$im->group_start($nameattr);
 
