@@ -306,7 +306,7 @@ SVG
 	}
 
 	sub stringTTF {
-		my ($self, $color, $font, $size, $angle, $x, $y, $str, $loc, $extra) = @_;
+		my ($self, $color, $font, $size, $x, $y, $str, $loc, $extra) = @_;
 		$x = sprintf "%0.2f", $x;
 		$loc =  defined $loc ? "text-anchor=\"$loc\"" : "";
 		$extra = defined $extra ? $extra : "";
@@ -664,7 +664,7 @@ unless ($time) {
 	my $imageheight = $fontsize * 5;
 	$im->header($imagewidth, $imageheight);
 	$im->stringTTF($im->colorAllocate(0, 0, 0), $fonttype, $fontsize + 2,
-	    0.0, int($imagewidth / 2), $fontsize * 2,
+	    int($imagewidth / 2), $fontsize * 2,
 	    "ERROR: No valid input provided to flamegraph.pl.", "middle");
 	print $im->svg;
 	exit 2;
@@ -1050,16 +1050,16 @@ my ($white, $black, $vvdgrey, $vdgrey, $dgrey) = (
 	$im->colorAllocate(160, 160, 160),
 	$im->colorAllocate(200, 200, 200),
     );
-$im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
+$im->stringTTF($black, $fonttype, $fontsize + 5, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
 if ($subtitletext ne "") {
-	$im->stringTTF($vdgrey, $fonttype, $fontsize, 0.0, int($imagewidth / 2), $fontsize * 4, $subtitletext, "middle");
+	$im->stringTTF($vdgrey, $fonttype, $fontsize, int($imagewidth / 2), $fontsize * 4, $subtitletext, "middle");
 }
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", undef, 'id="details"');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2,
+$im->stringTTF($black, $fonttype, $fontsize, $xpad, $imageheight - ($ypad2 / 2), " ", undef, 'id="details"');
+$im->stringTTF($black, $fonttype, $fontsize, $xpad, $fontsize * 2,
     "Reset Zoom", undef, 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100,
+$im->stringTTF($black, $fonttype, $fontsize, $imagewidth - $xpad - 100,
     $fontsize * 2, "Search", undef, 'id="search" onmouseover="searchover()" onmouseout="searchout()" onclick="search_prompt()" style="opacity:0.1;cursor:pointer"');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ", undef, 'id="matched"');
+$im->stringTTF($black, $fonttype, $fontsize, $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ", undef, 'id="matched"');
 
 if ($palette) {
 	read_palette();
@@ -1139,7 +1139,7 @@ while (my ($id, $node) = each %Node) {
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
 	}
-	$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text);
+	$im->stringTTF($black, $fonttype, $fontsize, $x1 + 3, 3 + ($y1 + $y2) / 2, $text);
 
 	$im->group_end($nameattr);
 }
