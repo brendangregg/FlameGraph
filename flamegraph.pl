@@ -306,11 +306,10 @@ SVG
 	}
 
 	sub stringTTF {
-		my ($self, $color, $font, $size, $x, $y, $str, $loc, $extra) = @_;
+		my ($self, $id, $x, $y, $str) = @_;
 		$x = sprintf "%0.2f", $x;
-		$loc =  defined $loc ? "text-anchor=\"$loc\"" : "";
-		$extra = defined $extra ? $extra : "";
-		$self->{svg} .= qq/<text $loc x="$x" y="$y" font-size="$size" font-family="$font" fill="$color" $extra >$str<\/text>\n/;
+		$id =  defined $id ? qq/id="$id"/ : "";
+		$self->{svg} .= qq/<text $id x="$x" y="$y">$str<\/text>\n/;
 	}
 
 	sub svg {
@@ -663,9 +662,8 @@ unless ($time) {
 	# emit an error message SVG, for tools automating flamegraph use
 	my $imageheight = $fontsize * 5;
 	$im->header($imagewidth, $imageheight);
-	$im->stringTTF($im->colorAllocate(0, 0, 0), $fonttype, $fontsize + 2,
-	    int($imagewidth / 2), $fontsize * 2,
-	    "ERROR: No valid input provided to flamegraph.pl.", "middle");
+	$im->stringTTF(undef, int($imagewidth / 2), $fontsize * 2,
+	    "ERROR: No valid input provided to flamegraph.pl.");
 	print $im->svg;
 	exit 2;
 }
@@ -695,16 +693,28 @@ while (my ($id, $node) = each %Node) {
 # draw canvas, and embed interactive JavaScript program
 my $imageheight = (($depthmax + 1) * $frameheight) + $ypad1 + $ypad2;
 $imageheight += $ypad3 if $subtitletext ne "";
+my $titlesize = $fontsize + 5;
 my $im = SVG->new();
+my ($black, $vdgrey, $dgrey) = (
+	$im->colorAllocate(0, 0, 0),
+	$im->colorAllocate(160, 160, 160),
+	$im->colorAllocate(200, 200, 200),
+    );
 $im->header($imagewidth, $imageheight);
 my $inc = <<INC;
-<defs >
+<defs>
 	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
 		<stop stop-color="$bgcolor1" offset="5%" />
 		<stop stop-color="$bgcolor2" offset="95%" />
 	</linearGradient>
 </defs>
 <style type="text/css">
+	text { font-family:$fonttype; font-size:${fontsize}px; fill:$black; }
+	#search { opacity:0.1; cursor:pointer; }
+	#search:hover { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:$vdgrey; }
+	#title { text-anchor:middle; font-size:${titlesize}px}
+	#unzoom { opacity:0; cursor:pointer; }
 	.func_g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
 </style>
 <script type="text/ecmascript">
@@ -721,9 +731,11 @@ my $inc = <<INC;
 	window.addEventListener("click", function(e) {
 		var target = find_parent(e.target, "g", "func_g");
 		if (target) {
-			if (target.style['opacity'] == 0.5) unzoom();
+			if (target.style.opacity == 0.5) unzoom();
 			zoom(target);
 		}
+		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "search") search_prompt();
 	}, false)
 
 	// mouse-over for info
@@ -786,9 +798,9 @@ my $inc = <<INC;
 	function update_text(e) {
 		var r = find_child(e, "rect");
 		var t = find_child(e, "text");
-		var w = parseFloat(r.attributes["width"].value) -3;
+		var w = parseFloat(r.attributes.width.value) -3;
 		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)\$/,"");
-		t.attributes["x"].value = parseFloat(r.attributes["x"].value) +3;
+		t.attributes.x.value = parseFloat(r.attributes.x.value) +3;
 
 		// Smaller than this size won't fit anything
 		if (w < 2*$fontsize*$fontwidth) {
@@ -823,14 +835,14 @@ my $inc = <<INC;
 	}
 	function zoom_child(e, x, ratio) {
 		if (e.attributes != undefined) {
-			if (e.attributes["x"] != undefined) {
+			if (e.attributes.x != undefined) {
 				orig_save(e, "x");
-				e.attributes["x"].value = (parseFloat(e.attributes["x"].value) - x - $xpad) * ratio + $xpad;
-				if(e.tagName == "text") e.attributes["x"].value = find_child(e.parentNode, "rect", "x") + 3;
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - $xpad) * ratio + $xpad;
+				if(e.tagName == "text") e.attributes.x.value = find_child(e.parentNode, "rect", "x") + 3;
 			}
-			if (e.attributes["width"] != undefined) {
+			if (e.attributes.width != undefined) {
 				orig_save(e, "width");
-				e.attributes["width"].value = parseFloat(e.attributes["width"].value) * ratio;
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
 			}
 		}
 
@@ -841,13 +853,13 @@ my $inc = <<INC;
 	}
 	function zoom_parent(e) {
 		if (e.attributes) {
-			if (e.attributes["x"] != undefined) {
+			if (e.attributes.x != undefined) {
 				orig_save(e, "x");
-				e.attributes["x"].value = $xpad;
+				e.attributes.x.value = $xpad;
 			}
-			if (e.attributes["width"] != undefined) {
+			if (e.attributes.width != undefined) {
 				orig_save(e, "width");
-				e.attributes["width"].value = parseInt(svg.width.baseVal.value) - ($xpad*2);
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - ($xpad*2);
 			}
 		}
 		if (e.childNodes == undefined) return;
@@ -867,7 +879,7 @@ my $inc = <<INC;
 		var fudge = 0.0001;
 
 		var unzoombtn = document.getElementById("unzoom");
-		unzoombtn.style["opacity"] = "1.0";
+		unzoombtn.style.opacity = "1";
 
 		var el = document.getElementsByTagName("g");
 		for(var i=0;i<el.length;i++){
@@ -884,19 +896,19 @@ my $inc = <<INC;
 			if (upstack) {
 				// Direct ancestor
 				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
-					e.style["opacity"] = "0.5";
+					e.style.opacity = "0.5";
 					zoom_parent(e);
 					update_text(e);
 				}
 				// not in current path
 				else
-					e.style["display"] = "none";
+					e.style.display = "none";
 			}
 			// Children maybe
 			else {
 				// no common path
 				if (ex < xmin || ex + fudge >= xmax) {
-					e.style["display"] = "none";
+					e.style.display = "none";
 				}
 				else {
 					zoom_child(e, xmin, ratio);
@@ -907,12 +919,12 @@ my $inc = <<INC;
 	}
 	function unzoom() {
 		var unzoombtn = document.getElementById("unzoom");
-		unzoombtn.style["opacity"] = "0.0";
+		unzoombtn.style.opacity = "";
 
 		var el = document.getElementsByTagName("g");
 		for(i=0;i<el.length;i++) {
-			el[i].style["display"] = "block";
-			el[i].style["opacity"] = "1";
+			el[i].style.display = "";
+			el[i].style.opacity = "";
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
@@ -935,9 +947,9 @@ my $inc = <<INC;
 		} else {
 			reset_search();
 			searching = 0;
-			searchbtn.style["opacity"] = "0.1";
+			searchbtn.style.opacity = "";
 			searchbtn.firstChild.nodeValue = "Search"
-			matchedtxt.style["opacity"] = "0.0";
+			matchedtxt.style.opacity = "0";
 			matchedtxt.firstChild.nodeValue = ""
 		}
 	}
@@ -948,7 +960,7 @@ my $inc = <<INC;
 		var maxwidth = 0;
 		for (var i = 0; i < el.length; i++) {
 			var e = el[i];
-			if (e.attributes["class"].value != "func_g")
+			if (e.attributes.class.value != "func_g")
 				continue;
 			var func = g_to_func(e);
 			var rect = find_child(e, "rect");
@@ -963,16 +975,15 @@ my $inc = <<INC;
 				continue;
 
 			// Save max width. Only works as we have a root frame
-			var w = parseFloat(rect.attributes["width"].value);
+			var w = parseFloat(rect.attributes.width.value);
 			if (w > maxwidth)
 				maxwidth = w;
 
 			if (func.match(re)) {
 				// highlight
-				var x = parseFloat(rect.attributes["x"].value);
+				var x = parseFloat(rect.attributes.x.value);
 				orig_save(rect, "fill");
-				rect.attributes["fill"].value =
-				    "$searchcolor";
+				rect.attributes.fill.value = "$searchcolor";
 
 				// remember matches
 				if (matches[x] == undefined) {
@@ -989,8 +1000,8 @@ my $inc = <<INC;
 		if (!searching)
 			return;
 
-		searchbtn.style["opacity"] = "1.0";
-		searchbtn.firstChild.nodeValue = "Reset Search"
+		searchbtn.style.opacity = "1";
+		searchbtn.firstChild.nodeValue = "Reset Search";
 
 		// calculate percent matched, excluding vertical overlap
 		var count = 0;
@@ -1020,7 +1031,7 @@ my $inc = <<INC;
 			}
 		}
 		// display matched percent
-		matchedtxt.style["opacity"] = "1.0";
+		matchedtxt.style.opacity = "1";
 		pct = 100 * count / maxwidth;
 		if (pct == 100)
 			pct = "100"
@@ -1028,38 +1039,17 @@ my $inc = <<INC;
 			pct = pct.toFixed(1)
 		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
 	}
-	function searchover(e) {
-		searchbtn.style["opacity"] = "1.0";
-	}
-	function searchout(e) {
-		if (searching) {
-			searchbtn.style["opacity"] = "1.0";
-		} else {
-			searchbtn.style["opacity"] = "0.1";
-		}
-	}
 ]]>
 </script>
 INC
 $im->include($inc);
 $im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)');
-my ($white, $black, $vvdgrey, $vdgrey, $dgrey) = (
-	$im->colorAllocate(255, 255, 255),
-	$im->colorAllocate(0, 0, 0),
-	$im->colorAllocate(40, 40, 40),
-	$im->colorAllocate(160, 160, 160),
-	$im->colorAllocate(200, 200, 200),
-    );
-$im->stringTTF($black, $fonttype, $fontsize + 5, int($imagewidth / 2), $fontsize * 2, $titletext, "middle");
-if ($subtitletext ne "") {
-	$im->stringTTF($vdgrey, $fonttype, $fontsize, int($imagewidth / 2), $fontsize * 4, $subtitletext, "middle");
-}
-$im->stringTTF($black, $fonttype, $fontsize, $xpad, $imageheight - ($ypad2 / 2), " ", undef, 'id="details"');
-$im->stringTTF($black, $fonttype, $fontsize, $xpad, $fontsize * 2,
-    "Reset Zoom", undef, 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
-$im->stringTTF($black, $fonttype, $fontsize, $imagewidth - $xpad - 100,
-    $fontsize * 2, "Search", undef, 'id="search" onmouseover="searchover()" onmouseout="searchout()" onclick="search_prompt()" style="opacity:0.1;cursor:pointer"');
-$im->stringTTF($black, $fonttype, $fontsize, $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ", undef, 'id="matched"');
+$im->stringTTF("title", int($imagewidth / 2), $fontsize * 2, $titletext);
+$im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) if $subtitletext ne "";
+$im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
+$im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom");
+$im->stringTTF("search", $imagewidth - $xpad - 100, $fontsize * 2, "Search");
+$im->stringTTF("matched", $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ");
 
 if ($palette) {
 	read_palette();
@@ -1139,7 +1129,7 @@ while (my ($id, $node) = each %Node) {
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
 	}
-	$im->stringTTF($black, $fonttype, $fontsize, $x1 + 3, 3 + ($y1 + $y2) / 2, $text);
+	$im->stringTTF(undef, $x1 + 3, 3 + ($y1 + $y2) / 2, $text);
 
 	$im->group_end($nameattr);
 }
