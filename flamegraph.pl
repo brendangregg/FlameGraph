@@ -308,9 +308,9 @@ SVG
 	sub stringTTF {
 		my ($self, $color, $font, $size, $angle, $x, $y, $str, $loc, $extra) = @_;
 		$x = sprintf "%0.2f", $x;
-		$loc = defined $loc ? $loc : "left";
+		$loc =  defined $loc ? "text-anchor=\"$loc\"" : "";
 		$extra = defined $extra ? $extra : "";
-		$self->{svg} .= qq/<text text-anchor="$loc" x="$x" y="$y" font-size="$size" font-family="$font" fill="$color" $extra >$str<\/text>\n/;
+		$self->{svg} .= qq/<text $loc x="$x" y="$y" font-size="$size" font-family="$font" fill="$color" $extra >$str<\/text>\n/;
 	}
 
 	sub svg {
@@ -1038,12 +1038,12 @@ $im->stringTTF($black, $fonttype, $fontsize + 5, 0.0, int($imagewidth / 2), $fon
 if ($subtitletext ne "") {
 	$im->stringTTF($vdgrey, $fonttype, $fontsize, 0.0, int($imagewidth / 2), $fontsize * 4, $subtitletext, "middle");
 }
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", "", 'id="details"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $imageheight - ($ypad2 / 2), " ", undef, 'id="details"');
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $xpad, $fontsize * 2,
-    "Reset Zoom", "", 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
+    "Reset Zoom", undef, 'id="unzoom" onclick="unzoom()" style="opacity:0.0;cursor:pointer"');
 $im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100,
-    $fontsize * 2, "Search", "", 'id="search" onmouseover="searchover()" onmouseout="searchout()" onclick="search_prompt()" style="opacity:0.1;cursor:pointer"');
-$im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ", "", 'id="matched"');
+    $fontsize * 2, "Search", undef, 'id="search" onmouseover="searchover()" onmouseout="searchout()" onclick="search_prompt()" style="opacity:0.1;cursor:pointer"');
+$im->stringTTF($black, $fonttype, $fontsize, 0.0, $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ", undef, 'id="matched"');
 
 if ($palette) {
 	read_palette();
@@ -1126,7 +1126,7 @@ while (my ($id, $node) = each %Node) {
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
 	}
-	$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, "");
+	$im->stringTTF($black, $fonttype, $fontsize, 0.0, $x1 + 3, 3 + ($y1 + $y2) / 2, $text);
 
 	$im->group_end($nameattr);
 }
