@@ -272,7 +272,7 @@ SVG
 
 		my @g_attr = map {
 			exists $attr->{$_} ? sprintf(qq/$_="%s"/, $attr->{$_}) : ()
-		} qw(class style onmouseover onmouseout onclick);
+		} qw(id class style onmouseover onmouseout onclick);
 		push @g_attr, $attr->{g_extra} if $attr->{g_extra};
 		$self->{svg} .= sprintf qq/<g %s>\n/, join(' ', @g_attr);
 
@@ -291,7 +291,7 @@ SVG
 
 	sub group_end {
 		my ($self, $attr) = @_;
-		$self->{svg} .= qq/<\/a>\n/ if $attr->{href};
+		$self->{svg} .= qq/<\/a>\n/ if $attr && $attr->{href};
 		$self->{svg} .= qq/<\/g>\n/;
 	}
 
@@ -715,7 +715,7 @@ my $inc = <<INC;
 	#subtitle { text-anchor:middle; font-color:$vdgrey; }
 	#title { text-anchor:middle; font-size:${titlesize}px}
 	#unzoom { opacity:0; cursor:pointer; }
-	.func_g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	#frames > g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
 </style>
 <script type="text/ecmascript">
 <![CDATA[
@@ -730,7 +730,7 @@ my $inc = <<INC;
 	}
 
 	window.addEventListener("click", function(e) {
-		var target = find_parent(e.target, "g", "func_g");
+		var target = find_parent(e.target, "g");
 		if (target) {
 			if (target.style.opacity == 0.5) unzoom();
 			zoom(target);
@@ -742,13 +742,13 @@ my $inc = <<INC;
 	// mouse-over for info
 	// show
 	window.addEventListener("mouseover", function(e) {
-		var target = find_parent(e.target, "g", "func_g");
+		var target = find_parent(e.target, "g");
 		if (target) details.nodeValue = "$nametype " + g_to_text(target);
 	}, false)
 
 	// clear
 	window.addEventListener("mouseout", function(e) {
-		var target = find_parent(e.target, "g", "func_g");
+		var target = find_parent(e.target, "g");
 		if (target) details.nodeValue = ' ';
 	}, false)
 
@@ -761,18 +761,15 @@ my $inc = <<INC;
 	}, false)
 
 	// functions
-	function find_child(parent, name, attr) {
-		var children = parent.childNodes;
-		for (var i = 0; i < children.length; i++) {
-			if (children[i].tagName == name)
-				return (attr != undefined) ? children[i].attributes[attr].value : children[i];
-		}
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
 		return;
 	}
-	function find_parent(node, name, className) {
+	function find_parent(node, name) {
 		var parent = node.parentElement;
 		if (!parent) return;
-		if (parent.tagName == name && (className == undefined || (parent.classList && parent.classList.contains(className)))) return parent;
+		if (parent.tagName == name) return parent;
 		find_parent(parent, name);
 	}
 	function orig_save(e, attr, val) {
@@ -839,7 +836,7 @@ my $inc = <<INC;
 			if (e.attributes.x != undefined) {
 				orig_save(e, "x");
 				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - $xpad) * ratio + $xpad;
-				if(e.tagName == "text") e.attributes.x.value = find_child(e.parentNode, "rect", "x") + 3;
+				if(e.tagName == "text") e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
 			}
 			if (e.attributes.width != undefined) {
 				orig_save(e, "width");
@@ -882,7 +879,7 @@ my $inc = <<INC;
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style.opacity = "1";
 
-		var el = document.getElementsByTagName("g");
+		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
 			var e = el[i];
 			var a = find_child(e, "rect").attributes;
@@ -923,7 +920,7 @@ my $inc = <<INC;
 		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style.opacity = "";
 
-		var el = document.getElementsByTagName("g");
+		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
 			el[i].style.display = "";
 			el[i].style.opacity = "";
@@ -934,7 +931,7 @@ my $inc = <<INC;
 
 	// search
 	function reset_search() {
-		var el = document.getElementsByTagName("rect");
+		var el = document.querySelectorAll("#frames rect");
 		for (var i = 0; i < el.length; i++) {
 			orig_load(el[i], "fill")
 		}
@@ -957,13 +954,11 @@ my $inc = <<INC;
 	}
 	function search(term) {
 		var re = new RegExp(term);
-		var el = document.getElementsByTagName("g");
+		var el = document.getElementById("frames").children;
 		var matches = new Object();
 		var maxwidth = 0;
 		for (var i = 0; i < el.length; i++) {
 			var e = el[i];
-			if (e.attributes.class.value != "func_g")
-				continue;
 			var func = g_to_func(e);
 			var rect = find_child(e, "rect");
 			if (rect == null) {
@@ -1055,6 +1050,7 @@ if ($palette) {
 }
 
 # draw frames
+$im->group_start({id => "frames"});
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
@@ -1100,7 +1096,6 @@ while (my ($id, $node) = each %Node) {
 	}
 
 	my $nameattr = { %{ $nameattr{$func}||{} } }; # shallow clone
-	$nameattr->{class}       ||= "func_g";
 	$nameattr->{title}       ||= $info;
 	$im->group_start($nameattr);
 
@@ -1132,6 +1127,7 @@ while (my ($id, $node) = each %Node) {
 
 	$im->group_end($nameattr);
 }
+$im->group_end();
 
 print $im->svg;
 
