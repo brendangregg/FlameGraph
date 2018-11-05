@@ -773,14 +773,14 @@ my $inc = <<INC;
 		find_parent(parent, name);
 	}
 	function orig_save(e, attr, val) {
-		if (e.attributes["_orig_"+attr] != undefined) return;
+		if (e.attributes["_orig_" + attr] != undefined) return;
 		if (e.attributes[attr] == undefined) return;
 		if (val == undefined) val = e.attributes[attr].value;
-		e.setAttribute("_orig_"+attr, val);
+		e.setAttribute("_orig_" + attr, val);
 	}
 	function orig_load(e, attr) {
 		if (e.attributes["_orig_"+attr] == undefined) return;
-		e.attributes[attr].value = e.attributes["_orig_"+attr].value;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
 		e.removeAttribute("_orig_"+attr);
 	}
 	function g_to_text(e) {
@@ -798,10 +798,10 @@ my $inc = <<INC;
 		var t = find_child(e, "text");
 		var w = parseFloat(r.attributes.width.value) -3;
 		var txt = find_child(e, "title").textContent.replace(/\\([^(]*\\)\$/,"");
-		t.attributes.x.value = parseFloat(r.attributes.x.value) +3;
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
 
 		// Smaller than this size won't fit anything
-		if (w < 2*$fontsize*$fontwidth) {
+		if (w < 2 * $fontsize * $fontwidth) {
 			t.textContent = "";
 			return;
 		}
@@ -812,8 +812,8 @@ my $inc = <<INC;
 			return;
 
 		for (var x = txt.length - 2; x > 0; x--) {
-			if (t.getSubStringLength(0, x+2) <= w) {
-				t.textContent = txt.substring(0,x) + "..";
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
 				return;
 			}
 		}
@@ -827,7 +827,7 @@ my $inc = <<INC;
 			orig_load(e, "width");
 		}
 		if (e.childNodes == undefined) return;
-		for(var i = 0, c = e.childNodes; i < c.length; i++) {
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
 			zoom_reset(c[i]);
 		}
 	}
@@ -836,7 +836,8 @@ my $inc = <<INC;
 			if (e.attributes.x != undefined) {
 				orig_save(e, "x");
 				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - $xpad) * ratio + $xpad;
-				if(e.tagName == "text") e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
 			}
 			if (e.attributes.width != undefined) {
 				orig_save(e, "width");
@@ -845,8 +846,8 @@ my $inc = <<INC;
 		}
 
 		if (e.childNodes == undefined) return;
-		for(var i = 0, c = e.childNodes; i < c.length; i++) {
-			zoom_child(c[i], x-$xpad, ratio);
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - $xpad, ratio);
 		}
 	}
 	function zoom_parent(e) {
@@ -857,21 +858,21 @@ my $inc = <<INC;
 			}
 			if (e.attributes.width != undefined) {
 				orig_save(e, "width");
-				e.attributes.width.value = parseInt(svg.width.baseVal.value) - ($xpad*2);
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - ($xpad * 2);
 			}
 		}
 		if (e.childNodes == undefined) return;
-		for(var i = 0, c = e.childNodes; i < c.length; i++) {
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
 			zoom_parent(c[i]);
 		}
 	}
 	function zoom(node) {
 		var attr = find_child(node, "rect").attributes;
-		var width = parseFloat(attr["width"].value);
-		var xmin = parseFloat(attr["x"].value);
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
 		var xmax = parseFloat(xmin + width);
-		var ymin = parseFloat(attr["y"].value);
-		var ratio = (svg.width.baseVal.value - 2*$xpad) / width;
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * $xpad) / width;
 
 		// XXX: Workaround for JavaScript float issues (fix me)
 		var fudge = 0.0001;
@@ -880,17 +881,17 @@ my $inc = <<INC;
 		unzoombtn.style.opacity = "1";
 
 		var el = document.getElementById("frames").children;
-		for(var i = 0; i < el.length; i++) {
+		for (var i = 0; i < el.length; i++) {
 			var e = el[i];
 			var a = find_child(e, "rect").attributes;
-			var ex = parseFloat(a["x"].value);
-			var ew = parseFloat(a["width"].value);
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
 			var upstack;
 			// Is it an ancestor
 			if ($inverted == 0) {
-				upstack = parseFloat(a["y"].value) > ymin;
+				upstack = parseFloat(a.y.value) > ymin;
 			} else {
-				upstack = parseFloat(a["y"].value) < ymin;
+				upstack = parseFloat(a.y.value) < ymin;
 			}
 			if (upstack) {
 				// Direct ancestor
