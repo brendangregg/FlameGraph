@@ -720,10 +720,11 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	"use strict";
-	var details, searchbtn, matchedtxt, svg, searching;
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
+		unzoombtn = document.getElementById("unzoom");
 		matchedtxt = document.getElementById("matched");
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
@@ -877,7 +878,6 @@ my $inc = <<INC;
 		// XXX: Workaround for JavaScript float issues (fix me)
 		var fudge = 0.0001;
 
-		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style.opacity = "1";
 
 		var el = document.getElementById("frames").children;
@@ -918,7 +918,6 @@ my $inc = <<INC;
 		}
 	}
 	function unzoom() {
-		var unzoombtn = document.getElementById("unzoom");
 		unzoombtn.style.opacity = "";
 
 		var el = document.getElementById("frames").children;
