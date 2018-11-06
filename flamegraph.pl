@@ -272,7 +272,7 @@ SVG
 
 		my @g_attr = map {
 			exists $attr->{$_} ? sprintf(qq/$_="%s"/, $attr->{$_}) : ()
-		} qw(id class style onmouseover onmouseout onclick);
+		} qw(id class);
 		push @g_attr, $attr->{g_extra} if $attr->{g_extra};
 		$self->{svg} .= sprintf qq/<g %s>\n/, join(' ', @g_attr);
 
@@ -306,10 +306,11 @@ SVG
 	}
 
 	sub stringTTF {
-		my ($self, $id, $x, $y, $str) = @_;
+		my ($self, $id, $x, $y, $str, $extra) = @_;
 		$x = sprintf "%0.2f", $x;
 		$id =  defined $id ? qq/id="$id"/ : "";
-		$self->{svg} .= qq/<text $id x="$x" y="$y">$str<\/text>\n/;
+		$extra ||= "";
+		$self->{svg} .= qq/<text $id x="$x" y="$y" $extra>$str<\/text>\n/;
 	}
 
 	sub svg {
@@ -711,11 +712,13 @@ my $inc = <<INC;
 <style type="text/css">
 	text { font-family:$fonttype; font-size:${fontsize}px; fill:$black; }
 	#search { opacity:0.1; cursor:pointer; }
-	#search:hover { opacity:1; }
+	#search:hover, #search.show { opacity:1; }
 	#subtitle { text-anchor:middle; font-color:$vdgrey; }
 	#title { text-anchor:middle; font-size:${titlesize}px}
-	#unzoom { opacity:0; cursor:pointer; }
+	#unzoom { cursor:pointer; }
 	#frames > g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
 </style>
 <script type="text/ecmascript">
 <![CDATA[
@@ -733,7 +736,7 @@ my $inc = <<INC;
 	window.addEventListener("click", function(e) {
 		var target = find_parent(e.target, "g");
 		if (target) {
-			if (target.style.opacity == 0.5) unzoom();
+			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
 		}
 		else if (e.target.id == "unzoom") unzoom();
@@ -878,7 +881,7 @@ my $inc = <<INC;
 		// XXX: Workaround for JavaScript float issues (fix me)
 		var fudge = 0.0001;
 
-		unzoombtn.style.opacity = "1";
+		unzoombtn.classList.remove("hide");
 
 		var el = document.getElementById("frames").children;
 		for (var i = 0; i < el.length; i++) {
@@ -896,19 +899,19 @@ my $inc = <<INC;
 			if (upstack) {
 				// Direct ancestor
 				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
-					e.style.opacity = "0.5";
+					e.classList.add("parent");
 					zoom_parent(e);
 					update_text(e);
 				}
 				// not in current path
 				else
-					e.style.display = "none";
+					e.classList.add("hide");
 			}
 			// Children maybe
 			else {
 				// no common path
 				if (ex < xmin || ex + fudge >= xmax) {
-					e.style.display = "none";
+					e.classList.add("hide");
 				}
 				else {
 					zoom_child(e, xmin, ratio);
@@ -918,12 +921,10 @@ my $inc = <<INC;
 		}
 	}
 	function unzoom() {
-		unzoombtn.style.opacity = "";
-
+		unzoombtn.classList.add("hide");
 		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
-			el[i].style.display = "";
-			el[i].style.opacity = "";
+			el[i].classList.remove("parent", "hide");
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
@@ -946,9 +947,9 @@ my $inc = <<INC;
 		} else {
 			reset_search();
 			searching = 0;
-			searchbtn.style.opacity = "";
+			searchbtn.classList.remove("show");
 			searchbtn.firstChild.nodeValue = "Search"
-			matchedtxt.style.opacity = "0";
+			matchedtxt.classList.add("hide");
 			matchedtxt.firstChild.nodeValue = ""
 		}
 	}
@@ -997,7 +998,7 @@ my $inc = <<INC;
 		if (!searching)
 			return;
 
-		searchbtn.style.opacity = "1";
+		searchbtn.classList.add("show");
 		searchbtn.firstChild.nodeValue = "Reset Search";
 
 		// calculate percent matched, excluding vertical overlap
@@ -1028,7 +1029,7 @@ my $inc = <<INC;
 			}
 		}
 		// display matched percent
-		matchedtxt.style.opacity = "1";
+		matchedtxt.classList.remove("hide");
 		var pct = 100 * count / maxwidth;
 		if (pct != 100) pct = pct.toFixed(1)
 		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
@@ -1041,7 +1042,7 @@ $im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)');
 $im->stringTTF("title", int($imagewidth / 2), $fontsize * 2, $titletext);
 $im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) if $subtitletext ne "";
 $im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
-$im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom");
+$im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom", 'class="hide"');
 $im->stringTTF("search", $imagewidth - $xpad - 100, $fontsize * 2, "Search");
 $im->stringTTF("matched", $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ");
 
