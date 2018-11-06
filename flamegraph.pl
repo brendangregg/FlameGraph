@@ -274,25 +274,24 @@ SVG
 			exists $attr->{$_} ? sprintf(qq/$_="%s"/, $attr->{$_}) : ()
 		} qw(id class);
 		push @g_attr, $attr->{g_extra} if $attr->{g_extra};
-		$self->{svg} .= sprintf qq/<g %s>\n/, join(' ', @g_attr);
-
-		$self->{svg} .= sprintf qq/<title>%s<\/title>/, $attr->{title}
-			if $attr->{title}; # should be first element within g container
-
 		if ($attr->{href}) {
 			my @a_attr;
 			push @a_attr, sprintf qq/xlink:href="%s"/, $attr->{href} if $attr->{href};
 			# default target=_top else links will open within SVG <object>
 			push @a_attr, sprintf qq/target="%s"/, $attr->{target} || "_top";
 			push @a_attr, $attr->{a_extra}                           if $attr->{a_extra};
-			$self->{svg} .= sprintf qq/<a %s>/, join(' ', @a_attr);
+			$self->{svg} .= sprintf qq/<a %s>\n/, join(' ', (@a_attr, @g_attr));
+		} else {
+			$self->{svg} .= sprintf qq/<g %s>\n/, join(' ', @g_attr);
 		}
+
+		$self->{svg} .= sprintf qq/<title>%s<\/title>/, $attr->{title}
+			if $attr->{title}; # should be first element within g container
 	}
 
 	sub group_end {
 		my ($self, $attr) = @_;
-		$self->{svg} .= qq/<\/a>\n/ if $attr && $attr->{href};
-		$self->{svg} .= qq/<\/g>\n/;
+		$self->{svg} .= $attr->{href} ? qq/<\/a>\n/ : qq/<\/g>\n/;
 	}
 
 	sub filledRectangle {
@@ -716,7 +715,7 @@ my $inc = <<INC;
 	#subtitle { text-anchor:middle; font-color:$vdgrey; }
 	#title { text-anchor:middle; font-size:${titlesize}px}
 	#unzoom { cursor:pointer; }
-	#frames > g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
 	.hide { display:none; }
 	.parent { opacity:0.5; }
 </style>
@@ -734,8 +733,12 @@ my $inc = <<INC;
 	}
 
 	window.addEventListener("click", function(e) {
-		var target = find_parent(e.target, "g");
+		var target = find_group(e.target);
 		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
 		}
@@ -746,13 +749,13 @@ my $inc = <<INC;
 	// mouse-over for info
 	// show
 	window.addEventListener("mouseover", function(e) {
-		var target = find_parent(e.target, "g");
+		var target = find_group(e.target);
 		if (target) details.nodeValue = "$nametype " + g_to_text(target);
 	}, false)
 
 	// clear
 	window.addEventListener("mouseout", function(e) {
-		var target = find_parent(e.target, "g");
+		var target = find_group(e.target);
 		if (target) details.nodeValue = ' ';
 	}, false)
 
@@ -770,11 +773,11 @@ my $inc = <<INC;
 		if (children.length) return children[0];
 		return;
 	}
-	function find_parent(node, name) {
+	function find_group(node) {
 		var parent = node.parentElement;
 		if (!parent) return;
-		if (parent.tagName == name) return parent;
-		find_parent(parent, name);
+		if (parent.id == "frames") return node;
+		return find_group(parent);
 	}
 	function orig_save(e, attr, val) {
 		if (e.attributes["_orig_" + attr] != undefined) return;
@@ -962,13 +965,6 @@ my $inc = <<INC;
 			var e = el[i];
 			var func = g_to_func(e);
 			var rect = find_child(e, "rect");
-			if (rect == null) {
-				// the rect might be wrapped in an anchor
-				// if nameattr href is being used
-				if (rect = find_child(e, "a")) {
-				    rect = find_child(r, "rect");
-				}
-			}
 			if (func == null || rect == null)
 				continue;
 
