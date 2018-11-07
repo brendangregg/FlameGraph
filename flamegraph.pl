@@ -927,7 +927,8 @@ my $inc = <<INC;
 		unzoombtn.classList.add("hide");
 		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
-			el[i].classList.remove("parent", "hide");
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
