@@ -129,21 +129,21 @@ $current_stack = [];
 $was_exit = false;
 $prev_start_time = 0;
 
-if ($do_time) {
-    // Weight counts by duration
-    // Xdebug trace time indices have 6 sigfigs of precision
-    // We have a perfect trace, but let's instead pretend that
-    // this was collected by sampling at 10^6 Hz
-    // then each millionth of a second this stack took to execute is 1 count
-    while ($l = fgets($handle)) {
-        if (isEOTrace($l)) {
-            break;
-        }
+// Weight counts by duration
+// Xdebug trace time indices have 6 sigfigs of precision
+// We have a perfect trace, but let's instead pretend that
+// this was collected by sampling at 10^6 Hz
+// then each millionth of a second this stack took to execute is 1 count
+while ($l = fgets($handle)) {
+    if (isEOTrace($l)) {
+        break;
+    }
 
-        $parts = explode("\t", $l);
-        list($level, $fn_no, $is_exit, $time) = $parts;
+    $parts = explode("\t", $l);
+    list($level, $fn_no, $is_exit, $time) = $parts;
 
-        if ($is_exit) {
+    if ($is_exit) {
+        if ($do_time) {
             if (empty($current_stack)) {
                 echo "[WARNING] Found function exit without corresponding entrance. Discarding line. Check your input.\n";
                 continue;
@@ -152,31 +152,6 @@ if ($do_time) {
             addCurrentStackToStacks($current_stack, $time - $prev_start_time, $stacks);
             array_pop($current_stack);
         } else {
-            $func_name = $parts[5];
-
-            if (in_array($parts[5], ["require", "require_once", "include", "include_once"])) {
-                $func_name .= "(" . $parts[7] . ")";
-            }
-
-            if (!empty($current_stack)) {
-                addCurrentStackToStacks($current_stack, $time - $prev_start_time, $stacks);
-            }
-
-            $current_stack[] = $func_name;
-        }
-        $prev_start_time = $time;
-    }
-} else {
-    // Counts only
-    while ($l = fgets($handle)) {
-        if (isEOTrace($l)) {
-            break;
-        }
-
-        $parts = explode("\t", $l);
-        list($level, $fn_no, $is_exit) = $parts;
-
-        if ($is_exit === "1") {
             if (!$was_exit) {
                 $collapsed = implode(";", $current_stack);
                 if (array_key_exists($collapsed, $stacks)) {
@@ -188,12 +163,25 @@ if ($do_time) {
 
             array_pop($current_stack);
             $was_exit = true;
+        }
+    } else {
+        $func_name = $parts[5];
+
+        if ($do_time) {
+            if (in_array($func_name, ["require", "require_once", "include", "include_once"])) {
+                $func_name .= "(" . $parts[7] . ")";
+            }
+
+            if (!empty($current_stack)) {
+                addCurrentStackToStacks($current_stack, $time - $prev_start_time, $stacks);
+            }
         } else {
-            $func_name = $parts[5];
-            $current_stack[] = $func_name;
             $was_exit = false;
         }
+
+        $current_stack[] = $func_name;
     }
+    $prev_start_time = $time;
 }
 
 foreach ($stacks as $stack => $count) {
