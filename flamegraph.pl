@@ -552,8 +552,8 @@ sub read_palette {
 	}
 }
 
-my %Node;	# Hash of merged frame data
-my %Tmp;
+my %Node;	# Hash of merged frame data. Keys are "func;depth;time".
+my %Tmp;	# accumulates frame data as we work down the stack. Keys are "func;depth".
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
@@ -570,6 +570,8 @@ sub flow {
 	}
 	$len_same = $i;
 
+	# for any stack frames that have finished since we were last here, record
+	# their completion times and deltas in %Node, and pop them from %Tmp.
 	for ($i = $len_a; $i >= $len_same; $i--) {
 		my $k = "$last->[$i];$i";
 		# a unique ID is constructed from "func;depth;etime";
@@ -581,6 +583,8 @@ sub flow {
 		delete $Tmp{$k};
 	}
 
+	# for any stack frames that are new since we were last here, record their
+	# start times in %Tmp.
 	for ($i = $len_same; $i <= $len_b; $i++) {
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
