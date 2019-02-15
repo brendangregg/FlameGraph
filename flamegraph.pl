@@ -574,9 +574,14 @@ sub flow {
 	# their completion times and deltas in %Node, and pop them from %Tmp.
 	for ($i = $len_a; $i >= $len_same; $i--) {
 		my $k = "$last->[$i];$i";
+
 		# a unique ID is constructed from "func;depth;etime";
 		# func-depth isn't unique, it may be repeated later.
-		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
+		my $stime = $Tmp{$k}->{stime};
+		$Node{"$k;$v"} = {
+			stime => $stime,
+			samples => $v - $stime,
+		};
 		if (defined $Tmp{$k}->{delta}) {
 			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
 		}
@@ -708,10 +713,9 @@ my $minwidth_time = $minwidth / $widthpertime;
 # prune blocks that are too narrow and determine max depth
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
-	my $stime = $node->{stime};
-	die "missing start for $id" if not defined $stime;
+	my $samples = $node->{samples};
 
-	if (($etime-$stime) < $minwidth_time) {
+	if ($samples < $minwidth_time) {
 		delete $Node{$id};
 		next;
 	}
@@ -1079,6 +1083,7 @@ if ($palette) {
 $im->group_start({id => "frames"});
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
+	my $sample_count = $node->{samples};
 	my $stime = $node->{stime};
 	my $delta = $node->{delta};
 
@@ -1095,7 +1100,7 @@ while (my ($id, $node) = each %Node) {
 		$y2 = $ypad1 + ($depth + 1) * $frameheight - $framepad;
 	}
 
-	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
+	my $samples = sprintf "%.0f", $sample_count * $factor;
 	(my $samples_txt = $samples) # add commas per perlfaq5
 		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
@@ -1103,7 +1108,7 @@ while (my ($id, $node) = each %Node) {
 	if ($func eq "" and $depth == 0) {
 		$info = "all ($samples_txt $countname, 100%)";
 	} else {
-		my $pct = sprintf "%.2f", ((100 * $samples) / ($timemax * $factor));
+		my $pct = sprintf "%.2f", ((100 * $sample_count) / $timemax);
 		my $escaped_func = $func;
 		# clean up SVG breaking characters:
 		$escaped_func =~ s/&/&amp;/g;
