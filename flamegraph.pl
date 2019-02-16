@@ -107,8 +107,7 @@ my $minwidth = 0.1;             # min function width, pixels
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
-my $bgcolor1 = "#eeeeee";       # background color gradient start
-my $bgcolor2 = "#eeeeb0";       # background color gradient stop
+my $bgcolors = "";              # background color theme
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
@@ -143,6 +142,8 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--colors PALETTE # set color palette. choices are: hot (default), mem,
 	                 # io, wakeup, chain, java, js, perl, red, green, blue,
 	                 # aqua, yellow, purple, orange
+	--bgcolors COLOR # set background colors. gradient choices are yellow
+	                 # (default), blue, green, grey; flat colors use "#rrggbb"
 	--hash           # colors are keyed by function name hash
 	--cp             # use consistent palette (palette.map)
 	--reverse        # generate stack-reversed flame graph
@@ -173,6 +174,7 @@ GetOptions(
 	'total=s'     => \$timemax,
 	'factor=f'    => \$factor,
 	'colors=s'    => \$colors,
+	'bgcolors=s'  => \$bgcolors,
 	'hash'        => \$hash,
 	'cp'          => \$palette,
 	'reverse'     => \$stackreverse,
@@ -224,13 +226,35 @@ if ($notestext =~ /[<>]/) {
 
 # background colors:
 # - yellow gradient: default (hot, java, js, perl)
-# - blue gradient: mem, chain
-# - gray gradient: io, wakeup, flat colors (red, green, blue, ...)
-if ($colors eq "mem" or $colors eq "chain") {
-	$bgcolor1 = "#eeeeee"; $bgcolor2 = "#e0e0ff";
+# - green gradient: mem
+# - blue gradient: io, wakeup, chain
+# - gray gradient: flat colors (red, green, blue, ...)
+if ($bgcolors eq "") {
+	# choose a default
+	if ($colors eq "mem") {
+		$bgcolors = "green";
+	} elsif ($colors =~ /^(io|wakeup|chain)$/) {
+		$bgcolors = "blue";
+	} elsif ($colors =~ /^(red|green|blue|aqua|yellow|purple|orange)$/) {
+		$bgcolors = "grey";
+	} else {
+		$bgcolors = "yellow";
+	}
 }
-if ($colors =~ /^(io|wakeup|red|green|blue|aqua|yellow|purple|orange)$/) {
+my ($bgcolor1, $bgcolor2);
+if ($bgcolors eq "yellow") {
+	$bgcolor1 = "#eeeeee";       # background color gradient start
+	$bgcolor2 = "#eeeeb0";       # background color gradient stop
+} elsif ($bgcolors eq "blue") {
+	$bgcolor1 = "#eeeeee"; $bgcolor2 = "#e0e0ff";
+} elsif ($bgcolors eq "green") {
+	$bgcolor1 = "#eef2ee"; $bgcolor2 = "#e0ffe0";
+} elsif ($bgcolors eq "grey") {
 	$bgcolor1 = "#f8f8f8"; $bgcolor2 = "#e8e8e8";
+} elsif ($bgcolors =~ /^#......$/) {
+	$bgcolor1 = $bgcolor2 = $bgcolors;
+} else {
+	die "Unrecognized bgcolor option \"$bgcolors\""
 }
 
 # SVG functions
@@ -383,7 +407,7 @@ sub color {
 			$type = "green";
 		} elsif ($name =~ m:_\[i\]$:) {	# inline annotation
 			$type = "aqua";
-		} elsif ($name =~ m:^L?(java|org|com|io|sun)/:) {	# Java
+		} elsif ($name =~ m:^L?(java|javax|net|org|com|io|sun)/:) {	# Java
 			$type = "green";
 		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
 			$type = "orange";
