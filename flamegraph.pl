@@ -407,7 +407,7 @@ sub color {
 			$type = "green";
 		} elsif ($name =~ m:_\[i\]$:) {	# inline annotation
 			$type = "aqua";
-		} elsif ($name =~ m:^L?(java|org|com|io|sun)/:) {	# Java
+		} elsif ($name =~ m:^L?(java|javax|net|org|com|io|sun)/:) {	# Java
 			$type = "green";
 		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
 			$type = "orange";
