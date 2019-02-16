@@ -157,23 +157,28 @@ See the USAGE message (--help) for options:
 
 USAGE: ./flamegraph.pl [options] infile > outfile.svg
 
-	--title       # change title text
-	--width       # width of image (default 1200)
-	--height      # height of each frame (default 16)
-	--minwidth    # omit smaller functions (default 0.1 pixels)
-	--fonttype    # font type (default "Verdana")
-	--fontsize    # font size (default 12)
-	--countname   # count type label (default "samples")
-	--nametype    # name type label (default "Function:")
-	--colors      # set color palette. choices are: hot (default), mem, io,
-	              # wakeup, chain, java, js, perl, red, green, blue, aqua,
-	              # yellow, purple, orange
-	--hash        # colors are keyed by function name hash
-	--cp          # use consistent palette (palette.map)
-	--reverse     # generate stack-reversed flame graph
-	--inverted    # icicle graph
-	--negate      # switch differential hues (blue<->red)
-	--help        # this message
+	--title TEXT     # change title text
+	--subtitle TEXT  # second level title (optional)
+	--width NUM      # width of image (default 1200)
+	--height NUM     # height of each frame (default 16)
+	--minwidth NUM   # omit smaller functions (default 0.1 pixels)
+	--fonttype FONT  # font type (default "Verdana")
+	--fontsize NUM   # font size (default 12)
+	--countname TEXT # count type label (default "samples")
+	--nametype TEXT  # name type label (default "Function:")
+	--colors PALETTE # set color palette. choices are: hot (default), mem,
+	                 # io, wakeup, chain, java, js, perl, red, green, blue,
+	                 # aqua, yellow, purple, orange
+	--bgcolors COLOR # set background colors. gradient choices are yellow
+	                 # (default), blue, green, grey; flat colors use "#rrggbb"
+	--hash           # colors are keyed by function name hash
+	--cp             # use consistent palette (palette.map)
+	--reverse        # generate stack-reversed flame graph
+	--inverted       # icicle graph
+	--flamechart     # produce a flame chart (sort by time, do not merge stacks)
+	--negate         # switch differential hues (blue<->red)
+	--notes TEXT     # add notes comment in SVG (for debugging)
+	--help           # this message
 
 	eg,
 	./flamegraph.pl --title="Flame Graph: malloc()" trace.txt > graph.svg
