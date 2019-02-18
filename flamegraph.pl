@@ -757,8 +757,8 @@ my $inc = <<INC;
 		searching = 0;
 		currentSearchTerm = null;
 		var params = get_params();
-		if (params.y && params.x)
-			zoom(find_group(document.querySelector('[y="' + params.y + '"][x="' + params.x + '"]')));
+		if (params.x && params.y)
+			zoom(find_group(document.querySelector('[x="' + params.x + '"][y="' + params.y + '"]')));
 		if (params.s)
 			search(decodeURIComponent(params.s));
 	}
@@ -775,10 +775,10 @@ my $inc = <<INC;
 			var el = target.querySelector("rect");
 			if (el && el.attributes && el.attributes.y && el.attributes._orig_x) {
 				var params = get_params()
-				params.y = el.attributes.y.value;
 				params.x = el.attributes._orig_x.value ?
 						el.attributes._orig_x.value :
 						el.attributes.x.value;
+				params.y = el.attributes.y.value;
 				history.replaceState(null, null, parse_params(params));
 			}
 		}
