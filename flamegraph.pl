@@ -775,9 +775,7 @@ my $inc = <<INC;
 			var el = target.querySelector("rect");
 			if (el && el.attributes && el.attributes.y && el.attributes._orig_x) {
 				var params = get_params()
-				params.x = el.attributes._orig_x.value ?
-						el.attributes._orig_x.value :
-						el.attributes.x.value;
+				params.x = el.attributes._orig_x.value;
 				params.y = el.attributes.y.value;
 				history.replaceState(null, null, parse_params(params));
 			}
