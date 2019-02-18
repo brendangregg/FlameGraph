@@ -756,6 +756,14 @@ my $inc = <<INC;
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 		currentSearchTerm = null;
+		var params = {};
+		var paramsarr = window.location.search.substr(1).split('&');
+		for (var i = 0; i < paramsarr.length; ++i) {
+			var tmp = paramsarr[i].split("=");
+			params[tmp[0]]  = tmp[1];
+		}
+		if (params.y && params.x)
+			zoom(find_group(document.querySelector('[y="' + params.y + '"][x="' + params.x + '"]')));
 	}
 
 	window.addEventListener("click", function(e) {
@@ -767,8 +775,21 @@ my $inc = <<INC;
 			}
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
+			var el = target.querySelector("rect");
+			if (el && el.attributes && el.attributes.y && el.attributes._orig_x) {
+				var params = {
+					"y": el.attributes.y.value,
+					"x": el.attributes._orig_x.value ?
+						el.attributes._orig_x.value :
+						el.attributes.x.value
+				};
+				history.replaceState(null, null, "?y=" + params.y + "&x=" + params.x);
+			}
 		}
-		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "unzoom") {
+			history.replaceState(null, null, "?");
+			unzoom();
+		}
 		else if (e.target.id == "search") search_prompt();
 		else if (e.target.id == "ignorecase") toggle_ignorecase();
 	}, false)
