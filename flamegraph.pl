@@ -1091,7 +1091,7 @@ my $inc = <<INC;
 		if (!searching)
 			return;
 		var params = get_params();
-		params.s = encodeURIComponent(term);
+		params.s = term;
 		history.replaceState(null, null, parse_params(params));
 
 		searchbtn.classList.add("show");
