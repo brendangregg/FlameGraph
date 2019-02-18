@@ -759,6 +759,8 @@ my $inc = <<INC;
 		var params = get_params();
 		if (params.y && params.x)
 			zoom(find_group(document.querySelector('[y="' + params.y + '"][x="' + params.x + '"]')));
+		if (params.s)
+			search(decodeURIComponent(params.s));
 	}
 
 	window.addEventListener("click", function(e) {
@@ -1024,6 +1026,9 @@ my $inc = <<INC;
 		for (var i = 0; i < el.length; i++) {
 			orig_load(el[i], "fill")
 		}
+		var params = get_params();
+		delete params.s;
+		history.replaceState(null, null, parse_params(params));
 	}
 	function search_prompt() {
 		if (!searching) {
@@ -1085,6 +1090,9 @@ my $inc = <<INC;
 		}
 		if (!searching)
 			return;
+		var params = get_params();
+		params.s = encodeURIComponent(term);
+		history.replaceState(null, null, parse_params(params));
 
 		searchbtn.classList.add("show");
 		searchbtn.firstChild.nodeValue = "Reset Search";
