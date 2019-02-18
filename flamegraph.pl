@@ -840,6 +840,8 @@ my $inc = <<INC;
 		}
 		if (uri.slice(-1) == "&")
 			uri = uri.substring(0, uri.length - 1);
+		if (uri == '?')
+			uri = window.location.href.split('?')[0];
 		return uri;
 	}
 	function find_child(node, selector) {
