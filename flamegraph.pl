@@ -756,13 +756,16 @@ my $inc = <<INC;
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 		currentSearchTerm = null;
+
+		// use GET parameters to restore a flamegraphs state.
 		var params = get_params();
 		if (params.x && params.y)
 			zoom(find_group(document.querySelector('[x="' + params.x + '"][y="' + params.y + '"]')));
 		if (params.s)
-			search(decodeURIComponent(params.s));
+			search(params.s);
 	}
 
+	// event listeners
 	window.addEventListener("click", function(e) {
 		var target = find_group(e.target);
 		if (target) {
@@ -772,6 +775,8 @@ my $inc = <<INC;
 			}
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
+
+			// set parameters for zoom state
 			var el = target.querySelector("rect");
 			if (el && el.attributes && el.attributes.y && el.attributes._orig_x) {
 				var params = get_params()
@@ -781,11 +786,13 @@ my $inc = <<INC;
 			}
 		}
 		else if (e.target.id == "unzoom") {
+			unzoom();
+
+			// remove zoom state
 			var params = get_params();
 			if (params.x) delete params.x;
 			if (params.y) delete params.y;
 			history.replaceState(null, null, parse_params(params));
-			unzoom();
 		}
 		else if (e.target.id == "search") search_prompt();
 		else if (e.target.id == "ignorecase") toggle_ignorecase();
@@ -827,7 +834,7 @@ my $inc = <<INC;
 		for (var i = 0; i < paramsarr.length; ++i) {
 			var tmp = paramsarr[i].split("=");
 			if (!tmp[0] || !tmp[1]) continue;
-			params[tmp[0]]  = tmp[1];
+			params[tmp[0]]  = decodeURIComponent(tmp[1]);
 		}
 		return params;
 	}
