@@ -553,7 +553,7 @@ sub read_palette {
 }
 
 my %Node;	# Hash of merged frame data. Keys are "func;depth;time".
-my %Tmp;	# accumulates frame data as we work down the stack. Keys are "func;depth".
+my @Tmp;	# accumulates frame data as we work down the stack. Most recent first.
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
@@ -571,31 +571,34 @@ sub flow {
 	$len_same = $i;
 
 	# for any stack frames that have finished since we were last here, record
-	# their completion times and deltas in %Node, and pop them from %Tmp.
+	# their completion times and deltas in %Node, and pop them from @Tmp.
 	for ($i = $len_a; $i >= $len_same; $i--) {
-		my $k = "$last->[$i];$i";
+		my $tmp = shift @Tmp;
 
 		# a unique ID is constructed from "func;depth;etime";
 		# func-depth isn't unique, it may be repeated later.
-		my $stime = $Tmp{$k}->{stime};
-		$Node{"$k;$v"} = {
+		my $k = "$last->[$i];$i;$v";
+
+		my $stime = $tmp->{stime};
+		$Node{$k} = {
 			stime => $stime,
 			samples => $v - $stime,
 		};
-		if (defined $Tmp{$k}->{delta}) {
-			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+		if (defined $tmp->{delta}) {
+			$Node{$k}->{delta} = $tmp->{delta};
 		}
-		delete $Tmp{$k};
 	}
 
 	# for any stack frames that are new since we were last here, record their
-	# start times in %Tmp.
+	# start times in @Tmp.
 	for ($i = $len_same; $i <= $len_b; $i++) {
-		my $k = "$this->[$i];$i";
-		$Tmp{$k}->{stime} = $v;
+		my $tmp = {
+			stime => $v,
+		};
 		if (defined $d) {
-			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
+			$tmp->{delta} += $i == $len_b ? $d : 0;
 		}
+		unshift @Tmp, $tmp;
 	}
 
         return $this;
