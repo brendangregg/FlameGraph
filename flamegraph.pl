@@ -118,6 +118,7 @@ my $pal_file = "palette.map";   # palette map file name
 my $stackreverse = 0;           # reverse stack order, switching merge end
 my $inverted = 0;               # icicle graph
 my $flamechart = 0;             # produce a flame chart (sort by time, do not merge stacks)
+my $sortbysize = 0;             # sort output by sample count
 my $negate = 0;                 # switch differential hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
@@ -149,6 +150,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--reverse        # generate stack-reversed flame graph
 	--inverted       # icicle graph
 	--flamechart     # produce a flame chart (sort by time, do not merge stacks)
+	--sort-by-size   # sort the nodes in the output by number of samples
 	--negate         # switch differential hues (blue<->red)
 	--notes TEXT     # add notes comment in SVG (for debugging)
 	--help           # this message
@@ -179,12 +181,17 @@ GetOptions(
 	'cp'          => \$palette,
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
+	'sort-by-size'=> \$sortbysize,
 	'flamechart'  => \$flamechart,
 	'negate'      => \$negate,
 	'notes=s'     => \$notestext,
 	'help'        => \$help,
 ) or usage();
 $help && usage();
+
+if ($sortbysize && $flamechart) {
+	die "--flamechart is incompatible with --sort-by-size\n";
+}
 
 # internals
 my $ypad1 = $fontsize * 3;      # pad top, include title
@@ -553,7 +560,9 @@ sub read_palette {
 }
 
 my %Node;	# Hash of merged frame data. Keys are "func;depth;time".
+         	# Values are objects with keys 'samples', 'delta', 'children'.
 my @Tmp;	# accumulates frame data as we work down the stack. Most recent first.
+my @roots = ();
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
@@ -587,12 +596,22 @@ sub flow {
 		if (defined $tmp->{delta}) {
 			$Node{$k}->{delta} = $tmp->{delta};
 		}
+		$Node{$k}->{children} = $tmp->{children};
+
+		# add the newly-generated node to its parent (or record it as a root)
+		my $parent = $Tmp[0];
+		if (defined $parent) {
+			unshift @{$parent->{children}}, $k;
+		} else {
+			unshift @roots, $k;
+		}
 	}
 
 	# for any stack frames that are new since we were last here, record their
 	# start times in @Tmp.
 	for ($i = $len_same; $i <= $len_b; $i++) {
 		my $tmp = {
+			children => [],
 			stime => $v,
 		};
 		if (defined $d) {
@@ -602,6 +621,22 @@ sub flow {
 	}
 
         return $this;
+}
+
+# Walks the node tree starting at $key, assigning x offsets ($node->{stime}) to each
+# node such that they are sorted by descending width.
+sub assign_x_offsets_by_sample_count {
+	my ($offset, $key) = @_;
+	my $node = $Node{$key};
+	$node->{stime} = $offset;
+
+	# process each of our children in descending order of samples
+	my @sorted_children = sort {$Node{$b}{samples} <=> $Node{$a}{samples}} @{$node->{children}};
+
+	foreach my $child (@sorted_children) {
+		assign_x_offsets_by_sample_count ($offset, $child);
+		$offset += $Node{$child}{samples};
+	}
 }
 
 # parse input
@@ -709,6 +744,14 @@ if ($timemax and $timemax < $time) {
 	undef $timemax;
 }
 $timemax ||= $time;
+
+if ($sortbysize) {
+	my $offset = 0;
+	foreach my $root (@roots) {
+		assign_x_offsets_by_sample_count($offset, $root);
+		$offset += $Node{$root}{samples};
+	}
+}
 
 my $widthpertime = ($imagewidth - 2 * $xpad) / $timemax;
 my $minwidth_time = $minwidth / $widthpertime;
@@ -1085,9 +1128,10 @@ if ($palette) {
 # draw frames
 $im->group_start({id => "frames"});
 while (my ($id, $node) = each %Node) {
-	my ($func, $depth, $etime) = split ";", $id;
+	my ($func, $depth, undef) = split ";", $id;
 	my $sample_count = $node->{samples};
 	my $stime = $node->{stime};
+	my $etime = $stime + $sample_count;
 	my $delta = $node->{delta};
 
 	$etime = $timemax if $func eq "" and $depth == 0;
