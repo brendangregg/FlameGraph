@@ -734,8 +734,8 @@ my $inc = <<INC;
 </defs>
 <style type="text/css">
 	text { font-family:$fonttype; font-size:${fontsize}px; fill:$black; }
-	#search { opacity:0.1; cursor:pointer; }
-	#search:hover, #search.show { opacity:1; }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
 	#subtitle { text-anchor:middle; font-color:$vdgrey; }
 	#title { text-anchor:middle; font-size:${titlesize}px}
 	#unzoom { cursor:pointer; }
@@ -746,10 +746,11 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	"use strict";
-	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm;
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
 		unzoombtn = document.getElementById("unzoom");
 		matchedtxt = document.getElementById("matched");
 		svg = document.getElementsByTagName("svg")[0];
@@ -769,6 +770,7 @@ my $inc = <<INC;
 		}
 		else if (e.target.id == "unzoom") unzoom();
 		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
 	}, false)
 
 	// mouse-over for info
@@ -962,6 +964,16 @@ my $inc = <<INC;
 	}
 
 	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
 	function reset_search() {
 		var el = document.querySelectorAll("#frames rect");
 		for (var i = 0; i < el.length; i++) {
@@ -971,7 +983,8 @@ my $inc = <<INC;
 	function search_prompt() {
 		if (!searching) {
 			var term = prompt("Enter a search term (regexp " +
-			    "allowed, eg: ^ext4_)", "");
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : ""), "");
 			if (term != null) {
 				currentSearchTerm = term;
 				search();
@@ -990,7 +1003,7 @@ my $inc = <<INC;
 		if (currentSearchTerm === null) return;
 		var term = currentSearchTerm;
 
-		var re = new RegExp(term);
+		var re = new RegExp(term, ignorecase ? 'i' : '');
 		var el = document.getElementById("frames").children;
 		var matches = new Object();
 		var maxwidth = 0;
@@ -1073,6 +1086,7 @@ $im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) i
 $im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
 $im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom", 'class="hide"');
 $im->stringTTF("search", $imagewidth - $xpad - 100, $fontsize * 2, "Search");
+$im->stringTTF("ignorecase", $imagewidth - $xpad - 16, $fontsize * 2, "ic");
 $im->stringTTF("matched", $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ");
 
 if ($palette) {
