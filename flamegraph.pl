@@ -794,6 +794,14 @@ my $inc = <<INC;
 		}
 	}, false)
 
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
 	// functions
 	function find_child(node, selector) {
 		var children = node.querySelectorAll(selector);
