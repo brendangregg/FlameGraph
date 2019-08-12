@@ -746,7 +746,7 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	"use strict";
-	var details, searchbtn, unzoombtn, matchedtxt, svg, searching;
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
@@ -754,6 +754,7 @@ my $inc = <<INC;
 		matchedtxt = document.getElementById("matched");
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
+		currentSearchTerm = null;
 	}
 
 	window.addEventListener("click", function(e) {
@@ -946,6 +947,7 @@ my $inc = <<INC;
 				}
 			}
 		}
+		search();
 	}
 	function unzoom() {
 		unzoombtn.classList.add("hide");
@@ -956,6 +958,7 @@ my $inc = <<INC;
 			zoom_reset(el[i]);
 			update_text(el[i]);
 		}
+		search();
 	}
 
 	// search
@@ -970,11 +973,13 @@ my $inc = <<INC;
 			var term = prompt("Enter a search term (regexp " +
 			    "allowed, eg: ^ext4_)", "");
 			if (term != null) {
-				search(term)
+				currentSearchTerm = term;
+				search();
 			}
 		} else {
 			reset_search();
 			searching = 0;
+			currentSearchTerm = null;
 			searchbtn.classList.remove("show");
 			searchbtn.firstChild.nodeValue = "Search"
 			matchedtxt.classList.add("hide");
@@ -982,6 +987,9 @@ my $inc = <<INC;
 		}
 	}
 	function search(term) {
+		if (currentSearchTerm === null) return;
+		var term = currentSearchTerm;
+
 		var re = new RegExp(term);
 		var el = document.getElementById("frames").children;
 		var matches = new Object();
