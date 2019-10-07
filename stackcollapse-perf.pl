@@ -289,14 +289,23 @@ while (defined($_ = <>)) {
 
 			if ($tidy_generic) {
 				$func =~ s/;/:/g;
-				if ($func !~ m/\.\(.*\)\./) {
-					# This doesn't look like a Go method name (such as
-					# "net/http.(*Client).Do"), so everything after the first open
-					# paren (that is not part of an "(anonymous namespace)") is
-					# just noise.
+
+				# things in parentheses are probably unimportant, but we want
+				# to keep things like "(anonymous namespace)", the parentheses
+				# in Go method names (such as "net/http.(*Client).Do"), and the
+				# parentheses in C++ template parameters (such as "void
+				# exec<void (*)()>(void (*)())").
+
+				if ($func !~ m/\.\(.*\)\./ and $func !~ m/<.*\(.*\).*>/) {
+					# this doesn't look like a Go method name or a name with
+					# parentheses in C++ template parameters
+
+					# drop everything at and after the first open paren that is
+					# not part of the string "(anonymous namespace)"
 					$func =~ s/\((?!anonymous namespace\)).*//;
 				}
-				# now tidy this horrible thing:
+				# now drop quotes because some traces have method names with
+				# special characters in them, like this:
 				# 13a80b608e0a RegExp:[&<>\"\'] (/tmp/perf-7539.map)
 				$func =~ tr/"\'//d;
 				# fall through to $tidy_java
