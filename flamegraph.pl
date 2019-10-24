@@ -992,7 +992,8 @@ my $inc = <<INC;
 		if (!searching) {
 			var term = prompt("Enter a search term (regexp " +
 			    "allowed, eg: ^ext4_)"
-			    + (ignorecase ? ", ignoring case" : ""), "");
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\\nPress Ctrl-i to toggle case sensitivity", "");
 			if (term != null) {
 				currentSearchTerm = term;
 				search();
