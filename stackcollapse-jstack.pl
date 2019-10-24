@@ -154,6 +154,8 @@ clear:
 
 		# fix state for epollWait
 		$state = "WAITING" if $func =~ /epollWait/;
+		$state = "WAITING" if $func =~ /EPoll\.wait/;
+
 
 		# fix state for various networking functions
 		$state = "NETWORK" if $func =~ /socketAccept$/;
