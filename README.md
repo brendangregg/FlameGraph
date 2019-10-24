@@ -3,7 +3,12 @@
 Main Website: http://www.brendangregg.com/flamegraphs.html
 
 Example (click to zoom):
+
 [![Example](http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg)](http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg)
+
+Click a box to zoom the Flame Graph to this stack frame only.
+To search and highlight all stack frames matching a regular expression, click the _search_ button in the upper right corner or press Ctrl-F.
+By default, search is case sensitive, but this can be toggled by pressing Ctrl-I or by clicking the _ic_ button in the upper right corner.
 
 Other sites:
 - The Flame Graph article in ACMQ and CACM: http://queue.acm.org/detail.cfm?id=2927301 http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract
