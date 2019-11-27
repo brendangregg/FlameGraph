@@ -21,7 +21,7 @@
 #
 # 3. Generate a flamegraph:
 #
-#    perl stackcollapse-vtune-mc-size allocation_size.csv > out.folded
+#    perl stackcollapse-vtune-mc-size.pl allocation_size.csv > out.folded
 #    perl flamegraph.pl --countname=bytes out.folded > vtune_tachyon_mc_size.svg
 #
 # AUTHOR: Rohith Bakkannagari

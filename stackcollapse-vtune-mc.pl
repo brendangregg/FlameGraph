@@ -20,7 +20,7 @@
 #
 # 3. Generate a flamegraph:
 #
-#    perl stackcollapse-vtune-mc allocations.csv > out.folded
+#    perl stackcollapse-vtune-mc.pl allocations.csv > out.folded
 #    perl flamegraph.pl --countname=allocations out.folded > vtune_tachyon_mc.svg
 #
 # AUTHOR: Rohith Bakkannagari
