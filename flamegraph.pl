@@ -761,6 +761,22 @@ my $inc = <<INC;
 		current = null;
 	}
 
+	function push_back(target) {
+		if (target != current) back_list.push(current);
+	}
+
+	function push_forward(target) {
+		if (target != current) forward_list.push(current);
+	}
+
+	function push_unzoom_forward() {
+		push_forward(null);
+	}
+
+	function push_unzoom_back() {
+		push_back(null);
+	}
+
 	window.addEventListener("click", function(e) {
 		var target = find_group(e.target);
 		if (target) {
@@ -768,12 +784,14 @@ my $inc = <<INC;
 				if (e.ctrlKey === false) return;
 				e.preventDefault();
 			}
-			back_list.push(current);
+			// prune forward list when moving forward in another direction.
+			forward_list = [];
+			push_back(target);
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
 		}
 		else if (e.target.id == "unzoom") {
-			back_list.push(current);
+			push_unzoom_back();
 			unzoom();
 		}
 		else if (e.target.id == "search") search_prompt();
@@ -813,7 +831,7 @@ my $inc = <<INC;
 	window.addEventListener("keydown", function (e) {
 		if (e.ctrlKey && e.keyCode === 85) {
 			e.preventDefault();
-			back_list.push(current);
+			push_unzoom_back();
 			unzoom();
 		}
 	}, false)
@@ -821,11 +839,12 @@ my $inc = <<INC;
 	// ctrl-[ for back
 	window.addEventListener("keydown", function (e) {
 		if (e.ctrlKey && e.keyCode === 219) {
-			forward_list.push(current);
 			var back = back_list.pop();
 			if (back === null) {
+				push_unzoom_forward();
 				unzoom();
 			} else if (back) {
+				push_forward(back);
 				if (back.classList.contains("parent")) unzoom();
 				zoom(back);
 			}
@@ -835,11 +854,12 @@ my $inc = <<INC;
 	// ctrl-] for forward
 	window.addEventListener("keydown", function (e) {
 		if (e.ctrlKey && e.keyCode === 221) {
-			back_list.push(current);
 			var forward = forward_list.pop();
 			if (forward === null) {
+				push_unzoom_back();
 				unzoom();
 			} else if (forward) {
+				push_back(forward);
 				if (forward.classList.contains("parent")) unzoom();
 				zoom(forward);
 			}
