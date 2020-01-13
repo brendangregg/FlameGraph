@@ -78,7 +78,7 @@ while (my $currLine = <$fh>){
 	### for Intel VTune 2019
 	### CSV header should be like below
 	### Function Stack,Allocation Size:Self,Deallocation Size:Self,Allocations:Self,Module
-	$currLine =~ /(\s*)(.*?),([0-9]*?\.?[0-9]*?),([0-9]*?\.?[0-9]*?),([0-9]+?),(.*)/ or die "Error in regular expression on the current line $currLine\n";
+	$currLine =~ /(\s*)(.*?),([0-9]*?\.?[0-9]*?),([0-9]*?\.?[0-9]*?),([0-9]*?\.?[0-9]*?),(.*)/ or die "Error in regular expression on the current line $currLine\n";
 	my $func = $2.'('.$6.')';	# function(module)
 	my $depth = length ($1);
 	my $allocBytes = $3; 	# allocation size
