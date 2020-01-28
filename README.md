@@ -30,7 +30,7 @@ Stack samples can be captured using Linux perf\_events, FreeBSD pmcstat (hwpmc),
 
 ### Linux perf\_events
 
-Using Linux perf\_events (aka "perf") to capture 60 seconds of 99 Hertz stack samples, both user- and kernel-level stacks, all processes:
+Using Linux perf\_events (aka "perf") to capture 60 seconds of 99 Hertz stack samples (-g option), both user- and kernel-level stacks, all processes:
 
 ```
 # perf record -F 99 -a -g -- sleep 60
@@ -105,6 +105,8 @@ unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_
 unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
 [...]
 ```
+If you see an empty file, please check whether perf record command contains -g option or not. Its the option to sample stack traces.
+
 
 3\. flamegraph.pl
 ================
