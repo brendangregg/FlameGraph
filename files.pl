@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env -S perl -w
 #
 # files.pl	Print file sizes in folded format, for a flame graph.
 #

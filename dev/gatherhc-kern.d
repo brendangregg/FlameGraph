@@ -1,4 +1,4 @@
-#!/usr/sbin/dtrace -s
+#!/usr/bin/env -S dtrace -s
 
 #pragma D option stackframes=100
 #pragma D option defaultargs

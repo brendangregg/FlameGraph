@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 #
 # jmaps - creates java /tmp/perf-PID.map symbol maps for all java processes.
 #
