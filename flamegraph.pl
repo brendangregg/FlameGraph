@@ -761,8 +761,10 @@ my $inc = <<INC;
 		var params = get_params();
 		if (params.x && params.y)
 			zoom(find_group(document.querySelector('[x="' + params.x + '"][y="' + params.y + '"]')));
-		if (params.s)
-			search(params.s);
+                if (params.s) {
+			currentSearchTerm = params.s;
+			search();
+                }
 	}
 
 	// event listeners
