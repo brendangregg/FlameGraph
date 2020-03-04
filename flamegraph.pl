@@ -761,10 +761,7 @@ my $inc = <<INC;
 		var params = get_params();
 		if (params.x && params.y)
 			zoom(find_group(document.querySelector('[x="' + params.x + '"][y="' + params.y + '"]')));
-                if (params.s) {
-			currentSearchTerm = params.s;
-			search();
-                }
+                if (params.s) search(params.s);
 	}
 
 	// event listeners
@@ -1042,10 +1039,7 @@ my $inc = <<INC;
 			    "allowed, eg: ^ext4_)"
 			    + (ignorecase ? ", ignoring case" : "")
 			    + "\\nPress Ctrl-i to toggle case sensitivity", "");
-			if (term != null) {
-				currentSearchTerm = term;
-				search();
-			}
+			if (term != null) search(term);
 		} else {
 			reset_search();
 			searching = 0;
@@ -1057,10 +1051,9 @@ my $inc = <<INC;
 		}
 	}
 	function search(term) {
-		if (currentSearchTerm === null) return;
-		var term = currentSearchTerm;
+		if (term) currentSearchTerm = term;
 
-		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var re = new RegExp(currentSearchTerm, ignorecase ? 'i' : '');
 		var el = document.getElementById("frames").children;
 		var matches = new Object();
 		var maxwidth = 0;
@@ -1097,7 +1090,7 @@ my $inc = <<INC;
 		if (!searching)
 			return;
 		var params = get_params();
-		params.s = term;
+		params.s = currentSearchTerm;
 		history.replaceState(null, null, parse_params(params));
 
 		searchbtn.classList.add("show");
