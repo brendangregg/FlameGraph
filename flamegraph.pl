@@ -848,7 +848,6 @@ my $inc = <<INC;
 	function find_child(node, selector) {
 		var children = node.querySelectorAll(selector);
 		if (children.length) return children[0];
-		return;
 	}
 	function find_group(node) {
 		var parent = node.parentElement;
