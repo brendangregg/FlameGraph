@@ -774,6 +774,10 @@ my $inc = <<INC;
 			}
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
+			if (!document.querySelector('.parent')) {
+				clearzoom();
+				return;
+			}
 
 			// set parameters for zoom state
 			var el = target.querySelector("rect");
@@ -784,15 +788,7 @@ my $inc = <<INC;
 				history.replaceState(null, null, parse_params(params));
 			}
 		}
-		else if (e.target.id == "unzoom") {
-			unzoom();
-
-			// remove zoom state
-			var params = get_params();
-			if (params.x) delete params.x;
-			if (params.y) delete params.y;
-			history.replaceState(null, null, parse_params(params));
-		}
+		else if (e.target.id == "unzoom") clearzoom();
 		else if (e.target.id == "search") search_prompt();
 		else if (e.target.id == "ignorecase") toggle_ignorecase();
 	}, false)
@@ -1010,6 +1006,15 @@ my $inc = <<INC;
 			update_text(el[i]);
 		}
 		search();
+	}
+	function clearzoom() {
+		unzoom();
+
+		// remove zoom state
+		var params = get_params();
+		if (params.x) delete params.x;
+		if (params.y) delete params.y;
+		history.replaceState(null, null, parse_params(params));
 	}
 
 	// search
