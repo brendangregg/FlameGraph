@@ -105,7 +105,7 @@ unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_
 unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
 [...]
 ```
-If you see an empty file, please check whether perf record command contains -g option or not. Its the option to sample stack traces.
+If you see an empty file, please check whether perf record command contains -g option or not. It's the option to sample stack traces.
 
 
 3\. flamegraph.pl
