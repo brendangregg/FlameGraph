@@ -65,6 +65,7 @@
 
 use strict;
 use Getopt::Long;
+use POSIX qw(uname);
 
 my %collapsed;
 
@@ -85,6 +86,9 @@ my $target_pname;	# target process name from perf invocation
 my $event_filter = "";    # event type filter, defaults to first encountered event
 my $event_defaulted = 0;  # whether we defaulted to an event (none provided)
 my $event_warning = 0;	  # if we printed a warning for the event
+
+my @uname = POSIX::uname();
+my $kernel_release = $uname[2];
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -326,7 +330,7 @@ while (defined($_ = <>)) {
 			#          7f722d142778 Ljava/io/PrintStream;::print (/tmp/perf-19982.map)
 			if (scalar(@inline) > 0) {
 				$func .= "_[i]";	# inlined
-			} elsif ($annotate_kernel == 1 && $mod =~ m/(^\[|vmlinux$)/ && $mod !~ /unknown/) {
+			} elsif ($annotate_kernel == 1 && $mod =~ m/(^\[|vmlinux(-${kernel_release}|)$)/ && $mod !~ /unknown/) {
 				$func .= "_[k]";	# kernel
 			} elsif ($annotate_jit == 1 && $mod =~ m:/tmp/perf-\d+\.map:) {
 				$func .= "_[j]";	# jitted
