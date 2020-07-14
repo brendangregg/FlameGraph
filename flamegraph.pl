@@ -584,8 +584,12 @@ sub flow {
 	for ($i = $len_same; $i <= $len_b; $i++) {
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
+	}
+
+	for ($i = 0; $i <= $len_b; $i++) {
+		my $k = "$this->[$i];$i";
 		if (defined $d) {
-			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
+			$Tmp{$k}->{delta} += $d;
 		}
 	}
 
