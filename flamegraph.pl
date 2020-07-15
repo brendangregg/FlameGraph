@@ -110,6 +110,7 @@ my $colors = "hot";             # color theme
 my $bgcolors = "";              # background color theme
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
+my $left_timemax;               # for diff-flamegraph: (override the) sum of the counts for the left data
 my $factor = 1;                 # factor to scale counts by
 my $hash = 0;                   # color by function name
 my $palette = 0;                # if we use consistent palettes (default off)
@@ -557,7 +558,7 @@ my %Tmp;
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
-	my ($last, $this, $v, $d) = @_;
+	my ($last, $this, $o, $v, $d) = @_;
 
 	my $len_a = @$last - 1;
 	my $len_b = @$this - 1;
@@ -577,6 +578,7 @@ sub flow {
 		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
 		if (defined $Tmp{$k}->{delta}) {
 			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+			$Node{"$k;$v"}->{left_now} = $o - delete $Tmp{$k}->{left_orig};
 		}
 		delete $Tmp{$k};
 	}
@@ -584,6 +586,9 @@ sub flow {
 	for ($i = $len_same; $i <= $len_b; $i++) {
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
+		if (defined $d) {
+			$Tmp{$k}->{left_orig} = $o;
+		}
 	}
 
 	for ($i = 0; $i <= $len_b; $i++) {
@@ -601,6 +606,7 @@ my @Data;
 my @SortedData;
 my $last = [];
 my $time = 0;
+my $left_time = 0;
 my $delta = undef;
 my $ignored = 0;
 my $line;
@@ -673,15 +679,17 @@ foreach (@SortedData) {
 	}
 
 	# merge frames and populate %Node:
-	$last = flow($last, [ '', split ";", $stack ], $time, $delta);
+	$last = flow($last, [ '', split ";", $stack ], $left_time, $time, $delta);
 
 	if (defined $samples2) {
 		$time += $samples2;
+		$left_time += $samples;
+
 	} else {
 		$time += $samples;
 	}
 }
-flow($last, [], $time, $delta);
+flow($last, [], $left_time, $time, $delta);
 
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
 unless ($time) {
@@ -701,9 +709,13 @@ if ($timemax and $timemax < $time) {
 	undef $timemax;
 }
 $timemax ||= $time;
+$left_timemax ||= $left_time;
 
 my $widthpertime = ($imagewidth - 2 * $xpad) / $timemax;
 my $minwidth_time = $minwidth / $widthpertime;
+
+my $deltapct = undef;
+my $maxdeltapct = 0.00;
 
 # prune blocks that are too narrow and determine max depth
 while (my ($id, $node) = each %Node) {
@@ -715,6 +727,24 @@ while (my ($id, $node) = each %Node) {
 		delete $Node{$id};
 		next;
 	}
+
+	# to get max(delta_percentage)
+	my $delta = $node->{delta};
+	if (defined $delta) {
+		my $left = $node->{left_now};
+		my $right = sprintf "%.0f", ($etime - $stime) * $factor;
+		my $lpct = sprintf "%.2f", ((100 * $left) / ($left_timemax * $factor));
+		my $rpct = sprintf "%.2f", ((100 * $right) / ($timemax * $factor));
+		my $deltapct = $rpct - $lpct;
+		$maxdeltapct = abs($deltapct) if abs($deltapct) > $maxdeltapct;
+
+		# save $node->{deltapct}, and remove the temporary $node->{left_now}
+		my $d = $negate ? -$delta : $delta;
+		$deltapct = $deltapct > 0 ? "+$deltapct" : $deltapct;
+		$node->{deltapct} = $deltapct;
+		delete $node->{left_now};
+	}
+
 	$depthmax = $depth if $depth > $depthmax;
 }
 
@@ -1112,6 +1142,9 @@ while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
 	my $delta = $node->{delta};
+	if (defined $delta) {
+		$deltapct = $node->{deltapct};
+	}
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
@@ -1145,9 +1178,6 @@ while (my ($id, $node) = each %Node) {
 		unless (defined $delta) {
 			$info = "$escaped_func ($samples_txt $countname, $pct%)";
 		} else {
-			my $d = $negate ? -$delta : $delta;
-			my $deltapct = sprintf "%.2f", ((100 * $d) / ($timemax * $factor));
-			$deltapct = $d > 0 ? "+$deltapct" : $deltapct;
 			$info = "$escaped_func ($samples_txt $countname, $pct%; $deltapct%)";
 		}
 	}
@@ -1162,7 +1192,7 @@ while (my ($id, $node) = each %Node) {
 	} elsif ($func eq "-") {
 		$color = $dgrey;
 	} elsif (defined $delta) {
-		$color = color_scale($delta, $maxdelta);
+		$color = color_scale($deltapct * 1000, $maxdeltapct * 1000);
 	} elsif ($palette) {
 		$color = color_map($colors, $func);
 	} else {
