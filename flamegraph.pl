@@ -746,7 +746,7 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	"use strict";
-	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn, back_list, forward_list, current;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
@@ -756,6 +756,25 @@ my $inc = <<INC;
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 		currentSearchTerm = null;
+		back_list = [];
+		forward_list = [];
+		current = null;
+	}
+
+	function push_back(target) {
+		if (target != current) back_list.push(current);
+	}
+
+	function push_forward(target) {
+		if (target != current) forward_list.push(current);
+	}
+
+	function push_unzoom_forward() {
+		push_forward(null);
+	}
+
+	function push_unzoom_back() {
+		push_back(null);
 	}
 
 	window.addEventListener("click", function(e) {
@@ -765,10 +784,16 @@ my $inc = <<INC;
 				if (e.ctrlKey === false) return;
 				e.preventDefault();
 			}
+			// prune forward list when moving forward in another direction.
+			forward_list = [];
+			push_back(target);
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
 		}
-		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "unzoom") {
+			push_unzoom_back();
+			unzoom();
+		}
 		else if (e.target.id == "search") search_prompt();
 		else if (e.target.id == "ignorecase") toggle_ignorecase();
 	}, false)
@@ -799,6 +824,45 @@ my $inc = <<INC;
 		if (e.ctrlKey && e.keyCode === 73) {
 			e.preventDefault();
 			toggle_ignorecase();
+		}
+	}, false)
+
+	// ctrl-U for unzoom
+	window.addEventListener("keydown", function (e) {
+		if (e.ctrlKey && e.keyCode === 85) {
+			e.preventDefault();
+			push_unzoom_back();
+			unzoom();
+		}
+	}, false)
+
+	// ctrl-[ for back
+	window.addEventListener("keydown", function (e) {
+		if (e.ctrlKey && e.keyCode === 219) {
+			var back = back_list.pop();
+			if (back === null) {
+				push_unzoom_forward();
+				unzoom();
+			} else if (back) {
+				push_forward(back);
+				if (back.classList.contains("parent")) unzoom();
+				zoom(back);
+			}
+		}
+	}, false)
+
+	// ctrl-] for forward
+	window.addEventListener("keydown", function (e) {
+		if (e.ctrlKey && e.keyCode === 221) {
+			var forward = forward_list.pop();
+			if (forward === null) {
+				push_unzoom_back();
+				unzoom();
+			} else if (forward) {
+				push_back(forward);
+				if (forward.classList.contains("parent")) unzoom();
+				zoom(forward);
+			}
 		}
 	}, false)
 
@@ -909,6 +973,7 @@ my $inc = <<INC;
 		}
 	}
 	function zoom(node) {
+		current = node;
 		var attr = find_child(node, "rect").attributes;
 		var width = parseFloat(attr.width.value);
 		var xmin = parseFloat(attr.x.value);
@@ -960,6 +1025,7 @@ my $inc = <<INC;
 		search();
 	}
 	function unzoom() {
+		current = null;
 		unzoombtn.classList.add("hide");
 		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
