@@ -340,6 +340,21 @@ while (defined($_ = <>)) {
 	}
 }
 
+# handle last stack if not suceeded by a newline.
+# ignore filtered samples
+if ($pname) {
+	if ($include_pname) {
+		if (defined $pname) {
+			unshift @stack, $pname;
+		} else {
+			unshift @stack, "";
+		}
+	}
+	remember_stack(join(";", @stack), 1) if @stack;
+	undef @stack;
+	undef $pname;
+}
+
 foreach my $k (sort { $a cmp $b } keys %collapsed) {
 	print "$k $collapsed{$k}\n";
 }
