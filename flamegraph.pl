@@ -557,7 +557,7 @@ my %Tmp;
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
-	my ($last, $this, $v, $d) = @_;
+	my ($last, $this, $v, $d, $s1, $s2) = @_;
 
 	my $len_a = @$last - 1;
 	my $len_b = @$this - 1;
@@ -577,6 +577,8 @@ sub flow {
 		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
 		if (defined $Tmp{$k}->{delta}) {
 			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+			$Node{"$k;$v"}->{samples1} = delete $Tmp{$k}->{samples1};
+			$Node{"$k;$v"}->{samples2} = delete $Tmp{$k}->{samples2};
 		}
 		delete $Tmp{$k};
 	}
@@ -586,6 +588,8 @@ sub flow {
 		$Tmp{$k}->{stime} = $v;
 		if (defined $d) {
 			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
+			$Tmp{$k}->{samples1} += $i == $len_b ? $s1 : 0;
+			$Tmp{$k}->{samples2} += $i == $len_b ? $s2 : 0;
 		}
 	}
 
@@ -601,6 +605,9 @@ my $delta = undef;
 my $ignored = 0;
 my $line;
 my $maxdelta = 1;
+my $stack = undef;
+my $samples = undef;
+my $samples2 = undef;
 
 # reverse if needed
 foreach (<>) {
@@ -609,8 +616,8 @@ foreach (<>) {
 	if ($stackreverse) {
 		# there may be an extra samples column for differentials
 		# XXX todo: redo these REs as one. It's repeated below.
-		my($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
-		my $samples2 = undef;
+		($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+		$samples2 = undef;
 		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
 			$samples2 = $samples;
 			($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
@@ -669,7 +676,7 @@ foreach (@SortedData) {
 	}
 
 	# merge frames and populate %Node:
-	$last = flow($last, [ '', split ";", $stack ], $time, $delta);
+	$last = flow($last, [ '', split ";", $stack ], $time, $delta, $samples, $samples2);
 
 	if (defined $samples2) {
 		$time += $samples2;
@@ -677,7 +684,7 @@ foreach (@SortedData) {
 		$time += $samples;
 	}
 }
-flow($last, [], $time, $delta);
+flow($last, [], $time, $delta, $samples, $samples2);
 
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
 unless ($time) {
@@ -1108,6 +1115,8 @@ while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
 	my $delta = $node->{delta};
+	my $samples1 = $node->{samples1};
+	my $samples2 = $node->{samples2};
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
@@ -1144,7 +1153,8 @@ while (my ($id, $node) = each %Node) {
 			my $d = $negate ? -$delta : $delta;
 			my $deltapct = sprintf "%.2f", ((100 * $d) / ($timemax * $factor));
 			$deltapct = $d > 0 ? "+$deltapct" : $deltapct;
-			$info = "$escaped_func ($samples_txt $countname, $pct%; $deltapct%)";
+			my $diff_samples = $samples1 - $samples2;
+			$info = "$escaped_func ($samples_txt $countname, $pct%; $deltapct%, (L:$samples1; R:$samples2; D:$diff_samples))";
 		}
 	}
 
