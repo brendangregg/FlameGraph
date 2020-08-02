@@ -555,6 +555,37 @@ sub read_palette {
 my %Node;	# Hash of merged frame data
 my %Tmp;
 
+# Regexp for parsing out stack data from sample count(s)
+#
+# Effectively, we parse out the 1 (or 2) sample sizes from the end of the
+# line, and assume everything else (PREMATCH) is the stack data.
+my $line_regexp = qr/
+  \s+                # Space after stack
+  (\d+(?:\.\d*)?)    # First sample size
+  \s?                # Optional differencial whitespace
+  (\d+(?:\.\d*)?)?   # Optional second sample size
+  $                  # End of line
+/xp;
+
+# Parse a given line and return the stack, and sample count(s)
+#
+# A second set of sample counts is possible if the data is for a differential
+# graph.
+sub parseline {
+	my $line = shift;
+	my $stack;
+	my $samples;
+	my $samples2;
+
+	if ($line =~ /$line_regexp/) {
+		$stack    = ${^PREMATCH};  # stack data (from pre-match)
+		$samples  = $1;            # first set of samples
+		$samples2 = $2;            # second set of samples (optional)
+	}
+
+	return ($stack, $samples, $samples2);
+}
+
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
 	my ($last, $this, $v, $d) = @_;
@@ -607,13 +638,8 @@ foreach (<>) {
 	chomp;
 	$line = $_;
 	if ($stackreverse) {
-		# there may be an extra samples column for differentials
-		# XXX todo: redo these REs as one. It's repeated below.
-		my($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
-		my $samples2 = undef;
-		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
-			$samples2 = $samples;
-			($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+		my($stack, $samples, $samples2) = &parseline($line);
+		if (defined $samples2) {
 			unshift @Data, join(";", reverse split(";", $stack)) . " $samples $samples2";
 		} else {
 			unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
@@ -635,18 +661,13 @@ foreach (@SortedData) {
 	chomp;
 	# process: folded_stack count
 	# eg: func_a;func_b;func_c 31
-	my ($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
+	my ($stack, $samples, $samples2) = &parseline($_);
 	unless (defined $samples and defined $stack) {
 		++$ignored;
 		next;
 	}
 
-	# there may be an extra samples column for differentials:
-	my $samples2 = undef;
-	if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
-		$samples2 = $samples;
-		($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
-	}
+	# Calculate delta only if there is a second set of samples
 	$delta = undef;
 	if (defined $samples2) {
 		$delta = $samples2 - $samples;
