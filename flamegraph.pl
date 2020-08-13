@@ -566,7 +566,7 @@ my %Tmp;
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
-	my ($last, $this, $v, $d) = @_;
+	my ($last, $this, $v, $own, $d) = @_;
 
 	my $len_a = @$last - 1;
 	my $len_b = @$this - 1;
@@ -587,6 +587,11 @@ sub flow {
 		if (defined $Tmp{$k}->{delta}) {
 			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
 		}
+		if (defined $Tmp{$k}->{own}) {
+			$Node{"$k;$v"}->{own} = delete $Tmp{$k}->{own};
+		} else {
+			$Node{"$k;$v"}->{own} = 0;
+		}
 		delete $Tmp{$k};
 	}
 
@@ -597,6 +602,7 @@ sub flow {
 			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
 		}
 	}
+	$Tmp{"$this->[$len_b];$len_b"}->{own} = $own;
 
         return $this;
 }
@@ -610,6 +616,7 @@ my $delta = undef;
 my $ignored = 0;
 my $line;
 my $maxdelta = 1;
+my $maxown = 1;
 my $extrasubtitle = "";
 
 # reverse if needed
@@ -655,6 +662,8 @@ foreach (@SortedData) {
 		next;
 	}
 
+	$maxown = $samples if $samples > $maxown;
+
 	# there may be an extra samples column for differentials:
 	my $samples2 = undef;
 	if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
@@ -683,7 +692,7 @@ foreach (@SortedData) {
 	}
 
 	# merge frames and populate %Node:
-	$last = flow($last, [ '', split ";", $stack ], $time, $delta);
+	$last = flow($last, [ '', split ";", $stack ], $time, $samples, $delta);
 
 	if (defined $samples2) {
 		$time += $samples2;
@@ -691,7 +700,7 @@ foreach (@SortedData) {
 		$time += $samples;
 	}
 }
-flow($last, [], $time, $delta);
+flow($last, [], $time, 0, $delta);
 
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
 unless ($time) {
@@ -1189,6 +1198,7 @@ while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
 	my $delta = $node->{delta};
+	my $own = $node->{own};
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
@@ -1240,6 +1250,8 @@ while (my ($id, $node) = each %Node) {
 		$color = $dgrey;
 	} elsif (defined $delta) {
 		$color = color_scale($delta, $maxdelta);
+	} elsif ($colors eq "owntime") {
+		$color = color_scale($own, $maxown);
 	} elsif ($palette) {
 		$color = color_map($colors, $func);
 	} else {
