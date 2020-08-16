@@ -81,6 +81,7 @@ Use the stackcollapse programs to fold stack samples into single lines.  The pro
 - `stackcollapse-gdb.pl`: for gdb(1) stacks
 - `stackcollapse-go.pl`: for Golang pprof stacks
 - `stackcollapse-vsprof.pl`: for Microsoft Visual Studio profiles
+- `stackcollapse-wcp.pl`: for wallClockProfiler output
 
 Usage example:
 
