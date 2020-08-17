@@ -465,6 +465,24 @@ sub color {
 		}
 		# fall-through to color palettes
 	}
+	if (defined $type and $type eq "python") {
+		# Handle annotations (_[j], _[k], ...; which are
+		# accurate), as well as input that lacks any annotations, as
+		# best as possible. Without annotations, we get a little hacky,
+		# and match on a "/" with a ".py", etc.
+		if ($name =~ m:_\[j\]$:) {	# jit annotation
+			$type = "green";
+		} elsif ($name =~ m:/.*\.py.?:) {	# Python (match "/" in path)
+			$type = "green";
+		} elsif ($name =~ m:python:) {	# cpython
+			$type = "yellow";
+		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
+			$type = "orange";
+		} else {			# system
+			$type = "red";
+		}
+		# fall-through to color palettes
+	}
 	if (defined $type and $type eq "wakeup") {
 		$type = "aqua";
 		# fall-through to color palettes
