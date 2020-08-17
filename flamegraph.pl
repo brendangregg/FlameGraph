@@ -602,9 +602,11 @@ sub flow {
 			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
 		}
 	}
-	$Tmp{"$this->[$len_b];$len_b"}->{own} = $own;
+	if (@$this != 0) {
+		$Tmp{"$this->[$len_b];$len_b"}->{own} = $own;
+	}
 
-        return $this;
+	return $this;
 }
 
 # parse input
