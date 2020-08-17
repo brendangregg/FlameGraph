@@ -330,7 +330,7 @@ while (defined($_ = <>)) {
 			#
 			# detect inlined from the @inline array
 			# detect kernel from the module name; eg, frames to parse include:
-			#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
+			#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms])
 			#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
 			#          7d8 ipv4_conntrack_local+0x7f8f80b8 ([nf_conntrack_ipv4])
 			# detect jit from the module name; eg:
@@ -340,6 +340,8 @@ while (defined($_ = <>)) {
 			} elsif ($annotate_kernel == 1 && $mod =~ m/(^\[|vmlinux$)/ && $mod !~ /unknown/) {
 				$func .= "_[k]";	# kernel
 			} elsif ($annotate_jit == 1 && $mod =~ m:/tmp/perf-\d+\.map:) {
+				$func .= "_[j]";	# jitted
+			} elsif ($annotate_jit == 1 && $mod =~ m:/jitted-\d+-\d+\.so:) {
 				$func .= "_[j]";	# jitted
 			}
 			push @inline, $func;
