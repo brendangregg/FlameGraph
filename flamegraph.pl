@@ -1220,6 +1220,8 @@ while (my ($id, $node) = each %Node) {
 	my $delta = $node->{delta};
 	my $own = $node->{own};
 
+	$func =~ s/<\$escaped_semicolon\$>/;/g;	# restore semicolon escaping (created in async-profiler)
+
 	$etime = $timemax if $func eq "" and $depth == 0;
 
 	my $x1 = $xpad + $stime * $widthpertime;
