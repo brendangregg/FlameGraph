@@ -643,6 +643,7 @@ my $extrasubtitle = "";
 foreach (<>) {
 	chomp;
 	$line = $_;
+	$line =~ s/\\;/<\$escaped_semicolon\$>/g; # perform semicolon escaping
 	if (/^# /) {
 		$extrasubtitle .= (substr $_, length("# "))."\n";
 		next;
@@ -1220,7 +1221,7 @@ while (my ($id, $node) = each %Node) {
 	my $delta = $node->{delta};
 	my $own = $node->{own};
 
-	$func =~ s/<\$escaped_semicolon\$>/;/g;	# restore semicolon escaping (created in async-profiler)
+	$func =~ s/<\$escaped_semicolon\$>/;/g;	# restore semicolon escaping
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
