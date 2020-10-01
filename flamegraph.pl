@@ -188,7 +188,7 @@ $help && usage();
 
 # internals
 my $ypad1 = $fontsize * 3;      # pad top, include title
-my $ypad2 = $fontsize * 2 + 10; # pad bottom, include labels
+my $ypad2 = $fontsize * 2 + 30; # pad bottom, include labels
 my $ypad3 = $fontsize * 2;      # pad top, include subtitle (optional)
 my $xpad = 10;                  # pad lefm and right
 my $framepad = 1;		# vertical padding for frames
@@ -791,9 +791,10 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	"use strict";
-	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn, back_list, forward_list, current;
+	var details, dependencies, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn, back_list, forward_list, current;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
+		dependencies = document.getElementById("dependencies").firstChild;
 		searchbtn = document.getElementById("search");
 		ignorecaseBtn = document.getElementById("ignorecase");
 		unzoombtn = document.getElementById("unzoom");
@@ -847,7 +848,10 @@ my $inc = <<INC;
 	// show
 	window.addEventListener("mouseover", function(e) {
 		var target = find_group(e.target);
-		if (target) details.nodeValue = "$nametype " + g_to_text(target);
+		if (target) {
+		    details.nodeValue = "$nametype " + g_to_text(target);
+		    dependencies.nodeValue = find_child(target, "text").getAttribute("dependencies");
+		}
 	}, false)
 
 	// clear
@@ -1204,6 +1208,7 @@ $im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)');
 $im->stringTTF("title", int($imagewidth / 2), $fontsize * 2, $titletext);
 $im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) if $subtitletext ne "";
 $im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
+$im->stringTTF("dependencies", $xpad, $imageheight - ($ypad2 / 2) + 20, " ");
 $im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom", 'class="hide"');
 $im->stringTTF("search", $imagewidth - $xpad - 100, $fontsize * 2, "Search");
 $im->stringTTF("ignorecase", $imagewidth - $xpad - 16, $fontsize * 2, "ic");
@@ -1241,10 +1246,14 @@ while (my ($id, $node) = each %Node) {
 		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
 	my $info;
+	my $dependencies;
 	if ($func eq "" and $depth == 0) {
 		$info = "all ($samples_txt $countname, 100%)";
 	} else {
 		my $pct = sprintf "%.2f", ((100 * $samples) / ($timemax * $factor));
+
+	    ($func, $dependencies) = split('\|\|\|', $func);
+
 		my $escaped_func = $func;
 		# clean up SVG breaking characters:
 		$escaped_func =~ s/&/&amp;/g;
@@ -1292,7 +1301,12 @@ while (my ($id, $node) = each %Node) {
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
 	}
-	$im->stringTTF(undef, $x1 + 3, 3 + ($y1 + $y2) / 2, $text);
+
+	my $extra = "";
+	if (defined $dependencies) {
+	    $extra = 'dependencies="' . $dependencies . '"';
+	}
+	$im->stringTTF(undef, $x1 + 3, 3 + ($y1 + $y2) / 2, $text, $extra);
 
 	$im->group_end($nameattr);
 }
