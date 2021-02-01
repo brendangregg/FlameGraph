@@ -9,17 +9,28 @@ my @stack;
 my $addr;
 my $cpu;
 my $func_name;
+my $gfp_flags;
+my $include_page_order;
+my $include_page_type;
 my $include_pname;
+my $migrate_type;
+my $mtype;
 my $m_pid;
+my $page_alloc_event_cpu;
 my $pname;
+my $order;
 my $trace_func_name;
 my $tsp;
 
 
-GetOptions('process_name' => \$include_pname,
+GetOptions('page_order' => \$include_page_order,
+	   'page_type' => \$include_page_type,
+	   'process_name' => \$include_pname,
 	   'trace_func_name=s' => \$trace_func_name)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
+	--page_order		# generate the flamegraph based on the page order
+	--page_type		# include the migrate_type and gfp_flgs in the stack
 	--process_name		# include process names to isolate callstack
 	--trace_func_name=FUNT	# Traced function name\n
 USAGE_END
@@ -35,9 +46,47 @@ sub summarize_stack_and_cleanup {
 	if ($include_pname) {
 		unshift @stack, $pname;
 	}
-	remember_stack(join(";", @stack), 1);
+
+	if($include_page_type) {
+
+		if(!defined($migrate_type)) {
+			return;
+		}
+
+		if($migrate_type == 0) {
+			$mtype="MIGRATE_UNMOVABLE";
+		} elsif($migrate_type == 1) {
+			$mtype="MIGRATE_MOVABLE";
+		} elsif($migrate_type == 2) {
+			$mtype="MIGRATE_RECLAIMABLE";
+		} elsif($migrate_type == 3) {
+			$mtype="MIGRATE_HIGHATOMIC";
+		} elsif($migrate_type == 4) {
+			$mtype="MIGRATE_CMA";
+		} elsif($migrate_type == 5) {
+			$mtype="MIGRATE_ISOLATE";
+		}
+
+		unshift @stack, "$mtype, $gfp_flags";
+	}
+
+	if($include_page_order) {
+		if(!defined($order)) {
+			return;
+		}
+		unshift @stack, "order $order";
+		remember_stack(join(";", @stack), 2**$order * 4);
+	} else {
+		remember_stack(join(";", @stack), 1);
+	}
 	undef $pname;
 	undef @stack;
+	undef $cpu;
+	undef $tsp;
+	undef $page_alloc_event_cpu;
+	undef $order;
+	undef $migrate_type;
+	undef $gfp_flags;
 }
 
 
@@ -46,14 +95,44 @@ sub summarize_stack_and_cleanup {
 #
 while (defined($_ = <>)) {
 
+	# Ftrace raw output
+	# 1287587.105144 |   1)               |  /* mm_page_alloc: page=0000000082b1fe73 pfn=1704824 order=0 migratetype=1 gfp_flags=GFP_HIGHUSER_MOVABLE|__GFP_ZERO */
+	if ($include_page_order || $include_page_type) {
+		# ftrace raw output
+		if (/^\s+(\d+\.\d+)\s+|\s+(\d+)\).+mm_page_alloc.+order=(\d+)\s+migratetype=(\d+)\s+gfp_flags=(.+)\*/) {
+			if (defined $pname) {
+				summarize_stack_and_cleanup();
+			}
+			$page_alloc_event_cpu = $2;
+			$order = $3;
+			$migrate_type = $4;
+			$gfp_flags = $5;
+			next;
+		}
+		# trace-cmd output
+		# sudo trace-cmd record -l __alloc_pages_nodemask -e kmem:mm_page_alloc  -T sleep 1
+		# <...>-187168 [003] 14540.343835: mm_page_alloc:        page=0x3070e0 pfn=3174624 order=1 migratetype=0 gfp_flags=GFP_KERNEL_ACCOUNT|__GFP_ZERO
+		if (/^\s+(.+)\[(\d+)\]\s+\d+\.\d+.+mm_page_alloc.+order=(\d+)\s+migratetype=(\d+)\s+gfp_flags=(.+)(\*)*/) {
+			if (defined $pname) {
+				summarize_stack_and_cleanup();
+			}
+
+			$page_alloc_event_cpu = $2;
+			$order = $3;
+			$migrate_type = $4;
+			$gfp_flags = $5;
+			next;
+		}
+	}
+
 	# find the name of the process in the first line of callstack of ftrace.
 	# trace-cmd output ex: swift-object-se-18999 [005] 3693413.521874: kernel_stack:         <stack trace>
 	# ftrace output    ex:            <...>-503310 [001] .... 800755.732210: <stack trace>
-	if (/^\s+(.+)\s\[(\d+)\]\s+.*?(\d+\.\d+)\:(\skernel_stack\:)*\s+\<stack trace\>/) {
-		if (defined $pname) {
+	if (/^\s+(.+)\s+\[(\d+)\]\s+.*?(\d+\.\d+)\:(\skernel_stack\:)*\s+\<stack trace\>/) {
+		if (defined $pname && !($include_page_order || $include_page_type)) {
+			# The sample count flamegraph needs to summarize stack here
 			summarize_stack_and_cleanup();
 		}
-
 		$pname = $1;
 		$cpu = $2;
 		$tsp = $3;
@@ -61,9 +140,6 @@ while (defined($_ = <>)) {
 		if (defined $trace_func_name) {
 			unshift @stack, $trace_func_name;
 		}
-		# print "process name: $pname\n";
-		# print "cpu $cpu\n";
-		# print "tsp $tsp\n";
 		next;
 	}
 
@@ -90,14 +166,12 @@ while (defined($_ = <>)) {
 		if (/\s*\=\>\s+(.+)\s*([\(\<]([a-f\d]+)[\)\>])*/) {
 			$func_name = $1;
 			$addr = $2;
-			# print "function name: $func_name;\n";
-			# print "address: $addr;\n";
 			unshift @stack, $func_name;
 
 		# Parse to any other weird lines which is not the stack trace
 		# or the kernel_stack line.
 		} else {
-			summarize_stack_and_cleanup();
+			next;
 		}
 	}
 }
