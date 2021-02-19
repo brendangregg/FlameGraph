@@ -3,12 +3,16 @@ proc_id=$(uuidgen)
 
 name=""
 pid="none"
-fre="1"
+fre="99"
 dur="10"
 
 show_help() {
 cat << EOF
-Usage: ${0##*/}
+Usage: ${0##*/} [-h|--help]
+    -n|--name       进程名
+    -p|--pid        进程pid
+    -f|--frequency  采样频率
+    -d|--duration   采样时长
 EOF
 }
 
