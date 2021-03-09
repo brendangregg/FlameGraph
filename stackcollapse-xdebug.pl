@@ -1,4 +1,4 @@
-#!/usr/bin/env perl -W
+#!/usr/bin/env perl
 #
 # stackcollapse-xdebug.pl collapse multiline stacks into single lines.
 #
@@ -21,10 +21,17 @@
 # {main};func 440711.999999802
 #
 # Copyright 2021 István Karaszi under MIT license
-# 
+#
+
+use 5.008;
 
 use strict;
-use constant SCALE_FACTOR => 1000000;
+use warnings;
+
+use constant {
+    SCALE_FACTOR => 1_000_000,
+    IMPORTANT_COLUMNS => 7,
+};
 
 my %collapsed;
 my @stack;
@@ -34,24 +41,27 @@ my $prev_start_time = 0;
 
 sub remember_stack {
 	my ($stack, $delta) = @_;
+
 	$collapsed{$stack} += $delta;
+
+    return;
 }
 
-foreach (<>) {
+while (<>) {
     chomp;
 
-    if (/^TRACE START/) {
+    if (/^TRACE START/s) {
         $trace_started = 1;
         next;
     }
 
     next unless $trace_started;
 
-    if (/^(\t|TRACE END)/) {
+    if (/^(?:\t|TRACE END)/s) {
         last;
     }
 
-    my ($level, $fn_no, $is_exit, $time, $memory, $func_name) = split(/\t+/, $_, 7);
+    my ($level, $fn_no, $is_exit, $time, $memory, $func_name) = split(/\t+/s, $_, IMPORTANT_COLUMNS);
 
     if ($is_exit eq '1' && !@stack) {
         print STDERR "[WARNING] Found function exit without corresponding entrance. Discarding line. Check your input.\n";
@@ -62,7 +72,7 @@ foreach (<>) {
         my $joined = join(";", @stack);
         my $delta = $time - $prev_start_time;
 
-        remember_stack($joined, $delta * SCALE_FACTOR) 
+        remember_stack($joined, $delta * SCALE_FACTOR);
     }
 
     if ($is_exit eq '1') {
