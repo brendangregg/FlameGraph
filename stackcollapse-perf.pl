@@ -119,9 +119,13 @@ if ($annotate_all) {
 	$annotate_kernel = $annotate_jit = 1;
 }
 
+my %inlineCache;
+
 # for the --inline option
 sub inline {
 	my ($pc, $mod) = @_;
+
+	return $inlineCache{$pc}{$mod} if defined($inlineCache{$pc}{$mod});
 
 	# capture addr2line output
 	my $a2l_output = `addr2line -a $pc -e $mod -i -f -s -C`;
@@ -149,7 +153,15 @@ sub inline {
 		}
 	}
 
-	return join(";", @fullfunc);
+	my $result = join ";" , @fullfunc;
+
+	if (defined($inlineCache{$pc})){
+		$inlineCache{$pc}{$mod}=$result;
+	} else {
+		$inlineCache{$pc} = {$mod => $result};
+	}
+
+	return $result;
 }
 
 my @stack;
