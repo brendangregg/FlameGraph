@@ -88,8 +88,11 @@ my $event_warning = 0;	  # if we printed a warning for the event
 
 my $show_inline = 0;
 my $show_context = 0;
+
+my $srcline_in_input = 0; # if there are extra lines with source location (perf script -F+srcline)
 GetOptions('inline' => \$show_inline,
            'context' => \$show_context,
+           'srcline' => \$srcline_in_input,
            'pid' => \$include_pid,
            'kernel' => \$annotate_kernel,
            'jit' => \$annotate_jit,
@@ -106,6 +109,7 @@ USAGE: $0 [options] infile > outfile\n
 	--kernel	# annotate kernel functions with a _[k]
 	--jit		# annotate jit functions with a _[j]
 	--context	# adds source context to --inline
+	--srcline	# parses output of 'perf script -F+srcline' and adds source context
 	--addrs		# include raw addresses where symbols can't be found
 	--event-filter=EVENT	# event name filter\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
@@ -286,6 +290,7 @@ while (defined($_ = <>)) {
 
 		next if $rawfunc =~ /^\(/;		# skip process names
 
+		my $is_unknown=0;
 		my @inline;
 		for (split /\->/, $rawfunc) {
 			my $func = $_;
@@ -296,6 +301,7 @@ while (defined($_ = <>)) {
 					$func =~ s/.*\///;
 				} else {
 					$func = "unknown";
+					$is_unknown=1;
 				}
 
 				if ($include_addrs) {
@@ -349,6 +355,42 @@ while (defined($_ = <>)) {
 			} elsif ($annotate_jit == 1 && $mod =~ m:/tmp/perf-\d+\.map:) {
 				$func .= "_[j]";	# jitted
 			}
+
+			#
+			# Source lines
+			#
+			#
+			# Sample outputs:
+			#   | a.out 35081 252436.005167:     667783 cycles:
+			#   |                   408ebb some_method_name+0x8b (/full/path/to/a.out)
+			#   |   uniform_int_dist.h:300
+			#   |                   4069f5 main+0x935 (/full/path/to/a.out)
+			#   |   file.cpp:137
+			#   |             7f6d2148eb25 __libc_start_main+0xd5 (/lib64/libc-2.33.so)
+			#   |   libc-2.33.so[27b25]
+			#
+			#   | a.out 35081 252435.738165:     306459 cycles:
+			#   |             7f6d213c2750 [unknown] (/usr/lib64/libkmod.so.2.3.6)
+			#   |   libkmod.so.2.3.6[6750]
+			#
+			#   | a.out 35081 252435.738373:     315813 cycles:
+			#   |             7f6d215ca51b __strlen_avx2+0x4b (/lib64/libc-2.33.so)
+			#   |   libc-2.33.so[16351b]
+			#   |             7ffc71ee9580 [unknown] ([unknown])			
+			#   |
+			#
+			#   | a.out 35081 252435.718940:     247984 cycles:
+			#   |         ffffffff814f9302 up_write+0x32 ([kernel.kallsyms])
+			#   |   [kernel.kallsyms][ffffffff814f9302]
+			if($srcline_in_input and not $is_unknown){
+				$_ = <>;
+				chomp;
+				s/\[.*?\]//g;
+				s/^\s*//g;
+				s/\s*$//g;
+				$func.=':'.$_ unless $_ eq "";
+			}
+
 			push @inline, $func;
 		}
 
