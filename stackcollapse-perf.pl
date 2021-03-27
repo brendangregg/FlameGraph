@@ -274,8 +274,14 @@ while (defined($_ = <>)) {
 		$rawfunc =~ s/\+0x[\da-f]+$//;
 
 		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
-			unshift @stack, inline($pc, $mod);
-			next;
+			my $inlineRes = inline($pc, $mod);
+			# - empty result this happens e.g., when $mod does not exist or is a path to a compressed kernel module
+			#   if this happens, the user will see error message from addr2line written to stderr
+			# - if addr2line results in "??" , then it's much more sane to fall back than produce a '??' in graph
+			if($inlineRes ne "" and $inlineRes ne "??" and $inlineRes ne "??:??:0" ) {
+				unshift @stack, inline($pc, $mod);
+				next;
+			}
 		}
 
 		next if $rawfunc =~ /^\(/;		# skip process names
