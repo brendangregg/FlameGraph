@@ -125,9 +125,20 @@ if ($annotate_all) {
 
 my %inlineCache;
 
+my %nmCache;
+
+sub inlineCacheAdd {
+	my ($pc, $mod, $result) = @_;
+   if (defined($inlineCache{$pc})) {
+      $inlineCache{$pc}{$mod} = $result;
+   } else {
+      $inlineCache{$pc} = {$mod => $result};
+   }
+}
+
 # for the --inline option
 sub inline {
-	my ($pc, $mod) = @_;
+	my ($pc, $rawfunc, $mod) = @_;
 
 	return $inlineCache{$pc}{$mod} if defined($inlineCache{$pc}{$mod});
 
@@ -136,6 +147,24 @@ sub inline {
 
 	# remove first line
 	$a2l_output =~ s/^(.*\n){1}//;
+
+	if ($a2l_output =~ /\?\?\n\?\?:0/) {
+		# if addr2line fails and rawfunc is func+offset, then fall back to it
+		if ($rawfunc =~ /^(.+)\+0x([0-9a-f]+)$/) {
+			my $func = $1;
+			my $addr = hex $2;
+
+			$nmCache{$mod}=`nm $mod` unless defined $nmCache{$mod};
+
+			if ($nmCache{$mod} =~ /^([0-9a-f]+) . $func$/m) {
+			   my $base = hex $1;
+				my $newPc = sprintf "0x%x", $base+$addr;
+				my $result = inline($newPc, '', $mod);
+				inlineCacheAdd($pc, $mod, $result);
+				return $result;
+			}
+		}
+	}
 
 	my @fullfunc;
 	my $one_item = "";
@@ -159,11 +188,7 @@ sub inline {
 
 	my $result = join ";" , @fullfunc;
 
-	if (defined($inlineCache{$pc})){
-		$inlineCache{$pc}{$mod}=$result;
-	} else {
-		$inlineCache{$pc} = {$mod => $result};
-	}
+	inlineCacheAdd($pc, $mod, $result);
 
 	return $result;
 }
@@ -272,21 +297,21 @@ while (defined($_ = <>)) {
 
 		my ($pc, $rawfunc, $mod) = ($1, $2, $3);
 
-		# Linux 4.8 included symbol offsets in perf script output by default, eg:
-		# 7fffb84c9afc cpu_startup_entry+0x800047c022ec ([kernel.kallsyms])
-		# strip these off:
-		$rawfunc =~ s/\+0x[\da-f]+$//;
-
 		if ($show_inline == 1 && $mod !~ m/(perf-\d+.map|kernel\.|\[[^\]]+\])/) {
-			my $inlineRes = inline($pc, $mod);
+			my $inlineRes = inline($pc, $rawfunc, $mod);
 			# - empty result this happens e.g., when $mod does not exist or is a path to a compressed kernel module
 			#   if this happens, the user will see error message from addr2line written to stderr
 			# - if addr2line results in "??" , then it's much more sane to fall back than produce a '??' in graph
 			if($inlineRes ne "" and $inlineRes ne "??" and $inlineRes ne "??:??:0" ) {
-				unshift @stack, inline($pc, $mod);
+				unshift @stack, $inlineRes;
 				next;
 			}
 		}
+
+		# Linux 4.8 included symbol offsets in perf script output by default, eg:
+		# 7fffb84c9afc cpu_startup_entry+0x800047c022ec ([kernel.kallsyms])
+		# strip these off:
+		$rawfunc =~ s/\+0x[\da-f]+$//;
 
 		next if $rawfunc =~ /^\(/;		# skip process names
 
