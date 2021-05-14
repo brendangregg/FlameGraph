@@ -15,7 +15,7 @@ set -v
 # ToDo: add some form of --inline, and --inline --context tests. These are
 # tricky since they use addr2line, whose output will vary based on the test
 # system's binaries and symbol tables.
-for opt in pid tid kernel jit all addrs; do
+for opt in pid tid kernel jit all addrs no-aggregate-stacks; do
   for testfile in test/*.txt ; do
     echo testing $testfile : $opt
     outfile=${testfile#*/}

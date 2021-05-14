@@ -1,0 +1,36 @@
+program 69804 [000] 10223.364596: probe_libc:malloc: (7fa9195fe260)
+	    7fa9195fe260 __libc_malloc+0x0 (inlined)
+	    7fa919838000 CCC (/a)
+	    7fa91983a000 BBB (/a)
+	    7fa91983c000 AAA (/a)
+
+program 69804 [000] 10224.364596: probe_libc:malloc: (7fa9195fe260)
+	    7fa9195fe260 __libc_malloc+0x0 (inlined)
+	    7fa919831000 zzz (/a)
+	    7fa919833000 yyy (/a)
+	    7fa919836c28 xxx (/a)
+
+program 69804 [000] 10225.364596: probe_libc:malloc: (7fa9195fe260)
+	    7fa9195fe260 __libc_malloc+0x0 (inlined)
+	    7fa919838000 CCC (/a)
+	    7fa91983a000 BBB (/a)
+	    7fa91983c000 AAA (/a)
+
+program 69804 [000] 10226.364596: probe_libc:malloc: (7fa9195fe260)
+	    7fa9195fe260 __libc_malloc+0x0 (inlined)
+	    7fa919831000 zzz (/a)
+	    7fa919833000 yyy (/a)
+	    7fa919836c28 xxx (/a)
+
+program 69804 [000] 10227.364596: probe_libc:malloc: (7fa9195fe260)
+	    7fa9195fe260 __libc_malloc+0x0 (inlined)
+	    7fa919838000 CCC (/a)
+	    7fa91983a000 BBB (/a)
+	    7fa91983c000 AAA (/a)
+
+program 69804 [000] 10228.364596: probe_libc:malloc: (7fa9195fe260)
+	    7fa9195fe260 __libc_malloc+0x0 (inlined)
+	    7fa919831000 zzz (/a)
+	    7fa919833000 yyy (/a)
+	    7fa919836c28 xxx (/a)
+
