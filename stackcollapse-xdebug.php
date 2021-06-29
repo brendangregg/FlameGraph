@@ -1,5 +1,5 @@
 #!/usr/bin/php
-#
+<?php
 # Copyright 2018 Miriam Lauter (lauter.miriam@gmail.com).  All rights reserved.
 #
 #  This program is free software; you can redistribute it and/or
@@ -20,7 +20,6 @@
 #
 # 13-Apr-2018   Miriam Lauter   Created this.
 
-<?php
 ini_set('error_log', null);
 $optind = null;
 $args = getopt("htc", ["help"], $optind);
