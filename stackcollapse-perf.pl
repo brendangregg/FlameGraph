@@ -68,10 +68,6 @@ use Getopt::Long;
 
 my %collapsed;
 
-sub remember_stack {
-	my ($stack, $count) = @_;
-	$collapsed{$stack} += $count;
-}
 my $annotate_kernel = 0; # put an annotation on kernel function
 my $annotate_jit = 0;   # put an annotation on jit symbols
 my $annotate_all = 0;   # enale all annotations
@@ -85,6 +81,13 @@ my $target_pname;	# target process name from perf invocation
 my $event_filter = "";    # event type filter, defaults to first encountered event
 my $event_defaulted = 0;  # whether we defaulted to an event (none provided)
 my $event_warning = 0;	  # if we printed a warning for the event
+my $dont_aggregate_stacks = 0; # don't aggregate stacks when collapsing (for Flame Charts)
+
+sub remember_stack {
+	my ($stack, $count) = @_;
+	$collapsed{$stack} += $count;
+    print "$stack $count\n" if $dont_aggregate_stacks;
+}
 
 my $show_inline = 0;
 my $show_context = 0;
@@ -96,7 +99,8 @@ GetOptions('inline' => \$show_inline,
            'all' => \$annotate_all,
            'tid' => \$include_tid,
            'addrs' => \$include_addrs,
-           'event-filter=s' => \$event_filter)
+           'event-filter=s' => \$event_filter,
+           'no-aggregate-stacks' => \$dont_aggregate_stacks)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
@@ -108,6 +112,7 @@ USAGE: $0 [options] infile > outfile\n
 	--context	# adds source context to --inline
 	--addrs		# include raw addresses where symbols can't be found
 	--event-filter=EVENT	# event name filter\n
+	--no-aggregate-stacks   # don't aggregate stacks whilst collapsing (for Flame Charts)\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
     for Linux >= 4.1:
@@ -340,6 +345,8 @@ while (defined($_ = <>)) {
 	}
 }
 
-foreach my $k (sort { $a cmp $b } keys %collapsed) {
-	print "$k $collapsed{$k}\n";
+unless ($dont_aggregate_stacks) {
+	foreach my $k (sort { $a cmp $b } keys %collapsed) {
+		print "$k $collapsed{$k}\n";
+	}
 }

@@ -1,0 +1,6 @@
+program;AAA;BBB;CCC;__libc_malloc 1
+program;xxx;yyy;zzz;__libc_malloc 1
+program;AAA;BBB;CCC;__libc_malloc 1
+program;xxx;yyy;zzz;__libc_malloc 1
+program;AAA;BBB;CCC;__libc_malloc 1
+program;xxx;yyy;zzz;__libc_malloc 1
