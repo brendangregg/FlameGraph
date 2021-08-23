@@ -156,7 +156,7 @@ sub inline {
 
 			$nmCache{$mod}=`nm $mod` unless defined $nmCache{$mod};
 
-			if ($nmCache{$mod} =~ /^([0-9a-f]+) . $func$/m) {
+			if ($nmCache{$mod} =~ /^([0-9a-f]+) . \Q$func\E$/m) {
 			   my $base = hex $1;
 				my $newPc = sprintf "0x%x", $base+$addr;
 				my $result = inline($newPc, '', $mod);
