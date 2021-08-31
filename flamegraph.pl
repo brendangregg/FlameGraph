@@ -756,8 +756,15 @@ my $inc = <<INC;
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 		currentSearchTerm = null;
+
+		// use GET parameters to restore a flamegraphs state.
+		var params = get_params();
+		if (params.x && params.y)
+			zoom(find_group(document.querySelector('[x="' + params.x + '"][y="' + params.y + '"]')));
+                if (params.s) search(params.s);
 	}
 
+	// event listeners
 	window.addEventListener("click", function(e) {
 		var target = find_group(e.target);
 		if (target) {
@@ -767,8 +774,21 @@ my $inc = <<INC;
 			}
 			if (target.classList.contains("parent")) unzoom();
 			zoom(target);
+			if (!document.querySelector('.parent')) {
+				clearzoom();
+				return;
+			}
+
+			// set parameters for zoom state
+			var el = target.querySelector("rect");
+			if (el && el.attributes && el.attributes.y && el.attributes._orig_x) {
+				var params = get_params()
+				params.x = el.attributes._orig_x.value;
+				params.y = el.attributes.y.value;
+				history.replaceState(null, null, parse_params(params));
+			}
 		}
-		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "unzoom") clearzoom();
 		else if (e.target.id == "search") search_prompt();
 		else if (e.target.id == "ignorecase") toggle_ignorecase();
 	}, false)
@@ -787,26 +807,43 @@ my $inc = <<INC;
 	}, false)
 
 	// ctrl-F for search
+	// ctrl-I to toggle case-sensitive search
 	window.addEventListener("keydown",function (e) {
 		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
 			e.preventDefault();
 			search_prompt();
 		}
-	}, false)
-
-	// ctrl-I to toggle case-sensitive search
-	window.addEventListener("keydown",function (e) {
-		if (e.ctrlKey && e.keyCode === 73) {
+		else if (e.ctrlKey && e.keyCode === 73) {
 			e.preventDefault();
 			toggle_ignorecase();
 		}
 	}, false)
 
 	// functions
+	function get_params() {
+		var params = {};
+		var paramsarr = window.location.search.substr(1).split('&');
+		for (var i = 0; i < paramsarr.length; ++i) {
+			var tmp = paramsarr[i].split("=");
+			if (!tmp[0] || !tmp[1]) continue;
+			params[tmp[0]]  = decodeURIComponent(tmp[1]);
+		}
+		return params;
+	}
+	function parse_params(params) {
+		var uri = "?";
+		for (var key in params) {
+			uri += key + '=' + encodeURIComponent(params[key]) + '&';
+		}
+		if (uri.slice(-1) == "&")
+			uri = uri.substring(0, uri.length - 1);
+		if (uri == '?')
+			uri = window.location.href.split('?')[0];
+		return uri;
+	}
 	function find_child(node, selector) {
 		var children = node.querySelectorAll(selector);
 		if (children.length) return children[0];
-		return;
 	}
 	function find_group(node) {
 		var parent = node.parentElement;
@@ -970,6 +1007,15 @@ my $inc = <<INC;
 		}
 		search();
 	}
+	function clearzoom() {
+		unzoom();
+
+		// remove zoom state
+		var params = get_params();
+		if (params.x) delete params.x;
+		if (params.y) delete params.y;
+		history.replaceState(null, null, parse_params(params));
+	}
 
 	// search
 	function toggle_ignorecase() {
@@ -987,6 +1033,9 @@ my $inc = <<INC;
 		for (var i = 0; i < el.length; i++) {
 			orig_load(el[i], "fill")
 		}
+		var params = get_params();
+		delete params.s;
+		history.replaceState(null, null, parse_params(params));
 	}
 	function search_prompt() {
 		if (!searching) {
@@ -994,10 +1043,7 @@ my $inc = <<INC;
 			    "allowed, eg: ^ext4_)"
 			    + (ignorecase ? ", ignoring case" : "")
 			    + "\\nPress Ctrl-i to toggle case sensitivity", "");
-			if (term != null) {
-				currentSearchTerm = term;
-				search();
-			}
+			if (term != null) search(term);
 		} else {
 			reset_search();
 			searching = 0;
@@ -1009,10 +1055,9 @@ my $inc = <<INC;
 		}
 	}
 	function search(term) {
-		if (currentSearchTerm === null) return;
-		var term = currentSearchTerm;
+		if (term) currentSearchTerm = term;
 
-		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var re = new RegExp(currentSearchTerm, ignorecase ? 'i' : '');
 		var el = document.getElementById("frames").children;
 		var matches = new Object();
 		var maxwidth = 0;
@@ -1048,6 +1093,9 @@ my $inc = <<INC;
 		}
 		if (!searching)
 			return;
+		var params = get_params();
+		params.s = currentSearchTerm;
+		history.replaceState(null, null, parse_params(params));
 
 		searchbtn.classList.add("show");
 		searchbtn.firstChild.nodeValue = "Reset Search";
