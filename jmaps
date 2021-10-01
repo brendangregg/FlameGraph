@@ -76,12 +76,13 @@ for pid in $(pgrep -x java); do
 	(( debug )) && echo $cmd
 
 	user=$(ps ho user -p $pid)
+	group=$(ps ho group -p $pid)
 	if [[ "$user" != root ]]; then
 		if [[ "$user" == [0-9]* ]]; then
-			# UID only, run sudo with #UID:
-			cmd="sudo -u '#'$user sh -c '$cmd'"
+			# UID only, likely GID too, run sudo with #UID:
+			cmd="sudo -u '#'$user -g '#'$group sh -c '$cmd'"
 		else
-			cmd="sudo -u $user sh -c '$cmd'"
+			cmd="sudo -u $user -g $group sh -c '$cmd'"
 		fi
 	fi
 
