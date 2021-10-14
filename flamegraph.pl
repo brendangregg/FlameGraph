@@ -1060,6 +1060,7 @@ my $inc = <<INC;
 	}
 	function search(term) {
 		if (term) currentSearchTerm = term;
+		if (currentSearchTerm === null) return;
 
 		var re = new RegExp(currentSearchTerm, ignorecase ? 'i' : '');
 		var el = document.getElementById("frames").children;
