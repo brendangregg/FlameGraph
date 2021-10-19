@@ -890,11 +890,15 @@ my $inc = <<INC;
 		}
 
 		t.textContent = txt;
-		// Fit in full text width
-		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+		var sl = t.getSubStringLength(0, txt.length);
+		// check if only whitespace or if we can fit the entire string into width w
+		if (/^ *\$/.test(txt) || sl < w)
 			return;
 
-		for (var x = txt.length - 2; x > 0; x--) {
+		// this isn't perfect, but gives a good starting point
+		// and avoids calling getSubStringLength too often
+		var start = Math.floor((w/sl) * txt.length) - 2
+		for (var x = start; x > 0; x = x-2) {
 			if (t.getSubStringLength(0, x + 2) <= w) {
 				t.textContent = txt.substring(0, x) + "..";
 				return;
