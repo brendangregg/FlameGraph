@@ -776,10 +776,15 @@ my $inc = <<INC;
 				if (e.ctrlKey === false) return;
 				e.preventDefault();
 			}
-			if (target.classList.contains("parent")) unzoom();
+			if (target.classList.contains("parent")) unzoom(true);
 			zoom(target);
 			if (!document.querySelector('.parent')) {
-				clearzoom();
+				// we have basically done a clearzoom so clear the url
+				var params = get_params();
+				if (params.x) delete params.x;
+				if (params.y) delete params.y;
+				history.replaceState(null, null, parse_params(params));
+				unzoombtn.classList.add("hide");
 				return;
 			}
 
@@ -897,7 +902,7 @@ my $inc = <<INC;
 
 		// this isn't perfect, but gives a good starting point
 		// and avoids calling getSubStringLength too often
-		var start = Math.floor((w/sl) * txt.length) - 2
+		var start = Math.floor((w/sl) * txt.length);
 		for (var x = start; x > 0; x = x-2) {
 			if (t.getSubStringLength(0, x + 2) <= w) {
 				t.textContent = txt.substring(0, x) + "..";
@@ -1004,14 +1009,14 @@ my $inc = <<INC;
 		}
 		search();
 	}
-	function unzoom() {
+	function unzoom(dont_update_text) {
 		unzoombtn.classList.add("hide");
 		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
 			el[i].classList.remove("parent");
 			el[i].classList.remove("hide");
 			zoom_reset(el[i]);
-			update_text(el[i]);
+			if(!dont_update_text) update_text(el[i]);
 		}
 		search();
 	}
