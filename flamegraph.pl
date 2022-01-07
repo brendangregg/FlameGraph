@@ -396,6 +396,28 @@ sub color {
 		my $b = 190 + int(55 * $v2);
 		return "rgb($r,$g,$b)";
 	}
+	if (defined $type and $type eq "eyefriendly"){
+		# code adapted from https://github.com/jlfwong/speedscope,
+		# around line https://github.com/jlfwong/speedscope/blob/e37f6fa7c38c110205e22081560b99cb89ce885e/src/gl/flamechart-color-pass-renderer.ts#L34
+		# which was authored by jlfwong
+		my ($r, $g, $b);
+		my $t = $v1;
+		my $x = 2.0 * abs((30.0 * $t - int(30.0 * $t)) - 0.5) - 1.0;
+		my $H = 360.0 * (0.9 * $t);
+		my $C = 0.25 + 0.2 * $x;
+		my $L = 0.80 - 0.15 * $x;
+		my $hPrime = $H / 60.0;
+		my $X = $C * (1.0 - abs($hPrime % 2 - 1.0));
+		($r, $g, $b) = $hPrime > 5.0 ? ($C, 0, $X) : (0,0,0);
+		($r, $g, $b) = $hPrime <= 5.0 ? ($X, 0, $C) : ($r, $g, $b);
+		($r, $g, $b) = $hPrime <= 4.0 ? (0, $X, $C) : ($r, $g, $b);
+		($r, $g, $b) = $hPrime <= 3.0 ? (0, $C, $X) : ($r, $g, $b);
+		($r, $g, $b) = $hPrime <= 2.0 ? ($X, $C, 0) : ($r, $g, $b);
+		($r, $g, $b) = $hPrime <= 1.0 ? ($C, $X, 0) : ($r, $g, $b);
+		my $m = $L - ($r * 0.40 + $b * 0.49 + $g * 0.11);
+		($r, $g, $b) = (160 * ($r + $m), 160 * ($g + $m), 160 * ($b + $m));
+		return "rgb($r,$g,$b)";
+	}
 
 	# multi palettes
 	if (defined $type and $type eq "java") {
