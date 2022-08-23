@@ -604,17 +604,17 @@ sub flow {
 		}
 	}
 
-        return $this;
+	return $this;
 }
 
 # parse input
 my @Data;
-my @SortedData;
 my $last = [];
 my $time = 0;
 my $delta = undef;
 my $ignored = 0;
 my $line;
+my $entry;
 my $maxdelta = 1;
 
 # reverse if needed
@@ -629,24 +629,35 @@ foreach (<>) {
 		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
 			$samples2 = $samples;
 			($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
-			unshift @Data, join(";", reverse split(";", $stack)) . " $samples $samples2";
+			$entry = join(";", reverse split(";", $stack)) . " $samples $samples2";
 		} else {
-			unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
+			$entry = join(";", reverse split(";", $stack)) . " $samples";
 		}
 	} else {
-		unshift @Data, $line;
+		$entry = $line;
+	}
+
+	if ( $flamechart ) {
+		# TODO: why does this unshift and then reverse? just push instead?
+		unshift @Data, $entry;
+	} else {
+		push @Data, $entry;
 	}
 }
 
+
 if ($flamechart) {
 	# In flame chart mode, just reverse the data so time moves from left to right.
-	@SortedData = reverse @Data;
+	@Data = reverse @Data;
 } else {
-	@SortedData = sort @Data;
+	# Use in-place sort to reduce memory usage.
+	# https://stackoverflow.com/a/24960868
+	@Data = sort @Data;
 }
 
-# process and merge frames
-foreach (@SortedData) {
+# process and merge frames;
+# free up memory from @Data as %Node get populated
+while ($_ = shift @Data) {
 	chomp;
 	# process: folded_stack count
 	# eg: func_a;func_b;func_c 31
@@ -693,6 +704,7 @@ foreach (@SortedData) {
 	}
 }
 flow($last, [], $time, $delta);
+undef @Data;
 
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
 unless ($time) {
@@ -1187,6 +1199,8 @@ while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
 	my $stime = $node->{stime};
 	my $delta = $node->{delta};
+	# free up memory as we go
+	delete $Node{$id};
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
