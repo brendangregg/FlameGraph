@@ -597,46 +597,16 @@ sub flow {
 }
 
 # parse input
-my @Data;
-my @SortedData;
+my @Data; # triplets of [stack, samples, samples2]
 my $last = [];
 my $time = 0;
 my $delta = undef;
 my $ignored = 0;
-my $line;
 my $maxdelta = 1;
 
-# reverse if needed
 foreach (<>) {
 	chomp;
-	$line = $_;
-	if ($stackreverse) {
-		# there may be an extra samples column for differentials
-		# XXX todo: redo these REs as one. It's repeated below.
-		my($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
-		my $samples2 = undef;
-		if ($stack =~ /^(.*)\s+?(\d+(?:\.\d*)?)$/) {
-			$samples2 = $samples;
-			($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
-			unshift @Data, join(";", reverse split(";", $stack)) . " $samples $samples2";
-		} else {
-			unshift @Data, join(";", reverse split(";", $stack)) . " $samples";
-		}
-	} else {
-		unshift @Data, $line;
-	}
-}
 
-if ($flamechart) {
-	# In flame chart mode, just reverse the data so time moves from left to right.
-	@SortedData = reverse @Data;
-} else {
-	@SortedData = sort @Data;
-}
-
-# process and merge frames
-foreach (@SortedData) {
-	chomp;
 	# process: folded_stack count
 	# eg: func_a;func_b;func_c 31
 	my ($stack, $samples) = (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
@@ -651,6 +621,23 @@ foreach (@SortedData) {
 		$samples2 = $samples;
 		($stack, $samples) = $stack =~ (/^(.*)\s+?(\d+(?:\.\d*)?)$/);
 	}
+
+	if ($stackreverse) {
+		$stack = join(";", reverse split(";", $stack));
+	}
+	push @Data, [$stack, $samples, $samples2];
+}
+
+warn "Ignored $ignored lines with invalid format\n" if $ignored;
+
+if (not $flamechart) {
+	# sort by function name
+	@Data = sort {$a->[0] cmp $b->[0]} @Data;
+}
+
+# process and merge frames
+foreach (@Data) {
+	my ($stack, $samples, $samples2) = @{$_};
 	$delta = undef;
 	if (defined $samples2) {
 		$delta = $samples2 - $samples;
@@ -683,7 +670,6 @@ foreach (@SortedData) {
 }
 flow($last, [], $time, $delta);
 
-warn "Ignored $ignored lines with invalid format\n" if $ignored;
 unless ($time) {
 	warn "ERROR: No stack counts found\n";
 	my $im = SVG->new();
