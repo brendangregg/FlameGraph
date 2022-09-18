@@ -197,6 +197,7 @@ my @stack;
 my $pname;
 my $m_pid;
 my $m_tid;
+my $m_period;
 
 #
 # Main loop
@@ -232,7 +233,7 @@ while (defined($_ = <>)) {
 				unshift @stack, "";
 			}
 		}
-		remember_stack(join(";", @stack), 1) if @stack;
+		remember_stack(join(";", @stack), $m_period) if @stack;
 		undef @stack;
 		undef $pname;
 		next;
@@ -243,21 +244,22 @@ while (defined($_ = <>)) {
 	#
 	if (/^(\S.+?)\s+(\d+)\/*(\d+)*\s+/) {
 		# default "perf script" output has TID but not PID
-		# eg, "java 25607 4794564.109216: cycles:"
-		# eg, "java 12688 [002] 6544038.708352: cpu-clock:"
-		# eg, "V8 WorkerThread 25607 4794564.109216: cycles:"
-		# eg, "java 24636/25607 [000] 4794564.109216: cycles:"
-		# eg, "java 12688/12764 6544038.708352: cpu-clock:"
-		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: cycles:"
+		# eg, "java 25607 4794564.109216: 1 cycles:"
+		# eg, "java 12688 [002] 6544038.708352: 235 cpu-clock:"
+		# eg, "V8 WorkerThread 25607 4794564.109216: 104345 cycles:"
+		# eg, "java 24636/25607 [000] 4794564.109216: 1 cycles:"
+		# eg, "java 12688/12764 6544038.708352: 10309278 cpu-clock:"
+		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: 100 cycles:"
 		# other combinations possible
-		my ($comm, $pid, $tid) = ($1, $2, $3);
+		my ($comm, $pid, $tid, $period) = ($1, $2, $3, "");
 		if (not $tid) {
 			$tid = $pid;
 			$pid = "?";
 		}
 
-		if (/(\S+):\s*$/) {
-			my $event = $1;
+		if (/:\s*(\d+)*\s+(\S+):\s*$/) {
+			$period = $1;
+			my $event = $2;
 
 			if ($event_filter eq "") {
 				# By default only show events of the first encountered
@@ -277,7 +279,10 @@ while (defined($_ = <>)) {
 			}
 		}
 
-		($m_pid, $m_tid) = ($pid, $tid);
+		if (not $period) {
+			$period = 1
+		}
+		($m_pid, $m_tid, $m_period) = ($pid, $tid, $period);
 
 		if ($include_tid) {
 			$pname = "$comm-$m_pid/$m_tid";
