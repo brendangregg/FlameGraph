@@ -1067,6 +1067,7 @@ my $inc = <<INC;
 			matchedtxt.classList.add("hide");
 			matchedtxt.firstChild.nodeValue = ""
 			searchedFortxt.classList.add("hide");
+			searchedFortxt.firstChiled.nodeValue = ""
 		}
 	}
 	function search(term) {
