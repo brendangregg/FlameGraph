@@ -776,10 +776,15 @@ my $inc = <<INC;
 				if (e.ctrlKey === false) return;
 				e.preventDefault();
 			}
-			if (target.classList.contains("parent")) unzoom();
+			if (target.classList.contains("parent")) unzoom(true);
 			zoom(target);
 			if (!document.querySelector('.parent')) {
-				clearzoom();
+				// we have basically done a clearzoom so clear the url
+				var params = get_params();
+				if (params.x) delete params.x;
+				if (params.y) delete params.y;
+				history.replaceState(null, null, parse_params(params));
+				unzoombtn.classList.add("hide");
 				return;
 			}
 
@@ -890,11 +895,15 @@ my $inc = <<INC;
 		}
 
 		t.textContent = txt;
-		// Fit in full text width
-		if (/^ *\$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+		var sl = t.getSubStringLength(0, txt.length);
+		// check if only whitespace or if we can fit the entire string into width w
+		if (/^ *\$/.test(txt) || sl < w)
 			return;
 
-		for (var x = txt.length - 2; x > 0; x--) {
+		// this isn't perfect, but gives a good starting point
+		// and avoids calling getSubStringLength too often
+		var start = Math.floor((w/sl) * txt.length);
+		for (var x = start; x > 0; x = x-2) {
 			if (t.getSubStringLength(0, x + 2) <= w) {
 				t.textContent = txt.substring(0, x) + "..";
 				return;
@@ -1000,14 +1009,14 @@ my $inc = <<INC;
 		}
 		search();
 	}
-	function unzoom() {
+	function unzoom(dont_update_text) {
 		unzoombtn.classList.add("hide");
 		var el = document.getElementById("frames").children;
 		for(var i = 0; i < el.length; i++) {
 			el[i].classList.remove("parent");
 			el[i].classList.remove("hide");
 			zoom_reset(el[i]);
-			update_text(el[i]);
+			if(!dont_update_text) update_text(el[i]);
 		}
 		search();
 	}
