@@ -51,15 +51,21 @@ my $in_stack = 0;
 foreach (<>) {
   chomp;
   if (!$in_stack) {
-    if (/^@\[/) {
+    if (/^@\[$/) {
       $in_stack = 1;
+    } elsif (/^@\[,\s(.*)\]: (\d+)/) {
+      print $1 . " $2\n";
     }
   } else {
-    if (m/^\]: (\d+)/) {
-      print join(';', reverse(@stack)) . " $1\n";
+    if (m/^,?\s?(.*)\]: (\d+)/) {
+      if (length $1) {
+        push(@stack, $1);
+      }
+      print join(';', reverse(@stack)) . " $2\n";
       $in_stack = 0;
       @stack = ();
     } else {
+      $_ =~ s/^\s+//;
       push(@stack, $_);
     }
   }
