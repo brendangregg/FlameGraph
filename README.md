@@ -223,3 +223,18 @@ Take a look at the demo directory for an example:
 
 palette-example-working.svg  
 palette-example-broken.svg
+
+Streaming mode
+==============
+
+`stackcollapse-perf.pl` provides a streaming mode. This mode output the
+stack sample lines in a streaming fashion. This can be used to efficiently
+subsample from a large capture:
+
+~~~sh
+perf script |
+./stackcollapse-perf.pl --stream |
+shuf -n 50000 |          # Take 50000 random stack samples
+./stackcollapse-sum.pl | # Merge identical stack samples
+./flamegraph.pl
+~~~
