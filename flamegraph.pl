@@ -1156,7 +1156,7 @@ $im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) i
 $im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
 $im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom", 'class="hide"');
 $im->stringTTF("search", $imagewidth - $xpad - 100, $fontsize * 2, "Search");
-$im->stringTTF("ignorecase", $imagewidth - $xpad - 16, $fontsize * 2, "ic");
+$im->stringTTF("ignorecase", $imagewidth - $xpad - 16, $fontsize * 2, "<title>Ignore case</title>ic");
 $im->stringTTF("matched", $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ");
 
 if ($palette) {
