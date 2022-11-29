@@ -79,6 +79,7 @@ my $include_pname = 1;	# include process names in stacks
 my $include_pid = 0;	# include process ID with process name
 my $include_tid = 0;	# include process & thread ID with process name
 my $include_addrs = 0;	# include raw address where a symbol can't be found
+my $only_counts = 0;	# ignore periods and just count stacks
 my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
@@ -99,6 +100,7 @@ GetOptions('inline' => \$show_inline,
            'all' => \$annotate_all,
            'tid' => \$include_tid,
            'addrs' => \$include_addrs,
+           'counts' => \$only_counts,
            'event-filter=s' => \$event_filter)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
@@ -111,6 +113,7 @@ USAGE: $0 [options] infile > outfile\n
 	--context	# adds source context to --inline
 	--srcline	# parses output of 'perf script -F+srcline' and adds source context
 	--addrs		# include raw addresses where symbols can't be found
+	--counts	# ignore periods and just count stacks
 	--event-filter=EVENT	# event name filter\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
@@ -233,7 +236,7 @@ while (defined($_ = <>)) {
 				unshift @stack, "";
 			}
 		}
-		remember_stack(join(";", @stack), $m_period) if @stack;
+		remember_stack(join(";", @stack), $only_counts ? 1 : $m_period) if @stack;
 		undef @stack;
 		undef $pname;
 		next;
