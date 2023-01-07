@@ -15,9 +15,9 @@
 # frame in the stack is comma separated, with a space and count at the end of
 # the line.  These can be generated using DTrace with stackcollapse.pl.
 #
-# The output graph shows relative presense of functions in stack samples.  The
+# The output graph shows relative presence of functions in stack samples.  The
 # ordering on the x-axis has no meaning; since the data is samples, time order
-# of events is not known.  The order used sorts function names alphabeticly.
+# of events is not known.  The order used sorts function names alphabetically.
 #
 # HISTORY
 #
