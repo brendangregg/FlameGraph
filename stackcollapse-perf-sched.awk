@@ -37,7 +37,7 @@
 #
 #   0x952790 [0x736d]: failed to process type: 3410
 #
-# This failure is not determinisitic, so re-executing perf record will
+# This failure is not deterministic, so re-executing perf record will
 # eventually succeed.
 #
 # == Usage ==
