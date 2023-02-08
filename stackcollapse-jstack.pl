@@ -63,17 +63,20 @@ use Getopt::Long;
 my $include_tname = 1;		# include thread names in stacks
 my $include_tid = 0;		# include thread IDs in stacks
 my $shorten_pkgs = 0;		# shorten package names
+my $include_blocked = 0;	# include blocked threads in stacks
 my $help = 0;
 
 sub usage {
 	die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--include-tname
-	--no-include-tname # include/omit thread names in stacks (default: include)
+	--no-include-tname    # include/omit thread names in stacks (default: include)
 	--include-tid
-	--no-include-tid   # include/omit thread IDs in stacks (default: omit)
+	--no-include-tid      # include/omit thread IDs in stacks (default: omit)
 	--shorten-pkgs
-	--no-shorten-pkgs  # (don't) shorten package names (default: don't shorten)
+	--no-shorten-pkgs     # (don't) shorten package names (default: don't shorten)
+	--include-blocked
+	--no-include-blocked  # (don't) include threads that are not runnable (default: don't include))
 
 	eg,
 	$0 --no-include-tname stacks.txt > collapsed.txt
@@ -81,10 +84,11 @@ USAGE_END
 }
 
 GetOptions(
-	'include-tname!'  => \$include_tname,
-	'include-tid!'    => \$include_tid,
-	'shorten-pkgs!'   => \$shorten_pkgs,
-	'help'            => \$help,
+	'include-tname!'   => \$include_tname,
+	'include-tid!'     => \$include_tid,
+	'shorten-pkgs!'    => \$shorten_pkgs,
+	'include-blocked!' => \$include_blocked,
+	'help'             => \$help,
 ) or usage();
 $help && usage();
 
@@ -107,7 +111,7 @@ foreach (<>) {
 
 	if (m/^$/) {
 		# only include RUNNABLE states
-		goto clear if $state ne "RUNNABLE";
+		goto clear if ($state ne "RUNNABLE" && !$include_blocked);
 
 		# save stack
 		if (defined $tname) { unshift @stack, $tname; }
