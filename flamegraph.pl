@@ -364,6 +364,20 @@ sub namehash {
 	return (1 - $vector / $max)
 }
 
+sub random_namehash {
+	# Generate a random hash for the name string.
+	# This ensures that functions with the same name have the same color,
+	# both within a flamegraph and across multiple flamegraphs without
+	# needing to set a palette and while preserving the original flamegraph
+	# optic, unlike what happens with --hash.
+	my $name = shift;
+	use Digest::MD5 qw(md5);
+	my $str = substr( md5($name), 0, 4 );
+	my $hash = unpack('L', $str);
+	srand($hash);
+	return rand(1)
+}
+
 sub color {
 	my ($type, $hash, $name) = @_;
 	my ($v1, $v2, $v3);
@@ -372,9 +386,9 @@ sub color {
 		$v1 = namehash($name);
 		$v2 = $v3 = namehash(scalar reverse $name);
 	} else {
-		$v1 = rand(1);
-		$v2 = rand(1);
-		$v3 = rand(1);
+		$v1 = random_namehash($name);
+		$v2 = random_namehash($name);
+		$v3 = random_namehash($name);
 	}
 
 	# theme palettes
