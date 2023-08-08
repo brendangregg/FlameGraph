@@ -2,7 +2,7 @@
 #
 # merge multiple .col files
 #
-# USAGE: python combine.py file1.col file2.col
+# USAGE: python merge.py file1.col file2.col
 #
 # 8-Aug-2023    Daniel Hill Created this.
 
