@@ -14,7 +14,7 @@ my @stack = ();
 <>;
 foreach (<>) {
 	chomp;
-	/\d+\.\d+ (?:min|s|ms)\s+\d+\.\d+%\s+(\d+(?:\.\d+)?) (min|s|ms)\t \t(\s*)(.+)/ or die;
+	/\d+\.\d+ (?:min|s|ms|µs)\s+\d+\.\d+%\s+(\d+(?:\.\d+)?) (min|s|ms|µs)\t \t(\s*)(.+)/ or die;
 	my $func = $4;
 	my $depth = length ($3);
 	$stack [$depth] = $4;
