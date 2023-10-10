@@ -15,9 +15,9 @@ my @timestack = ();
 my $prevdepth = -1;
 
 <>;
-foreach (<>) {
+LINE: foreach (<>) {
 	chomp;
-	/(\d+\.\d+) (min|s|ms)\s+\d+\.\d+%\s+(?:\d+(?:\.\d+)?) (?:min|s|ms)\t \t(\s*)(.+)/ or die;
+	/(\d+\.\d+) (min|s|ms)\s+\d+\.\d+%\s+(?:\d+(?:\.\d+)?) (?:min|s|ms)\t \t(\s*)(.+)/ or last LINE;
 	my $func = $4;
 	my $depth = length ($3);
 
@@ -35,7 +35,8 @@ foreach (<>) {
 				print $symbolstack [$j];
 				print ";";
 			}
-			printf("%s %.0f\n", $symbolstack [$i], $timestack [$i]);
+			my $actualtime = ($timestack [$i] > 0 ? $timestack [$i] : 0);
+			printf("%s %.0f\n", $symbolstack [$i], $actualtime);
 		}
 	}
 
@@ -56,6 +57,7 @@ if ($prevdepth != -1) {
 			print $symbolstack [$j];
 			print ";";
 		}
-		printf("%s %.0f\n", $symbolstack [$i], $timestack [$i]);
+		my $actualtime = ($timestack [$i] > 0 ? $timestack [$i] : 0);
+		printf("%s %.0f\n", $symbolstack [$i], $actualtime);
 	}
 }
