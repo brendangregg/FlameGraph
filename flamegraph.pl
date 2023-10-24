@@ -103,7 +103,7 @@ my $imagewidth = 1200;          # max width, pixels
 my $frameheight = 16;           # max height is dynamic
 my $fontsize = 12;              # base text size
 my $fontwidth = 0.59;           # avg width relative to fontsize
-my $minwidth = 0.1;             # min function width, pixels
+my $minwidth = 0.1;             # min function width, pixels or percentage of time
 my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
@@ -134,7 +134,8 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--subtitle TEXT  # second level title (optional)
 	--width NUM      # width of image (default 1200)
 	--height NUM     # height of each frame (default 16)
-	--minwidth NUM   # omit smaller functions (default 0.1 pixels)
+	--minwidth NUM   # omit smaller functions. In pixels or use "%" for 
+	                 # percentage of time (default 0.1 pixels)
 	--fonttype FONT  # font type (default "Verdana")
 	--fontsize NUM   # font size (default 12)
 	--countname TEXT # count type label (default "samples")
@@ -165,7 +166,7 @@ GetOptions(
 	'encoding=s'  => \$encoding,
 	'fontsize=f'  => \$fontsize,
 	'fontwidth=f' => \$fontwidth,
-	'minwidth=f'  => \$minwidth,
+	'minwidth=s'  => \$minwidth,
 	'title=s'     => \$titletext,
 	'subtitle=s'  => \$subtitletext,
 	'nametype=s'  => \$nametype,
@@ -222,6 +223,16 @@ if ($nameattrfile) {
 
 if ($notestext =~ /[<>]/) {
 	die "Notes string can't contain < or >"
+}
+
+# Ensure minwidth is a valid floating-point number,
+# print usage string if not
+my $minwidth_f;
+if ($minwidth =~ /^([0-9.]+)%?$/) {
+	$minwidth_f = $1;
+} else {
+	warn "Value '$minwidth' is invalid for minwidth, expected a float.\n";
+	usage();
 }
 
 # background colors:
@@ -717,7 +728,14 @@ if ($timemax and $timemax < $time) {
 $timemax ||= $time;
 
 my $widthpertime = ($imagewidth - 2 * $xpad) / $timemax;
-my $minwidth_time = $minwidth / $widthpertime;
+
+# Treat as a percentage of time if the string ends in a "%".
+my $minwidth_time;
+if ($minwidth =~ /%$/) {
+	$minwidth_time = $timemax * $minwidth_f / 100;
+} else {
+	$minwidth_time = $minwidth_f / $widthpertime;
+}
 
 # prune blocks that are too narrow and determine max depth
 while (my ($id, $node) = each %Node) {
