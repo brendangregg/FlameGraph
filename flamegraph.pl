@@ -378,6 +378,11 @@ sub namehash {
 	return (1 - $vector / $max)
 }
 
+sub sum_namehash {
+  my $name = shift;
+  return unpack("%32W*", $name);
+}
+
 sub random_namehash {
 	# Generate a random hash for the name string.
 	# This ensures that functions with the same name have the same color,
@@ -385,9 +390,7 @@ sub random_namehash {
 	# needing to set a palette and while preserving the original flamegraph
 	# optic, unlike what happens with --hash.
 	my $name = shift;
-	use Digest::MD5 qw(md5);
-	my $str = substr( md5($name), 0, 4 );
-	my $hash = unpack('L', $str);
+	my $hash = sum_namehash($name);
 	srand($hash);
 	return rand(1)
 }
