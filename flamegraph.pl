@@ -112,6 +112,7 @@ my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
 my $hash = 0;                   # color by function name
+my $rand = 0;                   # color randomly
 my $palette = 0;                # if we use consistent palettes (default off)
 my %palette_map;                # palette map hash
 my $pal_file = "palette.map";   # palette map file name
@@ -134,7 +135,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--subtitle TEXT  # second level title (optional)
 	--width NUM      # width of image (default 1200)
 	--height NUM     # height of each frame (default 16)
-	--minwidth NUM   # omit smaller functions. In pixels or use "%" for 
+	--minwidth NUM   # omit smaller functions. In pixels or use "%" for
 	                 # percentage of time (default 0.1 pixels)
 	--fonttype FONT  # font type (default "Verdana")
 	--fontsize NUM   # font size (default 12)
@@ -146,6 +147,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--bgcolors COLOR # set background colors. gradient choices are yellow
 	                 # (default), blue, green, grey; flat colors use "#rrggbb"
 	--hash           # colors are keyed by function name hash
+	--random         # colors are randomly generated
 	--cp             # use consistent palette (palette.map)
 	--reverse        # generate stack-reversed flame graph
 	--inverted       # icicle graph
@@ -177,6 +179,7 @@ GetOptions(
 	'colors=s'    => \$colors,
 	'bgcolors=s'  => \$bgcolors,
 	'hash'        => \$hash,
+	'random'      => \$rand,
 	'cp'          => \$palette,
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
@@ -375,6 +378,23 @@ sub namehash {
 	return (1 - $vector / $max)
 }
 
+sub sum_namehash {
+  my $name = shift;
+  return unpack("%32W*", $name);
+}
+
+sub random_namehash {
+	# Generate a random hash for the name string.
+	# This ensures that functions with the same name have the same color,
+	# both within a flamegraph and across multiple flamegraphs without
+	# needing to set a palette and while preserving the original flamegraph
+	# optic, unlike what happens with --hash.
+	my $name = shift;
+	my $hash = sum_namehash($name);
+	srand($hash);
+	return rand(1)
+}
+
 sub color {
 	my ($type, $hash, $name) = @_;
 	my ($v1, $v2, $v3);
@@ -382,10 +402,14 @@ sub color {
 	if ($hash) {
 		$v1 = namehash($name);
 		$v2 = $v3 = namehash(scalar reverse $name);
-	} else {
+	} elsif ($rand) {
 		$v1 = rand(1);
 		$v2 = rand(1);
 		$v3 = rand(1);
+	} else {
+		$v1 = random_namehash($name);
+		$v2 = random_namehash($name);
+		$v3 = random_namehash($name);
 	}
 
 	# theme palettes
@@ -421,7 +445,7 @@ sub color {
 		} elsif ($name =~ m:^L?(java|javax|jdk|net|org|com|io|sun)/:) {	# Java
 			$type = "green";
 		} elsif ($name =~ /:::/) {      # Java, typical perf-map-agent method separator
-			$type = "green";	              
+			$type = "green";
 		} elsif ($name =~ /::/) {	# C++
 			$type = "yellow";
 		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
