@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# hcstackcolllapse.pl	collapse hot/cold multiline stacks into single lines.
+# hcstackcollapse.pl	collapse hot/cold multiline stacks into single lines.
 #
 # EXPERIMENTAL: This is a work in progress, and may not work properly.
 #

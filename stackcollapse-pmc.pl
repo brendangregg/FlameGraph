@@ -59,7 +59,7 @@ my @stack;
 my $prev_count;
 my $prev_indent = -1;
 
-foreach (<>) {
+while (defined($_ = <>)) {
 	if (m/^( *)[0-9.]+%  \[([0-9]+)\]\s*(\S+)/) {
 		my $indent = length($1);
 		if ($indent <= $prev_indent) {

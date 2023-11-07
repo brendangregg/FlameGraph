@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# stackcolllapse.pl	collapse multiline stacks into single lines.
+# stackcollapse.pl	collapse multiline stacks into single lines.
 #
 # Parses a multiline stack followed by a number on a separate line, and
 # outputs a semicolon separated stack followed by a space and the number.
