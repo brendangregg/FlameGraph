@@ -718,6 +718,12 @@ foreach (@SortedData) {
 }
 flow($last, [], $time, $delta);
 
+if ($countname eq "samples") {
+	# If $countname is used, it's likely that we're not measuring in stack samples
+	# (e.g. time could be the unit), so don't warn.
+	warn "Stack count is low ($time). Did something go wrong?\n" if $time < 100;
+}
+
 warn "Ignored $ignored lines with invalid format\n" if $ignored;
 unless ($time) {
 	warn "ERROR: No stack counts found\n";
