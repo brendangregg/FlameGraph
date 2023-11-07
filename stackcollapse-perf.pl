@@ -379,11 +379,11 @@ while (defined($_ = <>)) {
 			# detect jit from the module name; eg:
 			#          7f722d142778 Ljava/io/PrintStream;::print (/tmp/perf-19982.map)
 			if (scalar(@inline) > 0) {
-				$func .= "_[i]" unless $func =~ m/.*.\_\[i\]/;	# inlined
+				$func .= "_[i]" unless $func =~ m/\_\[i\]/;	# inlined
 			} elsif ($annotate_kernel == 1 && $mod =~ m/(^\[|vmlinux$)/ && $mod !~ /unknown/) {
 				$func .= "_[k]";	# kernel
 			} elsif ($annotate_jit == 1 && $mod =~ m:/tmp/perf-\d+\.map:) {
-				$func .= "_[j]" unless $func =~ m/.*.\_\[j\]/;	# jitted
+				$func .= "_[j]" unless $func =~ m/\_\[j\]/;	# jitted
 			}
 
 			#
