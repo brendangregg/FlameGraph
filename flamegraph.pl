@@ -1225,8 +1225,10 @@ while (my ($id, $node) = each %Node) {
 		$y2 = $ypad1 + ($depth + 1) * $frameheight - $framepad;
 	}
 
+	# Add commas per perlfaq5:
+	# https://perldoc.perl.org/perlfaq5#How-can-I-output-my-numbers-with-commas-added?
 	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
-	(my $samples_txt = $samples) # add commas per perlfaq5
+	(my $samples_txt = $samples)
 		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
 	my $info;
