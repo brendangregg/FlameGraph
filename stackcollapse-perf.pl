@@ -296,7 +296,7 @@ while (defined($_ = <>)) {
 	#
 	# stack line
 	#
-	} elsif (/^\s*(\w+)\s*(.+) \((\S*)\)/) {
+	} elsif (/^\s*(\w+)\s*(.+) \((.*)\)/) {
 		# ignore filtered samples
 		next if not $pname;
 
