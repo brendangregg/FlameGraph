@@ -119,6 +119,7 @@ my $pal_file = "palette.map";   # palette map file name
 my $stackreverse = 0;           # reverse stack order, switching merge end
 my $inverted = 0;               # icicle graph
 my $flamechart = 0;             # produce a flame chart (sort by time, do not merge stacks)
+my $sortbysize = 0;             # sort output by sample count
 my $negate = 0;                 # switch differential hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
@@ -152,6 +153,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--reverse        # generate stack-reversed flame graph
 	--inverted       # icicle graph
 	--flamechart     # produce a flame chart (sort by time, do not merge stacks)
+	--sort-by-size   # sort the nodes in the output by number of samples
 	--negate         # switch differential hues (blue<->red)
 	--notes TEXT     # add notes comment in SVG (for debugging)
 	--help           # this message
@@ -183,12 +185,17 @@ GetOptions(
 	'cp'          => \$palette,
 	'reverse'     => \$stackreverse,
 	'inverted'    => \$inverted,
+	'sort-by-size'=> \$sortbysize,
 	'flamechart'  => \$flamechart,
 	'negate'      => \$negate,
 	'notes=s'     => \$notestext,
 	'help'        => \$help,
 ) or usage();
 $help && usage();
+
+if ($sortbysize && $flamechart) {
+	die "--flamechart is incompatible with --sort-by-size\n";
+}
 
 # internals
 my $ypad1 = $fontsize * 3;      # pad top, include title
@@ -591,8 +598,10 @@ sub read_palette {
 	}
 }
 
-my %Node;	# Hash of merged frame data
-my %Tmp;
+my %Node;	# Hash of merged frame data. Keys are "func;depth;time".
+         	# Values are objects with keys 'samples', 'delta', 'children'.
+my @Tmp;	# accumulates frame data as we work down the stack. Most recent first.
+my @roots = ();
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
 sub flow {
@@ -609,26 +618,64 @@ sub flow {
 	}
 	$len_same = $i;
 
+	# for any stack frames that have finished since we were last here, record
+	# their completion times and deltas in %Node, and pop them from @Tmp.
 	for ($i = $len_a; $i >= $len_same; $i--) {
-		my $k = "$last->[$i];$i";
+		my $tmp = shift @Tmp;
+
 		# a unique ID is constructed from "func;depth;etime";
 		# func-depth isn't unique, it may be repeated later.
-		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
-		if (defined $Tmp{$k}->{delta}) {
-			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+		my $k = "$last->[$i];$i;$v";
+
+		my $stime = $tmp->{stime};
+		$Node{$k} = {
+			stime => $stime,
+			samples => $v - $stime,
+		};
+		if (defined $tmp->{delta}) {
+			$Node{$k}->{delta} = $tmp->{delta};
 		}
-		delete $Tmp{$k};
+		$Node{$k}->{children} = $tmp->{children};
+
+		# add the newly-generated node to its parent (or record it as a root)
+		my $parent = $Tmp[0];
+		if (defined $parent) {
+			unshift @{$parent->{children}}, $k;
+		} else {
+			unshift @roots, $k;
+		}
 	}
 
+	# for any stack frames that are new since we were last here, record their
+	# start times in @Tmp.
 	for ($i = $len_same; $i <= $len_b; $i++) {
-		my $k = "$this->[$i];$i";
-		$Tmp{$k}->{stime} = $v;
+		my $tmp = {
+			children => [],
+			stime => $v,
+		};
 		if (defined $d) {
-			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
+			$tmp->{delta} += $i == $len_b ? $d : 0;
 		}
+		unshift @Tmp, $tmp;
 	}
 
         return $this;
+}
+
+# Walks the node tree starting at $key, assigning x offsets ($node->{stime}) to each
+# node such that they are sorted by descending width.
+sub assign_x_offsets_by_sample_count {
+	my ($offset, $key) = @_;
+	my $node = $Node{$key};
+	$node->{stime} = $offset;
+
+	# process each of our children in descending order of samples
+	my @sorted_children = sort {$Node{$b}{samples} <=> $Node{$a}{samples}} @{$node->{children}};
+
+	foreach my $child (@sorted_children) {
+		assign_x_offsets_by_sample_count ($offset, $child);
+		$offset += $Node{$child}{samples};
+	}
 }
 
 # parse input
@@ -737,6 +784,14 @@ if ($timemax and $timemax < $time) {
 }
 $timemax ||= $time;
 
+if ($sortbysize) {
+	my $offset = 0;
+	foreach my $root (@roots) {
+		assign_x_offsets_by_sample_count($offset, $root);
+		$offset += $Node{$root}{samples};
+	}
+}
+
 my $widthpertime = ($imagewidth - 2 * $xpad) / $timemax;
 
 # Treat as a percentage of time if the string ends in a "%".
@@ -750,10 +805,9 @@ if ($minwidth =~ /%$/) {
 # prune blocks that are too narrow and determine max depth
 while (my ($id, $node) = each %Node) {
 	my ($func, $depth, $etime) = split ";", $id;
-	my $stime = $node->{stime};
-	die "missing start for $id" if not defined $stime;
+	my $samples = $node->{samples};
 
-	if (($etime-$stime) < $minwidth_time) {
+	if ($samples < $minwidth_time) {
 		delete $Node{$id};
 		next;
 	}
@@ -1208,8 +1262,10 @@ if ($palette) {
 # draw frames
 $im->group_start({id => "frames"});
 while (my ($id, $node) = each %Node) {
-	my ($func, $depth, $etime) = split ";", $id;
+	my ($func, $depth, undef) = split ";", $id;
+	my $sample_count = $node->{samples};
 	my $stime = $node->{stime};
+	my $etime = $stime + $sample_count;
 	my $delta = $node->{delta};
 
 	$etime = $timemax if $func eq "" and $depth == 0;
@@ -1225,7 +1281,7 @@ while (my ($id, $node) = each %Node) {
 		$y2 = $ypad1 + ($depth + 1) * $frameheight - $framepad;
 	}
 
-	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
+	my $samples = sprintf "%.0f", $sample_count * $factor;
 	(my $samples_txt = $samples) # add commas per perlfaq5
 		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
@@ -1233,7 +1289,7 @@ while (my ($id, $node) = each %Node) {
 	if ($func eq "" and $depth == 0) {
 		$info = "all ($samples_txt $countname, 100%)";
 	} else {
-		my $pct = sprintf "%.2f", ((100 * $samples) / ($timemax * $factor));
+		my $pct = sprintf "%.2f", ((100 * $sample_count) / $timemax);
 		my $escaped_func = $func;
 		# clean up SVG breaking characters:
 		$escaped_func =~ s/&/&amp;/g;
