@@ -1228,7 +1228,9 @@ while (my ($id, $node) = each %Node) {
 		$y2 = $imageheight - $ypad2 - $depth * $frameheight;
 	} else {
 		$y1 = $ypad1 + $depth * $frameheight;
+		$y1 += $ypad3 if $subtitletext ne "";
 		$y2 = $ypad1 + ($depth + 1) * $frameheight - $framepad;
+		$y2 += $ypad3 if $subtitletext ne "";
 	}
 
 	# Add commas per perlfaq5:
