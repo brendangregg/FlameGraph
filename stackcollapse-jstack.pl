@@ -62,6 +62,7 @@ use Getopt::Long;
 # tunables
 my $include_tname = 1;		# include thread names in stacks
 my $include_tid = 0;		# include thread IDs in stacks
+my $include_lines = 0;		# include thread IDs in stacks
 my $shorten_pkgs = 0;		# shorten package names
 my $help = 0;
 
@@ -72,6 +73,8 @@ USAGE: $0 [options] infile > outfile\n
 	--no-include-tname # include/omit thread names in stacks (default: include)
 	--include-tid
 	--no-include-tid   # include/omit thread IDs in stacks (default: omit)
+	--include-lines
+	--no-include-lines # include/omit line numbers in stacks (default: omit)
 	--shorten-pkgs
 	--no-shorten-pkgs  # (don't) shorten package names (default: don't shorten)
 
@@ -83,6 +86,7 @@ USAGE_END
 GetOptions(
 	'include-tname!'  => \$include_tname,
 	'include-tid!'    => \$include_tid,
+	'include-lines!'  => \$include_lines,
 	'shorten-pkgs!'   => \$shorten_pkgs,
 	'help'            => \$help,
 ) or usage();
@@ -149,6 +153,9 @@ clear:
 			my ($pkgs, $clsFunc) = ( $func =~ m/(.*\.)([^.]+\.[^.]+)$/ );
 			$pkgs =~ s/(\w)\w*/$1/g;
 			$func = $pkgs . $clsFunc;
+		}
+		if ($include_lines and /:([0-9]+)\)$/) {
+			unshift @stack, $func . ':' . $1;
 		}
 		unshift @stack, $func;
 
