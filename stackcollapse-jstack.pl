@@ -100,11 +100,13 @@ sub remember_stack {
 my @stack;
 my $tname;
 my $state = "?";
+my $stack_epilogue = 0;
 
 foreach (<>) {
 	next if m/^#/;
 	chomp;
 
+	# State machine switches on empty lines
 	if (m/^$/) {
 		# only include RUNNABLE states
 		goto clear if $state ne "RUNNABLE";
@@ -126,6 +128,18 @@ clear:
 	#
 
 	if (/^"([^"]*)/) {
+		# This is the same as a new-line; it indicates that the stack ended
+		if ($stack_epilogue) {
+			if ($state eq "RUNNABLE") {
+				if (defined $tname) { unshift @stack, $tname; }
+				remember_stack(join(";", @stack), 1) if @stack;
+			}
+			undef @stack;
+			undef $tname;
+			$state = "?";
+		}
+
+		$stack_epilogue = 0;
 		my $name = $1;
 
 		if ($include_tname) {
@@ -144,6 +158,7 @@ clear:
 	} elsif (/java.lang.Thread.State: (\S+)/) {
 		$state = $1 if $state eq "?";
 	} elsif (/^\s*at ([^\(]*)/) {
+		$stack_epilogue = 1;
 		my $func = $1;
 		if ($shorten_pkgs) {
 			my ($pkgs, $clsFunc) = ( $func =~ m/(.*\.)([^.]+\.[^.]+)$/ );
