@@ -215,6 +215,17 @@ while (defined($_ = <>)) {
 				last;
 			}
 		}
+
+		print "# perf cmdline: ";
+		print substr $_, length("# cmdline : ");
+	}
+
+	if (/^# sample duration :\s+(\d+(:?\.\d+)?) ms$/) {
+		print "# sampling duration: $1 ms\n";
+	}
+
+	if (/{ sample_period, sample_freq } = (\d+)/) {
+		print "# sampling frequency: $1\n";
 	}
 
 	# skip remaining comments
