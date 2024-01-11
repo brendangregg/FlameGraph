@@ -242,7 +242,7 @@ while (defined($_ = <>)) {
 	#
 	# event record start
 	#
-	if (/^(\S.+?)\s+(\d+)\/*(\d+)*\s+/) {
+	if (/^(\S.*?)\s+(\d+)\/*(\d+)*\s+/) {
 		# default "perf script" output has TID but not PID
 		# eg, "java 25607 4794564.109216: 1 cycles:"
 		# eg, "java 12688 [002] 6544038.708352: 235 cpu-clock:"
