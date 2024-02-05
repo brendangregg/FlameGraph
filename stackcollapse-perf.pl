@@ -83,6 +83,8 @@ my $tidy_java = 1;	# condense Java signatures
 my $tidy_generic = 1;	# clean up function names a little
 my $target_pname;	# target process name from perf invocation
 my $event_filter = "";    # event type filter, defaults to first encountered event
+my $period_field = "";    # period field name
+my $period_field_warning = 0; # if we printed a warning for the period field
 my $event_defaulted = 0;  # whether we defaulted to an event (none provided)
 my $event_warning = 0;	  # if we printed a warning for the event
 
@@ -99,7 +101,8 @@ GetOptions('inline' => \$show_inline,
            'all' => \$annotate_all,
            'tid' => \$include_tid,
            'addrs' => \$include_addrs,
-           'event-filter=s' => \$event_filter)
+           'event-filter=s' => \$event_filter,
+		   'period-field=s' => \$period_field)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
@@ -111,7 +114,8 @@ USAGE: $0 [options] infile > outfile\n
 	--context	# adds source context to --inline
 	--srcline	# parses output of 'perf script -F+srcline' and adds source context
 	--addrs		# include raw addresses where symbols can't be found
-	--event-filter=EVENT	# event name filter\n
+	--event-filter=EVENT	# event name filter
+	--period-field=FIELD # use FIELD as period\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
     for Linux >= 4.1:
@@ -250,6 +254,7 @@ while (defined($_ = <>)) {
 		# eg, "java 24636/25607 [000] 4794564.109216: 1 cycles:"
 		# eg, "java 12688/12764 6544038.708352: 10309278 cpu-clock:"
 		# eg, "V8 WorkerThread 24636/25607 [000] 94564.109216: 100 cycles:"
+		# eg, "java 12688/12764 6544038.708352: probe_libc:malloc: bytes=0x10"
 		# other combinations possible
 		my ($comm, $pid, $tid, $period) = ($1, $2, $3, "");
 		if (not $tid) {
@@ -257,9 +262,19 @@ while (defined($_ = <>)) {
 			$pid = "?";
 		}
 
-		if (/:\s*(\d+)*\s+(\S+):\s*$/) {
+		if (/:\s*(\d+)*\s+(\S+):\s*(.*)$/) {
 			$period = $1;
 			my $event = $2;
+			if ($period_field ne "") {
+				# if period field is specified, use it
+				# the value is in hex
+				if ($3 =~ qr/\b(${period_field})=0x([0-9a-fA-F]+)\b/) {
+					$period = hex $2;
+				} elsif ($period_field_warning == 0) {
+					print STDERR "Period field $period_field not found\n";
+					$period_field_warning = 1;
+				}
+			}
 
 			if ($event_filter eq "") {
 				# By default only show events of the first encountered
