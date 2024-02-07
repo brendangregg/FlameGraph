@@ -595,6 +595,7 @@ my %Node;	# Hash of merged frame data
 my %Tmp;
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
+my $maxdelta = 1;
 sub flow {
 	my ($last, $this, $v, $d) = @_;
 
@@ -618,7 +619,9 @@ sub flow {
 		# func-depth isn't unique, it may be repeated later.
 		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
 		if (defined $Tmp{$k}->{delta}) {
-			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+			my $delta = delete $Tmp{$k}->{delta};
+			$maxdelta = abs($delta) if abs($delta) > $maxdelta;
+			$Node{"$k;$v"}->{delta} = $delta;
 		}
 		delete $Tmp{$k};
 	}
@@ -645,7 +648,6 @@ my $time = 0;
 my $delta = undef;
 my $ignored = 0;
 my $line;
-my $maxdelta = 1;
 
 # reverse if needed
 foreach (<>) {
@@ -695,7 +697,6 @@ foreach (@SortedData) {
 	$delta = undef;
 	if (defined $samples2) {
 		$delta = $samples2 - $samples;
-		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
 	}
 
 	# for chain graphs, annotate waker frames with "_[w]", for later
