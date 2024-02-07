@@ -634,7 +634,7 @@ sub flow {
 		}
 	}
 
-        return $this;
+	return $this;
 }
 
 # parse input
