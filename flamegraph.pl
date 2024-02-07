@@ -120,6 +120,7 @@ my $stackreverse = 0;           # reverse stack order, switching merge end
 my $inverted = 0;               # icicle graph
 my $flamechart = 0;             # produce a flame chart (sort by time, do not merge stacks)
 my $negate = 0;                 # switch differential hues
+my $totaldiff = 0;              # aggregate diff values (i.e. use total-diff not self-diff)
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
@@ -153,6 +154,8 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--inverted       # icicle graph
 	--flamechart     # produce a flame chart (sort by time, do not merge stacks)
 	--negate         # switch differential hues (blue<->red)
+	--totaldiff      # aggregate diff values (i.e. use total-diff not self-diff)
+	                 # when calculating differential hues
 	--notes TEXT     # add notes comment in SVG (for debugging)
 	--help           # this message
 
@@ -185,6 +188,7 @@ GetOptions(
 	'inverted'    => \$inverted,
 	'flamechart'  => \$flamechart,
 	'negate'      => \$negate,
+	'totaldiff'   => \$totaldiff,
 	'notes=s'     => \$notestext,
 	'help'        => \$help,
 ) or usage();
@@ -631,9 +635,18 @@ sub flow {
 		# a unique ID is constructed from "func;depth"
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
-		if (defined $d) {
+		if (defined $d && !$totaldiff) {
+			# apply the diff directly (self-diff)
 			# +0 sets undefined values to 0
 			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
+		}
+	}
+
+	# propagate the diff upstream (total-diff)
+	if (defined $d && $totaldiff) {
+		for ($i = 0; $i <= $len_b; $i++) {
+			my $k = "$this->[$i];$i";
+			$Tmp{$k}->{delta} += $d;
 		}
 	}
 
