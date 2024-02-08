@@ -121,6 +121,7 @@ my $inverted = 0;               # icicle graph
 my $flamechart = 0;             # produce a flame chart (sort by time, do not merge stacks)
 my $negate = 0;                 # switch differential hues
 my $totaldiff = 0;              # aggregate diff values (i.e. use total-diff not self-diff)
+my $mindeltapc = 0;             # min delta (as % of function duration) to use diff hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
@@ -156,6 +157,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--negate         # switch differential hues (blue<->red)
 	--totaldiff      # aggregate diff values (i.e. use total-diff not self-diff)
 	                 # when calculating differential hues
+	--mindeltapc NUM # min delta (as % of function duration) to use diff hues
 	--notes TEXT     # add notes comment in SVG (for debugging)
 	--help           # this message
 
@@ -165,32 +167,33 @@ USAGE_END
 }
 
 GetOptions(
-	'fonttype=s'  => \$fonttype,
-	'width=i'     => \$imagewidth,
-	'height=i'    => \$frameheight,
-	'encoding=s'  => \$encoding,
-	'fontsize=f'  => \$fontsize,
-	'fontwidth=f' => \$fontwidth,
-	'minwidth=s'  => \$minwidth,
-	'title=s'     => \$titletext,
-	'subtitle=s'  => \$subtitletext,
-	'nametype=s'  => \$nametype,
-	'countname=s' => \$countname,
-	'nameattr=s'  => \$nameattrfile,
-	'total=s'     => \$timemax,
-	'factor=f'    => \$factor,
-	'colors=s'    => \$colors,
-	'bgcolors=s'  => \$bgcolors,
-	'hash'        => \$hash,
-	'random'      => \$rand,
-	'cp'          => \$palette,
-	'reverse'     => \$stackreverse,
-	'inverted'    => \$inverted,
-	'flamechart'  => \$flamechart,
-	'negate'      => \$negate,
-	'totaldiff'   => \$totaldiff,
-	'notes=s'     => \$notestext,
-	'help'        => \$help,
+	'fonttype=s'   => \$fonttype,
+	'width=i'      => \$imagewidth,
+	'height=i'     => \$frameheight,
+	'encoding=s'   => \$encoding,
+	'fontsize=f'   => \$fontsize,
+	'fontwidth=f'  => \$fontwidth,
+	'minwidth=s'   => \$minwidth,
+	'title=s'      => \$titletext,
+	'subtitle=s'   => \$subtitletext,
+	'nametype=s'   => \$nametype,
+	'countname=s'  => \$countname,
+	'nameattr=s'   => \$nameattrfile,
+	'total=s'      => \$timemax,
+	'factor=f'     => \$factor,
+	'colors=s'     => \$colors,
+	'bgcolors=s'   => \$bgcolors,
+	'hash'         => \$hash,
+	'random'       => \$rand,
+	'cp'           => \$palette,
+	'reverse'      => \$stackreverse,
+	'inverted'     => \$inverted,
+	'flamechart'   => \$flamechart,
+	'negate'       => \$negate,
+	'totaldiff'    => \$totaldiff,
+	'mindeltapc=f' => \$mindeltapc,
+	'notes=s'      => \$notestext,
+	'help'         => \$help,
 ) or usage();
 $help && usage();
 
@@ -1240,6 +1243,10 @@ while (my ($id, $node) = each %Node) {
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
+	# calculate the relative delta (as a % of function duration)
+	my $duration = $etime - $stime;
+	my $reldeltapc = (defined $delta) ? (100.0 * abs($delta) / $duration) : 0;
+
 	my $x1 = $xpad + $stime * $widthpertime;
 	my $x2 = $xpad + $etime * $widthpertime;
 	my ($y1, $y2);
@@ -1253,7 +1260,7 @@ while (my ($id, $node) = each %Node) {
 
 	# Add commas per perlfaq5:
 	# https://perldoc.perl.org/perlfaq5#How-can-I-output-my-numbers-with-commas-added?
-	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
+	my $samples = sprintf "%.0f", $duration * $factor;
 	(my $samples_txt = $samples)
 		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
@@ -1289,7 +1296,7 @@ while (my ($id, $node) = each %Node) {
 	} elsif ($func eq "-") {
 		$color = $dgrey;
 	} elsif (defined $delta) {
-		$color = color_scale($delta, $maxdelta);
+		$color = ($reldeltapc >= $mindeltapc) ? color_scale($delta, $maxdelta) : "white";
 	} elsif ($palette) {
 		$color = color_map($colors, $func);
 	} else {
