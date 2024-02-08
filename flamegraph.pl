@@ -598,9 +598,11 @@ my %Tmp;
 sub flow {
 	my ($last, $this, $v, $d) = @_;
 
+	# last indices of a and b
 	my $len_a = @$last - 1;
 	my $len_b = @$this - 1;
 
+	# calculate $len_same - the first ix where $this and $last differ
 	my $i = 0;
 	my $len_same;
 	for (; $i <= $len_a; $i++) {
@@ -609,6 +611,7 @@ sub flow {
 	}
 	$len_same = $i;
 
+	# move all finished functions from %Tmp to %Node
 	for ($i = $len_a; $i >= $len_same; $i--) {
 		my $k = "$last->[$i];$i";
 		# a unique ID is constructed from "func;depth;etime";
@@ -620,10 +623,13 @@ sub flow {
 		delete $Tmp{$k};
 	}
 
+	# push newly started functions onto the running-functions map (%Tmp)
 	for ($i = $len_same; $i <= $len_b; $i++) {
+		# a unique ID is constructed from "func;depth"
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
 		if (defined $d) {
+			# +0 sets undefined values to 0
 			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
 		}
 	}
