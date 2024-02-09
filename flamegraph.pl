@@ -108,6 +108,7 @@ my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
 my $bgcolors = "";              # background color theme
+my $fillopacity = 1;            # fill-opacity for drawn rectangles (SVG attribute)
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
@@ -133,33 +134,34 @@ my $help = 0;
 sub usage {
 	die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
-	--title TEXT     # change title text
-	--subtitle TEXT  # second level title (optional)
-	--width NUM      # width of image (default 1200)
-	--height NUM     # height of each frame (default 16)
-	--minwidth NUM   # omit smaller functions. In pixels or use "%" for
-	                 # percentage of time (default 0.1 pixels)
-	--fonttype FONT  # font type (default "Verdana")
-	--fontsize NUM   # font size (default 12)
-	--countname TEXT # count type label (default "samples")
-	--nametype TEXT  # name type label (default "Function:")
-	--colors PALETTE # set color palette. choices are: hot (default), mem,
-	                 # io, wakeup, chain, java, js, perl, red, green, blue,
-	                 # aqua, yellow, purple, orange
-	--bgcolors COLOR # set background colors. gradient choices are yellow
-	                 # (default), blue, green, grey; flat colors use "#rrggbb"
-	--hash           # colors are keyed by function name hash
-	--random         # colors are randomly generated
-	--cp             # use consistent palette (palette.map)
-	--reverse        # generate stack-reversed flame graph
-	--inverted       # icicle graph
-	--flamechart     # produce a flame chart (sort by time, do not merge stacks)
-	--negate         # switch differential hues (blue<->red)
-	--totaldiff      # aggregate diff values (i.e. use total-diff not self-diff)
-	                 # when calculating differential hues
-	--mindeltapc NUM # min delta (as % of function duration) to use diff hues
-	--notes TEXT     # add notes comment in SVG (for debugging)
-	--help           # this message
+	--title TEXT      # change title text
+	--subtitle TEXT   # second level title (optional)
+	--width NUM       # width of image (default 1200)
+	--height NUM      # height of each frame (default 16)
+	--minwidth NUM    # omit smaller functions. In pixels or use "%" for
+	                  # percentage of time (default 0.1 pixels)
+	--fonttype FONT   # font type (default "Verdana")
+	--fontsize NUM    # font size (default 12)
+	--countname TEXT  # count type label (default "samples")
+	--nametype TEXT   # name type label (default "Function:")
+	--colors PALETTE  # set color palette. choices are: hot (default), mem,
+	                  # io, wakeup, chain, java, js, perl, red, green, blue,
+	                  # aqua, yellow, purple, orange
+	--bgcolors COLOR  # set background colors. gradient choices are yellow
+	                  # (default), blue, green, grey; flat colors use "#rrggbb"
+	--fillopacity NUM # fill-opacity for drawn rectangles (SVG attribute)
+	--hash            # colors are keyed by function name hash
+	--random          # colors are randomly generated
+	--cp              # use consistent palette (palette.map)
+	--reverse         # generate stack-reversed flame graph
+	--inverted        # icicle graph
+	--flamechart      # produce a flame chart (sort by time, do not merge stacks)
+	--negate          # switch differential hues (blue<->red)
+	--totaldiff       # aggregate diff values (i.e. use total-diff not self-diff)
+	                  # when calculating differential hues
+	--mindeltapc NUM  # min delta (as % of function duration) to use diff hues
+	--notes TEXT      # add notes comment in SVG (for debugging)
+	--help            # this message
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -167,33 +169,34 @@ USAGE_END
 }
 
 GetOptions(
-	'fonttype=s'   => \$fonttype,
-	'width=i'      => \$imagewidth,
-	'height=i'     => \$frameheight,
-	'encoding=s'   => \$encoding,
-	'fontsize=f'   => \$fontsize,
-	'fontwidth=f'  => \$fontwidth,
-	'minwidth=s'   => \$minwidth,
-	'title=s'      => \$titletext,
-	'subtitle=s'   => \$subtitletext,
-	'nametype=s'   => \$nametype,
-	'countname=s'  => \$countname,
-	'nameattr=s'   => \$nameattrfile,
-	'total=s'      => \$timemax,
-	'factor=f'     => \$factor,
-	'colors=s'     => \$colors,
-	'bgcolors=s'   => \$bgcolors,
-	'hash'         => \$hash,
-	'random'       => \$rand,
-	'cp'           => \$palette,
-	'reverse'      => \$stackreverse,
-	'inverted'     => \$inverted,
-	'flamechart'   => \$flamechart,
-	'negate'       => \$negate,
-	'totaldiff'    => \$totaldiff,
-	'mindeltapc=f' => \$mindeltapc,
-	'notes=s'      => \$notestext,
-	'help'         => \$help,
+	'fonttype=s'    => \$fonttype,
+	'width=i'       => \$imagewidth,
+	'height=i'      => \$frameheight,
+	'encoding=s'    => \$encoding,
+	'fontsize=f'    => \$fontsize,
+	'fontwidth=f'   => \$fontwidth,
+	'minwidth=s'    => \$minwidth,
+	'title=s'       => \$titletext,
+	'subtitle=s'    => \$subtitletext,
+	'nametype=s'    => \$nametype,
+	'countname=s'   => \$countname,
+	'nameattr=s'    => \$nameattrfile,
+	'total=s'       => \$timemax,
+	'factor=f'      => \$factor,
+	'colors=s'      => \$colors,
+	'bgcolors=s'    => \$bgcolors,
+	'fillopacity=f' => \$fillopacity,
+	'hash'          => \$hash,
+	'random'        => \$rand,
+	'cp'            => \$palette,
+	'reverse'       => \$stackreverse,
+	'inverted'      => \$inverted,
+	'flamechart'    => \$flamechart,
+	'negate'        => \$negate,
+	'totaldiff'     => \$totaldiff,
+	'mindeltapc=f'  => \$mindeltapc,
+	'notes=s'       => \$notestext,
+	'help'          => \$help,
 ) or usage();
 $help && usage();
 
@@ -340,13 +343,17 @@ SVG
 	}
 
 	sub filledRectangle {
-		my ($self, $x1, $y1, $x2, $y2, $fill, $extra) = @_;
+		my ($self, $x1, $y1, $x2, $y2, $fill, $fillopacity, $extra) = @_;
 		$x1 = sprintf "%0.1f", $x1;
 		$x2 = sprintf "%0.1f", $x2;
 		my $w = sprintf "%0.1f", $x2 - $x1;
 		my $h = sprintf "%0.1f", $y2 - $y1;
 		$extra = defined $extra ? $extra : "";
-		$self->{svg} .= qq/<rect x="$x1" y="$y1" width="$w" height="$h" fill="$fill" $extra \/>\n/;
+
+		# if emitted, fill-opacity attribute + a space at the end; otherwise an empty string
+		$fillopacity = (defined $fillopacity && $fillopacity != 1) ? "fill-opacity=\"$fillopacity\" " : "";
+
+		$self->{svg} .= qq/<rect x="$x1" y="$y1" width="$w" height="$h" fill="$fill" $fillopacity$extra \/>\n/;
 	}
 
 	sub stringTTF {
@@ -1221,7 +1228,7 @@ my $inc = <<INC;
 </script>
 INC
 $im->include($inc);
-$im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)');
+$im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)', 1);
 $im->stringTTF("title", int($imagewidth / 2), $fontsize * 2, $titletext);
 $im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) if $subtitletext ne "";
 $im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
@@ -1302,7 +1309,7 @@ while (my ($id, $node) = each %Node) {
 	} else {
 		$color = color($colors, $hash, $func);
 	}
-	$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
+	$im->filledRectangle($x1, $y1, $x2, $y2, $color, $fillopacity, 'rx="2" ry="2"');
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
