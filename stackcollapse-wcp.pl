@@ -49,7 +49,7 @@ while(<>) {
     # 99.791% ===================================== (17194 samples)
     $samples = $1;
     next;
-  } elsif (m/^\d+: (.*)$/) {
+  } elsif (m/^\d+: (.*) +\(at .*\)$/) {
     # 1: poll__YNjd8fE6xG8CRNwfLnrx0g_2   (at /mnt/sde1/storage/nim-beacon-chain-clean/vendor/nim-chronos/chronos/asyncloop.nim:343)
     my $function = $1;
     if ($current eq "") {
