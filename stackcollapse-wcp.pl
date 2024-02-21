@@ -27,11 +27,18 @@
 # CDDL HEADER END
 
 use strict;
+use Getopt::Long;
 
 my $current = "";
 my $start_processing = 0;
 my $samples = 0;
 my %stacks;
+
+my $lines = 0;
+GetOptions(
+    'lines|l' => \$lines,
+);
+
 
 while(<>) {
   s/^\s+|\s+$//g;
@@ -49,7 +56,9 @@ while(<>) {
     # 99.791% ===================================== (17194 samples)
     $samples = $1;
     next;
-  } elsif (m/^\d+: (.*) +\(at .*\)$/) {
+  }
+  
+  if (($lines && m/^\d+: (.*)$/) || (!$lines && m/^\d+: (.*) +\(at .*\)$/)) {
     # 1: poll__YNjd8fE6xG8CRNwfLnrx0g_2   (at /mnt/sde1/storage/nim-beacon-chain-clean/vendor/nim-chronos/chronos/asyncloop.nim:343)
     my $function = $1;
     if ($current eq "") {
