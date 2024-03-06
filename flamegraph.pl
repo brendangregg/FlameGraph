@@ -146,7 +146,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--nametype TEXT   # name type label (default "Function:")
 	--colors PALETTE  # set color palette. choices are: hot (default), mem,
 	                  # io, wakeup, chain, java, js, perl, red, green, blue,
-	                  # aqua, yellow, purple, orange
+	                  # aqua, yellow, purple, grey, orange
 	--bgcolors COLOR  # set background colors. gradient choices are yellow
 	                  # (default), blue, green, grey; flat colors use "#rrggbb"
 	--fillopacity NUM # fill-opacity for drawn rectangles (SVG attribute)
@@ -259,7 +259,7 @@ if ($bgcolors eq "") {
 		$bgcolors = "green";
 	} elsif ($colors =~ /^(io|wakeup|chain)$/) {
 		$bgcolors = "blue";
-	} elsif ($colors =~ /^(red|green|blue|aqua|yellow|purple|orange)$/) {
+	} elsif ($colors =~ /^(red|green|blue|aqua|yellow|purple|grey|orange)$/) {
 		$bgcolors = "grey";
 	} else {
 		$bgcolors = "yellow";
@@ -547,6 +547,10 @@ sub color {
 		my $x = 190 + int(65 * $v1);
 		my $g = 80 + int(60 * $v1);
 		return "rgb($x,$g,$x)";
+	}
+	if (defined $type and $type eq "grey") {
+		my $x = 100 + int(150 * $v1);
+		return "rgb($x,$x,$x)";
 	}
 	if (defined $type and $type eq "aqua") {
 		my $r = 50 + int(60 * $v1);
