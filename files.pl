@@ -16,10 +16,13 @@ use strict;
 use File::Find;
 
 sub usage {
-	print STDERR "USAGE: $0 [--xdev] [DIRECTORY]...\n";
+	print STDERR "USAGE: $0 [--xdev] [--count] [DIRECTORY]...\n";
+	print STDERR "\n";
+	print STDERR "   --xdev        do not descend into directories on other filesystems\n";
+	print STDERR "   --count       produce a flamegraph of file (and directory) counts instead of size\n";
+	print STDERR "\n";
 	print STDERR "   eg, $0 /Users\n";
-	print STDERR "   To not descend directories on other filesystems:";
-	print STDERR "   eg, $0 --xdev /\n";
+	print STDERR "\n";
 	print STDERR "Intended to be piped to flamegraph.pl. Full example:\n";
 	print STDERR "   $0 /Users | flamegraph.pl " .
 	    "--hash --countname=bytes > files.svg\n";
@@ -27,17 +30,22 @@ sub usage {
 	    "--hash --countname=bytes > files.svg\n";
 	print STDERR "   $0 --xdev / | flamegraph.pl " .
 	    "--hash --countname=bytes > files.svg\n";
+	print STDERR "   $0 --count / | flamegraph.pl " .
+	    "--hash --countname=entries > files.svg\n";
 	exit 1;
 }
 
 usage() if @ARGV == 0 or $ARGV[0] eq "--help" or $ARGV[0] eq "-h";
 
 my $filter_xdev = 0;
+my $count_entries = 0;
 my $xdev_id;
 
 foreach my $dir (@ARGV) {
 	if ($dir eq "--xdev") {
 	    $filter_xdev = 1;
+	} elsif ($dir eq "--count") {
+	    $count_entries = 1;
 	} else {
 	    find(\&wanted, $dir);
 	}
@@ -58,5 +66,10 @@ sub wanted {
 	$path =~ tr/\//;/;		# delimiter
 	$path =~ tr/;.a-zA-Z0-9-/_/c;	# ditch whitespace and other chars
 	$path =~ s/^;//;
-	print "$path $size\n";
+
+	if ($count_entries) {
+		print "$path 1\n";
+	} else {
+		print "$path $size\n";
+	}
 }
