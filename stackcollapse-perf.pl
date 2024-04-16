@@ -88,7 +88,7 @@ my $event_warning = 0;	  # if we printed a warning for the event
 
 my $show_inline = 0;
 my $show_context = 0;
-my $aggregate_comm = 0;   # replace '/<number>' in input process names with '/all'
+my $aggregate_comm = 0;   # replace '/<suffix>' in input process names with '/all'
 
 my $srcline_in_input = 0; # if there are extra lines with source location (perf script -F+srcline)
 GetOptions('inline' => \$show_inline,
@@ -114,7 +114,7 @@ USAGE: $0 [options] infile > outfile\n
 	--srcline	# parses output of 'perf script -F+srcline' and adds source context
 	--addrs		# include raw addresses where symbols can't be found
 	--event-filter=EVENT	# event name filter
-	--aggregate-comm        # replace '/<number>' in input process names with '/all'\n
+	--aggregate-comm        # replace '/<suffix>' in input process names with '/all'\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
     for Linux >= 4.1:
@@ -263,7 +263,7 @@ while (defined($_ = <>)) {
 			# Replace per-cpu suffix in process names with '/all'.
 			# This allows aggregation across multiple CPUs.
 			# ksoftirqd/156 -> ksoftirqd/all
-			$comm =~ s/\/\d+/\/all/g;
+			$comm =~ s/\/.+/\/all/g;
 		}
 
 		if (/:\s*(\d+)*\s+(\S+):\s*$/) {
