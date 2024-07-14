@@ -4,7 +4,7 @@ permissions:
 # Run on PRs and on merge to master
 on:
   push:
-    branches: [master]
+    branches: [master, "ci-pls"]
   pull_request:
 # Cancel run if PR is updated concurrently
 concurrency:
