@@ -440,7 +440,7 @@ if ($pname) {
 			unshift @stack, "";
 		}
 	}
-	remember_stack(join(";", @stack), 1) if @stack;
+	remember_stack(join(";", @stack), $m_period) if @stack;
 	undef @stack;
 	undef $pname;
 }
