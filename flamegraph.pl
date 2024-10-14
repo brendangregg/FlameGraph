@@ -395,158 +395,161 @@ sub random_namehash {
 	return rand(1)
 }
 
+# Color name to RGB mapping
+my %color_map = (
+    'aqua'   => 'rgb(0,255,255)',
+    'green'  => 'rgb(0,128,0)',
+    'yellow' => 'rgb(255,255,0)',
+    'orange' => 'rgb(255,165,0)',
+    'red'    => 'rgb(255,0,0)',
+    );
+
+# Define color palettes
+my %color_palettes = (
+    'hot' => {
+        'default' => sub {
+            my ($r, $g, $b) = @_;
+            return sprintf("rgb(%d,%d,%d)",
+                205 + int(50 * $b),
+                0 + int(230 * $r),
+                0 + int(55 * $g));
+        },
+    },
+    'mem' => {
+        'default' => sub {
+            my ($r, $g, $b) = @_;
+            return sprintf("rgb(%d,%d,%d)",
+                0,
+                190 + int(50 * $g),
+                0 + int(210 * $r));
+        },
+    },
+    'io' => {
+        'default' => sub {
+            my ($r, $g, $b) = @_;
+            return sprintf("rgb(%d,%d,%d)",
+                80 + int(60 * $r),
+                80 + int(60 * $r),
+                190 + int(55 * $g));
+        },
+    },
+    'java' => {
+        '_\[j\]$' => sub { return 'green'; },
+        '_\[i\]$' => sub { return 'aqua'; },
+        '^L?(java|javax|jdk|net|org|com|io|sun)/' => sub { return 'green'; },
+        ':::' => sub { return 'green'; },
+        '::' => sub { return 'yellow'; },
+        '_\[k\]$' => sub { return 'orange'; },
+        'default' => sub { return 'red'; },
+    },
+    'perl' => {
+        '::' => sub { return 'yellow'; },
+        'Perl:|\.pl' => sub { return 'green'; },
+        '_\[k\]$' => sub { return 'orange'; },
+        'default' => sub { return 'red'; },
+    },
+    'js' => {
+        '_\[j\]$' => sub {
+            my ($r, $g, $b, $name) = @_;
+            return $name =~ m:/: ? 'green' : 'aqua';
+        },
+        '::' => sub { return 'yellow'; },
+        '/.*\.js' => sub { return 'green'; },
+        ':' => sub { return 'aqua'; },
+        '^ $' => sub { return 'green'; },
+        '_\[k\]' => sub { return 'orange'; },
+        'default' => sub { return 'red'; },
+    },
+    # Add other palettes here...
+    );
+
+sub color_to_rgb {
+    my ($color) = @_;
+
+    # If $color is a code reference, execute it
+    if (ref($color) eq 'CODE') {
+        $color = $color->();
+        warn "DEBUG: Executed color function, result: $color\n";
+    }
+
+    # Return as-is if it's already in rgb() format
+    if ($color =~ /^rgb\((\d+),(\d+),(\d+)\)$/) {
+        my ($r, $g, $b) = ($1, $2, $3);
+        if ($r == 0 && $g == 0 && $b == 0) {
+            warn "WARNING: Black color (rgb(0,0,0)) detected. This may be unintended.\n";
+        }
+        return $color;
+    }
+
+    # Return as-is if it's a hex color code
+    if ($color =~ /^#[0-9A-Fa-f]{6}$/) {
+        if ($color eq '#000000') {
+            warn "WARNING: Black color (#000000) detected. This may be unintended.\n";
+        }
+        return $color;
+    }
+
+    # Look up in color map if it's a named color
+    if (exists $color_map{$color}) {
+        my $rgb_color = $color_map{$color};
+        warn "DEBUG: Mapped named color '$color' to $rgb_color\n";
+        return $rgb_color;
+    }
+
+    # If we don't recognize the format, return as-is but with a warning
+    warn "WARNING: Unrecognized color format: $color\n";
+    return $color;
+}
+
 sub color {
-	my ($type, $hash, $name) = @_;
-	my ($v1, $v2, $v3);
+    my ($type, $hash, $name) = @_;
+    my ($r, $g, $b);
 
-	if ($hash) {
-		$v1 = namehash($name);
-		$v2 = $v3 = namehash(scalar reverse $name);
-	} elsif ($rand) {
-		$v1 = rand(1);
-		$v2 = rand(1);
-		$v3 = rand(1);
-	} else {
-		$v1 = random_namehash($name);
-		$v2 = random_namehash($name);
-		$v3 = random_namehash($name);
-	}
+    if ($hash) {
+        $r = namehash($name);
+        $g = $b = namehash(scalar reverse $name);
+    } elsif ($rand) {
+        $r = rand(1);
+        $g = rand(1);
+        $b = rand(1);
+    } else {
+        $r = random_namehash($name);
+        $g = random_namehash($name);
+        $b = random_namehash($name);
+    }
 
-	# theme palettes
-	if (defined $type and $type eq "hot") {
-		my $r = 205 + int(50 * $v3);
-		my $g = 0 + int(230 * $v1);
-		my $b = 0 + int(55 * $v2);
-		return "rgb($r,$g,$b)";
-	}
-	if (defined $type and $type eq "mem") {
-		my $r = 0;
-		my $g = 190 + int(50 * $v2);
-		my $b = 0 + int(210 * $v1);
-		return "rgb($r,$g,$b)";
-	}
-	if (defined $type and $type eq "io") {
-		my $r = 80 + int(60 * $v1);
-		my $g = $r;
-		my $b = 190 + int(55 * $v2);
-		return "rgb($r,$g,$b)";
-	}
+    my $result_color;
 
-	# multi palettes
-	if (defined $type and $type eq "java") {
-		# Handle both annotations (_[j], _[i], ...; which are
-		# accurate), as well as input that lacks any annotations, as
-		# best as possible. Without annotations, we get a little hacky
-		# and match on java|org|com, etc.
-		if ($name =~ m:_\[j\]$:) {	# jit annotation
-			$type = "green";
-		} elsif ($name =~ m:_\[i\]$:) {	# inline annotation
-			$type = "aqua";
-		} elsif ($name =~ m:^L?(java|javax|jdk|net|org|com|io|sun)/:) {	# Java
-			$type = "green";
-		} elsif ($name =~ /:::/) {      # Java, typical perf-map-agent method separator
-			$type = "green";
-		} elsif ($name =~ /::/) {	# C++
-			$type = "yellow";
-		} elsif ($name =~ m:_\[k\]$:) {	# kernel annotation
-			$type = "orange";
-		} elsif ($name =~ /::/) {	# C++
-			$type = "yellow";
-		} else {			# system
-			$type = "red";
-		}
-		# fall-through to color palettes
-	}
-	if (defined $type and $type eq "perl") {
-		if ($name =~ /::/) {		# C++
-			$type = "yellow";
-		} elsif ($name =~ m:Perl: or $name =~ m:\.pl:) {	# Perl
-			$type = "green";
-		} elsif ($name =~ m:_\[k\]$:) {	# kernel
-			$type = "orange";
-		} else {			# system
-			$type = "red";
-		}
-		# fall-through to color palettes
-	}
-	if (defined $type and $type eq "js") {
-		# Handle both annotations (_[j], _[i], ...; which are
-		# accurate), as well as input that lacks any annotations, as
-		# best as possible. Without annotations, we get a little hacky,
-		# and match on a "/" with a ".js", etc.
-		if ($name =~ m:_\[j\]$:) {	# jit annotation
-			if ($name =~ m:/:) {
-				$type = "green";	# source
-			} else {
-				$type = "aqua";		# builtin
-			}
-		} elsif ($name =~ /::/) {	# C++
-			$type = "yellow";
-		} elsif ($name =~ m:/.*\.js:) {	# JavaScript (match "/" in path)
-			$type = "green";
-		} elsif ($name =~ m/:/) {	# JavaScript (match ":" in builtin)
-			$type = "aqua";
-		} elsif ($name =~ m/^ $/) {	# Missing symbol
-			$type = "green";
-		} elsif ($name =~ m:_\[k\]:) {	# kernel
-			$type = "orange";
-		} else {			# system
-			$type = "red";
-		}
-		# fall-through to color palettes
-	}
-	if (defined $type and $type eq "wakeup") {
-		$type = "aqua";
-		# fall-through to color palettes
-	}
-	if (defined $type and $type eq "chain") {
-		if ($name =~ m:_\[w\]:) {	# waker
-			$type = "aqua"
-		} else {			# off-CPU
-			$type = "blue";
-		}
-		# fall-through to color palettes
-	}
+    if (defined $type && exists $color_palettes{$type}) {
+        my $palette = $color_palettes{$type};
 
-	# color palettes
-	if (defined $type and $type eq "red") {
-		my $r = 200 + int(55 * $v1);
-		my $x = 50 + int(80 * $v1);
-		return "rgb($r,$x,$x)";
-	}
-	if (defined $type and $type eq "green") {
-		my $g = 200 + int(55 * $v1);
-		my $x = 50 + int(60 * $v1);
-		return "rgb($x,$g,$x)";
-	}
-	if (defined $type and $type eq "blue") {
-		my $b = 205 + int(50 * $v1);
-		my $x = 80 + int(60 * $v1);
-		return "rgb($x,$x,$b)";
-	}
-	if (defined $type and $type eq "yellow") {
-		my $x = 175 + int(55 * $v1);
-		my $b = 50 + int(20 * $v1);
-		return "rgb($x,$x,$b)";
-	}
-	if (defined $type and $type eq "purple") {
-		my $x = 190 + int(65 * $v1);
-		my $g = 80 + int(60 * $v1);
-		return "rgb($x,$g,$x)";
-	}
-	if (defined $type and $type eq "aqua") {
-		my $r = 50 + int(60 * $v1);
-		my $g = 165 + int(55 * $v1);
-		my $b = 165 + int(55 * $v1);
-		return "rgb($r,$g,$b)";
-	}
-	if (defined $type and $type eq "orange") {
-		my $r = 190 + int(65 * $v1);
-		my $g = 90 + int(65 * $v1);
-		return "rgb($r,$g,0)";
-	}
+        if (exists $palette->{'__searchcolor'}) {
+            $searchcolor = $palette->{'__searchcolor'};
+            delete $palette->{'__searchcolor'};
+        }
 
-	return "rgb(0,0,0)";
+        # Sort patterns by length in descending order
+        my @sorted_patterns = sort { length($b) <=> length($a) } keys %$palette;
+
+        foreach my $pattern (@sorted_patterns) {
+            next if $pattern eq '__default';  # Skip default, we'll use it if nothing else matches
+            if ($name =~ /$pattern/) {
+                $result_color = color_to_rgb($palette->{$pattern}->($r, $g, $b, $name));
+                # warn "DEBUG: Matched pattern '$pattern' for name '$name', color: $result_color\n";
+                return $result_color;
+            }
+        }
+        # If no specific pattern matched, use the default color
+        if (exists $palette->{'__default'}) {
+            $result_color = color_to_rgb($palette->{'__default'}->($r, $g, $b, $name));
+            # warn "DEBUG: Using default color for name '$name', color: $result_color\n";
+            return $result_color;
+        }
+    }
+
+    # Default color if no palette matches
+    warn "WARNING: No matching color found for type '$type' and name '$name'. Using light gray color.\n";
+    return "rgb(204,204,204)";
 }
 
 sub color_scale {
