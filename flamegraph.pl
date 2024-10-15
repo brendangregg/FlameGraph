@@ -460,6 +460,47 @@ my %color_palettes = (
         '_\[k\]' => sub { return 'orange'; },
         'default' => sub { return 'red'; },
     },
+    'crdb' => {
+        '__default'        => sub { return "#f5f5f5"; },  # White Smoke
+        '__searchcolor'    => "#ffff00",                  # Bright yellow for search
+
+        'github\.com/cockroachdb/cockroach/pkg/sql'                       => sub { return "#4a86e8"; },  # Light Blue
+        'github\.com/cockroachdb/cockroach/pkg/kv/kvserver'               => sub { return "#ff9999"; },  # Light Red
+        'github\.com/cockroachdb/cockroach/pkg/kv/kvclient'               => sub { return "#ffcccc"; },  # Very Light Red
+        'github\.com/cockroachdb/cockroach/pkg/util'                      => sub { return "#90ee90"; },  # Light Green
+        'github\.com/cockroachdb/cockroach/pkg/sql/colflow'               => sub { return "#dda0dd"; },  # Light Purple
+        'github\.com/cockroachdb/cockroach/pkg/sql/colexec'               => sub { return "#e6e6fa"; },  # Lavender
+        'google\.golang\.org/grpc'                                        => sub { return "#ffa500"; },  # Orange
+        'github\.com/cockroachdb/cockroach/pkg/rpc'                       => sub { return "#ffdab9"; },  # Peach Puff
+        'github\.com/cockroachdb/pebble'                                  => sub { return "#20b2aa"; },  # Light Sea Green
+        'github\.com/cockroachdb/cockroach/pkg/kv/kvserver/rangefeed'     => sub { return "#ffffe0"; },  # Light Yellow
+
+        # Runtime - lighter aqua colors
+        'runtime\.goexit'               => sub { return "#e0ffff"; },  # Light Cyan
+        'runtime\.main'                 => sub { return "#afeeee"; },  # Pale Turquoise
+        'runtime\.mcall'                => sub { return "#7fffd4"; },  # Aquamarine
+        'runtime\.morestack'            => sub { return "#48d1cc"; },  # Medium Turquoise
+        'runtime\.newproc'              => sub { return "#40e0d0"; },  # Turquoise
+        'runtime\.gopark'               => sub { return "#00ced1"; },  # Dark Turquoise
+        'runtime\.gosched'              => sub { return "#5f9ea0"; },  # Cadet Blue
+        'runtime\.gcBgMarkWorker'       => sub { return "#4682b4"; },  # Steel Blue
+        'runtime\.bgsweep'              => sub { return "#6495ed"; },  # Cornflower Blue
+        'runtime\.selectgo'             => sub { return "#87cefa"; },  # Light Sky Blue
+        'runtime\.'                     => sub { return "#b0e0e6"; },  # Powder Blue
+
+        # Network-related - lighter shades of blue
+        'net\.'                         => sub { return "#1e90ff"; },  # Dodger Blue
+        'internal/poll\.FD'             => sub { return "#00bfff"; },  # Deep Sky Blue
+        'crypto/tls'                    => sub { return "#87cefa"; },  # Light Sky Blue
+        'internal/poll'                 => sub { return "#b0c4de"; },  # Light Steel Blue
+
+        # IO - lighter purple
+        'io\.'                          => sub { return "#da70d6"; },  # Orchid
+
+        # Sync - lighter red
+        'sync\.'                        => sub { return "#ff6347"; },  # Tomato
+        'sync\.runtime_notifyListWait'  => sub { return "#ff6347"; },  # Tomato (same as sync.)
+    },
     # Add other palettes here...
     );
 
