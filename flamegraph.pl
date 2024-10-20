@@ -798,13 +798,14 @@ my $inc = <<INC;
 <script type="text/ecmascript">
 <![CDATA[
 	"use strict";
-	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	var details, searchbtn, unzoombtn, matchedtxt, searchedFortxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
 		searchbtn = document.getElementById("search");
 		ignorecaseBtn = document.getElementById("ignorecase");
 		unzoombtn = document.getElementById("unzoom");
 		matchedtxt = document.getElementById("matched");
+		searchedFortxt = document.getElementById("searchedFor");
 		svg = document.getElementsByTagName("svg")[0];
 		searching = 0;
 		currentSearchTerm = null;
@@ -1113,6 +1114,8 @@ my $inc = <<INC;
 			searchbtn.firstChild.nodeValue = "Search"
 			matchedtxt.classList.add("hide");
 			matchedtxt.firstChild.nodeValue = ""
+			searchedFortxt.classList.add("hide");
+			searchedFortxt.firstChiled.nodeValue = ""
 		}
 	}
 	function search(term) {
@@ -1194,6 +1197,10 @@ my $inc = <<INC;
 		var pct = 100 * count / maxwidth;
 		if (pct != 100) pct = pct.toFixed(1)
 		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+
+		// Show the text that was searched for.
+		searchedFortxt.classList.remove("hide");
+		searchedFortxt.firstChild.nodeValue = "Searched for: " + currentSearchTerm;
 	}
 ]]>
 </script>
@@ -1207,6 +1214,7 @@ $im->stringTTF("unzoom", $xpad, $fontsize * 2, "Reset Zoom", 'class="hide"');
 $im->stringTTF("search", $imagewidth - $xpad - 100, $fontsize * 2, "Search");
 $im->stringTTF("ignorecase", $imagewidth - $xpad - 16, $fontsize * 2, "ic");
 $im->stringTTF("matched", $imagewidth - $xpad - 100, $imageheight - ($ypad2 / 2), " ");
+$im->stringTTF("searchedFor", $xpad, $imageheight - ($ypad2 / 2), " ");
 
 if ($palette) {
 	read_palette();
