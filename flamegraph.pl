@@ -641,8 +641,14 @@ my $ignored = 0;
 my $line;
 my $maxdelta = 1;
 
+# When FlameGraph is piped to another tool, still process the received lines
+# if Ctrl+C is pressed once. Interrupt FlameGraph when Ctrl+C is pressed twice.
+my $int_flag = 0;
+$SIG{INT} = sub { $int_flag += 1 };
+
 # reverse if needed
 foreach (<>) {
+	if ($int_flag == 2) { last;	}
 	chomp;
 	$line = $_;
 	if ($stackreverse) {
