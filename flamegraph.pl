@@ -108,6 +108,7 @@ my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
 my $bgcolors = "";              # background color theme
+my $fillopacity = 1;            # fill-opacity for drawn rectangles (SVG attribute)
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
@@ -120,6 +121,8 @@ my $stackreverse = 0;           # reverse stack order, switching merge end
 my $inverted = 0;               # icicle graph
 my $flamechart = 0;             # produce a flame chart (sort by time, do not merge stacks)
 my $negate = 0;                 # switch differential hues
+my $totaldiff = 0;              # aggregate diff values (i.e. use total-diff not self-diff)
+my $mindeltapc = 0;             # min delta (as % of function duration) to use diff hues
 my $titletext = "";             # centered heading
 my $titledefault = "Flame Graph";	# overwritten by --title
 my $titleinverted = "Icicle Graph";	#   "    "
@@ -131,30 +134,34 @@ my $help = 0;
 sub usage {
 	die <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
-	--title TEXT     # change title text
-	--subtitle TEXT  # second level title (optional)
-	--width NUM      # width of image (default 1200)
-	--height NUM     # height of each frame (default 16)
-	--minwidth NUM   # omit smaller functions. In pixels or use "%" for
-	                 # percentage of time (default 0.1 pixels)
-	--fonttype FONT  # font type (default "Verdana")
-	--fontsize NUM   # font size (default 12)
-	--countname TEXT # count type label (default "samples")
-	--nametype TEXT  # name type label (default "Function:")
-	--colors PALETTE # set color palette. choices are: hot (default), mem,
-	                 # io, wakeup, chain, java, js, perl, red, green, blue,
-	                 # aqua, yellow, purple, orange
-	--bgcolors COLOR # set background colors. gradient choices are yellow
-	                 # (default), blue, green, grey; flat colors use "#rrggbb"
-	--hash           # colors are keyed by function name hash
-	--random         # colors are randomly generated
-	--cp             # use consistent palette (palette.map)
-	--reverse        # generate stack-reversed flame graph
-	--inverted       # icicle graph
-	--flamechart     # produce a flame chart (sort by time, do not merge stacks)
-	--negate         # switch differential hues (blue<->red)
-	--notes TEXT     # add notes comment in SVG (for debugging)
-	--help           # this message
+	--title TEXT      # change title text
+	--subtitle TEXT   # second level title (optional)
+	--width NUM       # width of image (default 1200)
+	--height NUM      # height of each frame (default 16)
+	--minwidth NUM    # omit smaller functions. In pixels or use "%" for
+	                  # percentage of time (default 0.1 pixels)
+	--fonttype FONT   # font type (default "Verdana")
+	--fontsize NUM    # font size (default 12)
+	--countname TEXT  # count type label (default "samples")
+	--nametype TEXT   # name type label (default "Function:")
+	--colors PALETTE  # set color palette. choices are: hot (default), mem,
+	                  # io, wakeup, chain, java, js, perl, red, green, blue,
+	                  # aqua, yellow, purple, grey, orange
+	--bgcolors COLOR  # set background colors. gradient choices are yellow
+	                  # (default), blue, green, grey; flat colors use "#rrggbb"
+	--fillopacity NUM # fill-opacity for drawn rectangles (SVG attribute)
+	--hash            # colors are keyed by function name hash
+	--random          # colors are randomly generated
+	--cp              # use consistent palette (palette.map)
+	--reverse         # generate stack-reversed flame graph
+	--inverted        # icicle graph
+	--flamechart      # produce a flame chart (sort by time, do not merge stacks)
+	--negate          # switch differential hues (blue<->red)
+	--totaldiff       # aggregate diff values (i.e. use total-diff not self-diff)
+	                  # when calculating differential hues
+	--mindeltapc NUM  # min delta (as % of function duration) to use diff hues
+	--notes TEXT      # add notes comment in SVG (for debugging)
+	--help            # this message
 
 	eg,
 	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
@@ -162,31 +169,34 @@ USAGE_END
 }
 
 GetOptions(
-	'fonttype=s'  => \$fonttype,
-	'width=i'     => \$imagewidth,
-	'height=i'    => \$frameheight,
-	'encoding=s'  => \$encoding,
-	'fontsize=f'  => \$fontsize,
-	'fontwidth=f' => \$fontwidth,
-	'minwidth=s'  => \$minwidth,
-	'title=s'     => \$titletext,
-	'subtitle=s'  => \$subtitletext,
-	'nametype=s'  => \$nametype,
-	'countname=s' => \$countname,
-	'nameattr=s'  => \$nameattrfile,
-	'total=s'     => \$timemax,
-	'factor=f'    => \$factor,
-	'colors=s'    => \$colors,
-	'bgcolors=s'  => \$bgcolors,
-	'hash'        => \$hash,
-	'random'      => \$rand,
-	'cp'          => \$palette,
-	'reverse'     => \$stackreverse,
-	'inverted'    => \$inverted,
-	'flamechart'  => \$flamechart,
-	'negate'      => \$negate,
-	'notes=s'     => \$notestext,
-	'help'        => \$help,
+	'fonttype=s'    => \$fonttype,
+	'width=i'       => \$imagewidth,
+	'height=i'      => \$frameheight,
+	'encoding=s'    => \$encoding,
+	'fontsize=f'    => \$fontsize,
+	'fontwidth=f'   => \$fontwidth,
+	'minwidth=s'    => \$minwidth,
+	'title=s'       => \$titletext,
+	'subtitle=s'    => \$subtitletext,
+	'nametype=s'    => \$nametype,
+	'countname=s'   => \$countname,
+	'nameattr=s'    => \$nameattrfile,
+	'total=s'       => \$timemax,
+	'factor=f'      => \$factor,
+	'colors=s'      => \$colors,
+	'bgcolors=s'    => \$bgcolors,
+	'fillopacity=f' => \$fillopacity,
+	'hash'          => \$hash,
+	'random'        => \$rand,
+	'cp'            => \$palette,
+	'reverse'       => \$stackreverse,
+	'inverted'      => \$inverted,
+	'flamechart'    => \$flamechart,
+	'negate'        => \$negate,
+	'totaldiff'     => \$totaldiff,
+	'mindeltapc=f'  => \$mindeltapc,
+	'notes=s'       => \$notestext,
+	'help'          => \$help,
 ) or usage();
 $help && usage();
 
@@ -249,7 +259,7 @@ if ($bgcolors eq "") {
 		$bgcolors = "green";
 	} elsif ($colors =~ /^(io|wakeup|chain)$/) {
 		$bgcolors = "blue";
-	} elsif ($colors =~ /^(red|green|blue|aqua|yellow|purple|orange)$/) {
+	} elsif ($colors =~ /^(red|green|blue|aqua|yellow|purple|grey|orange)$/) {
 		$bgcolors = "grey";
 	} else {
 		$bgcolors = "yellow";
@@ -333,13 +343,17 @@ SVG
 	}
 
 	sub filledRectangle {
-		my ($self, $x1, $y1, $x2, $y2, $fill, $extra) = @_;
+		my ($self, $x1, $y1, $x2, $y2, $fill, $fillopacity, $extra) = @_;
 		$x1 = sprintf "%0.1f", $x1;
 		$x2 = sprintf "%0.1f", $x2;
 		my $w = sprintf "%0.1f", $x2 - $x1;
 		my $h = sprintf "%0.1f", $y2 - $y1;
 		$extra = defined $extra ? $extra : "";
-		$self->{svg} .= qq/<rect x="$x1" y="$y1" width="$w" height="$h" fill="$fill" $extra \/>\n/;
+
+		# if emitted, fill-opacity attribute + a space at the end; otherwise an empty string
+		$fillopacity = (defined $fillopacity && $fillopacity != 1) ? "fill-opacity=\"$fillopacity\" " : "";
+
+		$self->{svg} .= qq/<rect x="$x1" y="$y1" width="$w" height="$h" fill="$fill" $fillopacity$extra \/>\n/;
 	}
 
 	sub stringTTF {
@@ -534,6 +548,10 @@ sub color {
 		my $g = 80 + int(60 * $v1);
 		return "rgb($x,$g,$x)";
 	}
+	if (defined $type and $type eq "grey") {
+		my $x = 100 + int(150 * $v1);
+		return "rgb($x,$x,$x)";
+	}
 	if (defined $type and $type eq "aqua") {
 		my $r = 50 + int(60 * $v1);
 		my $g = 165 + int(55 * $v1);
@@ -595,12 +613,15 @@ my %Node;	# Hash of merged frame data
 my %Tmp;
 
 # flow() merges two stacks, storing the merged frames and value data in %Node.
+my $maxdelta = 1;
 sub flow {
 	my ($last, $this, $v, $d) = @_;
 
+	# last indices of a and b
 	my $len_a = @$last - 1;
 	my $len_b = @$this - 1;
 
+	# calculate $len_same - the first ix where $this and $last differ
 	my $i = 0;
 	my $len_same;
 	for (; $i <= $len_a; $i++) {
@@ -609,26 +630,41 @@ sub flow {
 	}
 	$len_same = $i;
 
+	# move all finished functions from %Tmp to %Node
 	for ($i = $len_a; $i >= $len_same; $i--) {
 		my $k = "$last->[$i];$i";
 		# a unique ID is constructed from "func;depth;etime";
 		# func-depth isn't unique, it may be repeated later.
 		$Node{"$k;$v"}->{stime} = delete $Tmp{$k}->{stime};
 		if (defined $Tmp{$k}->{delta}) {
-			$Node{"$k;$v"}->{delta} = delete $Tmp{$k}->{delta};
+			my $delta = delete $Tmp{$k}->{delta};
+			$maxdelta = abs($delta) if abs($delta) > $maxdelta;
+			$Node{"$k;$v"}->{delta} = $delta;
 		}
 		delete $Tmp{$k};
 	}
 
+	# push newly started functions onto the running-functions map (%Tmp)
 	for ($i = $len_same; $i <= $len_b; $i++) {
+		# a unique ID is constructed from "func;depth"
 		my $k = "$this->[$i];$i";
 		$Tmp{$k}->{stime} = $v;
-		if (defined $d) {
+		if (defined $d && !$totaldiff) {
+			# apply the diff directly (self-diff)
+			# +0 sets undefined values to 0
 			$Tmp{$k}->{delta} += $i == $len_b ? $d : 0;
 		}
 	}
 
-        return $this;
+	# propagate the diff upstream (total-diff)
+	if (defined $d && $totaldiff) {
+		for ($i = 0; $i <= $len_b; $i++) {
+			my $k = "$this->[$i];$i";
+			$Tmp{$k}->{delta} += $d;
+		}
+	}
+
+	return $this;
 }
 
 # parse input
@@ -639,7 +675,6 @@ my $time = 0;
 my $delta = undef;
 my $ignored = 0;
 my $line;
-my $maxdelta = 1;
 
 # reverse if needed
 foreach (<>) {
@@ -689,7 +724,6 @@ foreach (@SortedData) {
 	$delta = undef;
 	if (defined $samples2) {
 		$delta = $samples2 - $samples;
-		$maxdelta = abs($delta) if abs($delta) > $maxdelta;
 	}
 
 	# for chain graphs, annotate waker frames with "_[w]", for later
@@ -1199,7 +1233,7 @@ my $inc = <<INC;
 </script>
 INC
 $im->include($inc);
-$im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)');
+$im->filledRectangle(0, 0, $imagewidth, $imageheight, 'url(#background)', 1);
 $im->stringTTF("title", int($imagewidth / 2), $fontsize * 2, $titletext);
 $im->stringTTF("subtitle", int($imagewidth / 2), $fontsize * 4, $subtitletext) if $subtitletext ne "";
 $im->stringTTF("details", $xpad, $imageheight - ($ypad2 / 2), " ");
@@ -1221,6 +1255,10 @@ while (my ($id, $node) = each %Node) {
 
 	$etime = $timemax if $func eq "" and $depth == 0;
 
+	# calculate the relative delta (as a % of function duration)
+	my $duration = $etime - $stime;
+	my $reldeltapc = (defined $delta) ? (100.0 * abs($delta) / $duration) : 0;
+
 	my $x1 = $xpad + $stime * $widthpertime;
 	my $x2 = $xpad + $etime * $widthpertime;
 	my ($y1, $y2);
@@ -1234,7 +1272,7 @@ while (my ($id, $node) = each %Node) {
 
 	# Add commas per perlfaq5:
 	# https://perldoc.perl.org/perlfaq5#How-can-I-output-my-numbers-with-commas-added?
-	my $samples = sprintf "%.0f", ($etime - $stime) * $factor;
+	my $samples = sprintf "%.0f", $duration * $factor;
 	(my $samples_txt = $samples)
 		=~ s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
@@ -1270,13 +1308,13 @@ while (my ($id, $node) = each %Node) {
 	} elsif ($func eq "-") {
 		$color = $dgrey;
 	} elsif (defined $delta) {
-		$color = color_scale($delta, $maxdelta);
+		$color = ($reldeltapc >= $mindeltapc) ? color_scale($delta, $maxdelta) : "white";
 	} elsif ($palette) {
 		$color = color_map($colors, $func);
 	} else {
 		$color = color($colors, $hash, $func);
 	}
-	$im->filledRectangle($x1, $y1, $x2, $y2, $color, 'rx="2" ry="2"');
+	$im->filledRectangle($x1, $y1, $x2, $y2, $color, $fillopacity, 'rx="2" ry="2"');
 
 	my $chars = int( ($x2 - $x1) / ($fontsize * $fontwidth));
 	my $text = "";
