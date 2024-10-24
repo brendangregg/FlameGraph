@@ -88,6 +88,7 @@ my $event_warning = 0;	  # if we printed a warning for the event
 
 my $show_inline = 0;
 my $show_context = 0;
+my $streaming = 0;        # stream the stacks without summing them
 
 my $srcline_in_input = 0; # if there are extra lines with source location (perf script -F+srcline)
 GetOptions('inline' => \$show_inline,
@@ -99,7 +100,8 @@ GetOptions('inline' => \$show_inline,
            'all' => \$annotate_all,
            'tid' => \$include_tid,
            'addrs' => \$include_addrs,
-           'event-filter=s' => \$event_filter)
+           'event-filter=s' => \$event_filter,
+           'streaming'      => \$streaming)
 or die <<USAGE_END;
 USAGE: $0 [options] infile > outfile\n
 	--pid		# include PID with process names [1]
@@ -111,7 +113,8 @@ USAGE: $0 [options] infile > outfile\n
 	--context	# adds source context to --inline
 	--srcline	# parses output of 'perf script -F+srcline' and adds source context
 	--addrs		# include raw addresses where symbols can't be found
-	--event-filter=EVENT	# event name filter\n
+	--event-filter=EVENT	# event name filter
+	--streaming	# stream the stacks without summing them\n
 [1] perf script must emit both PID and TIDs for these to work; eg, Linux < 4.1:
 	perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace
     for Linux >= 4.1:
@@ -233,7 +236,11 @@ while (defined($_ = <>)) {
 				unshift @stack, "";
 			}
 		}
-		remember_stack(join(";", @stack), $m_period) if @stack;
+		if ($streaming) {
+			print join(";", @stack) . " $m_period\n" if @stack;
+		} else {
+			remember_stack(join(";", @stack), $m_period) if @stack;
+		}
 		undef @stack;
 		undef $pname;
 		next;
@@ -430,6 +437,9 @@ while (defined($_ = <>)) {
 	}
 }
 
+if ($streaming) {
+	exit(0);
+}
 foreach my $k (sort { $a cmp $b } keys %collapsed) {
 	print "$k $collapsed{$k}\n";
 }
