@@ -1,0 +1,21 @@
+# Only give read permissions to repository
+permissions:
+  contents: read
+# Run on PRs and on merge to master
+on:
+  push:
+    branches: [master]
+  pull_request:
+# Cancel run if PR is updated concurrently
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+name: test.sh
+jobs:
+  required:
+    runs-on: ubuntu-latest
+    name: ubuntu
+    steps:
+      - uses: actions/checkout@v4
+      - name: test.sh
+        run: ./test.sh
