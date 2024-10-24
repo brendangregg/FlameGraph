@@ -82,6 +82,7 @@ Use the stackcollapse programs to fold stack samples into single lines.  The pro
 - `stackcollapse-go.pl`: for Golang pprof stacks
 - `stackcollapse-vsprof.pl`: for Microsoft Visual Studio profiles
 - `stackcollapse-wcp.pl`: for wallClockProfiler output
+- `stackcollapse-sleepy.py`: for sleepy/verySleepy output
 
 Usage example:
 
