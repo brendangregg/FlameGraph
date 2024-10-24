@@ -151,7 +151,7 @@ An example output from DTrace is also included, example-dtrace-stacks.txt, and t
 You can generate this using:
 
 ```
-$ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl > example.svg
+$ ./stackcollapse.pl example-dtrace-stacks.txt | ./flamegraph.pl > example-dtrace.svg
 ```
 
 This was from a particular performance investigation: the Flame Graph identified that CPU time was spent in the lofs module, and quantified that time.
