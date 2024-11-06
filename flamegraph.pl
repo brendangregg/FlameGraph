@@ -943,9 +943,13 @@ my $inc = <<INC;
 		}
 
 		t.textContent = txt;
+
+		if (/^ *\$/.test(txt))
+			return;
+
 		var sl = t.getSubStringLength(0, txt.length);
 		// check if only whitespace or if we can fit the entire string into width w
-		if (/^ *\$/.test(txt) || sl < w)
+		if (sl < w)
 			return;
 
 		// this isn't perfect, but gives a good starting point
