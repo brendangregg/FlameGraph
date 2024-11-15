@@ -14,7 +14,7 @@ my @stack = ();
 <>;
 foreach (<>) {
 	chomp;
-	/\d+\.\d+ (?:min|s|ms)\s+\d+\.\d+%\s+(\d+(?:\.\d+)?) (min|s|ms)\t \t(\s*)(.+)/ or die;
+	/\d+\.\d+ (?:min|s|ms)\s+\S+\s+(\d+(?:\.\d+)?) (min|s|ms)\t (\s*)(.+)/ or die "Error parsing line: $_\n";
 	my $func = $4;
 	my $depth = length ($3);
 	$stack [$depth] = $4;
