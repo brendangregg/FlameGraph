@@ -33,7 +33,7 @@
 # The output of "perf script" should include stack traces. If these are missing
 # for you, try manually selecting the perf script output; eg:
 #
-#  perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace | ...
+#  perf script -F comm,pid,tid,cpu,time,event,ip,sym,dso,trace | ...
 #
 # This is also required for the --pid or --tid options, so that the output has
 # both the PID and TID.
