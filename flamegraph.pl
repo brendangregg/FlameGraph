@@ -347,7 +347,16 @@ SVG
 		$x = sprintf "%0.2f", $x;
 		$id =  defined $id ? qq/id="$id"/ : "";
 		$extra ||= "";
-		$self->{svg} .= qq/<text $id x="$x" y="$y" $extra>$str<\/text>\n/;
+		my $content;
+		if (index($str, "\n") != -1) {
+			$content = "";
+			foreach my $line (split "\n", $str) {
+				$content .= qq/<tspan x="$x" dy="12">$line<\/tspan>\n/;
+			}
+		} else {
+			$content = $str;
+		}
+		$self->{svg} .= qq/<text $id x="$x" y="$y" $extra>$content<\/text>\n/;
 	}
 
 	sub svg {
@@ -640,11 +649,16 @@ my $delta = undef;
 my $ignored = 0;
 my $line;
 my $maxdelta = 1;
+my $extrasubtitle = "";
 
 # reverse if needed
 foreach (<>) {
 	chomp;
 	$line = $_;
+	if (/^# /) {
+		$extrasubtitle .= (substr $_, length("# "))."\n";
+		next;
+	}
 	if ($stackreverse) {
 		# there may be an extra samples column for differentials
 		# XXX todo: redo these REs as one. It's repeated below.
@@ -768,6 +782,7 @@ while (my ($id, $node) = each %Node) {
 
 # draw canvas, and embed interactive JavaScript program
 my $imageheight = (($depthmax + 1) * $frameheight) + $ypad1 + $ypad2;
+$subtitletext = $subtitletext ne "" ? $subtitletext."\n".$extrasubtitle : $extrasubtitle;
 $imageheight += $ypad3 if $subtitletext ne "";
 my $titlesize = $fontsize + 5;
 my $im = SVG->new();
