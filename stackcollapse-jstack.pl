@@ -62,6 +62,7 @@ use Getopt::Long;
 # tunables
 my $include_tname = 1;		# include thread names in stacks
 my $include_tid = 0;		# include thread IDs in stacks
+my $include_all_states = 0;	# include all thread states
 my $shorten_pkgs = 0;		# shorten package names
 my $help = 0;
 
@@ -72,6 +73,8 @@ USAGE: $0 [options] infile > outfile\n
 	--no-include-tname # include/omit thread names in stacks (default: include)
 	--include-tid
 	--no-include-tid   # include/omit thread IDs in stacks (default: omit)
+	--no-include-all-states
+	--include-all-states  # include all thread states (WAITING, etc.) (default: omit)
 	--shorten-pkgs
 	--no-shorten-pkgs  # (don't) shorten package names (default: don't shorten)
 
@@ -83,6 +86,7 @@ USAGE_END
 GetOptions(
 	'include-tname!'  => \$include_tname,
 	'include-tid!'    => \$include_tid,
+	'include-all-states!' => \$include_all_states,
 	'shorten-pkgs!'   => \$shorten_pkgs,
 	'help'            => \$help,
 ) or usage();
@@ -100,6 +104,7 @@ sub remember_stack {
 my @stack;
 my $tname;
 my $state = "?";
+my $background = 0;
 
 foreach (<>) {
 	next if m/^#/;
@@ -107,7 +112,7 @@ foreach (<>) {
 
 	if (m/^$/) {
 		# only include RUNNABLE states
-		goto clear if $state ne "RUNNABLE";
+		goto clear if $background == 1 or (not $include_all_states and $state ne "RUNNABLE");
 
 		# save stack
 		if (defined $tname) { unshift @stack, $tname; }
@@ -135,11 +140,12 @@ clear:
 			}
 		}
 
-		# set state for various background threads
-		$state = "BACKGROUND" if $name =~ /C. CompilerThread/;
-		$state = "BACKGROUND" if $name =~ /Signal Dispatcher/;
-		$state = "BACKGROUND" if $name =~ /Service Thread/;
-		$state = "BACKGROUND" if $name =~ /Attach Listener/;
+		# set $background for various background threads
+		$background = 0;
+		$background = 1 if $name =~ /C. CompilerThread/;
+		$background = 1 if $name =~ /Signal Dispatcher/;
+		$background = 1 if $name =~ /Service Thread/;
+		$background = 1 if $name =~ /Attach Listener/;
 
 	} elsif (/java.lang.Thread.State: (\S+)/) {
 		$state = $1 if $state eq "?";
