@@ -108,6 +108,7 @@ my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
 my $bgcolors = "";              # background color theme
+my $colormap = "";              # color map file
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
@@ -146,6 +147,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	                 # aqua, yellow, purple, orange
 	--bgcolors COLOR # set background colors. gradient choices are yellow
 	                 # (default), blue, green, grey; flat colors use "#rrggbb"
+	--colormap FILE  # load custom logic for mapping names to types
 	--hash           # colors are keyed by function name hash
 	--random         # colors are randomly generated
 	--cp             # use consistent palette (palette.map)
@@ -178,6 +180,7 @@ GetOptions(
 	'factor=f'    => \$factor,
 	'colors=s'    => \$colors,
 	'bgcolors=s'  => \$bgcolors,
+	'colormap=s'  => \$colormap,
 	'hash'        => \$hash,
 	'random'      => \$rand,
 	'cp'          => \$palette,
@@ -269,6 +272,37 @@ if ($bgcolors eq "yellow") {
 	$bgcolor1 = $bgcolor2 = $bgcolors;
 } else {
 	die "Unrecognized bgcolor option \"$bgcolors\""
+}
+
+sub load_colormap {
+	my $colormap_rules = [];
+	open(FILE, $colormap) or die "can't open file $colormap: $!";
+	while ( my $line = <FILE>) {
+		chomp($line);
+		my @res	;
+		if ($line =~ /^\s*$/) {
+			next;
+		}
+		if ($line =~ /^#/) {
+			next;
+		}
+		@res = ($line =~ /^([\/,?;.:!§%*@|])([^\1]*)\1([a-z]*)\s*=>\s*(\S+)\s*$/);
+		if (@res) {
+			my ($separator, $pattern, $flags, $type) = @res;
+			my $regex = qr/(?$flags)$pattern/;
+			push @$colormap_rules, [$regex, $type];
+		} else {
+			die "invalid colormap specification";
+		}
+	}
+	close(FILE);
+	return $colormap_rules;
+}
+
+my $colormap_rules = [];
+if ($colormap ne "") {
+	$colormap_rules = load_colormap();
+	$colors = "colormap";
 }
 
 # SVG functions
@@ -412,6 +446,20 @@ sub color {
 		$v3 = random_namehash($name);
 	}
 
+	for my $colormap_rule(@$colormap_rules) {
+		my $regex = $colormap_rule->[0];
+		if ($name =~ $regex) {
+			$type = $colormap_rule->[1];
+			if ($type =~ /^\#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/) {
+				my $r = hex $1;
+				my $g = hex $2;
+				my $b = hex $3;
+				return "rgb($r,$g,$b)";
+			}
+			last;
+		}
+	}
+
 	# theme palettes
 	if (defined $type and $type eq "hot") {
 		my $r = 205 + int(50 * $v3);
@@ -507,6 +555,8 @@ sub color {
 		}
 		# fall-through to color palettes
 	}
+
+
 
 	# color palettes
 	if (defined $type and $type eq "red") {
