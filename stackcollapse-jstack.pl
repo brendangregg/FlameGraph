@@ -145,6 +145,9 @@ clear:
 		$state = $1 if $state eq "?";
 	} elsif (/^\s*at ([^\(]*)/) {
 		my $func = $1;
+		# Strip out trailing number that is included in lambda functions
+		# This is not generated consistently by the JVM, so don't rely on it
+		$func =~ s/\$\$Lambda\$[0-9]+\/.*$/\$\$Lambda\$/;
 		if ($shorten_pkgs) {
 			my ($pkgs, $clsFunc) = ( $func =~ m/(.*\.)([^.]+\.[^.]+)$/ );
 			$pkgs =~ s/(\w)\w*/$1/g;
