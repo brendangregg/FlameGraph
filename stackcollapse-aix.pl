@@ -1,9 +1,9 @@
-#!/usr/bin/perl -ws
+#!/usr/bin/env -S perl -ws
 #
 # stackcollapse-aix  Collapse AIX /usr/bin/procstack backtraces
 #
 # Parse a list of backtraces as generated with the poor man's aix-perf.pl
-# profiler 
+# profiler
 #
 
 use strict;

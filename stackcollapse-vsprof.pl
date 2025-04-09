@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env -S perl -w
 #
 # stackcollapse-vsprof.pl
 #
@@ -9,7 +9,7 @@
 # WORKFLOW:
 #
 # This example assumes you have visual studio 2015 installed.
-# 
+#
 # 1. Profile C++ your application using visual studio
 # 2. On visual studio, choose export the call tree as csv
 # 3. Generate a flamegraph: perl stackcollapse-vsprof CallTreeSummary.csv | perl flamegraph.pl > result_vsprof.svg
@@ -58,14 +58,14 @@ while (my $current_line = <$fh>){
   # to discard first line which typically contains headers
   next if $line_number == 1;
   next if $current_line =~ /^\s*$/o;
- 
+
   ($current_line =~ $line_parser_rx) or die "Error in regular expression at line $line_number : $current_line\n";
 
   my $level = int $1;
   my $function = massage_function_names($2);
   my $samples = parse_integer($3);
   my $stack_len = @stack;
- 
+
   #print "[DEBUG] $line_number : $level $function $samples $stack_len\n";
 
   next if not $level;

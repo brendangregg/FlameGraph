@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env -S perl -w
 #
 # pkgsplit-perf.pl	Split IP samples on package names "/", eg, Java.
 #

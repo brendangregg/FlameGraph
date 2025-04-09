@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+#!/usr/bin/env -S awk -f
 
 #
 # This program generates collapsed off-cpu stacks fit for use by flamegraph.pl

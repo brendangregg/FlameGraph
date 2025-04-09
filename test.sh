@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # test.sh - Check flame graph software vs test result files.
 #

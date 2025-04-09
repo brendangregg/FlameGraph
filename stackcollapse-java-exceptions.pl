@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env -S perl -w
 #
 # stackcolllapse-java-exceptions.pl	collapse java exceptions (found in logs) into single lines.
 #

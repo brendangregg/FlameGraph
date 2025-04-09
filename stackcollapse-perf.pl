@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env -S perl -w
 #
 # stackcollapse-perf.pl	collapse perf samples into single lines.
 #
@@ -373,7 +373,7 @@ while (defined($_ = <>)) {
 			#
 			# detect inlined from the @inline array
 			# detect kernel from the module name; eg, frames to parse include:
-			#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms]) 
+			#          ffffffff8103ce3b native_safe_halt ([kernel.kallsyms])
 			#          8c3453 tcp_sendmsg (/lib/modules/4.3.0-rc1-virtual/build/vmlinux)
 			#          7d8 ipv4_conntrack_local+0x7f8f80b8 ([nf_conntrack_ipv4])
 			# detect jit from the module name; eg:
@@ -406,7 +406,7 @@ while (defined($_ = <>)) {
 			#   | a.out 35081 252435.738373:     315813 cycles:
 			#   |             7f6d215ca51b __strlen_avx2+0x4b (/lib64/libc-2.33.so)
 			#   |   libc-2.33.so[16351b]
-			#   |             7ffc71ee9580 [unknown] ([unknown])			
+			#   |             7ffc71ee9580 [unknown] ([unknown])
 			#   |
 			#
 			#   | a.out 35081 252435.718940:     247984 cycles:

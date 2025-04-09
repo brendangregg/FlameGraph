@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use Getopt::Std;
 
@@ -21,7 +21,7 @@ for ($i = 0; $i < $opt_r ; $i++){
 	opendir(my $dh, '/proc') || die "Cant't open /proc: $!";
 	@proc = grep { /^[\d]+$/ } readdir($dh);
 	closedir ($dh);
-    }	
+    }
 
     foreach my $pid (@proc){
 	my $command = "/usr/bin/procstack $pid";

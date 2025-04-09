@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+#!/usr/bin/env -S awk -f
 #
 # stackcollapse-ljp.awk	collapse lightweight java profile reports
 #				into single lines stacks.

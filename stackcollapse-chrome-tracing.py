@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #
 # stackcolllapse-chrome-tracing.py	collapse Trace Event Format [1]
 #             callstack events into single lines.

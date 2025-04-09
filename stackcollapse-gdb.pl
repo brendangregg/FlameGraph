@@ -1,4 +1,4 @@
-#!/usr/bin/perl -ws
+#!/usr/bin/env -S perl -ws
 #
 # stackcollapse-gdb  Collapse GDB backtraces
 #

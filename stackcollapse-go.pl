@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env -S perl -w
 #
 # stackcollapse-go.pl  collapse golang samples into single lines.
 #
@@ -12,9 +12,9 @@
 #   ...
 #   Samples:
 #   samples/count cpu/nanoseconds
-#        1   10000000: 1 2 
-#        2   10000000: 3 2 
-#        1   10000000: 4 2 
+#        1   10000000: 1 2
+#        2   10000000: 3 2
+#        1   10000000: 4 2
 #        ...
 #   Locations
 #        1: 0x58b265 scanblock :0 s=0
@@ -26,7 +26,7 @@
 #        ...
 #
 # Example Output:
-# 
+#
 #   GC;flushptrbuf 2
 #   GC;runtime.MSpan_Sweep 1
 #   GC;scanblock 1

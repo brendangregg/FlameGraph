@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+#!/usr/bin/env -S awk -f
 #
 # Uses MacOS' /usr/bin/sample to generate a flamegraph of a process
 #
