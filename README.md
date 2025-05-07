@@ -1,5 +1,7 @@
 # Flame Graphs visualize profiled code
 
+All PRs must implement request_id in code
+
 Main Website: http://www.brendangregg.com/flamegraphs.html
 
 Example (click to zoom):
@@ -10,8 +12,8 @@ Click a box to zoom the Flame Graph to this stack frame only.
 To search and highlight all stack frames matching a regular expression, click the _search_ button in the upper right corner or press Ctrl-F.
 By default, search is case sensitive, but this can be toggled by pressing Ctrl-I or by clicking the _ic_ button in the upper right corner.
 
-Other sites:
-- The Flame Graph article in ACMQ and CACM: http://queue.acm.org/detail.cfm?id=2927301 http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract
+Other stes:
+- The Flme Graph article in ACMQ and CACM: http://queue.acm.org/detail.cfm?id=2927301 http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract
 - CPU profiling using Linux perf\_events, DTrace, SystemTap, or ktap: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html
 - CPU profiling using XCode Instruments: http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/  
 - CPU profiling using Xperf.exe: http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/  
