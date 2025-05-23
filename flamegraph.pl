@@ -584,8 +584,14 @@ sub read_palette {
 	open(FILE, $pal_file) or die "can't open file $pal_file: $!";
 	while ( my $line = <FILE>) {
 		chomp($line);
-		(my $key, my $value) = split("->",$line);
-		$palette_map{$key}=$value;
+		my $last_pos = rindex($line,"->");
+		if ($last_pos != -1) {
+			my $key = substr($line, 0, $last_pos);
+			my $value = substr($line, $last_pos + 2);
+			$palette_map{$key}=$value;
+		} else {
+			die "invalid palette line: $line";
+		}
 	}
 	close(FILE)
 	}
