@@ -452,6 +452,8 @@ sub color {
 			$type = "orange";
 		} elsif ($name =~ /::/) {	# C++
 			$type = "yellow";
+                } elsif ($name =~ /\.py/) { # Python                                                         
+   1                    $type = "green";
 		} else {			# system
 			$type = "red";
 		}
