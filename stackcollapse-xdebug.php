@@ -37,10 +37,12 @@ and outputs stacks as single lines, with methods separated by semicolons,
 and then a space and an occurrence count. For use with flamegraph.pl.
 See https://github.com/brendangregg/FlameGraph.
 
-USAGE: ./stackcollapse-xdebug.php [OPTIONS] infile > outfile
+USAGE: ./stackcollapse-xdebug.php [OPTIONS] [infile] > outfile
     -h --help    Show this message
     -t           Weight stack counts by duration using the time index in the trace (default)
     -c           Invocation counts only. Simply count stacks in the trace and sum duplicates, don't weight by duration.
+
+If no input file is given on the command line stdin is read.
 
 Example input:
 For more info on xdebug and generating traces see
@@ -59,11 +61,11 @@ TRACE END   [2007-05-06 18:29:01]
 
 Example output:
 
-- c
+with the -c option:
 {main};str_split 1
 {main};ret_ord;ord 6
 
--t
+with the -t option:
 {main} 23381
 {main};str_split 64
 {main};ret_ord 215
@@ -94,27 +96,25 @@ function isEOTrace(string $l) {
     return preg_match($pattern, $l);
 }
 
-$filename = $argv[$optind] ?? null;
-if ($filename === null) {
-    usage(1);
-}
-
 $do_time = !isset($args['c']);
 
+$filename = $argv[$optind] ?? null;
+if ($filename === null) {
+    $handle = STDIN;
+} else {
+    $handle = fopen($filename, 'r');
+    if ($handle === false) {
+        echo "Unable to open $filename \n\n";
+        usage(1);
+    }
+}
+
 // First make sure our file is consistently formatted with only one \t delimiting each field
-$out = [];
-$retval = null;
-exec("sed -in 's/\t\+/\t/g' " . escapeshellarg($filename), $out, $retval);
-if ($retval !== 0) {
-    usage(1);
-}
+$descriptorspec = [$handle, ["pipe", "w"], STDERR];
+$proc = proc_open(["sed", "s/\t\\+/\t/g"], $descriptorspec, $pipes);
 
-$handle = fopen($filename, 'r');
-
-if ($handle === false) {
-    echo "Unable to open $filename \n\n";
-    usage(1);
-}
+// read the stdout of sed
+$handle = $pipes[1];
 
 // Loop till we find TRACE START
 while ($l = fgets($handle)) {
