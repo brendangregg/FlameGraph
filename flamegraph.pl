@@ -104,8 +104,8 @@ my $frameheight = 16;           # max height is dynamic
 my $fontsize = 12;              # base text size
 my $fontwidth = 0.59;           # avg width relative to fontsize
 my $minwidth = 0.1;             # min function width, pixels or percentage of time
-my $nametype = "Function:";     # what are the names in the data?
-my $countname = "samples";      # what are the counts in the data?
+my $nametype = ($ENV{'LANG'} || '') =~ /^pt_BR/ ? "Função:" : "Function:";
+my $countname = ($ENV{'LANG'} || '') =~ /^pt_BR/ ? "amostras" : "samples";
 my $colors = "hot";             # color theme
 my $bgcolors = "";              # background color theme
 my $nameattrfile;               # file holding function attributes
@@ -128,14 +128,48 @@ my $notestext = "";		# embedded notes in SVG
 my $subtitletext = "";		# second level title (optional)
 my $help = 0;
 
-sub usage {
-	die <<USAGE_END;
+my $USAGE;
+my $lang = $ENV{'LANG'} || '';
+
+if ($lang =~ /^pt_BR/) {
+	$USAGE = <<USAGE_END;
+USO: $0 [opções] arquivo_de_entrada > arquivo_de_saida.svg\n
+	--title TEXT     # muda o texto do título
+	--subtitle TEXT  # título de segundo nível (opcional)
+	--width NUM      # largura da imagem (padrão 1200)
+	--height NUM     # altura de cada quadro (padrão 16)
+	--minwidth NUM   # omite funções menores. Em pixels ou use "%" para
+	                 # porcentagem de tempo (padrão 0.1 pixels)
+	--fonttype FONT  # tipo da fonte (padrão "Verdana")
+	--fontsize NUM   # tamanho da fonte (padrão 12)
+	--countname TEXT # rótulo do tipo de contagem (padrão "amostras")
+	--nametype TEXT  # rótulo do tipo de nome (padrão "Função:")
+	--colors PALETTE # define a paleta de cores. opções: hot (padrão), mem,
+	                 # io, wakeup, chain, java, js, perl, red, green, blue,
+	                 # aqua, yellow, purple, orange
+	--bgcolors COLOR # define as cores de fundo. gradientes: yellow
+	                 # (padrão), blue, green, grey; cores fixas usem "#rrggbb"
+	--hash           # cores são baseadas no hash do nome da função
+	--random         # cores são geradas aleatoriamente
+	--cp             # usa paleta consistente (palette.map)
+	--reverse        # gera um flame graph com a pilha invertida
+	--inverted       # gráfico de gelo (icicle graph)
+	--flamechart     # produz um flame chart (ordena por tempo, não mescla pilhas)
+	--negate         # inverte as matizes diferenciais (azul<->vermelho)
+	--notes TEXT     # adiciona comentário de notas no SVG (para depuração)
+	--help           # esta mensagem
+
+	ex,
+	$0 --title="Flame Graph: malloc()" trace.txt > graph.svg
+USAGE_END
+} else {
+	$USAGE = <<USAGE_END;
 USAGE: $0 [options] infile > outfile.svg\n
 	--title TEXT     # change title text
 	--subtitle TEXT  # second level title (optional)
 	--width NUM      # width of image (default 1200)
 	--height NUM     # height of each frame (default 16)
-	--minwidth NUM   # omit smaller functions. In pixels or use "%" for
+	--minwidth NUM   # omit smaller functions. In pixels or use "%" for 
 	                 # percentage of time (default 0.1 pixels)
 	--fonttype FONT  # font type (default "Verdana")
 	--fontsize NUM   # font size (default 12)
@@ -161,6 +195,9 @@ USAGE: $0 [options] infile > outfile.svg\n
 USAGE_END
 }
 
+sub usage {
+	die $USAGE;
+}
 GetOptions(
 	'fonttype=s'  => \$fonttype,
 	'width=i'     => \$imagewidth,
