@@ -108,6 +108,7 @@ my $nametype = "Function:";     # what are the names in the data?
 my $countname = "samples";      # what are the counts in the data?
 my $colors = "hot";             # color theme
 my $bgcolors = "";              # background color theme
+my $textcolor = "black";        # text color of frames
 my $nameattrfile;               # file holding function attributes
 my $timemax;                    # (override the) sum of the counts
 my $factor = 1;                 # factor to scale counts by
@@ -141,7 +142,7 @@ USAGE: $0 [options] infile > outfile.svg\n
 	--fontsize NUM   # font size (default 12)
 	--countname TEXT # count type label (default "samples")
 	--nametype TEXT  # name type label (default "Function:")
-	--colors PALETTE # set color palette. choices are: hot (default), mem,
+	--colors PALETTE # set color palette. choices are: hot (default), ice, mem,
 	                 # io, wakeup, chain, java, js, perl, red, green, blue,
 	                 # aqua, yellow, purple, orange
 	--bgcolors COLOR # set background colors. gradient choices are yellow
@@ -251,6 +252,9 @@ if ($bgcolors eq "") {
 		$bgcolors = "blue";
 	} elsif ($colors =~ /^(red|green|blue|aqua|yellow|purple|orange)$/) {
 		$bgcolors = "grey";
+	} elsif ($colors eq "ice") {
+		$bgcolors = "blue";
+		$textcolor = "rgb(250, 250, 250)"; # smoke color
 	} else {
 		$bgcolors = "yellow";
 	}
@@ -417,6 +421,12 @@ sub color {
 		my $r = 205 + int(50 * $v3);
 		my $g = 0 + int(230 * $v1);
 		my $b = 0 + int(55 * $v2);
+		return "rgb($r,$g,$b)";
+	}
+	if (defined $type and $type eq "ice") {
+		my $r = 0 + int(75 * $v3);
+		my $g = 0 + int(125 * $v1);
+		my $b = 175 + int(55 * $v2);
 		return "rgb($r,$g,$b)";
 	}
 	if (defined $type and $type eq "mem") {
@@ -791,7 +801,8 @@ my $inc = <<INC;
 	#subtitle { text-anchor:middle; font-color:$vdgrey; }
 	#title { text-anchor:middle; font-size:${titlesize}px}
 	#unzoom { cursor:pointer; }
-	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	#frames text { fill:${textcolor}; }
+	#frames > *:hover { stroke:${textcolor}; stroke-width:0.1; cursor:pointer; }
 	.hide { display:none; }
 	.parent { opacity:0.5; }
 </style>
