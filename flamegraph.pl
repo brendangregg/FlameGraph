@@ -582,9 +582,18 @@ sub write_palette {
 sub read_palette {
 	if (-e $pal_file) {
 	open(FILE, $pal_file) or die "can't open file $pal_file: $!";
+	my $line_number = 0;
 	while ( my $line = <FILE>) {
+		++$line_number;
 		chomp($line);
-		(my $key, my $value) = split("->",$line);
+		next if $line =~ /^\s*$/;
+
+		my $last_pos = rindex($line,"->");
+		die "invalid palette line $line_number: $line\n" if $last_pos == -1;
+
+		my $key = substr($line, 0, $last_pos);
+		my $value = substr($line, $last_pos + 2);
+		die "invalid palette line $line_number: $line\n" if $value =~ /^\s*$/;
 		$palette_map{$key}=$value;
 	}
 	close(FILE)
