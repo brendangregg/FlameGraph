@@ -1,0 +1,21 @@
+cpp-test 42/42 1.000: 5 cycles:
+        1000 Wrapper::operator->() const+0x1 (/tmp/cpp-test)
+        2000 main+0x1 (/tmp/cpp-test)
+
+cpp-test 42/42 2.000: 7 cycles:
+        1000 Wrapper::operator->*(int)+0x1 (/tmp/cpp-test)
+        2000 main+0x1 (/tmp/cpp-test)
+
+java 43/43 3.000: 11 cycles:
+        3000 LExample;::outer()V->LExample;::inner()V (/tmp/perf-43.map)
+
+java 43/43 4.000: 13 cycles:
+        3000 LExample;::operator()V->LExample;::inner()V (/tmp/perf-43.map)
+
+java 43/43 5.000: 17 cycles:
+        3000 LExample;::operator->LExample;::inner()V (/tmp/perf-43.map)
+
+cpp-test 42/42 6.000: 19 cycles:
+        1000 Wrapper::operator->()->inlined+0x1 (/tmp/cpp-test)
+        2000 main+0x1 (/tmp/cpp-test)
+

@@ -322,7 +322,9 @@ while (defined($_ = <>)) {
 
 		my $is_unknown=0;
 		my @inline;
-		for (split /\->/, $rawfunc) {
+		# Java inline frames use ->, but C++ operator->() and operator->*()
+		# are single symbols. A Java method named operator still splits.
+		for (split /(?<!operator)->|->(?!\*?\()/, $rawfunc) {
 			my $func = $_;
 
 			if ($func eq "[unknown]") {

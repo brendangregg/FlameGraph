@@ -1,0 +1,5 @@
+cpp-test-42;main;Wrapper::operator-> 5
+cpp-test-42;main;Wrapper::operator->* 7
+cpp-test-42;main;Wrapper::operator->;inlined_[i] 19
+java-43;LExample:::operator;LExample:::inner_[i] 30
+java-43;LExample:::outer;LExample:::inner_[i] 11
